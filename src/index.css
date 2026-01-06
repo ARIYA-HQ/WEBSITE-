@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #D0771E;
+  --beige-100: #f3f0eb;
+  --beige-50: #fbfaf8;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--beige-100);
+}
+
+@theme {
+  --color-primary-600: #D0771E;
+  --color-primary-100: #fbeee6;
+  --color-beige-100: #f3f0eb;
+  --color-beige-50: #fbfaf8;
+  --color-navy-primary: #1D2939;
+
+  --font-sans: 'Inter', sans-serif;
+
+  --radius-premium: 40px;
+
+  --letter-spacing-widest: 0.2em;
+}
+
+@utility premium-card {
+  background-color: white;
+  border-radius: var(--radius-premium);
+  border: 1px solid theme(--color-gray-100);
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    border-color: color-mix(in srgb, var(--color-primary-600), transparent 80%);
+  }
+}
+
+@utility section-label {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+  color: var(--color-primary-600);
+}
+
+@utility page-title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: theme(--color-gray-900);
+}
+
+.animate-in {
+  animation: animate-in 0.5s ease-out forwards;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
