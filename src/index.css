@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
 
 :root {
   --primary: #D0771E;
@@ -28,11 +30,33 @@ body {
   --letter-spacing-widest: 0.2em;
 }
 
+.dark {
+  --color-primary-100: #2a1805;
+  /* Darker version of primary-100 */
+  --color-beige-100: #0f172a;
+  /* Very dark slate/blue for background */
+  --color-beige-50: #1e293b;
+  /* Slightly lighter slate for cards */
+  --color-navy-primary: #f8fafc;
+  /* Invert navy to white/slate-50 for text */
+}
+
+/* Global Dark Mode Defaults */
+html.dark body {
+  background-color: var(--color-beige-100);
+  color: #f3f4f6;
+}
+
 @utility premium-card {
   background-color: white;
   border-radius: var(--radius-premium);
   border: 1px solid theme(--color-gray-100);
   transition: all 0.3s;
+
+  @variant dark {
+    background-color: theme(--color-gray-900);
+    border-color: theme(--color-gray-800);
+  }
 
   &:hover {
     transform: scale(1.01);

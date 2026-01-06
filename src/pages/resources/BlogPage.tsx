@@ -16,15 +16,15 @@ export default function BlogPage() {
     const featuredPost = blogPosts[0];
 
     return (
-        <main className="pt-24 bg-white min-h-screen">
+        <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
             {/* Hero */}
-            <section className="relative py-24 px-8 bg-gray-50 mb-16 md:mb-24">
+            <section className="relative py-24 px-8 bg-gray-50 dark:bg-gray-900 mb-16 md:mb-24">
                 <div className="max-w-7xl mx-auto text-center">
                     <span className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">Ariya Journal</span>
-                    <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-gray-900 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                    <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-gray-900 dark:text-white animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
                         Insights from the <br /><span className="italic font-serif text-primary-600">Front Row</span>.
                     </h1>
-                    <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                    <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto font-medium animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                         Expert advice, trend reports, and inspiration for the modern event planner.
                     </p>
                 </div>
@@ -57,15 +57,15 @@ export default function BlogPage() {
             {/* Post Grid */}
             <section className="max-w-7xl mx-auto px-8 mb-24">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
-                    <h2 className="text-4xl font-black tracking-tight">Latest Stories</h2>
+                    <h2 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">Latest Stories</h2>
                     <div className="flex flex-wrap gap-2 md:gap-4">
                         {categories.map(cat => (
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 ${selectedCategory === cat
-                                        ? 'bg-gray-900 text-white border-gray-900 shadow-lg transform scale-105'
-                                        : 'bg-white text-gray-900 border-gray-200 hover:border-gray-900 hover:bg-gray-50'
+                                    ? 'bg-gray-900 text-white border-gray-900 shadow-lg transform scale-105 dark:bg-white dark:text-gray-900'
+                                    : 'bg-white text-gray-900 border-gray-200 hover:border-gray-900 hover:bg-gray-50 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-800 dark:hover:border-white dark:hover:bg-gray-800'
                                     }`}
                             >
                                 {cat}
@@ -89,7 +89,7 @@ export default function BlogPage() {
                                 key={post.id}
                             >
                                 <Link to={`/resources/blog/${post.id}`} className="group h-full flex flex-col">
-                                    <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 bg-gray-100 relative">
+                                    <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 bg-gray-100 dark:bg-gray-800 relative">
                                         <img
                                             src={post.image}
                                             alt={post.title}
@@ -104,13 +104,13 @@ export default function BlogPage() {
                                         <span className="w-1 h-1 rounded-full bg-gray-300"></span>
                                         <span>{post.readTime}</span>
                                     </div>
-                                    <h3 className="text-2xl font-black tracking-tight mb-3 group-hover:text-primary-600 transition-colors leading-tight">
+                                    <h3 className="text-2xl font-black tracking-tight mb-3 group-hover:text-primary-600 transition-colors leading-tight text-gray-900 dark:text-white">
                                         {post.title}
                                     </h3>
-                                    <p className="text-gray-500 text-sm font-medium leading-relaxed mb-4 line-clamp-2">
+                                    <p className="text-gray-500 dark:text-gray-400 text-sm font-medium leading-relaxed mb-4 line-clamp-2">
                                         {post.excerpt}
                                     </p>
-                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 group-hover:text-gray-900 transition-colors mt-auto">
+                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors mt-auto">
                                         Read Article <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </Link>
@@ -121,7 +121,7 @@ export default function BlogPage() {
             </section>
 
             {/* Newsletter */}
-            <section className="py-24 bg-gray-900 text-white text-center">
+            <section className="py-24 bg-gray-900 dark:bg-black text-white text-center">
                 <div className="max-w-3xl mx-auto px-8">
                     <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-6">Stay In The Know</h2>
                     <p className="text-gray-400 mb-10 text-lg">

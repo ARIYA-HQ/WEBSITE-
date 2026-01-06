@@ -3,7 +3,7 @@ import { Calendar, CheckSquare, FileText, LayoutTemplate, PieChart } from 'lucid
 
 export default function PlannersPage() {
     return (
-        <main className="pt-24 bg-gray-50 min-h-screen">
+        <main className="pt-24 bg-gray-50 dark:bg-gray-950 min-h-screen">
             {/* Hero */}
             <section className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-[#0F172A] text-white">
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:16px_16px]" />
@@ -31,11 +31,11 @@ export default function PlannersPage() {
             {/* Dashboard Preview */}
             <section className="py-24 px-8 -mt-32 relative z-20">
                 <div className="max-w-6xl mx-auto">
-                    <div className="bg-white rounded-[2rem] shadow-2xl border border-gray-200 overflow-hidden p-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-[2rem] shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden p-4">
                         <img
                             src="https://cdn.dribbble.com/users/411475/screenshots/16867624/media/f5fb2b3391807662c5b369c3a2fa6741.png"
                             alt="Dashboard Interface"
-                            className="w-full rounded-2xl border border-gray-100"
+                            className="w-full rounded-2xl border border-gray-100 dark:border-gray-600"
                         />
                     </div>
                 </div>
@@ -50,11 +50,11 @@ export default function PlannersPage() {
                         { icon: LayoutTemplate, title: "Visual Floorplans", desc: "Drag-and-drop seating charts and layouts that sync with your guest list." },
                     ].map((feature, i) => (
                         <div key={i} className="flex flex-col items-start group">
-                            <div className="w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center mb-6 text-primary-600 shadow-sm group-hover:border-primary-600 transition-colors">
+                            <div className="w-12 h-12 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl flex items-center justify-center mb-6 text-primary-600 shadow-sm group-hover:border-primary-600 transition-colors">
                                 <feature.icon className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-black uppercase tracking-widest mb-3">{feature.title}</h3>
-                            <p className="text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
+                            <h3 className="text-lg font-black uppercase tracking-widest mb-3 text-gray-900 dark:text-white">{feature.title}</h3>
+                            <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">{feature.desc}</p>
                         </div>
                     ))}
                 </div>

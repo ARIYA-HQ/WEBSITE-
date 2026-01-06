@@ -76,11 +76,11 @@ export default function LandingPage() {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {vendors.map((vendor, i) => (
-                        <div key={i} className="premium-card p-8 flex flex-col items-center text-center group cursor-pointer">
-                            <div className={`w-16 h-16 rounded-full mb-6 flex items-center justify-center ${vendor.color} group-hover:scale-110 transition-transform`}>
-                                <div className="w-8 h-8 rounded-full bg-white/40" />
+                        <div key={i} className="premium-card p-8 flex flex-col items-center text-center group cursor-pointer bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                            <div className={`w-16 h-16 rounded-full mb-6 flex items-center justify-center ${vendor.color} dark:bg-opacity-20 group-hover:scale-110 transition-transform`}>
+                                <div className="w-8 h-8 rounded-full bg-white/40 dark:bg-white/10" />
                             </div>
-                            <h3 className="text-sm font-black uppercase tracking-widest">{vendor.name}</h3>
+                            <h3 className="text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white">{vendor.name}</h3>
                         </div>
                     ))}
                 </div>
@@ -91,8 +91,8 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Venues Section */}
-            <section className="py-24 px-8 bg-beige-50">
+            {/* Testimonials Section */}
+            <section className="py-24 px-8 bg-[#F2F2F2] dark:bg-gray-800">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="section-label">Venues</span>
@@ -248,36 +248,7 @@ export default function LandingPage() {
             {/* Video Showcase Section */}
             <VideoShowcase />
 
-            {/* Testimonials Section */}
-            <section className="py-24 px-8 bg-beige-100">
-                <div className="max-w-7xl mx-auto flex flex-col items-center">
-                    <div className="text-center mb-16">
-                        <span className="section-label">Testimonials</span>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter mt-4">Everybody Loves Us</h2>
-                    </div>
 
-                    <div className="relative w-full max-w-5xl">
-                        <div className="bg-primary-600 rounded-[2.5rem] p-12 md:p-20 text-white shadow-2xl relative z-10">
-                            <div className="text-6xl font-serif absolute top-10 left-10 opacity-20">"</div>
-                            <blockquote className="text-2xl md:text-4xl font-black tracking-tight leading-tight mb-12 relative z-10">
-                                Ariya transformed the way I plan events. The AI matching is a game-changer, and the free website builder is better than most paid alternatives.
-                            </blockquote>
-                            <div>
-                                <div className="text-[10px] font-black uppercase tracking-widest text-white/60 mb-1">Jane Doe</div>
-                                <div className="text-sm font-bold uppercase tracking-widest">Lead Planner, Elite Events</div>
-                            </div>
-                        </div>
-
-                        <div className="absolute -top-12 -right-12 w-48 h-48 rounded-[2rem] overflow-hidden border-8 border-beige-100 shadow-2xl hidden md:block z-20">
-                            <img
-                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400"
-                                className="w-full h-full object-cover"
-                                alt="Testimonial Author"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Community Section */}
             <section className="py-24 px-8 bg-[#1A1A1A] text-white">

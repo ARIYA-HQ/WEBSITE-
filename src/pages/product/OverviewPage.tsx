@@ -4,24 +4,24 @@ import { Link } from 'react-router-dom';
 
 export default function OverviewPage() {
     return (
-        <main className="pt-24 bg-white min-h-screen">
+        <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
             {/* Hero */}
             <section className="relative py-24 px-8 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-orange-50/50 rounded-bl-[4rem] -z-10" />
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
                     <div className="lg:w-1/2">
                         <span className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">Platform Overview</span>
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-gray-900 leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-gray-900 dark:text-white leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
                             Everything you need to plan <span className="text-primary-600">extraordinary</span> events.
                         </h1>
-                        <p className="text-xl text-gray-500 mb-10 font-medium max-w-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                        <p className="text-xl text-gray-500 dark:text-gray-400 mb-10 font-medium max-w-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                             Ariya brings your entire event workflow into one intuitive interface. Say goodbye to scattered spreadsheets and hello to streamlined success.
                         </p>
                         <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                            <button className="bg-gray-900 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black transition-colors shadow-xl">
+                            <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-colors shadow-xl">
                                 Get Started Free
                             </button>
-                            <button className="flex items-center gap-2 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200">
+                            <button className="flex items-center gap-2 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-700 text-gray-900 dark:text-white">
                                 View Demo <ArrowRight className="w-4 h-4" />
                             </button>
                         </div>
@@ -31,7 +31,7 @@ export default function OverviewPage() {
                             <div className="absolute -inset-4 bg-gradient-to-r from-orange-200 to-pink-200 rounded-[2.5rem] blur-2xl opacity-30" />
                             <img
                                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426"
-                                className="relative rounded-[2rem] shadow-2xl border-4 border-white"
+                                className="relative rounded-[2rem] shadow-2xl border-4 border-white dark:border-gray-800"
                                 alt="Platform Dashboard"
                             />
                         </div>
@@ -42,8 +42,8 @@ export default function OverviewPage() {
             {/* 4 Pillars */}
             <section className="py-24 px-8 max-w-7xl mx-auto">
                 <div className="text-center mb-20">
-                    <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">The Power of 4 Pillars</h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                    <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6 text-gray-900 dark:text-white">The Power of 4 Pillars</h2>
+                    <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg">
                         Built on a robust foundation to handle every aspect of your event lifecycle.
                     </p>
                 </div>
@@ -75,19 +75,19 @@ export default function OverviewPage() {
                             color: "bg-green-100 text-green-600"
                         }
                     ].map((item, idx) => (
-                        <div key={idx} className="p-8 rounded-[2rem] border border-gray-100 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300 group">
-                            <div className={`w-12 h-12 rounded-2xl ${item.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                        <div key={idx} className="p-8 rounded-[2rem] border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 group">
+                            <div className={`w-12 h-12 rounded-2xl ${item.color} dark:bg-opacity-20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                 <item.icon className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                            <p className="text-gray-500 leading-relaxed text-sm">{item.desc}</p>
+                            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{item.title}</h3>
+                            <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm">{item.desc}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
             {/* Integration / Ecosystem */}
-            <section className="bg-gray-900 text-white py-24 px-8 overflow-hidden">
+            <section className="bg-gray-900 dark:bg-black text-white py-24 px-8 overflow-hidden">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
                     <div className="md:w-1/2">
                         <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Plays well with others.</h2>

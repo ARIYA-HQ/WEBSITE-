@@ -11,7 +11,7 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
             onMouseEnter={() => setActiveDropdown(title)}
             onMouseLeave={() => setActiveDropdown(null)}
         >
-            <button className={`text-sm font-bold uppercase tracking-widest flex items-center gap-1 transition-colors ${isOpen ? 'text-primary-600' : 'hover:text-primary-600'}`}>
+            <button className={`text-sm font-bold uppercase tracking-widest flex items-center gap-1 transition-colors ${isOpen ? 'text-primary-600' : 'text-gray-900 dark:text-white hover:text-primary-600'}`}>
                 {title}
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -19,11 +19,11 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-4 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
+                        className="absolute top-full left-0 mt-4 bg-white dark:bg-gray-900 rounded-[2rem] shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden"
                     >
                         {children}
                     </motion.div>
@@ -32,3 +32,4 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
         </div>
     );
 }
+

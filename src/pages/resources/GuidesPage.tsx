@@ -60,14 +60,14 @@ export default function GuidesPage() {
         : resources.filter(r => r.type.includes(filter));
 
     return (
-        <main className="pt-24 bg-beige-50 min-h-screen">
+        <main className="pt-24 bg-beige-50 dark:bg-gray-950 min-h-screen">
             {/* Header */}
             <section className="py-24 px-8 text-center max-w-4xl mx-auto">
                 <span className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">Resource Library</span>
-                <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-gray-900 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-gray-900 dark:text-white animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
                     Tools for your <span className="italic font-serif text-primary-600 text-6xl md:text-8xl">Success</span>.
                 </h1>
-                <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto font-medium animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                     Download expert-crafted guides, templates, and checklists to streamline your planning process.
                 </p>
             </section>
@@ -80,8 +80,8 @@ export default function GuidesPage() {
                             key={f}
                             onClick={() => setFilter(f)}
                             className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 ${filter === f
-                                    ? 'bg-gray-900 text-white border-gray-900 shadow-lg'
-                                    : 'bg-white text-gray-900 border-gray-200 hover:border-gray-900'
+                                ? 'bg-gray-900 text-white border-gray-900 shadow-lg dark:bg-white dark:text-gray-900'
+                                : 'bg-white text-gray-900 border-gray-200 hover:border-gray-900 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-800 dark:hover:border-white'
                                 }`}
                         >
                             {f}
@@ -94,7 +94,7 @@ export default function GuidesPage() {
             <section className="max-w-7xl mx-auto px-8 pb-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredResources.map((item, idx) => (
-                        <div key={idx} className="group bg-white rounded-[2rem] p-4 hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 flex flex-col">
+                        <div key={idx} className="group bg-white dark:bg-gray-900 rounded-[2rem] p-4 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-none hover:border-primary-500 transition-all duration-500 flex flex-col border border-transparent dark:border-gray-800">
                             <div className="aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 relative">
                                 <img
                                     src={item.image}
@@ -109,17 +109,17 @@ export default function GuidesPage() {
                                 </div>
                             </div>
                             <div className="px-4 pb-4 flex-1 flex flex-col">
-                                <h3 className="text-xl font-bold tracking-tight mb-3 leading-tight group-hover:text-primary-600 transition-colors">
+                                <h3 className="text-xl font-bold tracking-tight mb-3 leading-tight group-hover:text-primary-600 transition-colors text-gray-900 dark:text-white">
                                     {item.title}
                                 </h3>
-                                <p className="text-sm text-gray-500 mb-6 leading-relaxed flex-1">
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 leading-relaxed flex-1">
                                     {item.desc}
                                 </p>
-                                <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+                                <div className="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-800">
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                                         {item.format} • {item.size}
                                     </span>
-                                    <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-all">
+                                    <button className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-900 dark:text-white hover:bg-gray-900 dark:hover:bg-primary-600 hover:text-white transition-all">
                                         <Download className="w-4 h-4" />
                                     </button>
                                 </div>

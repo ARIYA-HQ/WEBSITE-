@@ -3,35 +3,36 @@ import { MapPin, Users, Star, ArrowRight } from 'lucide-react';
 
 export default function VenueCard({ name, location, image, capacity, rating, price }: any) {
     return (
-        <div className="bg-white rounded-[2rem] overflow-hidden group hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col items-center">
-            <div className="relative h-64 w-full overflow-hidden">
+        <div className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer">
+            {/* Image */}
+            <div className="h-[400px] w-full relative">
                 <img
                     src={image}
                     alt={name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale hover:grayscale-0"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
-                    <Star className="w-3 h-3 text-primary-600 fill-primary-600" />
-                    {rating}
-                </div>
-            </div>
-            <div className="p-8 w-full text-center">
-                <div className="flex items-center justify-center gap-2 text-primary-600 mb-2">
-                    <MapPin className="w-4 h-4" />
-                    <span className="text-[10px] font-black uppercase tracking-widest">{location}</span>
-                </div>
-                <h3 className="text-xl font-black tracking-tight mb-4">{name}</h3>
-                <div className="flex justify-between items-center text-gray-500 text-xs font-bold uppercase tracking-wider mb-6">
-                    <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
-                        <span>{capacity} Seats</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                <div className="absolute bottom-0 left-0 w-full p-8 text-white">
+                    <div className="flex justify-between items-end">
+                        <div>
+                            <div className="flex items-center gap-2 mb-2">
+                                <MapPin className="w-4 h-4 text-primary-600" />
+                                <span className="text-xs font-bold uppercase tracking-widest">{location}</span>
+                            </div>
+                            <h3 className="text-2xl font-black mb-2">{name}</h3>
+                            <div className="flex gap-4 text-sm font-medium opacity-80">
+                                <span>{capacity} Guests</span>
+                                <span>•</span>
+                                <span>{price}</span>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">
+                            <Star className="w-3 h-3 fill-primary-600 text-primary-600" />
+                            <span className="text-xs font-bold">{rating}</span>
+                        </div>
                     </div>
-                    <div>{price}</div>
                 </div>
-                <button className="w-full py-4 border-2 border-gray-100 rounded-full text-[10px] font-black uppercase tracking-widest group-hover:border-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-all flex items-center justify-center gap-2">
-                    View Details
-                    <ArrowRight className="w-4 h-4" />
-                </button>
             </div>
         </div>
     );

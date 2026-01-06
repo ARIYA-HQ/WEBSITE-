@@ -3,7 +3,7 @@ import { ShieldCheck, Server, Lock, Activity } from 'lucide-react';
 
 export default function EnterprisePage() {
     return (
-        <main className="pt-24 bg-white min-h-screen">
+        <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
             <section className="relative py-32 px-8 bg-black text-white overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-900/40 blur-[120px] rounded-full pointer-events-none" />
@@ -34,18 +34,18 @@ export default function EnterprisePage() {
                         { icon: Server, title: "Dedicated Infra", desc: "Private instances ensuring maximum performance and isolation." },
                         { icon: Activity, title: "99.99% SLA", desc: "Guaranteed uptime for mission-critical event operations." },
                     ].map((item, i) => (
-                        <div key={i} className="p-8 border border-gray-100 rounded-2xl hover:border-gray-900 transition-colors cursor-default">
-                            <item.icon className="w-8 h-8 text-gray-900 mb-6" />
-                            <h3 className="text-lg font-bold mb-3">{item.title}</h3>
-                            <p className="text-gray-500 text-sm">{item.desc}</p>
+                        <div key={i} className="p-8 border border-gray-100 dark:border-gray-800 rounded-2xl hover:border-gray-900 dark:hover:border-white transition-colors cursor-default group">
+                            <item.icon className="w-8 h-8 text-gray-900 dark:text-white mb-6 group-hover:scale-110 transition-transform" />
+                            <h3 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">{item.title}</h3>
+                            <p className="text-gray-500 dark:text-gray-400 text-sm">{item.desc}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
-            <section className="py-24 bg-gray-50 text-center">
+            <section className="py-24 bg-gray-50 dark:bg-gray-900 text-center">
                 <div className="max-w-4xl mx-auto px-8">
-                    <h2 className="text-3xl font-bold mb-12">Trusted by Fortune 500</h2>
+                    <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">Trusted by Fortune 500</h2>
                     <div className="flex flex-wrap justify-center gap-12 grayscale opacity-50">
                         {/* Placeholders for logos */}
                         <div className="text-2xl font-black text-gray-400">ACME Corp</div>

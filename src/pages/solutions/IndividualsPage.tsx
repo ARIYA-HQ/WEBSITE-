@@ -4,7 +4,7 @@ import { Heart, Users, Calculator, Sparkles, CheckCircle } from 'lucide-react';
 
 export default function IndividualsPage() {
     return (
-        <main className="pt-24 bg-beige-50 min-h-screen">
+        <main className="pt-24 bg-beige-50 dark:bg-gray-950 min-h-screen">
             {/* Hero */}
             <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -31,7 +31,7 @@ export default function IndividualsPage() {
             <section className="py-24 px-8 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">Features</span>
-                    <h2 className="text-4xl md:text-5xl font-black tracking-tighter mt-4">Everything You Need</h2>
+                    <h2 className="text-4xl md:text-5xl font-black tracking-tighter mt-4 text-gray-900 dark:text-white">Everything You Need</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {[
@@ -39,23 +39,23 @@ export default function IndividualsPage() {
                         { icon: Users, title: "Guest List Magic", desc: "Collect addresses, track RSVPs, and manage meal preferences in one beautiful dashboard." },
                         { icon: Sparkles, title: "Vendor Matching", desc: "Get matched with vendors who fit your style and budget perfectly. No more endless searching." },
                     ].map((feature, i) => (
-                        <div key={i} className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
-                            <div className="w-14 h-14 bg-beige-100 rounded-2xl flex items-center justify-center mb-8 text-primary-600 group-hover:scale-110 transition-transform">
+                        <div key={i} className="bg-white dark:bg-gray-900 p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl dark:shadow-none transition-all duration-300 border border-gray-100 dark:border-gray-800 group">
+                            <div className="w-14 h-14 bg-beige-100 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center mb-8 text-primary-600 group-hover:scale-110 transition-transform">
                                 <feature.icon className="w-7 h-7" />
                             </div>
-                            <h3 className="text-xl font-black uppercase tracking-widest mb-4">{feature.title}</h3>
-                            <p className="text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
+                            <h3 className="text-xl font-black uppercase tracking-widest mb-4 text-gray-900 dark:text-white">{feature.title}</h3>
+                            <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">{feature.desc}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
             {/* Testimonial / Social Proof */}
-            <section className="py-24 bg-white border-t border-gray-100">
+            <section className="py-24 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
                 <div className="max-w-5xl mx-auto px-8 flex flex-col md:flex-row items-center gap-12">
                     <div className="flex-1">
-                        <h2 className="text-4xl font-black tracking-tight mb-6">"Ariya saved my sanity."</h2>
-                        <p className="text-gray-600 text-lg mb-8 italic">
+                        <h2 className="text-4xl font-black tracking-tight mb-6 text-gray-900 dark:text-white">"Ariya saved my sanity."</h2>
+                        <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 italic">
                             "I was drowning in spreadsheets until I found Ariya. It somehow knew exactly what I needed before I did."
                         </p>
                         <div className="flex items-center gap-4">
@@ -63,21 +63,21 @@ export default function IndividualsPage() {
                                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200" alt="Sarah" />
                             </div>
                             <div>
-                                <div className="font-bold text-gray-900">Sarah Jenkins</div>
+                                <div className="font-bold text-gray-900 dark:text-white">Sarah Jenkins</div>
                                 <div className="text-xs font-bold uppercase tracking-widest text-gray-400">Bride, June 2025</div>
                             </div>
                         </div>
                     </div>
                     <div className="flex-1 grid grid-cols-2 gap-4">
-                        <div className="bg-primary-50 p-6 rounded-2xl text-center">
+                        <div className="bg-primary-50 dark:bg-primary-900/10 p-6 rounded-2xl text-center">
                             <div className="text-3xl font-black text-primary-600 mb-1">150+</div>
                             <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Hours Saved</div>
                         </div>
-                        <div className="bg-green-50 p-6 rounded-2xl text-center">
+                        <div className="bg-green-50 dark:bg-green-900/10 p-6 rounded-2xl text-center">
                             <div className="text-3xl font-black text-green-600 mb-1">$2k</div>
                             <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Under Budget</div>
                         </div>
-                        <div className="bg-blue-50 p-6 rounded-2xl text-center col-span-2">
+                        <div className="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-2xl text-center col-span-2">
                             <div className="text-3xl font-black text-blue-600 mb-1">Zero</div>
                             <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Stress Meltdowns</div>
                         </div>
