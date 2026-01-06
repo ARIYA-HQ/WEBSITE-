@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://ariya-hq.github.io/AriyaHQWeb",
+  "homepage": "https://ariya-hq.github.io/WEBSITE-",
   "keywords": [],
   "author": "",
   "license": "ISC",
