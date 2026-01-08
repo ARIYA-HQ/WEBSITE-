@@ -80,22 +80,22 @@ export default function EnterprisePage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <EnterpriseCard
-                        icon={<Lock />}
+                        icon={Lock}
                         title="SSO & Governance"
                         features={["SAML 2.0 / SCIM", "RBAC Controls", "Audit Logs", "IP Whitelisting"]}
                     />
                     <EnterpriseCard
-                        icon={<Globe />}
+                        icon={Globe}
                         title="Global Compliance"
                         features={["GDPR & CCPA", "SOC2 Type II", "ISO 27001", "Data Residency"]}
                     />
                     <EnterpriseCard
-                        icon={<Cpu />}
+                        icon={Cpu}
                         title="Advanced AI"
                         features={["Private Models", "Data Sovereignty", "Auto-Cleanup", "Insight Engine"]}
                     />
                     <EnterpriseCard
-                        icon={<Users />}
+                        icon={Users}
                         title="Team Scale"
                         features={["Infinite Seats", "Cross-Org Search", "Shared Templates", "Central Billing"]}
                     />
@@ -170,10 +170,10 @@ export default function EnterprisePage() {
     );
 }
 
-const EnterpriseCard = ({ icon, title, features }: { icon: React.ReactNode, title: string, features: string[] }) => (
+const EnterpriseCard = ({ icon: Icon, title, features }: { icon: any, title: string, features: string[] }) => (
     <div className="p-10 premium-card h-full flex flex-col items-start translate-z-0">
         <div className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center text-primary-600 mb-8">
-            {React.cloneElement(icon as React.ReactElement, { className: 'w-6 h-6' })}
+            <Icon className="w-6 h-6" />
         </div>
         <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-tight">{title}</h3>
         <ul className="space-y-3 mt-auto w-full">

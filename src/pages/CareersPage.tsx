@@ -80,22 +80,22 @@ export default function CareersPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <ValueCard
-                            icon={<Rocket />}
+                            icon={Rocket}
                             title="Audacious Ambition"
                             desc="We play for big stakes. We aim to rewire how an entire industry thinks about events."
                         />
                         <ValueCard
-                            icon={<Heart />}
+                            icon={Heart}
                             title="Radical Hospitality"
                             desc="We serve our users with the same care a five-star host serves their guests."
                         />
                         <ValueCard
-                            icon={<Zap />}
+                            icon={Zap}
                             title="Unrelenting Speed"
                             desc="Shipping is our heartbeat. We value progress over perfection, constantly iterating."
                         />
                         <ValueCard
-                            icon={<Code />}
+                            icon={Code}
                             title="Elegance in Detail"
                             desc="From code to design, we obsess over the details that make the magic happen."
                         />
@@ -116,10 +116,10 @@ export default function CareersPage() {
                             </p>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <PerkItem icon={<Globe />} title="Remote-First" desc="Work from anywhere in the world." />
-                                <PerkItem icon={<Coffee />} title="Health & Wellness" desc="Premium medical coverage & gym." />
-                                <PerkItem icon={<Zap />} title="Equity Options" desc="Be a true owner in Ariya's future." />
-                                <PerkItem icon={<Users />} title="Annual Retreats" desc="Regular offsites in beautiful places." />
+                                <PerkItem icon={Globe} title="Remote-First" desc="Work from anywhere in the world." />
+                                <PerkItem icon={Coffee} title="Health & Wellness" desc="Premium medical coverage & gym." />
+                                <PerkItem icon={Zap} title="Equity Options" desc="Be a true owner in Ariya's future." />
+                                <PerkItem icon={Users} title="Annual Retreats" desc="Regular offsites in beautiful places." />
                             </div>
                         </motion.div>
 
@@ -204,20 +204,20 @@ export default function CareersPage() {
     );
 }
 
-const ValueCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
+const ValueCard = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
     <div className="p-10 premium-card h-full">
         <div className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center text-primary-600 mb-8">
-            {React.cloneElement(icon as React.ReactElement, { className: 'w-6 h-6' })}
+            <Icon className="w-6 h-6" />
         </div>
         <h3 className="text-xl font-black text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">{title}</h3>
         <p className="text-gray-500 dark:text-gray-400 text-sm font-medium leading-relaxed">{desc}</p>
     </div>
 );
 
-const PerkItem = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
+const PerkItem = ({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) => (
     <div className="p-6 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl flex items-start gap-4 hover:border-primary-600 transition-colors group">
         <div className="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 flex-shrink-0 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-            {React.cloneElement(icon as React.ReactElement, { className: 'w-5 h-5' })}
+            <Icon className="w-5 h-5" />
         </div>
         <div>
             <div className="text-sm font-black text-gray-900 dark:text-white uppercase tracking-tight mb-1">{title}</div>

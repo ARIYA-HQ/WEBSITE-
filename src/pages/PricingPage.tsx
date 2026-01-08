@@ -170,14 +170,14 @@ const PricingPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <UnlockCard title="Remove Ariya Branding" price="₦9,000" icon={<ShieldCheck />} />
-                        <UnlockCard title="Extra Event Slot" price="₦7,500" icon={<Zap />} />
-                        <UnlockCard title="Premium Web Templates" price="₦15,000" icon={<Globe />} />
-                        <UnlockCard title="Accelerated Payouts" price="₦6,000" icon={<Zap />} />
-                        <UnlockCard title="White-Label Domain" price="₦15,000" icon={<Globe />} />
-                        <UnlockCard title="Registry Branding" price="₦9,000" icon={<Gift />} />
-                        <UnlockCard title="Custom Domain" price="₦9,000" icon={<Globe />} />
-                        <UnlockCard title="Client Portals" price="₦30,000" icon={<Lock />} />
+                        <UnlockCard title="Remove Ariya Branding" price="₦9,000" icon={ShieldCheck} />
+                        <UnlockCard title="Extra Event Slot" price="₦7,500" icon={Zap} />
+                        <UnlockCard title="Premium Web Templates" price="₦15,000" icon={Globe} />
+                        <UnlockCard title="Accelerated Payouts" price="₦6,000" icon={Zap} />
+                        <UnlockCard title="White-Label Domain" price="₦15,000" icon={Globe} />
+                        <UnlockCard title="Registry Branding" price="₦9,000" icon={Gift} />
+                        <UnlockCard title="Custom Domain" price="₦9,000" icon={Globe} />
+                        <UnlockCard title="Client Portals" price="₦30,000" icon={Lock} />
                     </div>
                 </div>
 
@@ -254,10 +254,10 @@ const FeatureItem = ({ text, dark = false }: { text: string; dark?: boolean }) =
     </div>
 );
 
-const UnlockCard = ({ title, price, icon }: { title: string; price: string; icon: React.ReactNode }) => (
+const UnlockCard = ({ title, price, icon: Icon }: { title: string; price: string; icon: any }) => (
     <div className="p-6 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center group hover:border-primary-600/50 transition-all cursor-pointer">
         <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-primary-600 group-hover:text-white transition-all mb-4">
-            {React.cloneElement(icon as React.ReactElement, { className: 'w-4 h-4' })}
+            <Icon className="w-4 h-4" />
         </div>
         <div className="text-xs font-black uppercase text-gray-900 dark:text-white mb-1">{title}</div>
         <div className="text-sm font-bold text-primary-600">{price}</div>
