@@ -30,6 +30,8 @@ import HelpCenterPage from './pages/resources/HelpCenterPage';
 import GuidesPage from './pages/resources/GuidesPage';
 import CaseStudiesPage from './pages/resources/CaseStudiesPage';
 import CaseStudyPage from './pages/resources/CaseStudyPage';
+import NotFoundPage from './pages/NotFoundPage';
+import PricingPage from './pages/PricingPage';
 
 // Components
 import NavDropdown from './components/NavDropdown';
@@ -227,9 +229,9 @@ export default function App() {
                                 </NavDropdown>
 
                                 {/* 4. PRICING (Direct Link) */}
-                                <a href="#" className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white hover:text-primary-600 transition-colors">
+                                <Link to="/pricing" className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white hover:text-primary-600 transition-colors">
                                     Pricing
-                                </a>
+                                </Link>
 
                                 {/* 5. RESOURCES */}
                                 <NavDropdown
@@ -337,6 +339,8 @@ export default function App() {
                         <Route path="/product/marketplace" element={<MarketplacePage />} />
                         <Route path="/product/finance" element={<FinancePage />} />
                         <Route path="/product/websites" element={<WebsitesPage />} />
+                        <Route path="/pricing" element={<PricingPage />} />
+                        <Route path="*" element={<NotFoundPage />} />
                     </Routes>
 
                     {/* Footer */}
