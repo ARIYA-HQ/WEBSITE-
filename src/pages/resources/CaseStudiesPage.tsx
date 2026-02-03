@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, TrendingUp } from 'lucide-react';
-import { caseStudies } from '../../data/caseStudies';
+import { cmsService } from '../../services/cmsService';
+import { CaseStudy } from '../../types/cms';
 
 export default function CaseStudiesPage() {
+    const [studies, setStudies] = useState<CaseStudy[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        cmsService.getCaseStudies().then(data => {
+            setStudies(data);
+            setLoading(false);
+        });
+    }, []);
+
+    if (loading) {
+        return (
+            <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen flex items-center justify-center">
+                <div className="animate-pulse flex flex-col items-center">
+                    <div className="h-4 w-32 bg-gray-200 dark:bg-gray-800 rounded mb-4"></div>
+                </div>
+            </main>
+        );
+    }
+
     return (
         <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
             {/* Hero */}
@@ -20,7 +41,7 @@ export default function CaseStudiesPage() {
             {/* Case Study Grid */}
             <section className="max-w-7xl mx-auto px-8 pb-32">
                 <div className="space-y-24">
-                    {caseStudies.map((study, idx) => (
+                    {studies.map((study, idx) => (
                         <div key={study.id} className={`flex flex-col lg:flex-row gap-16 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                             {/* Image Side */}
                             <div className="w-full lg:w-1/2 aspect-[4/3] relative group">
@@ -38,10 +59,10 @@ export default function CaseStudiesPage() {
                             {/* Content Side */}
                             <div className="w-full lg:w-1/2">
                                 <div className="flex items-center gap-3 mb-6">
-                                    <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-black text-[10px] text-gray-900">
+                                    <span className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-black text-[10px] text-gray-900 dark:text-white">
                                         {study.logo}
                                     </span>
-                                    <span className="text-xs font-bold uppercase tracking-widest text-gray-500">{study.client} • {study.industry}</span>
+                                    <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">{study.client} • {study.industry}</span>
                                 </div>
                                 <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6 leading-tight text-gray-900 dark:text-white">
                                     {study.title}
@@ -69,6 +90,12 @@ export default function CaseStudiesPage() {
                             </div>
                         </div>
                     ))}
+
+                    {studies.length === 0 && !loading && (
+                        <div className="text-center py-24">
+                            <p className="text-gray-400">No case studies found. Check back soon!</p>
+                        </div>
+                    )}
                 </div>
             </section>
 

@@ -1,63 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Download, FileText, CheckSquare, Layers, ArrowRight, Filter } from 'lucide-react';
-
-const resources = [
-    {
-        type: "Guide",
-        title: "The 2026 Event Trends Report",
-        desc: "A comprehensive look at the colors, themes, and technologies shaping the future of events.",
-        image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070",
-        format: "PDF",
-        size: "12 MB"
-    },
-    {
-        type: "Template",
-        title: "Ultimate Wedding Budget Spreadsheet",
-        desc: "A detailed, formula-ready spreadsheet to track every penny. Includes categories for international events.",
-        image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=2070",
-        format: "Excel",
-        size: "2 MB"
-    },
-    {
-        type: "Checklist",
-        title: "30-Day Launch Checklist",
-        desc: "Don't miss a beat in the final month. A daily countdown of tasks for the perfect execution.",
-        image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=2072",
-        format: "PDF",
-        size: "1 MB"
-    },
-    {
-        type: "Guide",
-        title: "Vendor Negotiation Playbook",
-        desc: "Scripts and strategies to get the best rates and terms from your event partners.",
-        image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=2032",
-        format: "PDF",
-        size: "4 MB"
-    },
-    {
-        type: "Template",
-        title: "Run of Show Master Template",
-        desc: "The industry standard for minute-by-minute event timing. Keeps everyone in sync.",
-        image: "https://images.unsplash.com/photo-1505373877841-8d43f7d63e5e?auto=format&fit=crop&q=80&w=2075",
-        format: "Word",
-        size: "3 MB"
-    },
-    {
-        type: "Checklist",
-        title: "Venue Site Visit Inspection",
-        desc: "The 100 questions you need to ask before signing a venue contract.",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2098",
-        format: "PDF",
-        size: "1.5 MB"
-    }
-];
+import { cmsService } from '../../services/cmsService';
+import { Resource } from '../../types/cms';
+import ResourceCard from '../../components/resources/ResourceCard';
 
 export default function GuidesPage() {
+    const [resources, setResources] = useState<Resource[]>([]);
+    const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState("All");
+
+    useEffect(() => {
+        cmsService.getResources().then(data => {
+            setResources(data);
+            setLoading(false);
+        });
+    }, []);
 
     const filteredResources = filter === "All"
         ? resources
-        : resources.filter(r => r.type.includes(filter));
+        : resources.filter(r => r.type === filter); // Exact match for type
 
     return (
         <main className="pt-24 bg-beige-50 dark:bg-gray-950 min-h-screen">
@@ -94,37 +55,7 @@ export default function GuidesPage() {
             <section className="max-w-7xl mx-auto px-8 pb-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredResources.map((item, idx) => (
-                        <div key={idx} className="group bg-white dark:bg-gray-900 rounded-[2rem] p-4 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-none hover:border-primary-500 transition-all duration-500 flex flex-col border border-transparent dark:border-gray-800">
-                            <div className="aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 relative">
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-900 flex items-center gap-2">
-                                    {item.type === "Guide" && <FileText className="w-3 h-3 text-primary-600" />}
-                                    {item.type === "Template" && <Layers className="w-3 h-3 text-blue-600" />}
-                                    {item.type === "Checklist" && <CheckSquare className="w-3 h-3 text-green-600" />}
-                                    {item.type}
-                                </div>
-                            </div>
-                            <div className="px-4 pb-4 flex-1 flex flex-col">
-                                <h3 className="text-xl font-bold tracking-tight mb-3 leading-tight group-hover:text-primary-600 transition-colors text-gray-900 dark:text-white">
-                                    {item.title}
-                                </h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 leading-relaxed flex-1">
-                                    {item.desc}
-                                </p>
-                                <div className="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-800">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                                        {item.format} • {item.size}
-                                    </span>
-                                    <button className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-900 dark:text-white hover:bg-gray-900 dark:hover:bg-primary-600 hover:text-white transition-all">
-                                        <Download className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <ResourceCard key={idx} resource={item} />
                     ))}
                 </div>
             </section>
