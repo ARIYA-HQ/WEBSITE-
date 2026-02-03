@@ -81,23 +81,23 @@ export default function ResourceEditorPage() {
                 </div>
             )}
 
-            <div className="max-w-6xl mx-auto px-8 relative z-10">
+            <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
                 {/* Header Actions */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 mt-8 md:mt-0">
                     <button onClick={() => navigate('/admin')} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors group">
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Dashboard
                     </button>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
                         <button
                             onClick={() => setShowPreview(true)}
-                            className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all hover:shadow-lg flex items-center gap-2"
+                            className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all hover:shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto"
                         >
                             <Eye className="w-4 h-4" /> Preview
                         </button>
                         <button
                             onClick={handleSubmit}
                             disabled={loading}
-                            className="bg-primary-600 text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all hover:shadow-lg hover:shadow-primary-600/30 flex items-center gap-2 transform active:scale-95"
+                            className="bg-primary-600 text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all hover:shadow-lg hover:shadow-primary-600/30 flex items-center justify-center gap-2 transform active:scale-95 w-full sm:w-auto whitespace-nowrap"
                         >
                             <Save className="w-4 h-4" /> {loading ? 'Saving...' : 'Save Resource'}
                         </button>

@@ -97,23 +97,23 @@ export default function PostEditorPage() {
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-100/30 dark:bg-primary-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-orange-100/30 dark:bg-orange-900/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-8 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 mt-8 md:mt-0">
                     <button onClick={() => navigate('/admin')} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">
                         <ArrowLeft className="w-4 h-4" /> Back to Dashboard
                     </button>
-                    <div className="flex items-center gap-4">
-                        <div className="flex bg-white dark:bg-gray-800 rounded-lg p-1 shadow-sm">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+                        <div className="flex bg-white dark:bg-gray-800 rounded-lg p-1 shadow-sm w-full sm:w-auto">
                             <button
                                 onClick={() => setActiveTab('edit')}
-                                className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-all ${activeTab === 'edit' ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
+                                className={`flex-1 sm:flex-none px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-all ${activeTab === 'edit' ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
                             >
                                 Editor
                             </button>
                             <button
                                 onClick={() => setActiveTab('preview')}
-                                className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-all ${activeTab === 'preview' ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
+                                className={`flex-1 sm:flex-none px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-all ${activeTab === 'preview' ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
                             >
                                 Preview
                             </button>
@@ -121,7 +121,7 @@ export default function PostEditorPage() {
                         <button
                             onClick={handleSubmit}
                             disabled={loading}
-                            className="bg-primary-600 text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all flex items-center gap-2 disabled:opacity-50"
+                            className="w-full sm:w-auto bg-primary-600 text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap"
                         >
                             {loading ? <div className="animate-spin w-4 h-4 border-2 border-white/30 border-t-white rounded-full" /> : <Save className="w-4 h-4" />}
                             {isEditMode ? 'Update Post' : 'Publish Post'}

@@ -3,7 +3,7 @@ import { ArrowUp, ArrowDown, Users, Eye, Clock, MousePointer, TrendingUp, Calend
 
 export default function AnalyticsPage() {
     return (
-        <div className="flex-1 px-8 py-8 h-screen overflow-y-auto relative bg-gray-50 dark:bg-gray-950">
+        <div className="flex-1 px-4 md:px-8 py-8 h-screen overflow-y-auto relative bg-gray-50 dark:bg-gray-950">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-100/20 dark:bg-blue-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary-100/20 dark:bg-primary-900/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
@@ -57,8 +57,8 @@ export default function AnalyticsPage() {
 
                 {/* Main Chart Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                    <div className="lg:col-span-2 bg-white dark:bg-gray-900 p-10 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-800">
-                        <div className="flex items-center justify-between mb-12">
+                    <div className="lg:col-span-2 bg-white dark:bg-gray-900 p-6 md:p-10 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-800">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 md:mb-12">
                             <div>
                                 <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Traffic Overview</h2>
                                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">Unique visitors across all pages</p>

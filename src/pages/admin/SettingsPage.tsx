@@ -12,7 +12,7 @@ export default function SettingsPage() {
     ];
 
     return (
-        <div className="flex-1 px-8 py-8 h-screen overflow-y-auto relative bg-gray-50 dark:bg-gray-950">
+        <div className="flex-1 px-4 md:px-8 py-8 h-screen overflow-y-auto relative bg-gray-50 dark:bg-gray-950">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-orange-100/20 dark:bg-orange-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
@@ -104,7 +104,7 @@ function SocialInput({ icon, placeholder }: any) {
 function TeamSettings() {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-            <div className="flex justify-between items-center mb-10">
+            <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-10">
                 <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Team Members</h2>
                 <button className="text-[10px] font-black text-primary-600 uppercase tracking-widest hover:underline transition-all ring-offset-4 rounded">+ Invite Member</button>
             </div>

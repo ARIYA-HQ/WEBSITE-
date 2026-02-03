@@ -164,21 +164,21 @@ export default function AdminDashboardPage() {
     };
 
     return (
-        <div className="flex-1 px-8 py-8 h-screen overflow-y-auto relative">
+        <div className="flex-1 px-4 md:px-8 py-8 h-screen overflow-y-auto overflow-x-hidden relative">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-100/30 dark:bg-primary-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-orange-100/30 dark:bg-orange-900/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
             <div className="relative z-10 max-w-6xl mx-auto">
                 {/* Header Section */}
-                <div className="flex justify-between items-end mb-12">
+                <div className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-8 md:mb-12">
                     <div>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-[10px] font-black uppercase tracking-widest text-gray-500">Dashboard</span>
                             <span className="text-gray-300 dark:text-gray-700">/</span>
                             <span className="text-xs font-bold text-gray-900 dark:text-gray-300 uppercase tracking-widest">{view === 'overview' ? 'Overview' : view}</span>
                         </div>
-                        <h1 className="text-4xl font-black tracking-tighter text-gray-900 dark:text-white">
+                        <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-gray-900 dark:text-white">
                             {view === 'overview' && 'Console Overview'}
                             {view === 'posts' && 'Blog Posts'}
                             {view === 'case-studies' && 'Case Studies'}
@@ -191,11 +191,11 @@ export default function AdminDashboardPage() {
                             {view === 'posts' || view === 'case-studies' || view === 'resources' ? 'Manage and organize your website content.' : ''}
                         </p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 w-full md:w-auto">
                         {view === 'waitlist' && (
                             <button
                                 onClick={handleExportCSV}
-                                className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
+                                className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm whitespace-nowrap w-full md:w-auto"
                             >
                                 <Download className="w-4 h-4" /> Export CSV
                             </button>
@@ -203,7 +203,7 @@ export default function AdminDashboardPage() {
                         {view !== 'waitlist' && view !== 'overview' && (
                             <button
                                 onClick={handleCreate}
-                                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all shadow-lg shadow-primary-600/20 hover:scale-105 active:scale-95"
+                                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary-600/20 hover:scale-105 active:scale-95 whitespace-nowrap w-full md:w-auto"
                             >
                                 <Plus className="w-4 h-4" /> Create New
                             </button>
@@ -214,14 +214,14 @@ export default function AdminDashboardPage() {
                 {/* Overview Landing */}
                 {view === 'overview' && !loading && (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
                             <QuickStat cardId="posts" label="Total Posts" value={posts.length} icon={<FileText />} color="blue" onClick={() => setView('posts')} />
                             <QuickStat cardId="case-studies" label="Case Studies" value={caseStudies.length} icon={<Layout />} color="purple" onClick={() => setView('case-studies')} />
                             <QuickStat cardId="waitlist" label="Signups" value={waitlist.length} icon={<Users className="w-4 h-4" />} color="orange" onClick={() => setView('waitlist')} />
                             <QuickStat cardId="resources" label="Resources" value={resources.length} icon={<Package />} color="green" onClick={() => setView('resources')} />
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                             <div className="lg:col-span-2 space-y-8">
                                 <div className="bg-white dark:bg-gray-900 p-8 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden relative">
                                     <div className="absolute top-0 right-0 p-8 opacity-5">
@@ -344,13 +344,13 @@ export default function AdminDashboardPage() {
 
                         {/* Filters & Search (Only for content views) */}
                         <div className="bg-white dark:bg-gray-900 p-2 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                            <div className="flex p-1 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                            <div className="flex p-1 bg-gray-50 dark:bg-gray-800/50 rounded-xl overflow-x-auto max-w-full no-scrollbar">
                                 {view !== 'waitlist' ? (
                                     (['all', 'published', 'draft', 'archived'] as const).map(status => (
                                         <button
                                             key={status}
                                             onClick={() => setStatusFilter(status)}
-                                            className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${statusFilter === status ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
+                                            className={`px-4 md:px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${statusFilter === status ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
                                         >
                                             {status.charAt(0).toUpperCase() + status.slice(1)}
                                         </button>
@@ -360,7 +360,7 @@ export default function AdminDashboardPage() {
                                         <button
                                             key={role}
                                             onClick={() => setStatusFilter(role as any)}
-                                            className={`px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${statusFilter === role ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
+                                            className={`px-4 md:px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${statusFilter === role ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
                                         >
                                             {role === 'all' ? 'All Roles' : (role === 'individual' ? 'Planners' : (role === 'pro' ? 'Agencies' : 'Vendors'))}
                                         </button>
@@ -386,8 +386,8 @@ export default function AdminDashboardPage() {
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
                             </div>
                         ) : (
-                            <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800">
-                                <table className="w-full text-left border-collapse">
+                            <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800 overflow-x-auto">
+                                <table className="w-full text-left border-collapse min-w-[800px]">
                                     <thead className="bg-gray-50/50 dark:bg-gray-800/30 border-b border-gray-100 dark:border-gray-800">
                                         <tr>
                                             <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">
