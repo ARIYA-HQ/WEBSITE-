@@ -271,6 +271,69 @@ app.delete('/api/resources/:id', (req, res) => {
     } catch (err) { res.status(500).json({ error: 'Failed to delete' }); }
 });
 
+
+// --- Waitlist Routes ---
+app.get('/api/waitlist', (req, res) => {
+    try {
+        const data = db.get();
+        const entries = [...(data.waitlist || [])];
+        // Sort by timestamp desc
+        entries.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        res.json(entries);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch waitlist' });
+    }
+});
+
+app.post('/api/waitlist', (req, res) => {
+    try {
+        const { name, email, role } = req.body;
+        if (!email) return res.status(400).json({ error: 'Email is required' });
+
+        const data = db.get();
+        if (!data.waitlist) data.waitlist = [];
+
+        // Check if email already exists
+        if (data.waitlist.some(e => e.email === email)) {
+            return res.status(409).json({ error: 'Email already on waitlist' });
+        }
+
+        const newId = data.waitlist.length > 0 ? Math.max(...data.waitlist.map(w => w.id)) + 1 : 1;
+        const newEntry = {
+            id: newId,
+            name: name || '',
+            email,
+            role: role || 'individual',
+            timestamp: new Date().toISOString()
+        };
+
+        data.waitlist.push(newEntry);
+        db.save(data);
+
+        res.status(201).json({ message: 'Added to waitlist', id: newId });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to join waitlist' });
+    }
+});
+
+app.delete('/api/waitlist/:id', (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const data = db.get();
+        if (data.waitlist) {
+            data.waitlist = data.waitlist.filter(w => w.id !== id);
+            db.save(data);
+        }
+        res.json({ message: 'Deleted from waitlist' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to delete entry' });
+    }
+});
+
+
 // --- Upload Route ---
 app.post('/api/upload', (req, res) => {
     try {

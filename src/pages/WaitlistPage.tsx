@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Star, Shield, Zap, Instagram, Twitter, Linkedin, Users, Camera, Briefcase, Heart, Gift, Building2, Baby, Share2, Copy } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Star, Shield, Zap, Instagram, Twitter, Linkedin, Users, Camera, Briefcase, Heart, Gift, Building2, Baby, Share2, Copy, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ThemeToggle } from '../components/ThemeToggle';
 
 type UserRole = 'individual' | 'pro' | 'vendor';
 
@@ -15,13 +16,28 @@ export default function WaitlistPage() {
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setTimeout(() => {
+        try {
+            const response = await fetch('http://localhost:3001/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+            } else {
+                const data = await response.json();
+                alert(data.error || 'Failed to join waitlist');
+            }
+        } catch (error) {
+            console.error('Waitlist error:', error);
+            alert('Something went wrong. Please try again.');
+        } finally {
             setLoading(false);
-            setSubmitted(true);
-        }, 1500);
+        }
     };
 
     const copyLink = () => {
@@ -44,14 +60,23 @@ export default function WaitlistPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-beige-50 dark:bg-gray-950 flex flex-col lg:flex-row overflow-hidden">
+        <main className="min-h-screen bg-beige-50 dark:bg-gray-950 flex flex-col lg:flex-row overflow-hidden relative">
+            {/* Top Navigation Overlay - High Visibility */}
+            <div className="fixed top-8 left-8 right-8 flex justify-between items-center z-[100] pointer-events-none">
+                <Link
+                    to="/"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-gray-900 shadow-2xl border border-gray-100 dark:border-gray-800 text-[10px] font-black uppercase tracking-widest text-gray-900 dark:text-gray-100 hover:scale-105 transition-all pointer-events-auto"
+                >
+                    <ArrowLeft className="w-3.5 h-3.5" /> Back Home
+                </Link>
+                <div className="bg-white dark:bg-gray-900 shadow-2xl border border-gray-100 dark:border-gray-800 rounded-full p-1 pointer-events-auto">
+                    <ThemeToggle />
+                </div>
+            </div>
+
             {/* Left Section: Content */}
             <div className="flex-1 p-8 lg:p-20 xl:p-24 flex flex-col justify-center relative overflow-y-auto">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100/40 dark:bg-primary-900/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-
-                <Link to="/" className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white mb-12 block w-fit hover:opacity-70 transition-opacity relative z-10 shrink-0">
-                    ARIYA
-                </Link>
 
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

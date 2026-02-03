@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Plus, Edit2, Trash2, CheckCircle, Clock, Search as SearchIcon, FileText, Layers, Layout, Package } from 'lucide-react';
+import { Plus, Edit2, Trash2, CheckCircle, Clock, Search as SearchIcon, FileText, Layers, Layout, Package, BarChart2, Download } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
-import { BlogPost, CaseStudy, Resource } from '../../types/cms';
+import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../../types/cms';
 
-type TabView = 'posts' | 'case-studies' | 'resources';
+type TabView = 'posts' | 'case-studies' | 'resources' | 'waitlist';
 
 export default function AdminDashboardPage() {
     const navigate = useNavigate();
@@ -21,6 +21,7 @@ export default function AdminDashboardPage() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
     const [resources, setResources] = useState<Resource[]>([]);
+    const [waitlist, setWaitlist] = useState<WaitlistEntry[]>([]);
 
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -38,6 +39,9 @@ export default function AdminDashboardPage() {
             } else if (view === 'resources') {
                 const data = await cmsService.getResources(true);
                 setResources(data);
+            } else if (view === 'waitlist') {
+                const data = await cmsService.getWaitlist();
+                setWaitlist(data);
             }
         } catch (error) {
             console.error('Failed to fetch data:', error);
@@ -59,14 +63,27 @@ export default function AdminDashboardPage() {
         if (view === 'posts') result = posts;
         if (view === 'case-studies') result = caseStudies;
         if (view === 'resources') result = resources;
+        if (view === 'waitlist') result = waitlist;
 
         if (statusFilter !== 'all') {
-            result = result.filter(item => item.status === statusFilter);
+            if (view === 'waitlist') {
+                result = result.filter(item => item.role === statusFilter);
+            } else {
+                result = result.filter(item => item.status === statusFilter);
+            }
         }
 
         if (searchQuery) {
             const lower = searchQuery.toLowerCase();
-            result = result.filter(item => item.title.toLowerCase().includes(lower));
+            if (view === 'waitlist') {
+                result = result.filter(item =>
+                    item.name.toLowerCase().includes(lower) ||
+                    item.email.toLowerCase().includes(lower) ||
+                    item.role.toLowerCase().includes(lower)
+                );
+            } else {
+                result = result.filter(item => item.title.toLowerCase().includes(lower));
+            }
         }
         return result;
     };
@@ -79,6 +96,7 @@ export default function AdminDashboardPage() {
             if (view === 'posts') await cmsService.deleteBlogPost(id);
             if (view === 'case-studies') await cmsService.deleteCaseStudy(id);
             if (view === 'resources') await cmsService.deleteResource(id);
+            if (view === 'waitlist') await cmsService.deleteWaitlistEntry(id);
             fetchData(); // Refresh
         } catch (e: any) {
             console.error(e);
@@ -90,12 +108,39 @@ export default function AdminDashboardPage() {
         if (view === 'posts') navigate('/admin/posts/new');
         if (view === 'case-studies') navigate('/admin/case-studies/new');
         if (view === 'resources') navigate('/admin/resources/new');
+        if (view === 'waitlist') alert('Waitlist entries are created by users on the public site.');
     };
 
     const handleEdit = (id: any) => {
         if (view === 'posts') navigate(`/admin/posts/${id}/edit`);
         if (view === 'case-studies') navigate(`/admin/case-studies/${id}/edit`);
         if (view === 'resources') navigate(`/admin/resources/${id}/edit`);
+    };
+
+    const handleExportCSV = () => {
+        if (view !== 'waitlist' || filteredItems.length === 0) return;
+
+        const headers = ['ID', 'Name', 'Email', 'Role', 'Date Joined'];
+        const csvRows = filteredItems.map((entry: any) => [
+            entry.id,
+            `"${entry.name || 'Anonymous'}"`,
+            entry.email,
+            entry.role,
+            new Date(entry.timestamp).toLocaleDateString()
+        ].join(','));
+
+        const csvContent = [headers.join(','), ...csvRows].join('\n');
+        const fileName = statusFilter === 'all' ? 'ariya_waitlist_full' : `ariya_waitlist_${statusFilter}`;
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `${fileName}_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     const getStatusColor = (status: string) => {
@@ -127,61 +172,111 @@ export default function AdminDashboardPage() {
                             {view === 'posts' && 'Blog Posts'}
                             {view === 'case-studies' && 'Case Studies'}
                             {view === 'resources' && 'Resources'}
+                            {view === 'waitlist' && 'Waitlist Entries'}
                         </h1>
-                        <p className="text-gray-500 dark:text-gray-400 mt-2 font-medium">Manage and organize your website content.</p>
+                        <p className="text-gray-500 dark:text-gray-400 mt-2 font-medium">
+                            {view === 'waitlist' ? 'View and manage users who joined the waitlist.' : 'Manage and organize your website content.'}
+                        </p>
                     </div>
-                    <button
-                        onClick={handleCreate}
-                        className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all shadow-lg shadow-primary-600/20 hover:scale-105 active:scale-95"
-                    >
-                        <Plus className="w-4 h-4" /> Create New
-                    </button>
+                    <div className="flex items-center gap-3">
+                        {view === 'waitlist' && (
+                            <button
+                                onClick={handleExportCSV}
+                                className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 transition-all hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95 shadow-sm"
+                            >
+                                <Download className="w-4 h-4" /> Export CSV
+                            </button>
+                        )}
+                        {view !== 'waitlist' && (
+                            <button
+                                onClick={handleCreate}
+                                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all shadow-lg shadow-primary-600/20 hover:scale-105 active:scale-95"
+                            >
+                                <Plus className="w-4 h-4" /> Create New
+                            </button>
+                        )}
+                    </div>
                 </div>
 
-                {/* Stats / Overview (Optional Placeholder for improved design) */}
+                {/* Stats / Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Total Items</h3>
+                            <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">
+                                {view === 'waitlist' ? 'Total Signups' : 'Total Items'}
+                            </h3>
                             <Layers className="w-4 h-4 text-primary-600" />
                         </div>
                         <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.length}</div>
                     </div>
-                    <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Published</h3>
-                            <CheckCircle className="w-4 h-4 text-green-500" />
-                        </div>
-                        <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.status === 'published').length}</div>
-                    </div>
-                    <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Drafts</h3>
-                            <Edit2 className="w-4 h-4 text-yellow-500" />
-                        </div>
-                        <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.status === 'draft').length}</div>
-                    </div>
+                    {view !== 'waitlist' ? (
+                        <>
+                            <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Published</h3>
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                </div>
+                                <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.status === 'published').length}</div>
+                            </div>
+                            <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Drafts</h3>
+                                    <Edit2 className="w-4 h-4 text-yellow-500" />
+                                </div>
+                                <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.status === 'draft').length}</div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Planners</h3>
+                                    <FileText className="w-4 h-4 text-primary-600" />
+                                </div>
+                                <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.role === 'individual').length}</div>
+                            </div>
+                            <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Vendors/Agencies</h3>
+                                    <Package className="w-4 h-4 text-orange-500" />
+                                </div>
+                                <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.role !== 'individual').length}</div>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {/* Filters & Search */}
                 <div className="bg-white dark:bg-gray-900 p-2 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="flex p-1 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
-                        {(['all', 'published', 'draft', 'archived'] as const).map(status => (
-                            <button
-                                key={status}
-                                onClick={() => setStatusFilter(status)}
-                                className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${statusFilter === status ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
-                            >
-                                {status.charAt(0).toUpperCase() + status.slice(1)}
-                            </button>
-                        ))}
+                        {view !== 'waitlist' ? (
+                            (['all', 'published', 'draft', 'archived'] as const).map(status => (
+                                <button
+                                    key={status}
+                                    onClick={() => setStatusFilter(status)}
+                                    className={`px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${statusFilter === status ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
+                                >
+                                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                                </button>
+                            ))
+                        ) : (
+                            (['all', 'individual', 'pro', 'vendor'] as const).map(role => (
+                                <button
+                                    key={role}
+                                    onClick={() => setStatusFilter(role as any)}
+                                    className={`px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${statusFilter === role ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
+                                >
+                                    {role === 'all' ? 'All Roles' : (role === 'individual' ? 'Planners' : (role === 'pro' ? 'Agencies' : 'Vendors'))}
+                                </button>
+                            ))
+                        )}
                     </div>
 
                     <div className="relative w-full md:w-80 px-2">
                         <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
                             type="text"
-                            placeholder="Search content..."
+                            placeholder={view === 'waitlist' ? "Search subscribers..." : "Search content..."}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="w-full bg-transparent border-none pl-10 pr-4 py-2 text-sm text-gray-900 dark:text-white focus:ring-0 placeholder:text-gray-400 outline-none"
@@ -199,9 +294,13 @@ export default function AdminDashboardPage() {
                         <table className="w-full text-left border-collapse">
                             <thead className="bg-gray-50/50 dark:bg-gray-800/30 border-b border-gray-100 dark:border-gray-800">
                                 <tr>
-                                    <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Content Details</th>
-                                    <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Status</th>
-                                    <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Date</th>
+                                    <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                        {view === 'waitlist' ? 'Subscriber' : 'Content Details'}
+                                    </th>
+                                    <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                        {view === 'waitlist' ? 'Role' : 'Status'}
+                                    </th>
+                                    <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Date Joined</th>
                                     <th className="px-8 py-6 text-[10px] font-black uppercase tracking-widest text-gray-400 text-right">Actions</th>
                                 </tr>
                             </thead>
@@ -214,42 +313,49 @@ export default function AdminDashboardPage() {
                                                     {view === 'posts' && <FileText className="w-5 h-5" />}
                                                     {view === 'case-studies' && <Layout className="w-5 h-5" />}
                                                     {view === 'resources' && <Package className="w-5 h-5" />}
+                                                    {view === 'waitlist' && <BarChart2 className="w-5 h-5" />}
                                                 </div>
                                                 <div>
-                                                    <div className="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors mb-1">{item.title}</div>
-                                                    {item.excerpt && <div className="text-xs text-gray-500 dark:text-gray-500 line-clamp-1">{item.excerpt.substring(0, 60)}...</div>}
+                                                    <div className="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors mb-1">
+                                                        {view === 'waitlist' ? item.name || 'Anonymous' : item.title}
+                                                    </div>
+                                                    <div className="text-xs text-gray-500 dark:text-gray-500 line-clamp-1">
+                                                        {view === 'waitlist' ? item.email : (item.excerpt ? `${item.excerpt.substring(0, 60)}...` : '')}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td className="px-8 py-6">
-                                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${getStatusColor(item.status)}`}>
-                                                <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                                                {item.status}
-                                            </span>
+                                            {view === 'waitlist' ? (
+                                                <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400`}>
+                                                    {item.role}
+                                                </span>
+                                            ) : (
+                                                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${getStatusColor(item.status)}`}>
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                                                    {item.status}
+                                                </span>
+                                            )}
                                         </td>
                                         <td className="px-8 py-6">
                                             <div className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-2">
                                                 <Clock className="w-3 h-3" />
-                                                {new Date().toLocaleDateString()}
+                                                {view === 'waitlist' ? new Date(item.timestamp).toLocaleDateString() : new Date().toLocaleDateString()}
                                             </div>
                                         </td>
                                         <td className="px-8 py-6">
                                             <div className="flex items-center justify-end gap-2">
+                                                {view !== 'waitlist' && (
+                                                    <button
+                                                        onClick={() => handleEdit(item.id)}
+                                                        className="p-2 hover:bg-white dark:hover:bg-gray-700 text-gray-500 hover:text-primary-600 rounded-lg transition-colors shadow-sm cursor-pointer"
+                                                        title="Edit"
+                                                    >
+                                                        <Edit2 className="w-4 h-4" />
+                                                    </button>
+                                                )}
                                                 <button
-                                                    onClick={() => {
-                                                        console.log('Editing', item.id);
-                                                        handleEdit(item.id);
-                                                    }}
-                                                    className="p-2 hover:bg-white dark:hover:bg-gray-700 text-gray-500 hover:text-primary-600 rounded-lg transition-colors shadow-sm cursor-pointer"
-                                                    title="Edit"
-                                                >
-                                                    <Edit2 className="w-4 h-4" />
-                                                </button>
-                                                <button
-                                                    onClick={() => {
-                                                        console.log('Deleting', item.id);
-                                                        handleDelete(item.id);
-                                                    }}
+                                                    onClick={() => handleDelete(item.id)}
                                                     className="p-2 hover:bg-white dark:hover:bg-gray-700 text-gray-500 hover:text-red-500 rounded-lg transition-colors shadow-sm cursor-pointer"
                                                     title="Delete"
                                                 >

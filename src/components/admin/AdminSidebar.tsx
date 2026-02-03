@@ -60,6 +60,12 @@ export default function AdminSidebar() {
                     active={location.pathname === '/admin' && currentTab === 'resources'}
                     onClick={() => handleTabClick('resources')}
                 />
+                <NavItem
+                    icon={<BarChart2 className="w-5 h-5" />}
+                    label="Waitlist"
+                    active={location.pathname === '/admin' && currentTab === 'waitlist'}
+                    onClick={() => handleTabClick('waitlist')}
+                />
 
                 <div className="pt-4 pb-2 px-4 text-[10px] font-black uppercase tracking-widest text-gray-400">System</div>
 

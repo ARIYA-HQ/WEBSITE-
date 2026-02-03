@@ -1,4 +1,4 @@
-import { BlogPost, CaseStudy, Resource } from '../types/cms';
+import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../types/cms';
 
 class CmsService {
     // --- Blog Posts ---
@@ -151,6 +151,18 @@ class CmsService {
             };
             reader.onerror = error => reject(error);
         });
+    }
+
+    // --- Waitlist ---
+    async getWaitlist(): Promise<WaitlistEntry[]> {
+        const res = await fetch('/api/waitlist');
+        if (!res.ok) throw new Error('Failed to fetch waitlist');
+        return res.json();
+    }
+
+    async deleteWaitlistEntry(id: number): Promise<void> {
+        const res = await fetch(`/api/waitlist/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('Failed to delete waitlist entry');
     }
 }
 

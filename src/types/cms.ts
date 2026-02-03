@@ -43,3 +43,11 @@ export interface Resource {
     downloadUrl: string;
     status: 'published' | 'draft' | 'archived';
 }
+
+export interface WaitlistEntry {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    timestamp: string;
+}

@@ -520,5 +520,20 @@
       "status": "published"
     }
   ],
-  "waitlist": []
+  "waitlist": [
+    {
+      "id": 1,
+      "name": "Script Tester",
+      "email": "script@test.com",
+      "role": "pro",
+      "timestamp": "2026-02-03T09:50:41.275Z"
+    },
+    {
+      "id": 2,
+      "name": "Timilehin Oripeloye",
+      "email": "timilehinoripeloye@gmail.com",
+      "role": "vendor",
+      "timestamp": "2026-02-03T11:05:25.849Z"
+    }
+  ]
 }
