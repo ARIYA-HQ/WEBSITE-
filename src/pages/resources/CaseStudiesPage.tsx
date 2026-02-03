@@ -9,10 +9,16 @@ export default function CaseStudiesPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        cmsService.getCaseStudies().then(data => {
-            setStudies(data);
-            setLoading(false);
-        });
+        cmsService.getCaseStudies()
+            .then(data => {
+                setStudies(data);
+            })
+            .catch(error => {
+                console.error('Failed to fetch case studies:', error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     if (loading) {

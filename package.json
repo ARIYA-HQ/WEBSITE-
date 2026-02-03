@@ -2,22 +2,22 @@
   "name": "ariyahqweb",
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "server": "tsx watch server/index.ts",
     "dev": "concurrently \"npm run server\" \"vite\"",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "vite build",
+    "type-check": "tsc",
+    "preview": "vite preview"
   },
-  "homepage": "https://ariya-hq.github.io/WEBSITE-",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/react": "^19.2.7",
@@ -33,7 +33,10 @@
     "vite": "^7.3.0"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.5",
     "@heroicons/react": "^2.2.0",
+    "@supabase/supabase-js": "^2.94.0",
+    "@tailwindcss/vite": "^4.1.18",
     "@tiptap/extension-image": "^3.18.0",
     "@tiptap/extension-link": "^3.18.0",
     "@tiptap/extension-placeholder": "^3.18.0",

@@ -6,16 +6,16 @@ import { CaseStudy } from '../../types/cms';
 import CaseStudyDetailView from '../../components/resources/CaseStudyDetailView';
 
 export default function CaseStudyPage() {
-    const { id } = useParams();
+    const { slug } = useParams();
     const [study, setStudy] = useState<CaseStudy | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchStudy = async () => {
             setLoading(true);
-            if (id) {
+            if (slug) {
                 try {
-                    const data = await cmsService.getCaseStudyById(id);
+                    const data = await cmsService.getCaseStudyById(slug);
                     setStudy(data || null);
                 } catch (err) {
                     console.error(err);
@@ -25,7 +25,7 @@ export default function CaseStudyPage() {
             window.scrollTo(0, 0);
         };
         fetchStudy();
-    }, [id]);
+    }, [slug]);
 
     if (loading) {
         return (

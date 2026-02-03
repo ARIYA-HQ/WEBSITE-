@@ -36,7 +36,7 @@ export default function AdminSidebar() {
                 <NavItem
                     icon={<LayoutDashboard className="w-5 h-5" />}
                     label="Dashboard"
-                    active={location.pathname === '/admin' && !searchParams.get('tab')} // Only active on exactly /admin with no tab query or explicit dashboard tab if we had one
+                    active={location.pathname === '/admin' && !searchParams.get('tab')}
                     onClick={() => navigate('/admin')}
                 />
 
@@ -45,25 +45,25 @@ export default function AdminSidebar() {
                 <NavItem
                     icon={<FileText className="w-5 h-5" />}
                     label="Blog Posts"
-                    active={location.pathname === '/admin' && currentTab === 'posts'}
+                    active={location.pathname === '/admin' && searchParams.get('tab') === 'posts'}
                     onClick={() => handleTabClick('posts')}
                 />
                 <NavItem
                     icon={<Layout className="w-5 h-5" />}
                     label="Case Studies"
-                    active={location.pathname === '/admin' && currentTab === 'case-studies'}
+                    active={location.pathname === '/admin' && searchParams.get('tab') === 'case-studies'}
                     onClick={() => handleTabClick('case-studies')}
                 />
                 <NavItem
                     icon={<Package className="w-5 h-5" />}
                     label="Resources"
-                    active={location.pathname === '/admin' && currentTab === 'resources'}
+                    active={location.pathname === '/admin' && searchParams.get('tab') === 'resources'}
                     onClick={() => handleTabClick('resources')}
                 />
                 <NavItem
                     icon={<BarChart2 className="w-5 h-5" />}
                     label="Waitlist"
-                    active={location.pathname === '/admin' && currentTab === 'waitlist'}
+                    active={location.pathname === '/admin' && searchParams.get('tab') === 'waitlist'}
                     onClick={() => handleTabClick('waitlist')}
                 />
 

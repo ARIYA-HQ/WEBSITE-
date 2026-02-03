@@ -1,0 +1,466 @@
+
+export interface BlogPost {
+    id: number;
+    title: string;
+    excerpt: string;
+    category: string;
+    author: string;
+    date: string;
+    readTime: string;
+    image: string;
+    content: string;
+    tags: string[];
+    status: 'published' | 'draft' | 'archived';
+}
+
+export interface CaseStudy {
+    id: string;
+    client: string;
+    industry: string;
+    title: string;
+    desc: string;
+    metrics: { label: string; value: string }[];
+    image: string;
+    logo: string;
+    challenge: string;
+    solution: string;
+    result: string;
+    testimonial: { quote: string; author: string; role: string };
+    status: 'published' | 'draft' | 'archived';
+}
+
+export interface Resource {
+    id: number;
+    type: string;
+    title: string;
+    desc: string;
+    image: string;
+    format: string;
+    size: string;
+    downloadUrl: string;
+    status: string;
+}
+
+export interface WaitlistEntry {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    timestamp: string;
+}
+
+export interface DB {
+    blogPosts: BlogPost[];
+    caseStudies: CaseStudy[];
+    resources: Resource[];
+    waitlist: WaitlistEntry[];
+}
+
+export const SEED_DATA: DB = {
+    "blogPosts": [
+        {
+            "id": 11,
+            "title": "Ariya vs. The Rest: The Ultimate ROI Breakdown for Event Pros",
+            "excerpt": "We did the math. See how Ariya stacks up against generic project management tools and why specialized software pays for itself in weeks.",
+            "category": "Business",
+            "author": "Timilehin Oripeloye",
+            "date": "Feb 10, 2026",
+            "readTime": "6 min read",
+            "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=2070",
+            "tags": ["ROI", "Software", "Growth"],
+            "content": "<p>In the high-stakes world of event planning, margins are everything. For years, the industry standard for managing multi-million dollar events has been a cobbled-together suite of \"free\" or generic tools: a Gmail inbox overflowing with unread threads, a Trello board that hasn't been updated in weeks, and the dreaded Excel spreadsheet that crashes if you look at it wrong.</p><p>It works, technically. But \"technically working\" is a dangerous place to be when you're trying to scale a business. The hidden costs of these disjointed systems are bleeding your agency dry, hour by hour, dollar by dollar.</p><h2>The Real Cost of Generic Tools</h2><p>Let's break down the math. We surveyed 500 top-tier event planners and asked them to track their time for a month. The results were staggering.</p><p>The average planner spends <strong>12 hours per week</strong> on administrative tasks that could be automated. These aren't billable design hours; these are hours spent copying and pasting guest names, chasing down vendor insurance forms, and reformatting timelines.</p><h3>The \"Free\" Tool Tax</h3><ul><li><strong>Data Re-entry:</strong> 3 hours/week moving data from emails to spreadsheets.</li><li><strong>Client Updates:</strong> 4 hours/week drafting status emails.</li><li><strong>Vendor Logistics:</strong> 5 hours/week collecting files and confirming times.</li></ul><p>If your billable rate is $150/hour, that is <strong>$1,800 a week</strong> in lost revenue potential. That's $7,200 a month. Per planner. Suddenly, a $50/month subscription for specialized software allows you to reclaim that revenue.</p><h2>Ariya vs. The Spreadsheets: A Head-to-Head Comparison</h2><p>Why do planners hesitate to switch? Comfort. We know Excel. We know its quirks. But comfort is the enemy of growth. Let's look at how Ariya compares to the traditional stack.</p><h3>1. The Timeline Battle</h3><p><strong>The Old Way:</strong> You build a timeline in Excel. You email it to the caterer. The photographer replies with a change. You update Excel. You re-save as PDF. You re-email everyone. Rinse and repeat 50 times.</p><p><strong>The Ariya Way:</strong> You build the timeline in Ariya's drag-and-drop builder. You use the \"AI Conflict Detector\" to spot that the sunset photos overlap with the first dance. You hit \"Publish.\" Every vendor gets a personalized link to their specific view. When you make a change, everyone sees it instantly. <strong>Time saved: 80%.</strong></p><h3>2. The Client Experience</h3><p><strong>The Old Way:</strong> You send clients a Google Drive folder link. They lose it. They text you at 10 PM asking for the budget contract. They feel disorganized, and they project that feeling onto you.</p><p><strong>The Ariya Way:</strong> You give them a branded Client Portal. They log in on their phone. They see a beautiful countdown, their budget dial, their mood board, and their task list. They feel in control. They feel like they hired a luxury service.</p><h2>The ROI of sanity</h2><p>It's not just about money; it's about burnout. The mental load of keeping track of 5,000 details for 20 weddings a year is crushing. Ariya acts as your second brain.</p><blockquote>\"I didn't realize how much mental energy I was burning just trying to remember where I saved things. Ariya gave me my brain back. I have the creative bandwidth to actually design again.\" <br/>— <em>Sarah Jenkins, Owner of Luxe Events</em></blockquote><h2>Conclusion</h2><p>You can run a business on free tools, but you can't scale a luxury brand on them. The investment in specialized software is negligible compared to the return on your time, your reputation, and your sanity. Stop sewing your own clothes because it's cheaper; buy the tailored suit. It fits better, it looks better, and it commands respect.</p>",
+            "status": "published"
+        },
+        {
+            "id": 10,
+            "title": "The Client Experience Shift: Meeting the Demands of Gen Z Couples",
+            "excerpt": "They want speed, transparency, and mobile-first updates. If you're emailing PDF attachments, you're already behind.",
+            "category": "Trends",
+            "author": "Timilehin Oripeloye",
+            "date": "Feb 8, 2026",
+            "readTime": "4 min read",
+            "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
+            "tags": ["Gen Z", "Client Experience"],
+            "content": "<p>A seismic shift is happening in the wedding industry, and most planners are sleeping through it. The Millennials are almost done getting married. Enter Generation Z: the first true digital natives. Born between 1997 and 2012, this cohort is now entering the marriage market in force, and they are bringing a completely new set of expectations that traditional event businesses are ill-equipped to handle.</p><h2>The \"Amazon Prime\" Expectation</h2><p>Gen Z has grown up in a world of instant gratification. If they order a charger at 10 AM, they expect it by 5 PM. They track their pizza delivery on a real-time map. They do not understand why they have to email you and wait 48 hours to find out if the florist is available.</p><p>To win this generation, <strong>speed is your currency.</strong></p><ul><li><strong>Instant Access:</strong> They want a portal where they can check status 24/7.</li><li><strong>No Phone Calls:</strong> They dread phone calls. They prefer text, chat, or in-app messaging.</li><li><strong>Visual Communication:</strong> If you send a text-heavy contract, they won't read it. If you send a visual proposal, they'll sign it in seconds.</li></ul><h2>Transparency is Non-Negotiable</h2><p>This generation has been marketed to since birth. They have high radar for \"salesy\" language and hidden fees. They value raw authenticity and radical transparency.</p><h3>Why Flat Fees are Winning</h3><p>We're seeing a massive shift away from \"percentage of budget\" pricing models towards flat fees. Gen Z views percentage models as a conflict of interest (\"You just want me to spend more so you get paid more\"). Tools like Ariya that facilitate transparent, line-item budget tracking build the trust that this generation craves.</p><h2>The Mobile-First Mandate</h2><p>Here is a stat that should terrify legacy planners: <strong>92% of Gen Z planning happens on a mobile device.</strong></p><p>Not a laptop. A phone. In bed, on the subway, during a boring meeting. If your client experience isn't fully optimized for mobile, you are effectively broken to them. Ariya's client interface is built mobile-first, meaning your clients can approve mood board images, sign contracts, and pay invoices with their thumb while waiting for a latte.</p><h2>Conclusion</h2><p>Adapting to Gen Z isn't about learning TikTok dances. It's about respecting their time and their preferred mode of communication. The planners who pivot to tech-forward, transparent, and mobile-friendly experiences will capture the lion's share of this market for the next 15 years. The ones who stick to binders and phone calls will slowly fade into irrelevance.</p>",
+            "status": "published"
+        },
+        {
+            "id": 9,
+            "title": "Your Competitors Are Using AI. Here's What Happens If You Don't.",
+            "excerpt": "It's not about robots replacing planners; it's about planners with AI replacing planners without it. Don't get left in the dust.",
+            "category": "Technology",
+            "author": "Timilehin Oripeloye",
+            "date": "Feb 6, 2026",
+            "readTime": "5 min read",
+            "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2070",
+            "tags": ["AI", "Competition", "Future"],
+            "content": "<p>\"AI\" is the buzzword of the decade, but in the event industry, it's often met with skepticism or fear. \"Can a robot empathize with a bride?\" \"Can an algorithm taste a cake?\"</p><p>The answer is no. And that's the point.</p><p>AI is not here to replace the human element of planning; it is here to handle the robotic elements so you can be <em>more</em> human. The planners who are embracing AI are not losing their personal touch; they are amplifying it because they aren't bogged down in data entry.</p><h2>The \"Iron Man\" Suit for Planners</h2><p>Think of AI not as a replacement, but as an exoskeleton. It gives you superpowers.</p><h3>1. The Timeline Generator</h3><p>Creating a minute-by-minute timeline for a 12-hour event involves hundreds of variables. Load-in times, sunset times, travel times, makeup slot durations. It takes the average human planner 4-6 hours to draft a perfect timeline from scratch.</p><p>Ariya's AI analyzes 10,000+ successful events and drafts a timeline for you in 30 seconds. It knows that if the ceremony is at 5 PM in November, you need to start photos at 2 PM to catch the light. It knows that a plated dinner for 200 guests takes exactly 55 minutes if you have 10 servers. You get a 95% perfect draft, and you spend your time tweaking the nuances.</p><h3>2. Vendor Matching Intelligence</h3><p>Instead of scrolling through a Rolodex or Instagram for hours trying to find a florist who fits a \"Dark Moody Romantic\" vibe within a $5,000 budget in Chicago, you ask Ariya. The AI scans vendor portfolios and pricing data to serve you 3 perfect matches instantly. You look like a genius to your client, and you saved 3 hours of hunting.</p><h2>The Data Advantage</h2><p>The unrecognized power of AI is predictive analytics. Ariya can look at your budget drafts and warn you: <em>\"Based on current floral prices in this region, your $3,000 estimate is likely 40% too low.\"</em></p><p>This saves you from the awkward conversation four months later when the quotes come in over budget. You can manage expectations upfront with data-backed authority.</p><h2>Don't Fear the Reaper</h2><p>The only planners who need to fear AI are the ones whose only value proposition is \"I am good at administrative tasks.\" If your value is creativity, empathy, and design, AI is your best friend. It clears the path for you to do your best work.</p>",
+            "status": "published"
+        },
+        {
+            "id": 8,
+            "title": "The Death of the Spreadsheet: Why Top Planners Are Moving to Ariya",
+            "excerpt": "Static rows and columns can't capture the magic of an event. See why the visual, dynamic nature of Ariya is winning over the industry.",
+            "category": "Productivity",
+            "author": "Timilehin Oripeloye",
+            "date": "Feb 4, 2026",
+            "readTime": "4 min read",
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015",
+            "tags": ["Organization", "Productivity"],
+            "content": "<p>There is a Stockholm Syndrome in our industry when it comes to Microsoft Excel. We hate it. It crashes. It's ugly. We constantly break formulas. And yet, we defend it. \"It's flexible!\" we cry. \"I can customize it!\"</p><p>But looking at a 50-column spreadsheet doesn't make a client feel excited about their wedding day. It makes them feel overwhelmed. And running your business on a tool built for accountants in 1985 is holding you back.</p><h2>The \"Single Source of Truth\" Problem</h2><p>The fatal flaw of the spreadsheet is versioning. You email \"Timeline_v3_FINAL.xlsx\" to the caterer. Then the DJ emails you a change. You update your file. Now you have \"Timeline_v4.xlsx\". But the caterer is still looking at v3.</p><p>On the day of the event, the caterer arrives 30 minutes late because they were following the old plan. Chaos ensues. You spend the morning putting out fires that shouldn't have existed.</p><p>In Ariya, there is no \"v3\". There is just <strong>The Plan</strong>. It lives in the cloud. When you change a time, it updates on the caterer's phone instantly. No emails. No version discrepancies. Just truth.</p><h2>Visuals vs. Data</h2><p>Spreadsheets are data-dense but information-poor. A client looks at a budget spreadsheet and sees a wall of numbers. They don't intuitively grasp that they are overspending on flowers.</p><p>Ariya takes that same data and visualizes it. A clean donut chart shows them exactly where their money is going. A red alert bar visualizes their overage. Suddenly, the client <em>gets it</em>. They make faster decisions because the data is presented in a human-readable way.</p><h2>The \"Bus Factor\"</h2><p>If you got hit by a bus tomorrow (heaven forbid), could someone else pick up your spreadsheet and run the event? Likely not. Your color-coding system and hidden formulas are a language only you speak.</p><p>Ariya standardizes your process. A team member can log in and instantly see the status of every task, every vendor, and every payment. It turns your practice into a business—one that can operate without you hovering over every cell.</p><p>Breaking up with Excel is hard. But staying in a toxic relationship is harder.</p>",
+            "status": "published"
+        },
+        {
+            "id": 7,
+            "title": "Visuals Sell: Why Boring Proposals Are Losing You 6-Figure Contracts",
+            "excerpt": "Clients eat with their eyes first. Learn how Ariya's mood boards and visual proposals convert leads 3x faster than traditional docs.",
+            "category": "Sales",
+            "author": "Timilehin Oripeloye",
+            "date": "Feb 2, 2026",
+            "readTime": "5 min read",
+            "image": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070",
+            "tags": ["Sales", "Design", "Growth"],
+            "content": "<p>In the luxury market, perception is reality. You can be the most talented planner in the world, but if your proposal arrives as a 12-page Times New Roman Word document, you have already lost the battle for the client's confidence.</p><p>We live in a visual-first economy. Your clients—especially the younger demographic—have been trained by Instagram, Pinterest, and TikTok to consume information visually. They don't read; they scan. They don't analyze; they feel.</p><h2>The Neuroscience of the Sale</h2><p>The human brain processes images 60,000 times faster than text. When you send a text-heavy contract, you are creating cognitive load. You are asking your client to work. To visualize. To understand.</p><p>Ariya flips this script. Our proposals are immersive, web-based experiences. We combine high-resolution imagery, video walkthroughs, and interactive pricing tables into a single, cohesive narrative.</p><h3>Why \"Pretty\" is Profitable</h3><p>It's not just about vanity; it's about conversion. Our user data is unequivocal:</p><ul><li><strong>Interactive Proposals:</strong> Convert 3x higher than PDF attachments.</li><li><strong>Time to Sign:</strong> Decreases by 50% when the contract is embedded in the proposal.</li><li><strong>Upsell Rate:</strong> Increases by 20% when clients can interactively \"add-on\" services.</li></ul><h2>Stop Sending Documents</h2><p>A document is something you file away. An experience is something you remember. Ariya allows you to curate the client's journey from the very first touchpoint. Don't just tell them you can design a beautiful event—show them.</p>",
+            "status": "published"
+        },
+        {
+            "id": 6,
+            "title": "Stop Working Weekends: How Automation Gave Me My Life Back",
+            "excerpt": "Burnout isn't a badge of honor. Discover how automating follow-ups and timelines can save you 15+ hours a week.",
+            "category": "Wellness",
+            "author": "Timilehin Oripeloye",
+            "date": "Jan 30, 2026",
+            "readTime": "5 min read",
+            "image": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=2031",
+            "tags": ["Wellness", "Automation", "Work-Life Balance"],
+            "content": "<p>\"I'm just so busy.\" It's the standard greeting among event professionals. We wear our burnout like a badge of honor, as if sleep deprivation is proof of our dedication. But let's be blunt: being busy isn't a virtue. It's often a sign of inefficiency.</p><p>I hit my wall in 2024. I was working 7 days a week, missing family birthdays, and answering emails at 11 PM. I realized I had built a job, not a business. And a terrible job at that.</p><h2>The Automation Audit</h2><p>I took a hard look at where my time was going. I realized that 60% of my week was spent on tasks that required exactly zero percent of my creativity.</p><ul><li>Sending payment reminders (Weekly: 2 hours)</li><li>Confirming vendor arrival times (Weekly: 3 hours)</li><li>Answering \"Where do I upload the guest list?\" (Weekly: 1 hour)</li><li>formatting timelines (Weekly: 4 hours)</li></ul><p>That's 10 hours a week. A full work day. Wasted.</p><h2>How Ariya Gave Me My Life Back</h2><p>I set up Ariya's automation workflows. Now?</p><h3>1. The \"Set It and Forget It\" Payments</h3><p>I set the payment schedule in the contract. Ariya automatically sends the invoice 7 days before it's due, sends a polite reminder on the due date, and a follow-up if it's late. I never have to have an awkward money conversation again.</p><h3>2. The Onboarding Flow</h3><p>When a client signs, they automatically get a Welcome Email with a link to their portal, their homework assignments, and a guide on \"How We Work.\" They feel supported instantly, and I didn't type a word.</p><h2>The Result</h2><p>I don't work weekends anymore unless it's an event day. My revenue has grown because I have time to network and sell. And most importantly, I love my job again. Automation isn't about being robotic; it's about freeing the human to do what humans do best.</p>",
+            "status": "published"
+        },
+        {
+            "id": 5,
+            "title": "From Chaos to Calm: The One Tool That Saved My Wedding Season",
+            "excerpt": "Managing 20+ weddings used to be a nightmare. Here's the exact system I implemented to bring order to the madness.",
+            "category": "Case Study",
+            "author": "Timilehin Oripeloye",
+            "date": "Jan 28, 2026",
+            "readTime": "7 min read",
+            "image": "https://images.unsplash.com/photo-1519225468359-69df3cccc24d?auto=format&fit=crop&q=80&w=2070",
+            "tags": ["Success Story", "Organization"],
+            "content": "<p>It was the Third Saturday of June. The Super Bowl of wedding dates. I had three weddings. Three venues. 450 guests. And a team of 4 assistants relying on a Google Doc I had printed out the night before.</p><p>Disaster struck at 2 PM. The florist for Wedding B was stuck in traffic. My assistant at that venue checked the Google Doc, but it had the wrong phone number. She texted me. I was at Wedding A, putting out a fire with the caterer. By the time I saw the text, the florist was 45 minutes late. The ceremony arch wasn't finished. The bride was in tears.</p><p>It was a minor error—a typo in a phone number—but it caused a cascade of panic. That Monday, I vowed: never again.</p><h2>The Migration to Ariya</h2><p>I needed a central command center. A place where information lived, breathed, and updated in real-time. I moved everything to Ariya.</p><h3>The \"God View\"</h3><p>Now, on crazy weekends, I pull up the Ariya Dashboard on my iPad. I can see all three events. I can see live status updates from my team. If a vendor checks in late, I get a push notification.</p><h3>The Assistant App</h3><p>My team doesn't carry clipboards anymore. They have the Ariya app. They have the full timeline, the vendor contacts, the layout diagrams, and the dietary restrictions right in their pocket. If I update a contact number for a florist, it updates on their phones instantly.</p><h2>The Aftermath</h2><p>Last June, we did 5 weddings in one weekend. It was flawless. No panic texts. No tears. Just precision. Chaos is not an inevitable part of this industry; it's a choice. Choose calm.</p>",
+            "status": "published"
+        },
+        {
+            "id": 4,
+            "title": "5 Signs Your Event Agency is Bleeding Money (And How Ariya Stops it)",
+            "excerpt": "Creep scopes, untracked hours, and lost invoices. Identify the leaks in your business bucket and seal them with proper management.",
+            "category": "Business",
+            "author": "Timilehin Oripeloye",
+            "date": "Jan 25, 2026",
+            "readTime": "6 min read",
+            "image": "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=2071",
+            "tags": ["Finance", "Business", "Profitability"],
+            "content": "<p>We need to talk about the 'C' word. Creativity? No. Cash. Most event planners are \"Accidental Entrepreneurs.\" We started this because we love design, hospitality, and parties. We didn't start it because we love P&L statements.</p><p>But ignoring the financial health of your agency is the fastest way to ensuring you won't be around in 5 years. Here are the three ways your agency is bleeding cash, and how to apply the tourniquet.</p><h2>1. The Scope Creep</h2><p>It starts innocently. \"Can we just add a small welcome drinks rehearsal?\" \"Can you just help us find a rehearsal dinner spot?\" \"Can you just assemble the favors?\"</p><p>\"Just.\" That word costs you thousands. You say yes to be nice. You do 5 hours of extra work. You don't bill for it. Over a year, 5 hours a week of scope creep is 250 hours. At $100/hr, you just gave away <strong>$25,000</strong>.</p><p><strong>The Fix:</strong> Ariya's \"Change Order\" feature. When a client asks for more, you click a button, create a Change Order, and send it for approval. It professionalizes the \"No\" and monetizes the \"Yes.\"</p><h2>2. The Invisible Hours</h2><p>If you quote a flat fee of $5,000, assuming 50 hours of work, you are making $100/hr. If you actually spend 100 hours, you are making $50/hr. If you don't track your time, you are guessing.</p><p><strong>The Fix:</strong> Ariya's built-in time tracker. Tag hours to specific clients. You will be shocked to learn which \"easy\" clients are actually your least profitable.</p><h2>3. The Cash Flow Crunch</h2><p>You finish the event. You are exhausted. You wait 2 weeks to send the final invoice. The client takes 30 days to pay. You are floating 6 weeks of expenses.</p><p><strong>The Fix:</strong> Automated invoicing. Ariya bills the card on file automatically. Cash flow solves 90% of business problems.</p>",
+            "status": "published"
+        },
+        {
+            "id": 3,
+            "title": "Why 2026 Couples Are Ditching Traditional Planners for AI-Powered Pros",
+            "excerpt": "The modern couple expects modern tools. See why tech-forward planners are winning the hearts (and wallets) of the new market.",
+            "category": "Trends",
+            "author": "Timilehin Oripeloye",
+            "date": "Jan 20, 2026",
+            "readTime": "5 min read",
+            "image": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=2070",
+            "tags": ["Trends", "AI", "Marketing"],
+            "content": "<p>The wedding boom of 2022 is over. The market is stabilizing. But the <em>type</em> of client is changing faster than ever. We are entering the era of the \"Alpha Couple.\" These are high-earning, busy professionals who run their lives on Slack, Notion, and Superhuman.</p><p>They do not own a printer. They do not own a checkbook. And they do not have patience for a planner who operates like it's 1999.</p><h2>The Transparency Test</h2><p>Traditional planning was a \"black box.\" The client paid you, and you handled everything, revealing details only when necessary. The modern client hates the black box. They want radical transparency.</p><p>They want to know:</p><ul><li>\"Where exactly is my budget going?\"</li><li>\"Which vendors have we booked?\"</li><li>\"What is outstanding?\"</li></ul><p>If you try to hide this info, they don't think you're taking care of it; they think you're disorganized.</p><h2>Collaboration is the New Luxury</h2><p>Luxury used to mean \"I'll do it for you.\" Now, luxury means \"I'll facilitate it with you.\" Ariya allows you to co-create with your clients. They can log into their portal, pin images to the mood board, comment on the timeline, and approve the menu.</p><p>It makes them feel heard. It makes them feel involved. And paradoxically, by giving them more access, it builds so much trust that they micromanage you <em>less</em>.</p><h2>Conclusion</h2><p>If you want to book the $100k+ weddings in 2026, you can't just have a good eye for design. You need a tech stack that matches your clients' sophistication. Be the planner they brag about to their tech-savvy friends.</p>",
+            "status": "published"
+        },
+        {
+            "id": 2,
+            "title": "The Hidden Cost of 'Good Enough': How Outdated Tech is Costing You Clients",
+            "excerpt": "Sticking with legacy software feels safe, but it's silently killing your conversion rates. Here's why upgrading is cheaper than staying put.",
+            "category": "Technology",
+            "author": "Timilehin Oripeloye",
+            "date": "Jan 15, 2026",
+            "readTime": "4 min read",
+            "image": "https://images.unsplash.com/photo-1504384308090-c54be3855833?auto=format&fit=crop&q=80&w=2062",
+            "tags": ["Technology", "Growth", "Strategy"],
+            "content": "<p>\"If it ain't broke, don't fix it.\" This is the mantra of the dying business. In technology, if you are standing still, you are moving backward. The tools that got you to six figures won't get you to seven.</p><h2>The \"Good Enough\" Trap</h2><p>You use a mishmash of Google Sheets, Aisle Planner, Honeybook, and Canva. It works. It's \"good enough.\" But your data is siloed. You are entering the same guest name in three different places.</p><h3>The Efficiency Tax</h3><p>Every time you switch context—alt-tabbing from your email to your floor plan tool—you lose focus. Studies show it takes 23 minutes to regain deep focus after an interruption. Disjointed tools are constant interruption machines.</p><p>Ariya is an Operating System. It is All-In-One. Email, Contract, Timeline, Floorplan, Budget. All talking to each other. The efficiency gains aren't incremental; they are exponential.</p><h2>The Security Nightmare</h2><p>Are you emailing credit card authorization forms? Are you saving guest addresses in an unencrypted spreadsheet? In 2026, data privacy is major. A bespoke, secure platform like Ariya protects your clients' sensitive data with bank-level encryption.</p><p>Don't wait for a data breach or a system crash to upgrade. Proactive leaders build the infrastructure for the business they <em>want</em> to have, not the one they have today.</p>",
+            "status": "published"
+        },
+        {
+            "id": 1,
+            "title": "2026 Wedding Trends: The Return of Maximalism",
+            "excerpt": "Say goodbye to beige. Next year is all about bold colors, rich textures, and over-the-top florals.",
+            "category": "Trends",
+            "author": "Timilehin Oripeloye",
+            "date": "Jan 12, 2026",
+            "readTime": "5 min read",
+            "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2069",
+            "tags": ["Design", "Decor", "Trends"],
+            "content": "<p>The era of \"Quiet Luxury\"—the beige, the cream, the minimal organic—is officially sunsetting. 2024 was safe. 2026 is going to be loud. We are seeing a massive swing back towards Maximalism, but with a refined, intentional twist.</p><h2>Color is Back</h2><p>Gone are the all-white florals. We are predicting:</p><ul><li><strong>Electric Blue & Chartreuse:</strong> High contrast, high energy.</li><li><strong>Deep Burgundy & Pale Pink:</strong> Romantic but moody.</li><li><strong>Monochromatic Saturation:</strong> An entire room dipped in a single shade of emerald green.</li></ul><h2>Texture Overload</h2><p>Velvet linens. Feather installations. Mirror dance floors. Clients are bored of the \"Pottery Barn\" look. They want their wedding to look like a Met Gala afterparty.</p><h2>The Guest Experience</h2><p>The biggest trend isn't visual; it's experiential. It's not about the chicken or the fish. It's about the interactive cocktail station, the surprise drag performance, the personalized welcome notes for every guest.</p><p>As planners, this is our time to shine. Maximalism requires logistics. It requires complex vendor coordination. It requires Ariya. You can't manage a 50-vendor maximalist production on a notepad. You need a system that can handle the complexity so you can unleash the creativity.</p>",
+            "status": "published"
+        }
+    ],
+    "caseStudies": [
+        {
+            "id": "blissful-beginnings",
+            "client": "Blissful Beginnings",
+            "industry": "Weddings",
+            "title": "Doubling Revenue Without Doubling Staff",
+            "desc": "How a boutique wedding agency used Ariya's automation to scale from 15 to 30 weddings a year while maintaining a 5-star rating.",
+            "metrics": [
+                { "label": "Weddings/Year", "value": "2x" },
+                { "label": "Admin Time", "value": "-50%" },
+                { "label": "Revenue", "value": "+85%" }
+            ],
+            "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2069",
+            "logo": "BB",
+            "challenge": "Founder Sarah was drowning in admin work. She wanted to take on more clients but was already working 60-hour weeks managing emails and spreadsheets.",
+            "solution": "Implementing Ariya's automated workflows for efficient onboarding, payment reminders, and timeline creation.",
+            "result": "Sarah reclaimed 20 hours a week, allowing her to book double the clients without hiring a full-time assistant.",
+            "testimonial": {
+                "quote": "I thought I needed to hire more staff. Turned out I just needed Ariya.",
+                "author": "Timilehin Oripeloye",
+                "role": "Owner"
+            },
+            "status": "published"
+        },
+        {
+            "id": "innovate-inc",
+            "client": "Innovate Tech",
+            "industry": "Corporate",
+            "title": "Seamless Logistics for 2,000 Attendees",
+            "desc": "Managing complexities for a major tech summit: 50+ speakers, 3 tracks, and one flawless timeline.",
+            "metrics": [
+                { "label": "Attendees", "value": "2,000" },
+                { "label": "Speakers", "value": "54" },
+                { "label": "Errors", "value": "0" }
+            ],
+            "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070",
+            "logo": "INN",
+            "challenge": "The annual summit had outgrown Excel. Managing travel, AV requirements, and stage times for 50 speakers was becoming a logistical nightmare.",
+            "solution": "Using Ariya's multi-track timeline builder and vendor portal to give every stakeholder real-time access to their specific schedule.",
+            "result": "The event ran to the minute. Speakers praised the communication, and the client signed a 3-year contract immediately post-event.",
+            "testimonial": {
+                "quote": "The most stress-free large-scale event we have ever produced.",
+                "author": "Timilehin Oripeloye",
+                "role": "Event Director"
+            },
+            "status": "published"
+        },
+        {
+            "id": "wanderlust-weddings",
+            "client": "Wanderlust Weddings",
+            "industry": "Destination",
+            "title": "Managing 3 Timezones with Zero Errors",
+            "desc": "Coordinating a luxury wedding in Amalfi with clients in NY and vendors in Italy.",
+            "metrics": [
+                { "label": "Vendors", "value": "35" },
+                { "label": "Guest Travel", "value": "100%" },
+                { "label": "Timezones", "value": "3" }
+            ],
+            "image": "https://images.unsplash.com/photo-1533091090875-1ff4acc49c63?auto=format&fit=crop&q=80&w=2069",
+            "logo": "WW",
+            "challenge": "Miscommunication due to time differences was causing vendor errors and budget discrepancies.",
+            "solution": "Ariya's centralized portal meant 'The Plan' was always live. Vendors in Italy checked the app, not old emails.",
+            "result": "Zero logistical errors. The automatic timezone adjustment features kept everyone literally on the same page.",
+            "testimonial": {
+                "quote": "Ariya is the universal translator for our international events.",
+                "author": "Timilehin Oripeloye",
+                "role": "Founder"
+            },
+            "status": "published"
+        },
+        {
+            "id": "hope-foundation",
+            "client": "Hope Foundation",
+            "industry": "Non-Profit",
+            "title": "Maximizing Impact with Budget Transparency",
+            "desc": "How a charity gala saved 15% on overhead to donate more to the cause.",
+            "metrics": [
+                { "label": "Budget Saved", "value": "15%" },
+                { "label": "Donations", "value": "$500k" },
+                { "label": "Board Approval", "value": "Fast" }
+            ],
+            "image": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=2070",
+            "logo": "HF",
+            "challenge": "Strict board oversight meant every dollar had to be accounted for. Manual reporting was slow and prone to error.",
+            "solution": "Using Ariya's real-time Budget Tracker. Board members had 'View Only' access to see live spending vs projection.",
+            "result": "Complete trust from the board. The 15% savings identified by Ariya's budget alerts went directly to the charity mission.",
+            "testimonial": {
+                "quote": "Transparency inspires confidence. Ariya gave our donors confidence.",
+                "author": "Timilehin Oripeloye",
+                "role": "Exec Director"
+            },
+            "status": "published"
+        },
+        {
+            "id": "pop-fizz",
+            "client": "Pop & Fizz",
+            "industry": "Social",
+            "title": "Executing an Instagram-Famous Launch Party",
+            "desc": "A beauty brand launch where the aesthetic was everything and the timeline was tight.",
+            "metrics": [
+                { "label": "Social Reach", "value": "2M+" },
+                { "label": "Influencers", "value": "150" },
+                { "label": "Setup Time", "value": "4hrs" }
+            ],
+            "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=2070",
+            "logo": "P&F",
+            "challenge": "A 4-hour setup window for a highly detailed build-out. Any delay would mean missing the 'Golden Hour' photos.",
+            "solution": "Ariya's visual floorplan and minute-by-minute production schedule ensured every vendor knew exactly where to be.",
+            "result": "The event launched on time. The photos went viral. The client rebooked for their national tour.",
+            "testimonial": {
+                "quote": "We don't do 'approximate' timelines. We do Ariya timelines.",
+                "author": "Timilehin Oripeloye",
+                "role": "Lead Planner"
+            },
+            "status": "published"
+        },
+        {
+            "id": "elite-occasions",
+            "client": "Elite Occasions",
+            "industry": "Multi-Event",
+            "title": "From Chaos to Control: Managing 50 Events/Year",
+            "desc": "Standardizing operations for a growing team of 10 planners.",
+            "metrics": [
+                { "label": "Events", "value": "50+" },
+                { "label": "Team Size", "value": "10" },
+                { "label": "Efficiency", "value": "+40%" }
+            ],
+            "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
+            "logo": "EO",
+            "challenge": "As the team grew, consistency dropped. Every planner had their own 'system' (or lack thereof).",
+            "solution": "Creating 'The Elite Way'—a set of Master Templates in Ariya for tasks, timelines, and emails.",
+            "result": "Onboarding new staff now takes 2 days instead of 2 weeks. Every client gets the same premium experience.",
+            "testimonial": {
+                "quote": "Ariya allowed us to franchise our excellence.",
+                "author": "Timilehin Oripeloye",
+                "role": "CEO"
+            },
+            "status": "published"
+        },
+        {
+            "id": "canvas-events",
+            "client": "Canvas Events",
+            "industry": "Creative",
+            "title": "Selling Vision: How Visual Proposals Closed a $200k Deal",
+            "desc": "Winning a competitive bid for a celebrity wedding using immersive design tools.",
+            "metrics": [
+                { "label": "Contract Value", "value": "$200k" },
+                { "label": "Close Time", "value": "24hrs" },
+                { "label": "Competitors", "value": "5" }
+            ],
+            "image": "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&q=80&w=2070",
+            "logo": "CE",
+            "challenge": "The client couldn't visualize the 'Moody Gothic Garden' concept from a PDF description.",
+            "solution": "An interactive Ariya Proposal featuring embedded mood boards, video renders, and live budget adjustment.",
+            "result": "The client signed on the spot. They said, 'You were the only one who showed us the dream.'",
+            "testimonial": {
+                "quote": "We stopped selling logistics and started selling magic. Ariya made that possible.",
+                "author": "Timilehin Oripeloye",
+                "role": "Creative Director"
+            },
+            "status": "published"
+        },
+        {
+            "id": "green-gatherings",
+            "client": "Green Gatherings",
+            "industry": "Eco-Friendly",
+            "title": "Going 100% Paperless with Ariya",
+            "desc": "Eliminating waste from the planning process for a net-zero event agency.",
+            "metrics": [
+                { "label": "Paper Saved", "value": "500lb" },
+                { "label": "Digital Contracts", "value": "100%" },
+                { "label": "Sustainability", "value": "A+" }
+            ],
+            "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=2070",
+            "logo": "GG",
+            "challenge": "The agency's brand promise was sustainability, but they were drowning in printed contracts and timelines.",
+            "solution": "Moving every document, contract, and timeline to Ariya's cloud portal.",
+            "result": "A truly paperless operation. Clients loved the alignment with their values, and the trees loved it too.",
+            "testimonial": {
+                "quote": "The most sustainable event is one that is perfectly planned.",
+                "author": "Timilehin Oripeloye",
+                "role": "Founder"
+            },
+            "status": "published"
+        },
+        {
+            "id": "grand-estate",
+            "client": "The Grand Estate",
+            "industry": "Venue",
+            "title": "Streamlining In-House Coordination",
+            "desc": "How a historic venue brought their internal planning team into the 21st century.",
+            "metrics": [
+                { "label": "Events/Wk", "value": "12" },
+                { "label": "Double Bookings", "value": "0" },
+                { "label": "Staff OT", "value": "-30%" }
+            ],
+            "image": "https://images.unsplash.com/photo-1464366400600-7168b8af0bc3?auto=format&fit=crop&q=80&w=2069",
+            "logo": "TGE",
+            "challenge": "Managing internal catering and external planners for 12 events a week led to kitchen bottlenecks.",
+            "solution": "Ariya's Master Calendar for kitchen and floor staff. Every department saw the live run-of-show.",
+            "result": "Kitchen timing improved by 20%. Hot food served hot, every time.",
+            "testimonial": {
+                "quote": "Our kitchen and layout teams finally speak the same language.",
+                "author": "Timilehin Oripeloye",
+                "role": "Head of Ops"
+            },
+            "status": "published"
+        },
+        {
+            "id": "velvet-rope",
+            "client": "Velvet Rope",
+            "industry": "VIP/Celebrity",
+            "title": "Privacy, Security, and Precision for A-List Clients",
+            "desc": "Executing a secret celebrity wedding where data security was paramount.",
+            "metrics": [
+                { "label": "NDA Breach", "value": "0" },
+                { "label": "Security", "value": "Max" },
+                { "label": "Press Leaks", "value": "0" }
+            ],
+            "image": "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80&w=2070",
+            "logo": "VR",
+            "challenge": "A high-profile client needed absolute secrecy. No PDFs floating in emails. No printed guest lists.",
+            "solution": "Ariya's 'Private Mode' and expiring vendor links. Data was available only to those who needed it, when they needed it.",
+            "result": "A flawless, leak-free event. The client felt safe, and the agency's reputation for discretion was cemented.",
+            "testimonial": {
+                "quote": "In our world, trust is everything. Ariya protects that trust.",
+                "author": "Timilehin Oripeloye",
+                "role": "Director"
+            },
+            "status": "published"
+        }
+    ],
+    "resources": [
+        {
+            "id": 1,
+            "type": "Guide",
+            "title": "The 2026 Event Trends Report",
+            "desc": "A comprehensive look at the colors, themes, and technologies shaping the future of events.",
+            "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070",
+            "format": "PDF",
+            "size": "12 MB",
+            "downloadUrl": "#",
+            "status": "published"
+        }
+    ],
+    "waitlist": [
+        {
+            "id": 1,
+            "name": "Script Tester",
+            "email": "script@test.com",
+            "role": "pro",
+            "timestamp": "2026-02-03T09:50:41.275Z"
+        },
+        {
+            "id": 2,
+            "name": "Timilehin Oripeloye",
+            "email": "timilehinoripeloye@gmail.com",
+            "role": "vendor",
+            "timestamp": "2026-02-03T11:05:25.849Z"
+        }
+    ]
+};

@@ -8,5 +8,10 @@
             "source": "/(.*)",
             "destination": "/"
         }
-    ]
+    ],
+    "functions": {
+        "api/index.ts": {
+            "includeFiles": "server/cms_data.json"
+        }
+    }
 }

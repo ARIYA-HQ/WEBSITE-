@@ -121,7 +121,7 @@ export default function WaitlistPage() {
                                                 <RoleButton
                                                     active={formData.role === 'pro'}
                                                     onClick={() => setFormData(prev => ({ ...prev, role: 'pro' }))}
-                                                    label="Agency"
+                                                    label="Professional Planner"
                                                 />
                                                 <RoleButton
                                                     active={formData.role === 'vendor'}
@@ -231,7 +231,7 @@ export default function WaitlistPage() {
                     className="absolute inset-0"
                 >
                     <img
-                        src="/WEBSITE-/waitlist_new_hero_image_1770111190984.png"
+                        src="/waitlist_new_hero_image_1770111190984.png"
                         alt="The Ariya Experience"
                         className="w-full h-full object-cover opacity-60"
                     />

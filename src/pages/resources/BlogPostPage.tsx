@@ -6,7 +6,7 @@ import { BlogPost } from '../../types/cms';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
 
 export default function BlogPostPage() {
-    const { id } = useParams();
+    const { slug } = useParams();
     const [post, setPost] = useState<BlogPost | null>(null);
     const [loading, setLoading] = useState(true);
     const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
@@ -14,41 +14,41 @@ export default function BlogPostPage() {
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
-            if (id) {
-                const numericId = parseInt(id);
-                // Try to find by ID first if numeric
-                let fetchedPost: BlogPost | undefined;
-                if (!isNaN(numericId)) {
-                    fetchedPost = await cmsService.getBlogPostById(numericId);
-                }
-
-                // Fallback or if not numeric (though our mock uses numbers)
-                if (!fetchedPost) {
-                    // logic to handle slug if we supported it fully, but for now ID is primary
-                }
-
-                setPost(fetchedPost || null);
-
-                // Fetch related if post found
-                if (fetchedPost) {
-                    const allPosts = await cmsService.getBlogPosts();
-                    let related = allPosts
-                        .filter(p => p.category === fetchedPost!.category && p.id !== fetchedPost!.id)
-                        .slice(0, 3);
-
-                    if (related.length < 3) {
-                        const remaining = allPosts.filter(p => p.id !== fetchedPost!.id && !related.find(r => r.id === p.id));
-                        related.push(...remaining.slice(0, 3 - related.length));
+            try {
+                if (slug) {
+                    const numericId = parseInt(slug);
+                    // Try to find by ID first if numeric
+                    let fetchedPost: BlogPost | undefined;
+                    if (!isNaN(numericId)) {
+                        fetchedPost = await cmsService.getBlogPostById(numericId);
                     }
-                    setRelatedPosts(related);
+
+                    setPost(fetchedPost || null);
+
+                    // Fetch related if post found
+                    if (fetchedPost) {
+                        const allPosts = await cmsService.getBlogPosts();
+                        let related = allPosts
+                            .filter(p => p.category === fetchedPost!.category && p.id !== fetchedPost!.id)
+                            .slice(0, 3);
+
+                        if (related.length < 3) {
+                            const remaining = allPosts.filter(p => p.id !== fetchedPost!.id && !related.find(r => r.id === p.id));
+                            related.push(...remaining.slice(0, 3 - related.length));
+                        }
+                        setRelatedPosts(related);
+                    }
                 }
+            } catch (error) {
+                console.error('Failed to fetch blog post:', error);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
             window.scrollTo(0, 0);
         };
 
         fetchPost();
-    }, [id]);
+    }, [slug]);
 
     if (loading) {
         return (

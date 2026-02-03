@@ -12,9 +12,14 @@ export default function BlogPage() {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const data = await cmsService.getBlogPosts();
-            setPosts(data);
-            setLoading(false);
+            try {
+                const data = await cmsService.getBlogPosts();
+                setPosts(data);
+            } catch (error) {
+                console.error('Failed to fetch blog posts:', error);
+            } finally {
+                setLoading(false);
+            }
         };
         fetchPosts();
     }, []);

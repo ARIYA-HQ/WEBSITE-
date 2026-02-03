@@ -10,10 +10,16 @@ export default function GuidesPage() {
     const [filter, setFilter] = useState("All");
 
     useEffect(() => {
-        cmsService.getResources().then(data => {
-            setResources(data);
-            setLoading(false);
-        });
+        cmsService.getResources()
+            .then(data => {
+                setResources(data);
+            })
+            .catch(error => {
+                console.error('Failed to fetch resources:', error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     const filteredResources = filter === "All"

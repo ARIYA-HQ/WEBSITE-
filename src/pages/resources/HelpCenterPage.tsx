@@ -28,7 +28,7 @@ const categories = [
         articles: ["Setting up budget categories", "Tracking payments", "Exporting reports"]
     },
     {
-        icon: shield,
+        icon: Shield,
         title: "Privacy & Security",
         desc: "How we protect your data and compliance information.",
         articles: ["Data export", "GDPR compliance", "Privacy policy"]
@@ -131,6 +131,3 @@ export default function HelpCenterPage() {
     );
 }
 
-function shield(props: any) {
-    return <Shield {...props} />
-}

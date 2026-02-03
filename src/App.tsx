@@ -76,6 +76,8 @@ export default function App() {
                             <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
                             <Route path="/resources/case-studies/:slug" element={<CaseStudyPage />} />
                             <Route path="/resources/guides" element={<GuidesPage />} />
+                            <Route path="/resources/faq" element={<FAQPage />} />
+                            <Route path="/resources/help-center" element={<HelpCenterPage />} />
 
                             <Route path="/pricing" element={<PricingPage />} />
                             <Route path="/about" element={<AboutPage />} />
