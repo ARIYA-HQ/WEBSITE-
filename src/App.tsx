@@ -42,7 +42,8 @@ import ResourceEditorPage from './pages/admin/ResourceEditorPage';
 import AnalyticsPage from './pages/admin/AnalyticsPage';
 import SettingsPage from './pages/admin/SettingsPage';
 import WaitlistPage from './pages/WaitlistPage';
-import LoginPage from './pages/admin/LoginPage';
+import AdminLoginPage from './pages/admin/LoginPage';
+import LoginPage from './pages/LoginPage';
 import PublicLayout from './components/layout/PublicLayout';
 import AdminLayout from './components/layout/AdminLayout';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -85,6 +86,7 @@ export default function App() {
                             {/* CMS / Blog Routes */}
                             <Route path="/contact" element={<ContactPage />} />
                             <Route path="/careers" element={<CareersPage />} />
+                            <Route path="/login" element={<LoginPage />} />
 
                             <Route path="*" element={<NotFoundPage />} />
                         </Route>
@@ -93,7 +95,7 @@ export default function App() {
 
                         {/* Admin Routes - Wrapped in AdminLayout (NO Header/Footer) */}
                         <Route element={<AdminLayout />}>
-                            <Route path="/admin/login" element={<LoginPage />} />
+                            <Route path="/admin/login" element={<AdminLoginPage />} />
 
                             <Route element={<ProtectedRoute />}>
                                 <Route path="/admin" element={<AdminDashboardPage />} />

@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, LayoutDashboard, Kanban, Store, Calculator, Globe, Search, List, UserPlus, FileText, Copy, Award, LifeBuoy, HelpCircle, Star, Bot } from 'lucide-react';
 import NavDropdown from '../NavDropdown';
+import MobileNav from './MobileNav';
 import { ThemeToggle } from '../ThemeToggle';
 
 export default function Header() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
     return (
         <header className="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border-b border-white/20 dark:border-gray-800 transition-all duration-300">
             <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
                 <Link to="/" className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white">ARIYA</Link>
 
+                {/* Desktop Nav */}
                 <nav className="hidden md:flex space-x-8">
                     {/* 1. PRODUCT */}
                     <NavDropdown
@@ -271,12 +274,25 @@ export default function Header() {
 
                 <nav className="hidden md:flex items-center gap-6">
                     <ThemeToggle />
-                    <Link to="/admin/login" className="text-sm font-bold hover:text-primary-600 transition-colors text-gray-900 dark:text-white">Log In</Link>
+                    <Link to="/login" className="text-sm font-bold hover:text-primary-600 transition-colors text-gray-900 dark:text-white">Log In</Link>
                     <button className="bg-primary-600 text-white px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20">
                         Get Started
                     </button>
                 </nav>
+
+                {/* Mobile Menu Toggle */}
+                <div className="md:hidden">
+                    <button
+                        onClick={() => setMobileNavOpen(true)}
+                        className="p-2 -mr-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    >
+                        <List className="w-6 h-6" />
+                    </button>
+                </div>
             </div>
+
+            {/* Mobile Navigation Overlay */}
+            <MobileNav isOpen={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
         </header>
     );
 }

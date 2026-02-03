@@ -51,10 +51,10 @@ export default function LandingPage() {
             <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
                 <HeroSlider />
                 <div className="relative z-10 text-center text-white px-4 max-w-5xl animate-in">
-                    <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6">
+                    <h1 className="text-4xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
                         Event Planning Begins with Ariya
                     </h1>
-                    <p className="text-lg md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed shadow-sm">
+                    <p className="text-base md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed shadow-sm">
                         From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — Ariya supports you through it all.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -102,7 +102,7 @@ export default function LandingPage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
                         {venues.map((venue, i) => (
                             <VenueCard key={i} {...venue} />
                         ))}
