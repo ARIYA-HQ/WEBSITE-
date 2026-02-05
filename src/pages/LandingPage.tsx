@@ -6,6 +6,11 @@ import HeroSlider from '../components/HeroSlider';
 import VenueCard from '../components/VenueCard';
 import VideoShowcase from '../components/VideoShowcase';
 
+// Import local assets
+import template1 from '../assets/images/template_1.jpg';
+import template2 from '../assets/images/template_2.jpg';
+import template3 from '../assets/images/template_3.jpg';
+
 const vendors = [
     { name: 'Photographers', color: 'bg-red-100' },
     { name: 'Caterers', color: 'bg-orange-100' },
@@ -218,21 +223,21 @@ export default function LandingPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-16">
                         <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[350px]">
                             <img
-                                src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&q=80&w=800"
+                                src={template1}
                                 className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
                                 alt="Website template 1"
                             />
                         </div>
                         <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[350px]">
                             <img
-                                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"
+                                src={template2}
                                 className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
                                 alt="Website template 2"
                             />
                         </div>
                         <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[350px]">
                             <img
-                                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"
+                                src={template3}
                                 className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
                                 alt="Website template 3"
                             />
