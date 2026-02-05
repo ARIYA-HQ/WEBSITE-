@@ -41,18 +41,29 @@ export default function VideoShowcase() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={handleMouseLeave}
         >
-            {/* Background Video */}
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}
-                poster={cinematicAsset}
+            {/* Cinematic Background Fallback (Behind Video) */}
+            <motion.div
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1.2 }}
+                transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+                className="absolute inset-0 w-full h-full"
             >
-                <source src="https://player.vimeo.com/external/371433846.hd.mp4?s=236da2f3c05d00db64307a443df3510360799a7f&profile_id=175" type="video/mp4" />
-                <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05d00db64307a443df3510360799a7f&profile_id=139" type="video/mp4" />
-            </video>
+                <img
+                    src={cinematicAsset}
+                    className="w-full h-full object-cover opacity-60"
+                    alt="Cinematic Backdrop"
+                />
+            </motion.div>
+
+            {/* Background Video (YouTube for maximum reliability) */}
+            <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}>
+                <iframe
+                    src="https://www.youtube.com/embed/R_0XpL5_c9M?autoplay=1&mute=1&loop=1&playlist=R_0XpL5_c9M&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&origin=http://localhost:5173"
+                    className="absolute w-[300%] h-[300%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    allow="autoplay; encrypted-media"
+                    frameBorder="0"
+                ></iframe>
+            </div>
 
             {/* Cinematic Overlays */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80 pointer-events-none" />
@@ -115,7 +126,7 @@ export default function VideoShowcase() {
                             </defs>
                             <text className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] fill-white/80">
                                 <textPath href="#textCircle">
-                                    • Experience The Magic • Watch The Story • Ariya Events •
+                                    • EXPERIENCE THE MAGIC • WATCH THE STORY • ARIYA EVENTS •
                                 </textPath>
                             </text>
                         </svg>
@@ -128,7 +139,7 @@ export default function VideoShowcase() {
                 <motion.div
                     animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
                 >
-                    <div className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-4">Production 2026</div>
+                    <div className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-4">PRODUCTION 2026</div>
                     <div className="h-20 w-[1px] bg-gradient-to-t from-primary-600 to-transparent mx-auto" />
                 </motion.div>
             </div>
