@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                 {/* Brand Column */}
                 <div className="md:col-span-4">
-                    <Link to="/" className="text-3xl font-black tracking-tighter mb-6 text-white block">ARIYA</Link>
+                    <Link to="/" className="text-3xl font-black tracking-tighter mb-6 text-primary-600 block">ÀRIYÁ</Link>
                     <p className="text-gray-400 max-w-sm mb-8 font-medium leading-relaxed">
                         The future of event planning is here. Join thousands of planners who are leveling up their business with Ariya.
                     </p>
@@ -73,11 +73,11 @@ export default function Footer() {
             </div>
 
             <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:row justify-between items-center text-[10px] font-black uppercase tracking-widest text-gray-500">
-                <p>© 2026 Ariya Inc. All rights reserved.</p>
+                <p>© 2026 ÀRIYÁ Inc. All rights reserved.</p>
                 <div className="flex gap-8 mt-4 md:mt-0">
-                    <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
+                    <Link to="/legal/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                    <Link to="/legal/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+                    <Link to="/legal/cookies" className="hover:text-white transition-colors">Cookie Settings</Link>
                 </div>
             </div>
         </footer>

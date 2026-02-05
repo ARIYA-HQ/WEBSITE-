@@ -42,8 +42,8 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-8">
-                                <Link to="/" onClick={onClose} className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white">
-                                    ARIYA
+                                <Link to="/" onClick={onClose} className="text-2xl font-black tracking-tighter text-primary-600">
+                                    ÀRIYÁ
                                 </Link>
                                 <div className="flex items-center gap-4">
                                     <ThemeToggle />

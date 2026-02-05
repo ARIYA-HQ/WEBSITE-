@@ -52,10 +52,10 @@ export default function LandingPage() {
                 <HeroSlider />
                 <div className="relative z-10 text-center text-white px-4 max-w-5xl animate-in">
                     <h1 className="text-4xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
-                        Event Planning Begins with Ariya
+                        Event Planning Begins with ÀRIYÁ
                     </h1>
                     <p className="text-base md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed shadow-sm">
-                        From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — Ariya supports you through it all.
+                        From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — ÀRIYÁ supports you through it all.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                         <button className="w-full md:w-auto bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-primary-700 transition-colors">
@@ -149,7 +149,7 @@ export default function LandingPage() {
                         </div>
                         <div className="space-y-6 group">
                             <div className="text-primary-600 font-black text-6xl opacity-20 group-hover:opacity-100 transition-opacity duration-500">03.</div>
-                            <h4 className="text-2xl font-black uppercase tracking-widest">Ariya Intel</h4>
+                            <h4 className="text-2xl font-black uppercase tracking-widest">ÀRIYÁ Intel</h4>
                             <p className="text-gray-400 font-medium leading-relaxed">
                                 Get real-time insights and recommendations specifically tailored to your event's unique requirements.
                             </p>
@@ -255,7 +255,7 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
                     <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Join Our Community</h2>
                     <p className="text-gray-400 max-w-xl mb-16 font-medium">
-                        Over 200,000 planners and vendors are already using Ariya to build their dream events.
+                        Over 200,000 planners and vendors are already using ÀRIYÁ to build their dream events.
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-4xl mb-16">

@@ -4,6 +4,7 @@ import { ArrowLeft, Quote, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { CaseStudy } from '../../types/cms';
 import CaseStudyDetailView from '../../components/resources/CaseStudyDetailView';
+import SEO from '../../components/common/SEO';
 
 export default function CaseStudyPage() {
     const { slug } = useParams();
@@ -50,7 +51,13 @@ export default function CaseStudyPage() {
 
     return (
         <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
+            <SEO
+                title={`${study.client} Case Study`}
+                description={study.desc || study.challenge.substring(0, 160)}
+                image={study.image}
+            />
             <CaseStudyDetailView study={study} />
         </main>
     );
 }
+

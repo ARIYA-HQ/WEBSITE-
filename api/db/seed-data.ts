@@ -40,6 +40,7 @@ const SEED_DATA = {
                 author: "Sarah Miller",
                 role: "Owner"
             },
+            content: "Full case study content here...",
             status: "published" as const
         },
         // Add more case studies...
@@ -61,12 +62,12 @@ const SEED_DATA = {
         {
             email: "script@test.com",
             role: "individual" as const,
-            company: null
+            company: undefined
         },
         {
             email: "timilehinoripeloye@gmail.com",
             role: "vendor" as const,
-            company: null
+            company: undefined
         }
     ]
 };

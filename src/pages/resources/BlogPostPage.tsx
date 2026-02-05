@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, User, Share2, Facebook, Twitter, Linkedin, AlertCircl
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
+import SEO from '../../components/common/SEO';
 
 export default function BlogPostPage() {
     const { slug } = useParams();
@@ -76,6 +77,12 @@ export default function BlogPostPage() {
 
     return (
         <main className="min-h-screen bg-white dark:bg-gray-950">
+            <SEO
+                title={post.title}
+                description={post.excerpt || post.content.substring(0, 160)}
+                image={post.image}
+                article={true}
+            />
             <BlogPostDetailView post={post} />
 
             {/* Read Next (kept outside of DetailView to let DetailView be pure for preview) */}

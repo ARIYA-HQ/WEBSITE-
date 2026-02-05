@@ -1,37 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import fs from 'fs';
-import path from 'path';
 import { db } from './db/supabase.js';
-import { BlogPost, CaseStudy, Resource, WaitlistEntry, DB, SEED_DATA } from './data.js';
 
-// --- Types & Seed Data ---
-// Imported from ./data.js to share with seed script
-
-// --- DB logic ---
-const DB_FILE = path.join(process.cwd(), 'server', 'cms_data.json');
-
-const getDb = (): DB => {
-    try {
-        if (fs.existsSync(DB_FILE)) {
-            const data = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
-            // Deep merge or check if keys exist
-            if (data.blogPosts && data.blogPosts.length > 0) return data;
-        }
-    } catch (e) { console.error('DB Read Error:', e); }
-    return SEED_DATA;
-};
-
-// --- App ---
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 
-app.get('/api/ping', (req, res) => res.json({ status: 'ok', source: 'self-contained' }));
+app.get('/api/ping', (req, res) => res.json({ status: 'ok', source: 'supabase-only' }));
 
-
-// Blog Posts endpoints
+// Blog Posts
 app.get('/api/posts', async (req, res) => {
     try {
         const isAdmin = req.query.admin === 'true';
@@ -39,26 +17,18 @@ app.get('/api/posts', async (req, res) => {
         res.json(posts);
     } catch (error) {
         console.error('Blog posts fetch error:', error);
-        // Fallback to JSON file
-        const data = getDb();
-        const isAdmin = req.query.admin === 'true';
-        let posts = [...(data.blogPosts || [])];
-        if (!isAdmin) posts = posts.filter(p => p.status === 'published');
-        posts.sort((a, b) => b.id - a.id);
-        res.json(posts);
+        res.status(500).json({ error: 'Failed to fetch posts' });
     }
 });
 
 app.get('/api/posts/:id', async (req, res) => {
     try {
         const post = await db.blogPosts.getById(parseInt(req.params.id));
-        res.json(post);
+        if (post) res.json(post);
+        else res.status(404).json({ error: 'Not found' });
     } catch (error) {
         console.error('Blog post fetch error:', error);
-        // Fallback to JSON file
-        const data = getDb();
-        const post = (data.blogPosts || []).find(p => p.id === parseInt(req.params.id));
-        if (post) res.json(post); else res.status(404).json({ error: 'Not found' });
+        res.status(500).json({ error: 'Failed to fetch post' });
     }
 });
 
@@ -92,8 +62,7 @@ app.delete('/api/posts/:id', async (req, res) => {
     }
 });
 
-
-// Case Studies endpoints
+// Case Studies
 app.get('/api/case-studies', async (req, res) => {
     try {
         const isAdmin = req.query.admin === 'true';
@@ -101,24 +70,18 @@ app.get('/api/case-studies', async (req, res) => {
         res.json(studies);
     } catch (error) {
         console.error('Case studies fetch error:', error);
-        // Fallback to JSON file
-        const data = getDb();
-        let items = [...(data.caseStudies || [])];
-        if (req.query.admin !== 'true') items = items.filter(i => i.status === 'published');
-        res.json(items);
+        res.status(500).json({ error: 'Failed to fetch case studies' });
     }
 });
 
 app.get('/api/case-studies/:id', async (req, res) => {
     try {
         const study = await db.caseStudies.getById(req.params.id);
-        res.json(study);
+        if (study) res.json(study);
+        else res.status(404).json({ error: 'Not found' });
     } catch (error) {
         console.error('Case study fetch error:', error);
-        // Fallback to JSON file
-        const data = getDb();
-        const item = (data.caseStudies || []).find(i => i.id === req.params.id);
-        if (item) res.json(item); else res.status(404).json({ error: 'Not found' });
+        res.status(500).json({ error: 'Failed to fetch case study' });
     }
 });
 
@@ -152,8 +115,7 @@ app.delete('/api/case-studies/:id', async (req, res) => {
     }
 });
 
-
-// Resources endpoints
+// Resources
 app.get('/api/resources', async (req, res) => {
     try {
         const isAdmin = req.query.admin === 'true';
@@ -161,24 +123,18 @@ app.get('/api/resources', async (req, res) => {
         res.json(resources);
     } catch (error) {
         console.error('Resources fetch error:', error);
-        // Fallback to JSON file
-        const data = getDb();
-        let items = [...(data.resources || [])];
-        if (req.query.admin !== 'true') items = items.filter(i => i.status === 'published');
-        res.json(items);
+        res.status(500).json({ error: 'Failed to fetch resources' });
     }
 });
 
 app.get('/api/resources/:id', async (req, res) => {
     try {
         const resource = await db.resources.getById(parseInt(req.params.id));
-        res.json(resource);
+        if (resource) res.json(resource);
+        else res.status(404).json({ error: 'Not found' });
     } catch (error) {
         console.error('Resource fetch error:', error);
-        // Fallback to JSON file
-        const data = getDb();
-        const item = (data.resources || []).find(i => i.id === parseInt(req.params.id));
-        if (item) res.json(item); else res.status(404).json({ error: 'Not found' });
+        res.status(500).json({ error: 'Failed to fetch resource' });
     }
 });
 
@@ -212,56 +168,42 @@ app.delete('/api/resources/:id', async (req, res) => {
     }
 });
 
+// Waitlist
 app.get('/api/waitlist', async (req, res) => {
     try {
         const waitlist = await db.waitlist.getAll();
         res.json(waitlist);
     } catch (error) {
         console.error('Waitlist fetch error:', error);
-        // Fallback to JSON file if database fails
-        res.json(getDb().waitlist || []);
+        res.status(500).json({ error: 'Failed to fetch waitlist' });
     }
 });
 
 app.post('/api/waitlist', async (req, res) => {
     try {
         const { email, role, company } = req.body;
+        if (!email || !role) return res.status(400).json({ error: 'Email and role are required' });
 
-        // Validation
-        if (!email || !role) {
-            return res.status(400).json({ error: 'Email and role are required' });
-        }
-
-        // Check if email already exists
         const existing = await db.waitlist.getByEmail(email);
-        if (existing) {
-            return res.status(409).json({ error: 'Email already registered' });
-        }
+        if (existing) return res.status(409).json({ error: 'Email already registered' });
 
-        // Create new waitlist entry
         const entry = await db.waitlist.create({
             email,
             role,
             company: company || null,
         });
 
-        res.status(201).json({ success: true, data: entry });
+        res.status(201).json(entry);
     } catch (error: any) {
         console.error('Waitlist creation error:', error);
-
-        // Handle unique constraint violation
-        if (error.code === '23505') {
-            return res.status(409).json({ error: 'Email already registered' });
-        }
-
+        if (error.code === '23505') return res.status(409).json({ error: 'Email already registered' });
         res.status(500).json({ error: 'Failed to join waitlist' });
     }
 });
 
 app.delete('/api/waitlist/:id', async (req, res) => {
     try {
-        const { id } = req.params;
-        await db.waitlist.delete(id);
+        await db.waitlist.delete(req.params.id);
         res.json({ success: true });
     } catch (error) {
         console.error('Waitlist delete error:', error);
@@ -269,17 +211,59 @@ app.delete('/api/waitlist/:id', async (req, res) => {
     }
 });
 
+// Analytics
+app.get('/api/analytics/overview', async (req, res) => {
+    try {
+        const [posts, studies, resources, waitlist] = await Promise.all([
+            db.blogPosts.getAll(true),
+            db.caseStudies.getAll(true),
+            db.resources.getAll(true),
+            db.waitlist.getAll()
+        ]);
+
+        res.json({
+            blogPosts: posts.length,
+            publishedPosts: posts.filter(p => p.status === 'published').length,
+            caseStudies: studies.length,
+            resources: resources.length,
+            waitlist: waitlist.length
+        });
+    } catch (err) {
+        console.error('Analytics overview error:', err);
+        res.status(500).json({ error: 'Failed to fetch analytics' });
+    }
+});
+
+app.get('/api/analytics/waitlist-growth', async (req, res) => {
+    try {
+        const waitlist = await db.waitlist.getAll();
+
+        // Group by date
+        const growth: Record<string, number> = {};
+        waitlist.forEach(entry => {
+            const date = new Date(entry.created_at || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            growth[date] = (growth[date] || 0) + 1;
+        });
+
+        // Convert to sorted array for chart
+        const chartData = Object.entries(growth)
+            .map(([date, count]) => ({ date, count }))
+            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+        res.json(chartData);
+    } catch (err) {
+        console.error('Waitlist growth error:', err);
+        res.status(500).json({ error: 'Failed to fetch growth data' });
+    }
+});
+
 app.get('/api/health', (req, res) => {
-    const data = getDb();
     res.json({
         status: 'ok',
-        dbSize: JSON.stringify(data).length,
-        isVercel: !!process.env.VERCEL,
-        cwd: process.cwd(),
-        fileAt: DB_FILE,
-        exists: fs.existsSync(DB_FILE),
-        supabase: !!process.env.DATABASE_URL
+        supabase: true,
+        env: process.env.NODE_ENV
     });
 });
 
 export default app;
+

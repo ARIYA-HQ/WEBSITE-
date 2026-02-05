@@ -8,6 +8,9 @@ export default defineConfig({
         react(),
         tailwindcss(),
     ],
+    optimizeDeps: {
+        include: ['react-is'],
+    },
     base: process.env.VERCEL ? '/' : '/WEBSITE-/',
     server: {
         proxy: {

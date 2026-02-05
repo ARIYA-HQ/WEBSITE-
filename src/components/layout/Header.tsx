@@ -12,7 +12,7 @@ export default function Header() {
     return (
         <header className="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border-b border-white/20 dark:border-gray-800 transition-all duration-300">
             <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-                <Link to="/" className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white">ARIYA</Link>
+                <Link to="/" className="text-2xl font-black tracking-tighter text-primary-600">ÀRIYÁ</Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex space-x-8">

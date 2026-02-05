@@ -164,6 +164,25 @@ class CmsService {
         const res = await fetch(`/api/waitlist/${id}`, { method: 'DELETE' });
         if (!res.ok) throw new Error('Failed to delete waitlist entry');
     }
+
+    // --- Analytics ---
+    async getAnalyticsOverview(): Promise<{
+        blogPosts: number;
+        publishedPosts: number;
+        caseStudies: number;
+        resources: number;
+        waitlist: number;
+    }> {
+        const res = await fetch('/api/analytics/overview');
+        if (!res.ok) throw new Error('Failed to fetch analytics overview');
+        return res.json();
+    }
+
+    async getWaitlistGrowth(): Promise<{ date: string; count: number }[]> {
+        const res = await fetch('/api/analytics/waitlist-growth');
+        if (!res.ok) throw new Error('Failed to fetch waitlist growth');
+        return res.json();
+    }
 }
 
 export const cmsService = new CmsService();
