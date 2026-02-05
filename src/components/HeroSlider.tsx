@@ -5,15 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import heroRomance from '../assets/images/hero_romance.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
 import heroFloral from '../assets/images/hero_floral.jpg';
-import heroOutdoor from '../assets/images/hero_outdoor.jpg';
-import heroLighting from '../assets/images/hero_lighting.jpg'; // Keeping lighting/party vibe
+import heroBallroom from '../assets/images/hero_ballroom.jpg';
 
 const heroImages = [
-    heroRomance, // Couple (New 1st)
+    heroRomance, // Couple (1st)
     heroTable,   // Table (2nd)
-    heroFloral,  // Floral (New 3rd)
-    heroOutdoor, // Outdoor (4th)
-    heroLighting // Lighting (5th)
+    heroFloral,  // Floral (3rd)
+    heroBallroom // Ballroom (4th)
 ];
 
 export default function HeroSlider() {
