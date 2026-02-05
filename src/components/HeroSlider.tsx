@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Import local images
+import heroBallroom from '../../assets/images/hero_ballroom.jpg';
+import heroTable from '../../assets/images/hero_table.jpg';
+import heroParty from '../../assets/images/hero_party.jpg';
+import heroOutdoor from '../../assets/images/hero_outdoor.jpg';
+import heroLighting from '../../assets/images/hero_lighting.jpg';
+
 const heroImages = [
-    "https://images.unsplash.com/photo-1540575467063-178a50918e7f?auto=format&fit=crop&q=80&w=2069", // Replaced broken/ugly local image with high-quality Event Tech/Abstract vibe
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2069",
-    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2069",
-    "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=2069",
-    "https://images.unsplash.com/photo-1465495910483-2d11e114b933?auto=format&fit=crop&q=80&w=2069"
+    heroBallroom,
+    heroTable,
+    heroParty,
+    heroOutdoor,
+    heroLighting
 ];
 
 export default function HeroSlider() {
