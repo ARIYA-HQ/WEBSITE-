@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const heroImages = [
-    "/assets/images/hero_premium.png",
+    "https://images.unsplash.com/photo-1540575467063-178a50918e7f?auto=format&fit=crop&q=80&w=2069", // Replaced broken/ugly local image with high-quality Event Tech/Abstract vibe
     "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2069",
     "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2069",
     "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=2069",
