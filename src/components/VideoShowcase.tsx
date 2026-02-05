@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Play } from 'lucide-react';
 
+// Import local cinematic asset
+import cinematicAsset from '../assets/images/hero_table.jpg';
+
 export default function VideoShowcase() {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -21,7 +24,6 @@ export default function VideoShowcase() {
         const distanceX = e.clientX - centerX;
         const distanceY = e.clientY - centerY;
 
-        // Only move within a small range
         mouseX.set(distanceX * 0.2);
         mouseY.set(distanceY * 0.2);
     };
@@ -39,20 +41,35 @@ export default function VideoShowcase() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={handleMouseLeave}
         >
-            {/* Background Video */}
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}
+            {/* Cinematic Background Image with Ken Burns Effect */}
+            <motion.div
+                initial={{ scale: 1.1 }}
+                animate={{
+                    scale: isHovered ? 1.05 : 1.2,
+                    x: isHovered ? "-2%" : "0%"
+                }}
+                transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+                className="absolute inset-0 w-full h-full"
             >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-friends-at-a-party-shot-from-top-4436-large.mp4" type="video/mp4" />
-            </video>
+                <img
+                    src={cinematicAsset}
+                    className="w-full h-full object-cover opacity-60"
+                    alt="Cinematic Showcase"
+                />
+            </motion.div>
 
-            {/* Premium Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60 pointer-events-none" />
-            <div className={`absolute inset-0 bg-primary-900/10 transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
+            {/* Cinematic Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80 pointer-events-none" />
+
+            {/* Light Leak Effect */}
+            <motion.div
+                animate={{
+                    opacity: [0.1, 0.3, 0.1],
+                    x: ["-10%", "10%", "-10%"]
+                }}
+                transition={{ duration: 8, repeat: Infinity }}
+                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,165,0,0.1),transparent_70%)] pointer-events-none"
+            />
 
             {/* Floating Magnetic UI */}
             <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
@@ -93,14 +110,14 @@ export default function VideoShowcase() {
                     {/* Circular Floating Text */}
                     <motion.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className={`absolute -inset-16 pointer-events-none transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                        className={`absolute -inset-20 md:-inset-24 pointer-events-none transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
                     >
                         <svg className="w-full h-full" viewBox="0 0 200 200">
                             <defs>
-                                <path id="textCircle" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" />
+                                <path id="textCircle" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
                             </defs>
-                            <text className="text-[10px] font-black uppercase tracking-[0.4em] fill-white/80">
+                            <text className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] fill-white/80">
                                 <textPath href="#textCircle">
                                     • Experience The Magic • Watch The Story • Ariya Events •
                                 </textPath>
@@ -111,13 +128,14 @@ export default function VideoShowcase() {
             </div>
 
             {/* Bottom Tagline */}
-            <motion.div
-                animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
-                className="absolute bottom-20 left-1/2 -translate-x-1/2 text-center pointer-events-none"
-            >
-                <div className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-4">Production 2026</div>
-                <div className="h-20 w-[1px] bg-gradient-to-t from-primary-600 to-transparent mx-auto" />
-            </motion.div>
+            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+                <motion.div
+                    animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+                >
+                    <div className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-4">Production 2026</div>
+                    <div className="h-20 w-[1px] bg-gradient-to-t from-primary-600 to-transparent mx-auto" />
+                </motion.div>
+            </div>
         </section>
     );
 }
