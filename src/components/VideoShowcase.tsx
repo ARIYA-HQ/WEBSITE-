@@ -41,22 +41,18 @@ export default function VideoShowcase() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={handleMouseLeave}
         >
-            {/* Cinematic Background Image with Ken Burns Effect */}
-            <motion.div
-                initial={{ scale: 1.1 }}
-                animate={{
-                    scale: isHovered ? 1.05 : 1.2,
-                    x: isHovered ? "-2%" : "0%"
-                }}
-                transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-                className="absolute inset-0 w-full h-full"
+            {/* Background Video */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}
+                poster={cinematicAsset}
             >
-                <img
-                    src={cinematicAsset}
-                    className="w-full h-full object-cover opacity-60"
-                    alt="Cinematic Showcase"
-                />
-            </motion.div>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-motion-of-a-bride-and-groom-3958-large.mp4" type="video/mp4" />
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-wedding-reception-party-4447-large.mp4" type="video/mp4" />
+            </video>
 
             {/* Cinematic Overlays */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80 pointer-events-none" />
