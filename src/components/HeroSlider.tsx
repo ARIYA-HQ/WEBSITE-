@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import local images
-import heroBallroom from '../../assets/images/hero_ballroom.jpg';
-import heroTable from '../../assets/images/hero_table.jpg';
-import heroParty from '../../assets/images/hero_party.jpg';
-import heroOutdoor from '../../assets/images/hero_outdoor.jpg';
-import heroLighting from '../../assets/images/hero_lighting.jpg';
+import heroBallroom from '../assets/images/hero_ballroom.jpg';
+import heroTable from '../assets/images/hero_table.jpg';
+import heroParty from '../assets/images/hero_party.jpg';
+import heroOutdoor from '../assets/images/hero_outdoor.jpg';
+import heroLighting from '../assets/images/hero_lighting.jpg';
 
 const heroImages = [
     heroBallroom,
