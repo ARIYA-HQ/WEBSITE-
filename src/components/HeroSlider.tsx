@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import local images
-import heroBallroom from '../assets/images/hero_ballroom.jpg';
+import heroRomance from '../assets/images/hero_romance.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
-import heroParty from '../assets/images/hero_party.jpg';
+import heroFloral from '../assets/images/hero_floral.jpg';
 import heroOutdoor from '../assets/images/hero_outdoor.jpg';
-import heroLighting from '../assets/images/hero_lighting.jpg';
+import heroLighting from '../assets/images/hero_lighting.jpg'; // Keeping lighting/party vibe
 
 const heroImages = [
-    heroBallroom,
-    heroTable,
-    heroParty,
-    heroOutdoor,
-    heroLighting
+    heroRomance, // Couple (New 1st)
+    heroTable,   // Table (2nd)
+    heroFloral,  // Floral (New 3rd)
+    heroOutdoor, // Outdoor (4th)
+    heroLighting // Lighting (5th)
 ];
 
 export default function HeroSlider() {
