@@ -50,8 +50,8 @@ export default function VideoShowcase() {
                 className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}
                 poster={cinematicAsset}
             >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-motion-of-a-bride-and-groom-3958-large.mp4" type="video/mp4" />
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-wedding-reception-party-4447-large.mp4" type="video/mp4" />
+                <source src="https://player.vimeo.com/external/371433846.hd.mp4?s=236da2f3c05d00db64307a443df3510360799a7f&profile_id=175" type="video/mp4" />
+                <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05d00db64307a443df3510360799a7f&profile_id=139" type="video/mp4" />
             </video>
 
             {/* Cinematic Overlays */}
