@@ -5,13 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import heroRomance from '../assets/images/hero_romance.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
 import heroFloral from '../assets/images/hero_floral.jpg';
-import heroBallroom from '../assets/images/hero_ballroom.jpg';
 
 const heroImages = [
     heroRomance, // Couple (1st)
     heroTable,   // Table (2nd)
-    heroFloral,  // Floral (3rd)
-    heroBallroom // Ballroom (4th)
+    heroFloral   // Floral (3rd)
 ];
 
 export default function HeroSlider() {
