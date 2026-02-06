@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Star, Shield, Zap, Instagram, Twitter, Linkedin, Users, Camera, Briefcase, Heart, Gift, Building2, Baby, Share2, Copy, ArrowLeft } from 'lucide-react';
+import waitlistHero from '../assets/images/waitlist_hero.png';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 
@@ -191,8 +192,9 @@ export default function WaitlistPage() {
                                                 {copied ? 'Copied!' : <><Copy className="w-3 h-3" /> Copy Link</>}
                                             </button>
                                             <div className="flex gap-2">
-                                                <button className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all"><Twitter className="w-4 h-4" /></button>
-                                                <button className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all"><Instagram className="w-4 h-4" /></button>
+                                                <a href="https://x.com/Ariya_HQ" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all"><Twitter className="w-4 h-4" /></a>
+                                                <a href="https://www.instagram.com/ariya_hq/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all"><Instagram className="w-4 h-4" /></a>
+                                                <a href="https://www.linkedin.com/company/111719206/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-50 dark:bg-primary-900/20 rounded-xl flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-all"><Linkedin className="w-4 h-4" /></a>
                                             </div>
                                         </div>
                                     </div>
@@ -231,7 +233,7 @@ export default function WaitlistPage() {
                     className="absolute inset-0"
                 >
                     <img
-                        src="/waitlist_new_hero_image_1770111190984.png"
+                        src={waitlistHero}
                         alt="The Ariya Experience"
                         className="w-full h-full object-cover opacity-60"
                     />

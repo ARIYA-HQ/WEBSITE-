@@ -78,9 +78,9 @@ function GeneralSettings() {
             <div className="pt-10 border-t border-gray-100 dark:border-gray-800">
                 <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight mb-8">Social Connections</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-                    <SocialInput icon={<Twitter className="w-4 h-4" />} placeholder="@ariya_hq" />
-                    <SocialInput icon={<Instagram className="w-4 h-4" />} placeholder="@ariya.events" />
-                    <SocialInput icon={<Linkedin className="w-4 h-4" />} placeholder="company/ariya" />
+                    <SocialInput icon={<Twitter className="w-4 h-4" />} placeholder="@Ariya_HQ" />
+                    <SocialInput icon={<Instagram className="w-4 h-4" />} placeholder="@ariya_hq" />
+                    <SocialInput icon={<Linkedin className="w-4 h-4" />} placeholder="company/111719206" />
                     <SocialInput icon={<Github className="w-4 h-4" />} placeholder="ariya-dev" />
                 </div>
             </div>

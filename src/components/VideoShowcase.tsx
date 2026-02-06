@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motio
 import { Play } from 'lucide-react';
 
 // Import local cinematic asset
-import cinematicAsset from '../assets/images/hero_table.jpg';
+import cinematicAsset from '../assets/images/showcase_cinematic.jpg';
 
 export default function VideoShowcase() {
     const [isHovered, setIsHovered] = useState(false);

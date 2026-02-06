@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, User, Clock, Tag, Sparkles } from 'lucide-react';
+import { ArrowRight, User, Clock, Tag, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
@@ -9,6 +9,36 @@ export default function BlogPage() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [message, setMessage] = useState('');
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setStatus('loading');
+        try {
+            const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, role: 'subscriber' })
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setMessage('Successfully subscribed!');
+                setEmail('');
+            } else {
+                const data = await response.json();
+                setStatus('error');
+                setMessage(data.error || 'Failed to subscribe');
+            }
+        } catch (error) {
+            setStatus('error');
+            setMessage('Network error. Please try again.');
+        }
+    };
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -163,15 +193,35 @@ export default function BlogPage() {
                     <p className="text-gray-400 mb-10 text-lg">
                         Get the latest trends, tips, and industry secrets delivered straight to your inbox every week.
                     </p>
-                    <div className="flex gap-2 max-w-md mx-auto">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary-600 transition-colors"
-                        />
-                        <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-xs hover:bg-primary-700 transition-colors">
-                            Subscribe
-                        </button>
+                    <div className="max-w-md mx-auto space-y-4">
+                        <form onSubmit={handleSubscribe} className="flex gap-2">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email"
+                                required
+                                disabled={status === 'loading' || status === 'success'}
+                                className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary-600 transition-colors disabled:opacity-50"
+                            />
+                            <button
+                                type="submit"
+                                disabled={status === 'loading' || status === 'success'}
+                                className="bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-xs hover:bg-primary-700 transition-colors disabled:opacity-50"
+                            >
+                                {status === 'loading' ? '...' : 'Subscribe'}
+                            </button>
+                        </form>
+                        {status === 'success' && (
+                            <div className="flex items-center justify-center gap-2 text-green-500 text-xs font-bold animate-in fade-in slide-in-from-top-1">
+                                <CheckCircle2 className="w-4 h-4" /> {message}
+                            </div>
+                        )}
+                        {status === 'error' && (
+                            <div className="flex items-center justify-center gap-2 text-red-500 text-xs font-bold animate-in fade-in slide-in-from-top-1">
+                                <AlertCircle className="w-4 h-4" /> {message}
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>

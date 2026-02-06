@@ -94,8 +94,20 @@ export default function ContactPage() {
                         <div className="mt-12">
                             <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Follow Us</div>
                             <div className="flex gap-4">
-                                {['Instagram', 'Twitter', 'LinkedIn', 'Facebook'].map((social) => (
-                                    <a key={social} href="#" className="text-gray-900 dark:text-white hover:text-primary-600 transition-colors font-bold text-sm">{social}</a>
+                                {[
+                                    { name: 'Instagram', href: 'https://www.instagram.com/ariya_hq/' },
+                                    { name: 'Twitter', href: 'https://x.com/Ariya_HQ' },
+                                    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/111719206/' }
+                                ].map((social) => (
+                                    <a
+                                        key={social.name}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-gray-900 dark:text-white hover:text-primary-600 transition-colors font-bold text-sm"
+                                    >
+                                        {social.name}
+                                    </a>
                                 ))}
                             </div>
                         </div>

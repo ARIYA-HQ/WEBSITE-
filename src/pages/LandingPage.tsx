@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Instagram, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import HeroSlider from '../components/HeroSlider';
 import VenueCard from '../components/VenueCard';
 import VideoShowcase from '../components/VideoShowcase';

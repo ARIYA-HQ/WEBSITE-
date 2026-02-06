@@ -1,6 +1,7 @@
 import React from 'react';
 import { LayoutDashboard, Kanban, Sparkles, Store, Calculator, Globe, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import heroPremium from '../../assets/images/hero_premium.png';
 
 export default function OverviewPage() {
     return (
@@ -30,7 +31,7 @@ export default function OverviewPage() {
                         <div className="relative">
                             <div className="absolute -inset-4 bg-gradient-to-r from-orange-200 to-pink-200 rounded-[2.5rem] blur-2xl opacity-30" />
                             <img
-                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426"
+                                src={heroPremium}
                                 className="relative rounded-[2rem] shadow-2xl border-4 border-white dark:border-gray-800"
                                 alt="Platform Dashboard"
                             />

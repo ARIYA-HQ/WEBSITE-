@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { db } from './db/supabase.js';
+import { loopsService } from './loopsService.js';
 
 const app = express();
 app.use(cors());
@@ -190,8 +191,23 @@ app.post('/api/waitlist', async (req, res) => {
         const entry = await db.waitlist.create({
             email,
             role,
+            name: req.body.name || null,
             company: company || null,
         });
+
+        // Background: Sync to Loops for Email Automation
+        // We wrap this in another try/catch so failure doesn't block the UI response
+        try {
+            await loopsService.createContact(email, {
+                name: req.body.name || null,
+                role,
+                company: company || null,
+                source: 'Ariya Website'
+            });
+            await loopsService.sendEvent(email, role === 'subscriber' ? 'newsletter_signup' : 'waitlist_signup');
+        } catch (loopsErr) {
+            console.error('Failed to sync to Loops:', loopsErr);
+        }
 
         res.status(201).json(entry);
     } catch (error: any) {

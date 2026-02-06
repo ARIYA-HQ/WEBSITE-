@@ -239,8 +239,10 @@ export default function AdminDashboardPage() {
                                                         <Users className="w-5 h-5" />
                                                     </div>
                                                     <div>
-                                                        <div className="font-bold text-gray-900 dark:text-white">{entry.name || 'Anonymous'} joined the waitlist</div>
-                                                        <div className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleDateString()} • {entry.role}</div>
+                                                        <div className="font-bold text-gray-900 dark:text-white">
+                                                            {entry.name || 'Anonymous'} {entry.role === 'subscriber' ? 'subscribed to newsletter' : 'joined the waitlist'}
+                                                        </div>
+                                                        <div className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleDateString()} • {entry.role === 'subscriber' ? 'Newsletter' : entry.role}</div>
                                                     </div>
                                                 </div>
                                                 <button onClick={() => setView('waitlist')} className="text-[10px] font-black uppercase tracking-widest text-primary-600">View</button>
@@ -333,10 +335,10 @@ export default function AdminDashboardPage() {
                                     </div>
                                     <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
                                         <div className="flex items-center justify-between mb-4">
-                                            <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Vendors/Agencies</h3>
-                                            <Package className="w-4 h-4 text-orange-500" />
+                                            <h3 className="text-xs font-black uppercase tracking-widest text-gray-500">Newsletter</h3>
+                                            <FileText className="w-4 h-4 text-orange-500" />
                                         </div>
-                                        <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.role !== 'individual').length}</div>
+                                        <div className="text-3xl font-black text-gray-900 dark:text-white">{filteredItems.filter(i => i.role === 'subscriber').length}</div>
                                     </div>
                                 </>
                             )}
@@ -356,13 +358,13 @@ export default function AdminDashboardPage() {
                                         </button>
                                     ))
                                 ) : (
-                                    (['all', 'individual', 'pro', 'vendor'] as const).map(role => (
+                                    (['all', 'subscriber', 'individual', 'pro', 'vendor'] as const).map(role => (
                                         <button
                                             key={role}
                                             onClick={() => setStatusFilter(role as any)}
                                             className={`px-4 md:px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${statusFilter === role ? 'bg-white dark:bg-gray-800 text-primary-600 shadow-sm' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400'}`}
                                         >
-                                            {role === 'all' ? 'All Roles' : (role === 'individual' ? 'Planners' : (role === 'pro' ? 'Agencies' : 'Vendors'))}
+                                            {role === 'all' ? 'All' : (role === 'subscriber' ? 'Subscribers' : (role === 'individual' ? 'Planners' : (role === 'pro' ? 'Agencies' : 'Vendors')))}
                                         </button>
                                     ))
                                 )}
@@ -423,8 +425,8 @@ export default function AdminDashboardPage() {
                                                 </td>
                                                 <td className="px-8 py-6">
                                                     {view === 'waitlist' ? (
-                                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400`}>
-                                                            {item.role}
+                                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${item.role === 'subscriber' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : 'bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400'}`}>
+                                                            {item.role === 'subscriber' ? 'Newsletter' : item.role}
                                                         </span>
                                                     ) : (
                                                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${getStatusColor(item.status)}`}>

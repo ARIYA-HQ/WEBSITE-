@@ -31,7 +31,8 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
 export interface WaitlistEntry {
     id?: string;
     email: string;
-    role: 'individual' | 'agency' | 'vendor';
+    name?: string;
+    role: 'individual' | 'agency' | 'vendor' | 'subscriber';
     company?: string;
     created_at?: string;
 }

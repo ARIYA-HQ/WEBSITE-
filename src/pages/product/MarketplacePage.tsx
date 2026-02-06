@@ -30,15 +30,24 @@ export default function MarketplacePage() {
             <section className="py-24 px-8 max-w-7xl mx-auto">
                 <h2 className="text-3xl font-black tracking-tight mb-12 text-gray-900 dark:text-white">Popular Categories</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {["Venues", "Catering", "Photography", "Music", "Florals", "Decor", "Planners", "Transportation"].map((cat, idx) => (
+                    {[
+                        { name: "Venues", id: "photo-1519167758481-83f550bb49b3" },
+                        { name: "Catering", id: "photo-1555244162-803834f70033" },
+                        { name: "Photography", id: "photo-1516035069371-29a1b244cc32" },
+                        { name: "Music", id: "photo-1514525253361-bee8d48744ad" },
+                        { name: "Florals", id: "photo-1490750967868-88aa3436c286" },
+                        { name: "Decor", id: "photo-1513151233558-d21a81415094" },
+                        { name: "Planners", id: "photo-1511795409834-ef04bbd61622" },
+                        { name: "Transportation", id: "photo-1506015391300-4802dc74de2e" }
+                    ].map((cat, idx) => (
                         <div key={idx} className="aspect-square rounded-2xl bg-gray-100 relative overflow-hidden group cursor-pointer">
                             <img
-                                src={`https://source.unsplash.com/random/400x400/?${cat.toLowerCase()},event`}
-                                alt={cat}
+                                src={`https://images.unsplash.com/${cat.id}?auto=format&fit=crop&q=80&w=400`}
+                                alt={cat.name}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                            <div className="absolute bottom-4 left-4 text-white font-bold text-lg">{cat}</div>
+                            <div className="absolute bottom-4 left-4 text-white font-bold text-lg">{cat.name}</div>
                         </div>
                     ))}
                 </div>
