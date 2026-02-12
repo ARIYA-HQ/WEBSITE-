@@ -6,10 +6,10 @@
     "rewrites": [
         {
             "source": "/api/ping",
-            "destination": "/api/ping.ts"
+            "destination": "/api/ping.js"
         },
         {
-            "source": "/api/:path*",
+            "source": "/api/(.*)",
             "destination": "/api/index.ts"
         },
         {
