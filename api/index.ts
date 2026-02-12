@@ -1,17 +1,24 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { db } from './db/supabase.js';
-import { loopsService } from './loopsService.js';
+import { db } from './db/supabase';
+import { loopsService } from './loopsService';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 
-app.get('/api/ping', (req, res) => res.json({ status: 'ok', source: 'supabase-only' }));
+// Debug middleware to see what path reaches Express
+app.use((req, res, next) => {
+    res.setHeader('x-debug-path', req.path);
+    res.setHeader('x-debug-url', req.url);
+    next();
+});
+
+app.get(['/api/ping', '/ping'], (req, res) => res.json({ status: 'ok', source: 'hybrid', path: req.path }));
 
 // Blog Posts
-app.get('/api/posts', async (req, res) => {
+app.get(['/api/posts', '/posts'], async (req, res) => {
     try {
         const isAdmin = req.query.admin === 'true';
         const posts = await db.blogPosts.getAll(isAdmin);
@@ -22,7 +29,7 @@ app.get('/api/posts', async (req, res) => {
     }
 });
 
-app.get('/api/posts/:id', async (req, res) => {
+app.get(['/api/posts/:id', '/posts/:id'], async (req, res) => {
     try {
         const post = await db.blogPosts.getById(parseInt(req.params.id));
         if (post) res.json(post);
@@ -64,7 +71,7 @@ app.delete('/api/posts/:id', async (req, res) => {
 });
 
 // Case Studies
-app.get('/api/case-studies', async (req, res) => {
+app.get(['/api/case-studies', '/case-studies'], async (req, res) => {
     try {
         const isAdmin = req.query.admin === 'true';
         const studies = await db.caseStudies.getAll(isAdmin);
@@ -170,7 +177,7 @@ app.delete('/api/resources/:id', async (req, res) => {
 });
 
 // Waitlist
-app.get('/api/waitlist', async (req, res) => {
+app.get(['/api/waitlist', '/waitlist'], async (req, res) => {
     try {
         const waitlist = await db.waitlist.getAll();
         res.json(waitlist);

@@ -5,8 +5,21 @@ class CmsService {
     async getBlogPosts(admin = false): Promise<BlogPost[]> {
         const url = admin ? '/api/posts?admin=true' : '/api/posts';
         const res = await fetch(url);
-        if (!res.ok) throw new Error('Failed to fetch posts');
-        return res.json();
+        if (!res.ok) {
+            const text = await res.text();
+            console.error('Fetch posts failed:', res.status, text.substring(0, 100));
+            throw new Error(`Failed to fetch posts: ${res.status}`);
+        }
+        const clone = res.clone();
+        try {
+            return await res.json();
+        } catch (e) {
+            const text = await clone.text();
+            console.error('JSON Parse Error for url:', url);
+            console.error('Response status:', res.status);
+            console.error('Response body (start):', text.substring(0, 500));
+            throw e;
+        }
     }
 
     async getBlogPostById(id: number): Promise<BlogPost | undefined> {

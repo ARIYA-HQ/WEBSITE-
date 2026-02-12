@@ -19,6 +19,26 @@ export default defineConfig({
                 target: process.env.API_URL || 'http://localhost:3001',
                 changeOrigin: true,
                 secure: false,
+                configure: (proxy, _options) => {
+                    console.log('Configuring proxy with target:', process.env.API_URL || 'http://localhost:3001');
+                    proxy.on('error', (err, _req, _res) => {
+                        console.log('proxy error', err);
+                    });
+                    proxy.on('proxyReq', (proxyReq, req, _res) => {
+                        console.log('Sending Request to the Target:', req.method, req.url);
+                    });
+                    proxy.on('proxyRes', (proxyRes, req, _res) => {
+                        console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+                    });
+                },
+                bypass: (req, _res, _proxyOptions) => {
+                    console.log('Bypass check for:', req.url);
+                    // Explicitly do NOT bypass the proxy for API requests, even if they accept HTML
+                    if (req.url?.startsWith('/api')) {
+                        console.log('Proxying API request (bypass=null):', req.url);
+                        return null;
+                    }
+                }
             }
         }
     },
