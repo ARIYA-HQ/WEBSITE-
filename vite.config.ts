@@ -11,10 +11,15 @@ export default defineConfig({
     optimizeDeps: {
         include: ['react-is'],
     },
-    base: process.env.VERCEL ? '/' : '/WEBSITE-/',
+    base: process.env.BASE_PATH || (process.env.VERCEL ? '/' : '/WEBSITE-/'),
     server: {
+        host: true, // Listen on all addresses
         proxy: {
-            '/api': 'http://localhost:3001'
+            '/api': {
+                target: process.env.API_URL || 'http://localhost:3001',
+                changeOrigin: true,
+                secure: false,
+            }
         }
     },
     build: {

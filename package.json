@@ -10,6 +10,7 @@
   "scripts": {
     "server": "tsx watch server/index.ts",
     "dev": "concurrently \"npm run server\" \"vite\"",
+    "dev:docker": "vite",
     "build": "vite build",
     "type-check": "tsc",
     "preview": "vite preview"
