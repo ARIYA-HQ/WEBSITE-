@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { db } from './db/supabase';
-import { loopsService } from './loopsService';
+import { db } from './db/supabase.js';
+import { loopsService } from './loopsService.js';
 
 const app = express();
 app.use(cors());
@@ -15,10 +15,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get(['/api/ping', '/ping'], (req, res) => res.json({ status: 'ok', source: 'hybrid', path: req.path }));
+app.get('/api/ping', (req, res) => res.json({ status: 'ok', source: 'hybrid', path: req.path }));
+app.get('/ping', (req, res) => res.json({ status: 'ok', source: 'hybrid', path: req.path }));
 
 // Blog Posts
-app.get(['/api/posts', '/posts'], async (req, res) => {
+async function getPosts(req: any, res: any) {
     try {
         const isAdmin = req.query.admin === 'true';
         const posts = await db.blogPosts.getAll(isAdmin);
@@ -27,9 +28,11 @@ app.get(['/api/posts', '/posts'], async (req, res) => {
         console.error('Blog posts fetch error:', error);
         res.status(500).json({ error: 'Failed to fetch posts' });
     }
-});
+}
+app.get('/api/posts', getPosts);
+app.get('/posts', getPosts);
 
-app.get(['/api/posts/:id', '/posts/:id'], async (req, res) => {
+async function getPostById(req: any, res: any) {
     try {
         const post = await db.blogPosts.getById(parseInt(req.params.id));
         if (post) res.json(post);
@@ -38,7 +41,9 @@ app.get(['/api/posts/:id', '/posts/:id'], async (req, res) => {
         console.error('Blog post fetch error:', error);
         res.status(500).json({ error: 'Failed to fetch post' });
     }
-});
+}
+app.get('/api/posts/:id', getPostById);
+app.get('/posts/:id', getPostById);
 
 app.post('/api/posts', async (req, res) => {
     try {
