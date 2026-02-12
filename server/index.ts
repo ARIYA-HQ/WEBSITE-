@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { db } from '../api/db/supabase.js';
+import { loopsService } from '../api/loopsService.js';
 
 const app = express();
 const port = 3001;
@@ -197,7 +198,26 @@ app.post('/api/waitlist', async (req, res) => {
         const existing = await db.waitlist.getByEmail(email);
         if (existing) return res.status(409).json({ error: 'Already exists' });
 
-        const entry = await db.waitlist.create({ email, role, company: company || null });
+        const entry = await db.waitlist.create({
+            email,
+            role,
+            name: req.body.name || null,
+            company: company || null
+        });
+
+        // Background: Sync to Loops for Email Automation
+        try {
+            await loopsService.createContact(email, {
+                name: req.body.name || null,
+                role,
+                company: company || null,
+                source: 'Ariya Website'
+            });
+            await loopsService.sendEvent(email, role === 'subscriber' ? 'newsletter_signup' : 'waitlist_signup');
+        } catch (loopsErr) {
+            console.error('Failed to sync to Loops:', loopsErr);
+        }
+
         res.status(201).json(entry);
     } catch (err: any) {
         console.error('Waitlist join error:', err);
