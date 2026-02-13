@@ -1,12 +1,6 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-        "noEmit": false,
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        "outDir": "../.vercel/output/functions"
-    },
-    "include": [
-        "**/*.ts"
-    ]
+        "noEmit": false
+    }
 }
