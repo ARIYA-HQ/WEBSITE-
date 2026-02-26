@@ -1,24 +1,44 @@
 import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../types/cms';
 
+class CmsError extends Error {
+    constructor(public message: string, public status?: number, public body?: string) {
+        super(message);
+        this.name = 'CmsError';
+    }
+}
+
 class CmsService {
+    private async fetchWithRetry(url: string, options?: RequestInit, retries = 2): Promise<Response> {
+        try {
+            const res = await fetch(url, options);
+            if (!res.ok && retries > 0 && res.status >= 500) {
+                return this.fetchWithRetry(url, options, retries - 1);
+            }
+            return res;
+        } catch (e) {
+            if (retries > 0) return this.fetchWithRetry(url, options, retries - 1);
+            throw e;
+        }
+    }
+
     // --- Blog Posts ---
-    async getBlogPosts(admin = false): Promise<BlogPost[]> {
-        const url = admin ? '/api/posts?admin=true' : '/api/posts';
-        const res = await fetch(url);
+    async getBlogPosts(options: { admin?: boolean; status?: BlogPost['status'] } = {}): Promise<BlogPost[]> {
+        const queryParams = new URLSearchParams();
+        if (options.admin) queryParams.append('admin', 'true');
+        if (options.status) queryParams.append('status', options.status);
+
+        const url = `/api/posts${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+        const res = await this.fetchWithRetry(url);
+
         if (!res.ok) {
             const text = await res.text();
-            console.error('Fetch posts failed:', res.status, text.substring(0, 100));
-            throw new Error(`Failed to fetch posts: ${res.status}`);
+            throw new CmsError(`Failed to fetch posts: ${res.status}`, res.status, text);
         }
-        const clone = res.clone();
+
         try {
             return await res.json();
         } catch (e) {
-            const text = await clone.text();
-            console.error('JSON Parse Error for url:', url);
-            console.error('Response status:', res.status);
-            console.error('Response body (start):', text.substring(0, 500));
-            throw e;
+            throw new CmsError('Failed to parse CMS response', res.status);
         }
     }
 

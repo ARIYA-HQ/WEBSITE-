@@ -2,22 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, User, Clock, Tag, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
+import { toast } from 'sonner';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
 
 export default function BlogPage() {
-    const [posts, setPosts] = useState<BlogPost[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { data: posts = [], isLoading } = useQuery({
+        queryKey: ['blog-posts', 'published'],
+        queryFn: () => cmsService.getBlogPosts({ status: 'published' })
+    });
+
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [email, setEmail] = useState('');
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-    const [message, setMessage] = useState('');
+    const [submitting, setSubmitting] = useState(false);
 
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email) return;
 
-        setStatus('loading');
+        setSubmitting(true);
         try {
             const response = await fetch('/api/waitlist', {
                 method: 'POST',
@@ -26,33 +30,19 @@ export default function BlogPage() {
             });
 
             if (response.ok) {
-                setStatus('success');
-                setMessage('Successfully subscribed!');
+                toast.success('Successfully subscribed!');
                 setEmail('');
             } else {
                 const data = await response.json();
-                setStatus('error');
-                setMessage(data.error || 'Failed to subscribe');
+                toast.error(data.error || 'Failed to subscribe');
             }
         } catch (error) {
-            setStatus('error');
-            setMessage('Network error. Please try again.');
+            toast.error('Network error. Please try again.');
+        } finally {
+            setSubmitting(false);
         }
     };
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const data = await cmsService.getBlogPosts();
-                setPosts(data);
-            } catch (error) {
-                console.error('Failed to fetch blog posts:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPosts();
-    }, []);
 
     const categories = ['All', ...Array.from(new Set(posts.map(post => post.category)))];
 
@@ -62,7 +52,7 @@ export default function BlogPage() {
 
     const featuredPost = posts[0];
 
-    if (loading) {
+    if (isLoading) {
         return (
             <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
                 <div className="max-w-7xl mx-auto px-8 py-24">
@@ -201,27 +191,17 @@ export default function BlogPage() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter your email"
                                 required
-                                disabled={status === 'loading' || status === 'success'}
+                                disabled={submitting}
                                 className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary-600 transition-colors disabled:opacity-50"
                             />
                             <button
                                 type="submit"
-                                disabled={status === 'loading' || status === 'success'}
+                                disabled={submitting}
                                 className="bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-xs hover:bg-primary-700 transition-colors disabled:opacity-50"
                             >
-                                {status === 'loading' ? '...' : 'Subscribe'}
+                                {submitting ? '...' : 'Subscribe'}
                             </button>
                         </form>
-                        {status === 'success' && (
-                            <div className="flex items-center justify-center gap-2 text-green-500 text-xs font-bold animate-in fade-in slide-in-from-top-1">
-                                <CheckCircle2 className="w-4 h-4" /> {message}
-                            </div>
-                        )}
-                        {status === 'error' && (
-                            <div className="flex items-center justify-center gap-2 text-red-500 text-xs font-bold animate-in fade-in slide-in-from-top-1">
-                                <AlertCircle className="w-4 h-4" /> {message}
-                            </div>
-                        )}
                     </div>
                 </div>
             </section>

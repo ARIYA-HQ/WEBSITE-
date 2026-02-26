@@ -8,6 +8,7 @@ import {
     ArrowRight
 } from 'lucide-react';
 import { ThemeToggle } from '../ThemeToggle';
+import Button from '../common/Button';
 
 import { createPortal } from 'react-dom';
 
@@ -50,6 +51,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                     <button
                                         onClick={onClose}
                                         className="p-2 -mr-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                        aria-label="Close menu"
                                     >
                                         <X className="w-6 h-6" />
                                     </button>
@@ -112,9 +114,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                 >
                                     Log In
                                 </Link>
-                                <button className="w-full py-4 rounded-xl text-sm font-black uppercase tracking-widest text-white bg-primary-600 hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20">
+                                <Button fullWidth>
                                     Get Started
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </motion.div>
@@ -132,6 +134,7 @@ function MobileAccordion({ title, children }: { title: string, children: React.R
         <div className="border-b border-gray-100 dark:border-gray-800 pb-4">
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
                 className="flex w-full justify-between items-center py-2 text-lg font-bold text-gray-900 dark:text-white"
             >
                 {title}

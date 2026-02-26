@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Plus, Edit2, Trash2, CheckCircle, Clock, Search as SearchIcon, FileText, Layers, Layout, Package, BarChart2, Download, Users, Settings } from 'lucide-react';
+import { Plus, Edit2, Trash2, CheckCircle, Clock, Search as SearchIcon, FileText, Layers, Layout, Package, BarChart2, Download, Users, Settings, Sparkles } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../../types/cms';
+import { useCms } from '../../context/CmsContext';
 
 type TabView = 'overview' | 'posts' | 'case-studies' | 'resources' | 'waitlist';
 
 export default function AdminDashboardPage() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
+    const { performAction, isLoading: cmsLoading } = useCms();
 
     // Default view is overview
     const view = (searchParams.get('tab') as TabView) || 'overview';
@@ -28,11 +30,10 @@ export default function AdminDashboardPage() {
     const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'archived'>('all');
 
     const fetchData = async () => {
-        setLoading(true);
-        try {
+        await performAction(async () => {
             if (view === 'overview') {
                 const [p, cs, r, w] = await Promise.all([
-                    cmsService.getBlogPosts(true),
+                    cmsService.getBlogPosts({ admin: true }),
                     cmsService.getCaseStudies(true),
                     cmsService.getResources(true),
                     cmsService.getWaitlist()
@@ -42,7 +43,7 @@ export default function AdminDashboardPage() {
                 setResources(r);
                 setWaitlist(w);
             } else if (view === 'posts') {
-                const data = await cmsService.getBlogPosts(true);
+                const data = await cmsService.getBlogPosts({ admin: true });
                 setPosts(data);
             } else if (view === 'case-studies') {
                 const data = await cmsService.getCaseStudies(true);
@@ -54,11 +55,7 @@ export default function AdminDashboardPage() {
                 const data = await cmsService.getWaitlist();
                 setWaitlist(data);
             }
-        } catch (error) {
-            console.error('Failed to fetch data:', error);
-        } finally {
-            setLoading(false);
-        }
+        });
     };
 
     useEffect(() => {
@@ -101,17 +98,27 @@ export default function AdminDashboardPage() {
 
     const filteredItems = getFilteredData();
 
+    const handleStatusUpdate = async (id: any, newStatus: BlogPost['status']) => {
+        await performAction(async () => {
+            if (view === 'posts') await cmsService.updateBlogPost(id, { status: newStatus });
+            if (view === 'case-studies') await cmsService.updateCaseStudy(id, { status: newStatus });
+            if (view === 'resources') await cmsService.updateResource(id, { status: newStatus });
+            fetchData();
+        });
+    };
+
     const handleDelete = async (id: any) => {
         if (!window.confirm('Are you sure? This cannot be undone.')) return;
-        try {
+
+        const success = await performAction(async () => {
             if (view === 'posts') await cmsService.deleteBlogPost(id);
             if (view === 'case-studies') await cmsService.deleteCaseStudy(id);
             if (view === 'resources') await cmsService.deleteResource(id);
             if (view === 'waitlist') await cmsService.deleteWaitlistEntry(id);
+        });
+
+        if (success !== undefined) {
             fetchData(); // Refresh
-        } catch (e: any) {
-            console.error(e);
-            alert(`Failed to delete: ${e.message}`);
         }
     };
 
@@ -383,7 +390,7 @@ export default function AdminDashboardPage() {
                         </div>
 
                         {/* Content Table */}
-                        {loading ? (
+                        {cmsLoading ? (
                             <div className="flex justify-center py-20">
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
                             </div>
@@ -444,13 +451,22 @@ export default function AdminDashboardPage() {
                                                 <td className="px-8 py-6">
                                                     <div className="flex items-center justify-end gap-2">
                                                         {view !== 'waitlist' && (
-                                                            <button
-                                                                onClick={() => handleEdit(item.id)}
-                                                                className="p-2 hover:bg-white dark:hover:bg-gray-700 text-gray-500 hover:text-primary-600 rounded-lg transition-colors shadow-sm cursor-pointer"
-                                                                title="Edit"
-                                                            >
-                                                                <Edit2 className="w-4 h-4" />
-                                                            </button>
+                                                            <>
+                                                                <button
+                                                                    onClick={() => handleStatusUpdate(item.id, item.status === 'published' ? 'draft' : 'published')}
+                                                                    className="p-2 hover:bg-white dark:hover:bg-gray-700 text-gray-400 hover:text-primary-600 rounded-lg transition-colors shadow-sm cursor-pointer"
+                                                                    title={item.status === 'published' ? 'Move to Draft' : 'Publish'}
+                                                                >
+                                                                    <Sparkles className="w-4 h-4" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => handleEdit(item.id)}
+                                                                    className="p-2 hover:bg-white dark:hover:bg-gray-700 text-gray-500 hover:text-primary-600 rounded-lg transition-colors shadow-sm cursor-pointer"
+                                                                    title="Edit"
+                                                                >
+                                                                    <Edit2 className="w-4 h-4" />
+                                                                </button>
+                                                            </>
                                                         )}
                                                         <button
                                                             onClick={() => handleDelete(item.id)}

@@ -2,7 +2,15 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
-export default function NavDropdown({ title, children, activeDropdown, setActiveDropdown }: any) {
+interface NavDropdownProps {
+    title: string;
+    children: React.ReactNode;
+    activeDropdown: string | null;
+    setActiveDropdown: (title: string | null) => void;
+    className?: string;
+}
+
+export default function NavDropdown({ title, children, activeDropdown, setActiveDropdown, className = '' }: NavDropdownProps) {
     const isOpen = activeDropdown === title;
 
     return (

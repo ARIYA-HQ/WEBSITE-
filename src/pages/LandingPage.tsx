@@ -1,53 +1,16 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import HeroSlider from '../components/HeroSlider';
 import VenueCard from '../components/VenueCard';
 import VideoShowcase from '../components/VideoShowcase';
+import { LANDING_CONFIG } from '../config/landing';
+import Button from '../components/common/Button';
 
 // Import local assets
 import template1 from '../assets/images/template_1.jpg';
 import template2 from '../assets/images/template_2.jpg';
 import template3 from '../assets/images/template_3.jpg';
-
-const vendors = [
-    { name: 'Photographers', color: 'bg-red-100' },
-    { name: 'Caterers', color: 'bg-orange-100' },
-    { name: 'Florists', color: 'bg-green-100' },
-    { name: 'Musicians', color: 'bg-blue-100' },
-    { name: 'Venues', color: 'bg-purple-100' },
-    { name: 'Bakers', color: 'bg-pink-100' },
-    { name: 'Decor', color: 'bg-indigo-100' },
-    { name: 'Rental', color: 'bg-teal-100' },
-];
-
-const venues = [
-    {
-        name: "Grand Palace Hotel",
-        location: "Paris, France",
-        image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800",
-        capacity: "500+",
-        rating: 4.9,
-        price: "$$$"
-    },
-    {
-        name: "The Glass House",
-        location: "New York, USA",
-        image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800",
-        capacity: "200-300",
-        rating: 4.8,
-        price: "$$"
-    },
-    {
-        name: "Lakeside Manor",
-        location: "Como, Italy",
-        image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&q=80&w=800",
-        capacity: "150-250",
-        rating: 5.0,
-        price: "$$$"
-    }
-];
 
 export default function LandingPage() {
     return (
@@ -63,12 +26,12 @@ export default function LandingPage() {
                         From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — ÀRIYÁ supports you through it all.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <button className="w-full md:w-auto bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-primary-700 transition-colors">
+                        <Button size="lg">
                             Explore Vendors
-                        </button>
-                        <button className="w-full md:w-auto bg-white/10 backdrop-blur-md text-white border border-white/20 font-black uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-white/20 transition-colors">
+                        </Button>
+                        <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
                             Create Website
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </section>
@@ -80,9 +43,9 @@ export default function LandingPage() {
                     <h2 className="text-4xl md:text-5xl font-black tracking-tighter mt-4">Find Vendors For Every Event</h2>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {vendors.map((vendor, i) => (
+                    {LANDING_CONFIG.vendors.map((vendor, i) => (
                         <div key={i} className="premium-card p-8 flex flex-col items-center text-center group cursor-pointer bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <div className={`w-16 h-16 rounded-full mb-6 flex items-center justify-center ${vendor.color} dark:bg-opacity-20 group-hover:scale-110 transition-transform`}>
+                            <div className={`w-16 h-16 rounded-full mb-6 flex items-center justify-center bg-${vendor.color}-100 dark:bg-${vendor.color}-900/20 group-hover:scale-110 transition-transform`}>
                                 <div className="w-8 h-8 rounded-full bg-white/40 dark:bg-white/10" />
                             </div>
                             <h3 className="text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white">{vendor.name}</h3>
@@ -90,13 +53,13 @@ export default function LandingPage() {
                     ))}
                 </div>
                 <div className="mt-12 text-center">
-                    <button className="border-2 border-primary-600 text-primary-600 font-black uppercase tracking-widest px-10 py-4 rounded-full text-sm hover:bg-primary-600 hover:text-white transition-all">
+                    <Button variant="outline">
                         View All Vendors
-                    </button>
+                    </Button>
                 </div>
             </section>
 
-            {/* Testimonials Section */}
+            {/* Venues Section */}
             <section className="py-24 px-8 bg-[#F2F2F2] dark:bg-gray-800">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
@@ -108,15 +71,15 @@ export default function LandingPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-                        {venues.map((venue, i) => (
+                        {LANDING_CONFIG.venues.map((venue, i) => (
                             <VenueCard key={i} {...venue} />
                         ))}
                     </div>
 
                     <div className="mt-16 text-center">
-                        <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-sm hover:bg-primary-700 transition-colors shadow-lg">
+                        <Button size="lg" shadow="lg">
                             Explore All Venues
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </section>
@@ -162,6 +125,7 @@ export default function LandingPage() {
                     </div>
                 </div>
             </section>
+
             {/* Always By Your Side Section */}
             <section className="py-24 px-8 bg-[#CAD4D4]">
                 <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -244,16 +208,14 @@ export default function LandingPage() {
                         </div>
                     </div>
 
-                    <button className="bg-white text-[#CC4024] font-black uppercase tracking-widest px-12 py-5 rounded-full text-sm hover:scale-105 transition-transform shadow-2xl">
+                    <Button variant="white" size="lg">
                         Get Started Free
-                    </button>
+                    </Button>
                 </div>
             </section>
 
             {/* Video Showcase Section */}
             <VideoShowcase />
-
-
 
             {/* Community Section */}
             <section className="py-24 px-8 bg-[#1A1A1A] text-white">
@@ -264,12 +226,7 @@ export default function LandingPage() {
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-4xl mb-16">
-                        {[
-                            { val: "50k+", label: "Planners" },
-                            { val: "15k+", label: "Vendors" },
-                            { val: "200k+", label: "Events" },
-                            { val: "80+", label: "Countries" }
-                        ].map((stat, i) => (
+                        {LANDING_CONFIG.stats.map((stat, i) => (
                             <div key={i} className="flex flex-col items-center">
                                 <div className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-2">{stat.val}</div>
                                 <div className="text-[10px] font-black uppercase tracking-widest text-primary-600">{stat.label}</div>
@@ -277,9 +234,9 @@ export default function LandingPage() {
                         ))}
                     </div>
 
-                    <button className="bg-white text-black font-black uppercase tracking-widest px-12 py-5 rounded-full text-sm hover:scale-105 transition-transform">
+                    <Button variant="white" size="lg">
                         Join The Community
-                    </button>
+                    </Button>
                 </div>
             </section>
 
@@ -329,14 +286,9 @@ export default function LandingPage() {
                         </h2>
 
                         <div className="flex flex-col items-center gap-6">
-                            <button className="group relative bg-[#D0771E] text-white font-black uppercase tracking-widest px-14 py-6 rounded-full text-sm overflow-hidden shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)] transition-all duration-300 hover:scale-105">
-                                <span className="relative z-10 flex items-center gap-2">
-                                    Get Started Free
-                                    <ArrowRight className="w-4 h-4" />
-                                </span>
-                                {/* Shimmer Effect */}
-                                <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
-                            </button>
+                            <Button size="lg" icon={ArrowRight} iconPosition="right" className="px-14 py-6 shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)]">
+                                Get Started Free
+                            </Button>
                             <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">
                                 No credit card required • Join 200k+ planners
                             </p>
@@ -347,4 +299,3 @@ export default function LandingPage() {
         </main>
     );
 }
-
