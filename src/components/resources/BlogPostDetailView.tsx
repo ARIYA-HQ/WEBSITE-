@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, User, Twitter, Facebook, Linkedin } from 'lucide-react';
 import { BlogPost } from '../../types/cms';
+import DOMPurify from 'dompurify';
 
 interface BlogPostDetailViewProps {
     post: BlogPost;
@@ -49,7 +50,7 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                 {/* Render HTML content safely */}
                 <div
                     className="prose prose-lg prose-gray dark:prose-invert mx-auto prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-700"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
                 />
 
                 <hr className="my-16 border-gray-100 dark:border-gray-800" />

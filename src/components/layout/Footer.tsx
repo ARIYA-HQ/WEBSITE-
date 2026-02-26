@@ -72,7 +72,7 @@ export default function Footer() {
                                             {link.label}
                                         </Link>
                                     ) : (
-                                        <a href={link.href} className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center gap-2">
+                                        <a href={link.href} target="_blank" rel="noopener noreferrer" className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center gap-2">
                                             {link.label}
                                         </a>
                                     )}
