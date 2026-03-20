@@ -27,19 +27,24 @@ const PricingPage = () => {
                             not for access.
                         </h1>
                         <p className="text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
-                            AriyaHQ is infrastructure for your events. No commissions on bookings.
+                            AriyaHQ is infrastructure for your events. No recurring subscriptions. No commissions on bookings.
                             Just power, scale, and professional polish when you need it.
                         </p>
 
                         <div className="inline-flex items-center gap-6 px-6 py-3 bg-white dark:bg-gray-900 rounded-full border border-gray-100 dark:border-gray-800 shadow-sm">
                             <div className="flex items-center gap-2">
                                 <ShieldCheck className="w-5 h-5 text-green-500" />
-                                <span className="text-sm font-bold text-gray-900 dark:text-white">0% Commissions</span>
+                                <span className="text-sm font-bold text-gray-900 dark:text-white">0% Subscriptions</span>
                             </div>
                             <div className="w-px h-4 bg-gray-200 dark:bg-gray-800" />
                             <div className="flex items-center gap-2">
                                 <CreditCard className="w-5 h-5 text-primary-600" />
-                                <span className="text-sm font-bold text-gray-900 dark:text-white">₦1,000 Flat Fee</span>
+                                <span className="text-sm font-bold text-gray-900 dark:text-white">1.5% Ticket Surcharge</span>
+                            </div>
+                            <div className="w-px h-4 bg-gray-200 dark:bg-gray-800" />
+                            <div className="flex items-center gap-2">
+                                <ShieldCheck className="w-5 h-5 text-green-500" />
+                                <span className="text-sm font-bold text-gray-900 dark:text-white">0% Commissions</span>
                             </div>
                         </div>
                     </motion.div>
@@ -77,7 +82,7 @@ const PricingPage = () => {
 
                             <div className="mb-8">
                                 <div className={`text-4xl font-black tracking-tighter ${plan.featured ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
-                                    {plan.price}{plan.period && <span className="text-base font-medium opacity-50">{plan.period}</span>}
+                                    {plan.price}
                                 </div>
                                 <div className={`text-[10px] font-black uppercase tracking-widest mt-1 ${plan.id === 'pro' ? 'text-primary-400' :
                                         plan.id === 'vendor' ? 'text-blue-600' : 'text-primary-600'
@@ -132,12 +137,12 @@ const PricingPage = () => {
                             <div className="grid grid-cols-2 gap-6 mb-10">
                                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
                                     <div className="text-xs font-black uppercase text-primary-600 mb-1">Premium Cards</div>
-                                    <div className="text-xl font-bold text-white mb-2">₦6,000</div>
-                                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Invitations, RSVPs, S-T-D</p>
+                                    <div className="text-xl font-bold text-white mb-2">₦3,000+</div>
+                                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Single Card to Bundle</p>
                                 </div>
                                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
                                     <div className="text-xs font-black uppercase text-primary-600 mb-1">Design Kits</div>
-                                    <div className="text-xl font-bold text-white mb-2">₦90,000+</div>
+                                    <div className="text-xl font-bold text-white mb-2">₦90,000 - ₦150k</div>
                                     <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Full event visual language</p>
                                 </div>
                             </div>
