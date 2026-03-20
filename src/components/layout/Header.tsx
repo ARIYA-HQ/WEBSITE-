@@ -185,10 +185,12 @@ export default function Header() {
 
                 <nav className="hidden md:flex items-center gap-6">
                     <ThemeToggle />
-                    <Link to="/login" className="text-sm font-bold hover:text-primary-600 transition-colors text-gray-900 dark:text-white">Log In</Link>
-                    <Button size="sm">
-                        Get Started
-                    </Button>
+                    <a href="https://ariya-io.onrender.com/auth/login" className="text-sm font-bold hover:text-primary-600 transition-colors text-gray-900 dark:text-white">Log In</a>
+                    <a href="https://ariya-io.onrender.com/auth/signup">
+                        <Button size="sm">
+                            Get Started
+                        </Button>
+                    </a>
                 </nav>
 
                 {/* Mobile Menu Toggle */}

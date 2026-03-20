@@ -19,9 +19,11 @@ export default function OverviewPage() {
                             Ariya brings your entire event workflow into one intuitive interface. Say goodbye to scattered spreadsheets and hello to streamlined success.
                         </p>
                         <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                            <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-colors shadow-xl">
-                                Get Started Free
-                            </button>
+                            <a href="https://ariya-io.onrender.com/auth/signup">
+                                <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-colors shadow-xl">
+                                    Get Started Free
+                                </button>
+                            </a>
                             <button className="flex items-center gap-2 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-700 text-gray-900 dark:text-white">
                                 View Demo <ArrowRight className="w-4 h-4" />
                             </button>

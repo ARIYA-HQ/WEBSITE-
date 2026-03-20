@@ -77,7 +77,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="mt-16 text-center">
-                        <Button size="lg" shadow="lg">
+                        <Button size="lg">
                             Explore All Venues
                         </Button>
                     </div>
@@ -208,9 +208,11 @@ export default function LandingPage() {
                         </div>
                     </div>
 
-                    <Button variant="white" size="lg">
-                        Get Started Free
-                    </Button>
+                    <a href="https://ariya-io.onrender.com/auth/signup">
+                        <Button variant="white" size="lg">
+                            Get Started Free
+                        </Button>
+                    </a>
                 </div>
             </section>
 
@@ -286,9 +288,11 @@ export default function LandingPage() {
                         </h2>
 
                         <div className="flex flex-col items-center gap-6">
-                            <Button size="lg" icon={ArrowRight} iconPosition="right" className="px-14 py-6 shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)]">
-                                Get Started Free
-                            </Button>
+                            <a href="https://ariya-io.onrender.com/auth/signup">
+                                <Button size="lg" icon={ArrowRight} iconPosition="right" className="px-14 py-6 shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)]">
+                                    Get Started Free
+                                </Button>
+                            </a>
                             <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">
                                 No credit card required • Join 200k+ planners
                             </p>
