@@ -24,9 +24,11 @@ export default function OverviewPage() {
                                     Get Started Free
                                 </button>
                             </a>
-                            <button className="flex items-center gap-2 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-700 text-gray-900 dark:text-white">
-                                View Demo <ArrowRight className="w-4 h-4" />
-                            </button>
+                            <Link to="/waitlist">
+                                <button className="flex items-center gap-2 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-700 text-gray-900 dark:text-white">
+                                    View Demo <ArrowRight className="w-4 h-4" />
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="lg:w-1/2 animate-in fade-in slide-in-from-right-8 duration-1000 delay-200">
@@ -104,9 +106,9 @@ export default function OverviewPage() {
                                 </li>
                             ))}
                         </ul>
-                        <button className="text-primary-400 font-bold uppercase tracking-widest text-xs flex items-center gap-2 hover:text-white transition-colors">
+                        <a href="#integrations" className="text-primary-400 font-bold uppercase tracking-widest text-xs flex items-center gap-2 hover:text-white transition-colors">
                             View all integrations <ArrowRight className="w-4 h-4" />
-                        </button>
+                        </a>
                     </div>
                     <div className="md:w-1/2 grid grid-cols-2 gap-4 opacity-50">
                         {/* Placeholder logos - using simple text boxes for now as placeholders for actual SVG logos */}

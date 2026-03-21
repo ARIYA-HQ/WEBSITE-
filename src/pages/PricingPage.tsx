@@ -97,12 +97,14 @@ const PricingPage = () => {
                                 ))}
                             </div>
 
-                            <Button
-                                variant={plan.featured ? 'primary' : plan.id === 'vendor' ? 'outline' : 'dark'}
-                                fullWidth
-                            >
-                                {plan.buttonText}
-                            </Button>
+                            <a href="https://ariya-io.onrender.com/auth/signup">
+                                <Button
+                                    variant={plan.featured ? 'primary' : plan.id === 'vendor' ? 'outline' : 'dark'}
+                                    fullWidth
+                                >
+                                    {plan.buttonText}
+                                </Button>
+                            </a>
                         </motion.div>
                     ))}
                 </div>
@@ -147,9 +149,11 @@ const PricingPage = () => {
                                 </div>
                             </div>
 
-                            <Button variant="white">
-                                Browse Design Studio
-                            </Button>
+                            <a href="https://ariya-io.onrender.com/auth/login">
+                                <Button variant="white">
+                                    Browse Design Studio
+                                </Button>
+                            </a>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -186,26 +190,30 @@ const FeatureItem = ({ text, dark = false }: { text: string; dark?: boolean }) =
 );
 
 const UnlockCard = ({ title, price, icon: Icon }: { title: string; price: string; icon: any }) => (
-    <button className="p-6 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center group hover:border-primary-600/50 transition-all cursor-pointer">
-        <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-primary-600 group-hover:text-white transition-all mb-4">
-            <Icon className="w-4 h-4" />
-        </div>
-        <div className="text-xs font-black uppercase tracking-widest text-gray-900 dark:text-white mb-1">{title}</div>
-        <div className="text-sm font-bold text-primary-600">{price}</div>
-    </button>
+    <a href="https://ariya-io.onrender.com/auth/signup" className="contents">
+        <button className="p-6 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 flex flex-col items-center text-center group hover:border-primary-600/50 transition-all cursor-pointer">
+            <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-400 group-hover:bg-primary-600 group-hover:text-white transition-all mb-4">
+                <Icon className="w-4 h-4" />
+            </div>
+            <div className="text-xs font-black uppercase tracking-widest text-gray-900 dark:text-white mb-1">{title}</div>
+            <div className="text-sm font-bold text-primary-600">{price}</div>
+        </button>
+    </a>
 );
 
 const DesignAssetCard = ({ title, color }: { title: string; color: string }) => (
-    <button className="aspect-[4/5] w-full rounded-3xl bg-white/5 border border-white/10 p-6 flex flex-col justify-between group cursor-pointer overflow-hidden relative text-left">
-        <div className={`absolute top-0 right-0 w-24 h-24 ${color} blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity`} />
-        <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white">
-            <ImageIcon className="w-4 h-4" />
-        </div>
-        <div className="relative z-10">
-            <div className="text-[10px] font-black uppercase text-gray-400 mb-1 tracking-widest">Template</div>
-            <div className="text-sm font-bold text-white group-hover:text-primary-400 transition-colors uppercase tracking-tighter leading-tight">{title}</div>
-        </div>
-    </button>
+    <a href="https://ariya-io.onrender.com/auth/signup" className="contents">
+        <button className="aspect-[4/5] w-full rounded-3xl bg-white/5 border border-white/10 p-6 flex flex-col justify-between group cursor-pointer overflow-hidden relative text-left">
+            <div className={`absolute top-0 right-0 w-24 h-24 ${color} blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity`} />
+            <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white">
+                <ImageIcon className="w-4 h-4" />
+            </div>
+            <div className="relative z-10">
+                <div className="text-[10px] font-black uppercase text-gray-400 mb-1 tracking-widest">Template</div>
+                <div className="text-sm font-bold text-white group-hover:text-primary-400 transition-colors uppercase tracking-tighter leading-tight">{title}</div>
+            </div>
+        </button>
+    </a>
 );
 
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => (

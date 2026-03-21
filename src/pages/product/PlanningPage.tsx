@@ -15,9 +15,11 @@ export default function PlanningPage() {
                         <p className="text-xl text-gray-500 dark:text-gray-400 mb-10 font-medium max-w-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                             Manage tasks, timelines, and team collaboration in one unified view. Keep every detail on track, from the big picture to the smallest minute.
                         </p>
-                        <button className="bg-purple-600 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                            Start Planning Free
-                        </button>
+                        <a href="https://ariya-io.onrender.com/auth/signup">
+                            <button className="bg-purple-600 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+                                Start Planning Free
+                            </button>
+                        </a>
                     </div>
                     <div className="lg:w-1/2 animate-in fade-in slide-in-from-right-8 duration-1000 delay-200">
                         <div className="bg-white dark:bg-gray-800 rounded-[2rem] p-6 shadow-2xl border border-purple-100 dark:border-gray-700 rotate-2 hover:rotate-0 transition-transform duration-500">

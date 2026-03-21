@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     LayoutDashboard,
     Kanban,
@@ -51,12 +52,16 @@ export default function PlannersPage() {
                             of a conductor.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                                Get Pro Access
-                            </button>
-                            <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
-                                Request a Demo
-                            </button>
+                            <Link to="/pricing">
+                                <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
+                                    Get Pro Access
+                                </button>
+                            </Link>
+                            <Link to="/contact">
+                                <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
+                                    Request a Demo
+                                </button>
+                            </Link>
                         </div>
                     </motion.div>
 
@@ -194,9 +199,11 @@ export default function PlannersPage() {
                     <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter mb-12 leading-[0.85]">
                         Build a Legacy, <br className="md:hidden" /> not just an event.
                     </h2>
-                    <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                        Join the Pro Ranks
-                    </button>
+                    <Link to="/pricing">
+                        <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
+                            Join the Pro Ranks
+                        </button>
+                    </Link>
                 </div>
             </section>
         </main>

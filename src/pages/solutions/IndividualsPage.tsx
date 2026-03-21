@@ -49,9 +49,11 @@ export default function IndividualsPage() {
                             tools used by elite planners, made simple enough for anyone to use.
                         </p>
                         <div className="flex flex-col sm:row gap-4">
-                            <button className="bg-rose-500 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-rose-600 transition-all shadow-xl shadow-rose-600/20">
-                                Start Planning Free
-                            </button>
+                            <a href="https://ariya-io.onrender.com/auth/signup">
+                                <button className="bg-rose-500 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-rose-600 transition-all shadow-xl shadow-rose-600/20 w-full sm:w-auto">
+                                    Start Planning Free
+                                </button>
+                            </a>
                             <div className="flex items-center gap-3 px-6 py-4">
                                 <Smile className="w-5 h-5 text-rose-500" />
                                 <span className="text-xs font-bold text-gray-500">No spreadsheets required</span>
@@ -153,9 +155,11 @@ export default function IndividualsPage() {
                     <h2 className="text-4xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tighter mb-12 leading-[0.85] uppercase italic">
                         The Best Day <br /> <span className="text-rose-500">Starts Here.</span>
                     </h2>
-                    <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-black dark:hover:bg-primary-50 transition-all shadow-2xl">
-                        Start Planning Now
-                    </button>
+                    <a href="https://ariya-io.onrender.com/auth/signup">
+                        <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-black dark:hover:bg-primary-50 transition-all shadow-2xl">
+                            Start Planning Now
+                        </button>
+                    </a>
                     <p className="mt-8 text-[10px] font-black uppercase tracking-widest text-gray-400 italic">"The only thing we didn't do for Sarah was walk her down the aisle."</p>
                 </div>
             </section>

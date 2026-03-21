@@ -15,9 +15,11 @@ export default function VendorsPage() {
                             Join the marketplace where high-intent couples and planners find their perfect match. Stop chasing leads, start signing contracts.
                         </p>
                         <div className="flex gap-4">
-                            <button className="bg-[#D0771E] text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-sm hover:bg-[#b56619] transition-colors shadow-xl">
-                                Join Network
-                            </button>
+                            <a href="https://ariya-io.onrender.com/auth/signup">
+                                <button className="bg-[#D0771E] text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-sm hover:bg-[#b56619] transition-colors shadow-xl">
+                                    Join Network
+                                </button>
+                            </a>
                             <div className="flex items-center gap-2 px-6 py-4">
                                 <span className="font-bold text-gray-900 dark:text-white">4.9/5 Rating</span>
                                 <div className="flex text-[#D0771E]">

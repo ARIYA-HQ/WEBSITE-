@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Download, FileText, CheckSquare, Layers, ArrowRight, Filter } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { Resource } from '../../types/cms';
@@ -74,9 +75,11 @@ export default function GuidesPage() {
                     <p className="text-primary-100 text-lg mb-8 font-medium">
                         Get unlimited access to over 500+ premium templates and tools when you join Ariya Pro.
                     </p>
-                    <button className="bg-white text-primary-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors shadow-xl">
-                        Start Free Trial
-                    </button>
+                    <Link to="/pricing">
+                        <button className="bg-white text-primary-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors shadow-xl">
+                            Start Free Trial
+                        </button>
+                    </Link>
                 </div>
             </section>
         </main>

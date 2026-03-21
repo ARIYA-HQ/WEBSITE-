@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     ShieldCheck,
     Server,
@@ -48,12 +49,16 @@ export default function EnterprisePage() {
                             with absolute precision.
                         </p>
                         <div className="flex flex-col sm:row gap-4">
-                            <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                                Book a Demo
-                            </button>
-                            <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
-                                Security Whitepaper
-                            </button>
+                            <Link to="/contact">
+                                <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
+                                    Book a Demo
+                                </button>
+                            </Link>
+                            <Link to="/contact">
+                                <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
+                                    Security Whitepaper
+                                </button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>
@@ -160,9 +165,11 @@ export default function EnterprisePage() {
                     <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-tight">Ready to orchestrate at scale?</h2>
                     <p className="text-xl text-primary-100 mb-12 opacity-80 font-medium">Schedule a custom walkthrough with our solution engineering team.</p>
                     <div className="flex flex-col sm:row gap-4 justify-center">
-                        <button className="bg-white text-primary-600 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-gray-100 transition-all shadow-xl">
-                            Contact Solutions Team
-                        </button>
+                        <Link to="/contact">
+                            <button className="bg-white text-primary-600 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-gray-100 transition-all shadow-xl">
+                                Contact Solutions Team
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </section>

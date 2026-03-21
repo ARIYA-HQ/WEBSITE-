@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Plus, Minus, Search, MessageCircle, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -134,14 +135,16 @@ export default function FAQPage() {
                         Can't find the answer you're looking for? Our friendly team is here to help you get back to planning.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-primary-600 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-colors flex items-center justify-center gap-2">
-                            <MessageCircle className="w-4 h-4" />
-                            Chat with Support
-                        </button>
-                        <button className="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2">
+                        <Link to="/contact">
+                            <button className="bg-primary-600 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-colors flex items-center justify-center gap-2">
+                                <MessageCircle className="w-4 h-4" />
+                                Chat with Support
+                            </button>
+                        </Link>
+                        <a href="mailto:support@ariya.io" className="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2">
                             <Mail className="w-4 h-4" />
                             Email Us
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>

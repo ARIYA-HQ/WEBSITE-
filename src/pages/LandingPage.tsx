@@ -26,12 +26,16 @@ export default function LandingPage() {
                         From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — ÀRIYÁ supports you through it all.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <Button size="lg">
-                            Explore Vendors
-                        </Button>
-                        <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
-                            Create Website
-                        </Button>
+                        <a href="https://ariya-io.onrender.com/auth/login">
+                            <Button size="lg">
+                                Explore Vendors
+                            </Button>
+                        </a>
+                        <a href="https://ariya-io.onrender.com/auth/login">
+                            <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
+                                Create Website
+                            </Button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -53,9 +57,11 @@ export default function LandingPage() {
                     ))}
                 </div>
                 <div className="mt-12 text-center">
-                    <Button variant="outline">
-                        View All Vendors
-                    </Button>
+                    <a href="https://ariya-io.onrender.com/auth/login">
+                        <Button variant="outline">
+                            View All Vendors
+                        </Button>
+                    </a>
                 </div>
             </section>
 
@@ -77,9 +83,11 @@ export default function LandingPage() {
                     </div>
 
                     <div className="mt-16 text-center">
-                        <Button size="lg">
-                            Explore All Venues
-                        </Button>
+                        <a href="https://ariya-io.onrender.com/auth/login">
+                            <Button size="lg">
+                                Explore All Venues
+                            </Button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -236,9 +244,11 @@ export default function LandingPage() {
                         ))}
                     </div>
 
-                    <Button variant="white" size="lg">
-                        Join The Community
-                    </Button>
+                    <a href="https://instagram.com/ariya_hq">
+                        <Button variant="white" size="lg">
+                            Join The Community
+                        </Button>
+                    </a>
                 </div>
             </section>
 

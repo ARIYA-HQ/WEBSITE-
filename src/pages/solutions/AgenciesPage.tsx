@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     Globe,
     Shield,
@@ -51,12 +52,16 @@ export default function AgenciesPage() {
                             with absolute precision.
                         </p>
                         <div className="flex flex-col sm:row gap-4">
-                            <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                                Request Agency Access
-                            </button>
-                            <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
-                                Enterprise Whitepaper
-                            </button>
+                            <Link to="/contact">
+                                <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
+                                    Request Agency Access
+                                </button>
+                            </Link>
+                            <Link to="/contact">
+                                <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
+                                    Enterprise Whitepaper
+                                </button>
+                            </Link>
                         </div>
                     </motion.div>
 
@@ -221,9 +226,11 @@ export default function AgenciesPage() {
                     <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter mb-12 leading-[0.85] uppercase italic">
                         The World Is <br /> Your Stage.
                     </h2>
-                    <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                        Become an Ariya Agency
-                    </button>
+                    <Link to="/contact">
+                        <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
+                            Become an Ariya Agency
+                        </button>
+                    </Link>
                 </div>
             </section>
         </main>
