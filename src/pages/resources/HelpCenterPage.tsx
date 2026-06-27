@@ -79,7 +79,7 @@ export default function HelpCenterPage() {
                             <ul className="space-y-3">
                                 {cat.articles.map((article, aIdx) => (
                                     <li key={aIdx}>
-                                        <a href="#" className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-600 transition-colors font-medium group/link">
+                                        <a href="/contact" className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-600 transition-colors font-medium group/link">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 group-hover/link:bg-primary-600 transition-colors" />
                                             {article}
                                         </a>
@@ -103,7 +103,7 @@ export default function HelpCenterPage() {
                             "Managing vendor contracts and payments",
                             "Mobile app troubleshooting guide"
                         ].map((article, idx) => (
-                            <a key={idx} href="#" className="flex items-center justify-between p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-primary-200 dark:hover:border-primary-500 hover:shadow-md transition-all group">
+                            <a key={idx} href="/contact" className="flex items-center justify-between p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-primary-200 dark:hover:border-primary-500 hover:shadow-md transition-all group">
                                 <span className="font-bold text-gray-700 dark:text-gray-200 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">{article}</span>
                                 <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-primary-600 group-hover:translate-x-1 transition-all" />
                             </a>
@@ -122,9 +122,9 @@ export default function HelpCenterPage() {
                     <p className="text-gray-500 dark:text-gray-400 text-lg mb-10">
                         Our support team is available Mon-Fri, 9am-6pm EST. We usually respond within 2 hours.
                     </p>
-                    <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-primary-50 transition-colors shadow-lg">
+                    <Link to="/contact" className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-primary-50 transition-colors shadow-lg">
                         Contact Support
-                    </button>
+                    </Link>
                 </div>
             </section>
         </main>

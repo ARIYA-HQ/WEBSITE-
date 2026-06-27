@@ -28,6 +28,7 @@ export default function AdminDashboardPage() {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'archived'>('all');
+    const [pendingDeleteId, setPendingDeleteId] = useState<any>(null);
 
     const fetchData = async () => {
         await performAction(async () => {
@@ -107,18 +108,22 @@ export default function AdminDashboardPage() {
         });
     };
 
-    const handleDelete = async (id: any) => {
-        if (!window.confirm('Are you sure? This cannot be undone.')) return;
+    const handleDelete = (id: any) => {
+        setPendingDeleteId(id);
+    };
 
+    const confirmDelete = async () => {
+        if (!pendingDeleteId) return;
+        const id = pendingDeleteId;
+        setPendingDeleteId(null);
         const success = await performAction(async () => {
             if (view === 'posts') await cmsService.deleteBlogPost(id);
             if (view === 'case-studies') await cmsService.deleteCaseStudy(id);
             if (view === 'resources') await cmsService.deleteResource(id);
             if (view === 'waitlist') await cmsService.deleteWaitlistEntry(id);
         });
-
         if (success !== undefined) {
-            fetchData(); // Refresh
+            fetchData();
         }
     };
 
@@ -126,7 +131,7 @@ export default function AdminDashboardPage() {
         if (view === 'posts') navigate('/admin/posts/new');
         if (view === 'case-studies') navigate('/admin/case-studies/new');
         if (view === 'resources') navigate('/admin/resources/new');
-        if (view === 'waitlist') alert('Waitlist entries are created by users on the public site.');
+        if (view === 'waitlist') return; // Waitlist entries are created by users on the public site
     };
 
     const handleEdit = (id: any) => {
@@ -172,6 +177,20 @@ export default function AdminDashboardPage() {
 
     return (
         <div className="flex-1 px-4 md:px-8 py-8 h-screen overflow-y-auto overflow-x-hidden relative">
+            {/* Delete confirmation dialog */}
+            {pendingDeleteId && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4 border border-gray-100 dark:border-gray-800">
+                        <h3 className="text-lg font-black text-gray-900 dark:text-white mb-2">Delete Item</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Are you sure? This cannot be undone.</p>
+                        <div className="flex gap-3">
+                            <button onClick={() => setPendingDeleteId(null)} className="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Cancel</button>
+                            <button onClick={confirmDelete} className="flex-1 px-4 py-3 rounded-xl bg-red-600 text-sm font-bold text-white hover:bg-red-700 transition-colors">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-100/30 dark:bg-primary-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-orange-100/30 dark:bg-orange-900/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
