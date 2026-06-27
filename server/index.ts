@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
 import { db } from '../api/db/supabase.js';
 import { loopsService } from '../api/loopsService.js';
 
@@ -11,6 +12,37 @@ app.use(cors());
 app.get('/api/ping', (req, res) => res.json({ status: 'ok', msg: 'pong', time: new Date().toISOString() }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+const JWT_SECRET = process.env.ADMIN_JWT_SECRET || 'ariya-admin-secret-change-me';
+
+app.post('/api/admin/login', (req, res) => {
+    const { email, password } = req.body;
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (!adminEmail || !adminPassword) {
+        return res.status(500).json({ error: 'Admin credentials not configured' });
+    }
+    if (email !== adminEmail || password !== adminPassword) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    const token = jwt.sign({ email, role: 'admin' }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({ token, user: { email, role: 'admin' } });
+});
+
+app.post('/api/admin/logout', (_req, res) => {
+    res.json({ success: true });
+});
+
+app.get('/api/admin/me', (req, res) => {
+    const auth = req.headers.authorization;
+    if (!auth?.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+    try {
+        const payload = jwt.verify(auth.slice(7), JWT_SECRET);
+        res.json({ user: payload });
+    } catch {
+        res.status(401).json({ error: 'Invalid token' });
+    }
+});
 
 // --- Routes ---
 
@@ -286,7 +318,7 @@ app.get('/api/health', async (req, res) => {
         res.json({
             status: 'ok',
             isVercel: !!process.env.VERCEL,
-            supabase: true
+            db: 'neon',
         });
     } catch (error: any) {
         res.status(500).json({ status: 'error', message: error.message });
