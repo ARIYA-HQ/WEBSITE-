@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, CreditCard, Check, Image as ImageIcon } from 'lucide-react';
+import { ShieldCheck, Banknote, Check, Image as ImageIcon } from 'lucide-react';
 import { PRICING_CONFIG } from '../config/pricing';
 import Button from '../components/common/Button';
 
@@ -31,20 +31,20 @@ const PricingPage = () => {
                             Just power, scale, and professional polish when you need it.
                         </p>
 
-                        <div className="inline-flex items-center gap-6 px-6 py-3 bg-white dark:bg-gray-900 rounded-full border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <div className="inline-flex flex-wrap justify-center items-center gap-6 px-6 py-3 bg-white dark:bg-gray-900 rounded-full border border-gray-100 dark:border-gray-800 shadow-sm">
                             <div className="flex items-center gap-2">
                                 <ShieldCheck className="w-5 h-5 text-green-500" />
-                                <span className="text-sm font-bold text-gray-900 dark:text-white">0% Subscriptions</span>
-                            </div>
-                            <div className="w-px h-4 bg-gray-200 dark:bg-gray-800" />
-                            <div className="flex items-center gap-2">
-                                <CreditCard className="w-5 h-5 text-primary-600" />
-                                <span className="text-sm font-bold text-gray-900 dark:text-white">1.5% Ticket Surcharge</span>
+                                <span className="text-sm font-bold text-gray-900 dark:text-white">No Subscriptions</span>
                             </div>
                             <div className="w-px h-4 bg-gray-200 dark:bg-gray-800" />
                             <div className="flex items-center gap-2">
                                 <ShieldCheck className="w-5 h-5 text-green-500" />
                                 <span className="text-sm font-bold text-gray-900 dark:text-white">0% Commissions</span>
+                            </div>
+                            <div className="w-px h-4 bg-gray-200 dark:bg-gray-800" />
+                            <div className="flex items-center gap-2">
+                                <Banknote className="w-5 h-5 text-primary-600" />
+                                <span className="text-sm font-bold text-gray-900 dark:text-white">₦1,000 Flat Processing Fee</span>
                             </div>
                         </div>
                     </motion.div>
@@ -84,7 +84,7 @@ const PricingPage = () => {
                                 <div className={`text-4xl font-black tracking-tighter ${plan.featured ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
                                     {plan.price}
                                 </div>
-                                <div className={`text-[10px] font-black uppercase tracking-widest mt-1 ${plan.id === 'pro' ? 'text-primary-400' :
+                                <div className={`text-[10px] font-black uppercase tracking-widest mt-1 leading-snug ${plan.id === 'pro' ? 'text-primary-400' :
                                         plan.id === 'vendor' ? 'text-blue-600' : 'text-primary-600'
                                     }`}>
                                     {plan.priceSub}
