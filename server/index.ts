@@ -2,8 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { db } from '../api/db/supabase.js';
 import { loopsService } from '../api/loopsService.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3001;
@@ -325,8 +330,20 @@ app.get('/api/health', async (req, res) => {
     }
 });
 
+// Serve built frontend in production
+if (process.env.NODE_ENV === 'production') {
+    const distPath = path.resolve(__dirname, '../dist');
+    app.use(express.static(distPath));
+    app.get('*', (_req, res) => {
+        res.sendFile(path.join(distPath, 'index.html'));
+    });
+}
+
+const listenPort = parseInt(process.env.PORT || String(port));
 if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
-    app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+    app.listen(listenPort, () => console.log(`Server running at http://localhost:${listenPort}`));
+} else if (process.env.NODE_ENV === 'production') {
+    app.listen(listenPort, () => console.log(`Production server on port ${listenPort}`));
 }
 
 export default app;
