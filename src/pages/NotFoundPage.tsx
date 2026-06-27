@@ -70,7 +70,7 @@ const NotFoundPage = () => {
                         </div>
                         <div>
                             <span className="block text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-2">Legal</span>
-                            <a href="/legal/privacy-policy" className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Privacy</a>
+                            <a href="/legal/privacy" className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Privacy</a>
                         </div>
                     </div>
                 </motion.div>

@@ -31,29 +31,20 @@ export function ThemeProvider({
 
     useEffect(() => {
         const root = window.document.documentElement;
-        console.log('ThemeContext: Effect triggered. Current theme:', theme);
-
         root.classList.remove('light', 'dark');
 
         if (theme === 'system') {
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-                .matches
-                ? 'dark'
-                : 'light';
-
-            console.log('ThemeContext: System theme resolved to:', systemTheme);
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             root.classList.add(systemTheme);
             return;
         }
 
-        console.log('ThemeContext: Applying theme:', theme);
         root.classList.add(theme);
     }, [theme]);
 
     const value = {
         theme,
         setTheme: (theme: Theme) => {
-            console.log('ThemeContext: Setting theme to:', theme);
             localStorage.setItem(storageKey, theme);
             setTheme(theme);
         },
