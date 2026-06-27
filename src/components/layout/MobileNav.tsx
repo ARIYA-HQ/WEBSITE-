@@ -80,10 +80,10 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
                                 <MobileAccordion title="Vendors">
                                     <div className="grid gap-4 pl-4">
-                                        <MobileLink to="#" icon={Search} label="Browse Vendors" onClick={onClose} />
-                                        <MobileLink to="#" icon={List} label="Vendor Categories" onClick={onClose} />
-                                        <MobileLink to="#" icon={Star} label="Featured Vendors" onClick={onClose} />
-                                        <MobileLink to="#" icon={UserPlus} label="Become a Vendor" onClick={onClose} />
+                                        <MobileExternalLink href="https://app.ariyahq.com/vendors" icon={Search} label="Browse Vendors" onClick={onClose} />
+                                        <MobileExternalLink href="https://app.ariyahq.com/vendors" icon={List} label="Vendor Categories" onClick={onClose} />
+                                        <MobileExternalLink href="https://app.ariyahq.com/vendors" icon={Star} label="Featured Vendors" onClick={onClose} />
+                                        <MobileExternalLink href="https://app.ariyahq.com/auth/login" icon={UserPlus} label="Become a Vendor" onClick={onClose} />
                                     </div>
                                 </MobileAccordion>
 
@@ -171,5 +171,18 @@ function MobileLink({ to, icon: Icon, label, onClick }: { to: string, icon?: any
             {Icon && <Icon className="w-4 h-4" />}
             <span className="text-sm font-medium">{label}</span>
         </Link>
+    );
+}
+
+function MobileExternalLink({ href, icon: Icon, label, onClick }: { href: string, icon?: any, label: string, onClick: () => void }) {
+    return (
+        <a
+            href={href}
+            onClick={onClick}
+            className="flex items-center gap-3 py-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+        >
+            {Icon && <Icon className="w-4 h-4" />}
+            <span className="text-sm font-medium">{label}</span>
+        </a>
     );
 }

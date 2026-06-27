@@ -1,7 +1,39 @@
-import React from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function ContactPage() {
+    const [form, setForm] = useState({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '' });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+        setErrorMsg('');
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form),
+            });
+            if (res.ok) {
+                setStatus('success');
+                setForm({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '' });
+            } else {
+                const data = await res.json().catch(() => ({}));
+                setStatus('error');
+                setErrorMsg(data.error || 'Failed to send message. Please try again.');
+            }
+        } catch {
+            setStatus('error');
+            setErrorMsg('Network error. Please try again.');
+        }
+    };
+
     return (
         <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
             <section className="relative py-20 bg-gray-900 dark:bg-black text-white overflow-hidden">
@@ -19,38 +51,91 @@ export default function ContactPage() {
                     {/* Contact Form */}
                     <div className="flex-1 p-12 md:p-16">
                         <h3 className="text-2xl font-black uppercase tracking-widest mb-8 text-gray-900 dark:text-white">Send us a message</h3>
-                        <form className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">First Name</label>
-                                    <input type="text" className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white" placeholder="Jane" />
+
+                        {status === 'success' ? (
+                            <div className="flex flex-col items-center justify-center py-16 text-center">
+                                <CheckCircle2 className="w-16 h-16 text-green-500 mb-6" />
+                                <h4 className="text-xl font-black text-gray-900 dark:text-white mb-2">Message Sent!</h4>
+                                <p className="text-gray-500 dark:text-gray-400 mb-8">We'll get back to you within 24 hours.</p>
+                                <button
+                                    onClick={() => setStatus('idle')}
+                                    className="text-sm font-bold uppercase tracking-widest text-primary-600 hover:text-primary-700 transition-colors"
+                                >
+                                    Send Another Message
+                                </button>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-gray-500">First Name</label>
+                                        <input
+                                            type="text" name="firstName" required
+                                            value={form.firstName} onChange={handleChange}
+                                            className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white"
+                                            placeholder="Jane"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Last Name</label>
+                                        <input
+                                            type="text" name="lastName" required
+                                            value={form.lastName} onChange={handleChange}
+                                            className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white"
+                                            placeholder="Doe"
+                                        />
+                                    </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Last Name</label>
-                                    <input type="text" className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white" placeholder="Doe" />
+                                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email Address</label>
+                                    <input
+                                        type="email" name="email" required
+                                        value={form.email} onChange={handleChange}
+                                        className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white"
+                                        placeholder="jane@example.com"
+                                    />
                                 </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email Address</label>
-                                <input type="email" className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white" placeholder="jane@example.com" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Topic</label>
-                                <select className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white">
-                                    <option>General Inquiry</option>
-                                    <option>Vendor Support</option>
-                                    <option>Planner Support</option>
-                                    <option>Press & Media</option>
-                                </select>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Message</label>
-                                <textarea rows={4} className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white" placeholder="How can we help?" />
-                            </div>
-                            <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-sm hover:bg-primary-700 transition-colors w-full flex items-center justify-center gap-2">
-                                Send Message <Send className="w-4 h-4" />
-                            </button>
-                        </form>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Topic</label>
+                                    <select
+                                        name="topic" value={form.topic} onChange={handleChange}
+                                        className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white"
+                                    >
+                                        <option>General Inquiry</option>
+                                        <option>Vendor Support</option>
+                                        <option>Planner Support</option>
+                                        <option>Press & Media</option>
+                                    </select>
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Message</label>
+                                    <textarea
+                                        rows={4} name="message" required
+                                        value={form.message} onChange={handleChange}
+                                        className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-primary-600 transition-colors text-gray-900 dark:text-white"
+                                        placeholder="How can we help?"
+                                    />
+                                </div>
+
+                                {status === 'error' && (
+                                    <div className="flex items-center gap-2 text-red-500 text-xs font-bold">
+                                        <AlertCircle className="w-4 h-4 shrink-0" /> {errorMsg}
+                                    </div>
+                                )}
+
+                                <button
+                                    type="submit"
+                                    disabled={status === 'loading'}
+                                    className="bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-sm hover:bg-primary-700 transition-colors w-full flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                                >
+                                    {status === 'loading' ? (
+                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    ) : (
+                                        <>Send Message <Send className="w-4 h-4" /></>
+                                    )}
+                                </button>
+                            </form>
+                        )}
                     </div>
 
                     {/* Contact Info Side */}

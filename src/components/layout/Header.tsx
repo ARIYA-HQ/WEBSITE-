@@ -151,7 +151,7 @@ export default function Header() {
                     </NavDropdown>
 
                     {/* PRICING (Direct Link) */}
-                    <Link to="/pricing" className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white hover:text-primary-600 transition-colors">
+                    <Link to="/pricing" className={`text-sm font-bold uppercase tracking-widest hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
                         Pricing
                     </Link>
 

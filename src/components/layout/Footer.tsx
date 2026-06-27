@@ -104,7 +104,9 @@ export default function Footer() {
                                 disabled={status === 'loading' || status === 'success'}
                                 className="bg-white text-neutral-900 rounded-full px-6 py-3 text-sm font-bold hover:bg-primary-600 hover:text-white transition-all duration-300 disabled:opacity-50"
                             >
-                                {status === 'loading' ? '...' : 'Subscribe'}
+                                {status === 'loading' ? (
+                                    <div className="w-4 h-4 border-2 border-neutral-900/30 border-t-neutral-900 rounded-full animate-spin" />
+                                ) : 'Subscribe'}
                             </button>
                         </div>
                         {status === 'success' && (

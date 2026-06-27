@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import HeroSlider from '../components/HeroSlider';
@@ -15,6 +15,17 @@ const SHOWCASE_IMAGES = [
 ];
 
 export default function LandingPage() {
+    const particles = useMemo(() =>
+        Array.from({ length: 20 }, () => ({
+            width: Math.random() * 4 + 1,
+            height: Math.random() * 4 + 1,
+            top: Math.random() * 100,
+            left: Math.random() * 100,
+            duration: Math.random() * 10 + 10,
+            delay: Math.random() * 10,
+        })),
+    []);
+
     return (
         <main>
             {/* Hero Section — full viewport, transparent nav overlays */}
@@ -257,26 +268,13 @@ export default function LandingPage() {
 
                 {/* Floating Particles */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    {[...Array(20)].map((_, i) => (
+                    {particles.map((p, i) => (
                         <motion.div
                             key={i}
                             className="absolute bg-primary-600/30 rounded-full"
-                            style={{
-                                width: Math.random() * 4 + 1 + 'px',
-                                height: Math.random() * 4 + 1 + 'px',
-                                top: Math.random() * 100 + '%',
-                                left: Math.random() * 100 + '%',
-                            }}
-                            animate={{
-                                y: [0, -100],
-                                opacity: [0, 1, 0],
-                            }}
-                            transition={{
-                                duration: Math.random() * 10 + 10,
-                                repeat: Infinity,
-                                ease: "linear",
-                                delay: Math.random() * 10,
-                            }}
+                            style={{ width: p.width + 'px', height: p.height + 'px', top: p.top + '%', left: p.left + '%' }}
+                            animate={{ y: [0, -100], opacity: [0, 1, 0] }}
+                            transition={{ duration: p.duration, repeat: Infinity, ease: "linear", delay: p.delay }}
                         />
                     ))}
                 </div>
