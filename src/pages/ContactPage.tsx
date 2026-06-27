@@ -149,8 +149,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Email</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">hello@ariya.io</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">support@ariya.io</div>
+                                        <div className="font-medium text-gray-900 dark:text-gray-200">ariyainfoteam@gmail.com</div>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -159,8 +158,8 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">HQ</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">123 Event Horizon Way</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">San Francisco, CA 94103</div>
+                                        <div className="font-medium text-gray-900 dark:text-gray-200">17, Damole, Bariga</div>
+                                        <div className="font-medium text-gray-900 dark:text-gray-200">Lagos, Nigeria</div>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -169,8 +168,8 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">+1 (555) 123-4567</div>
-                                        <div className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri, 9am - 6pm PST</div>
+                                        <div className="font-medium text-gray-900 dark:text-gray-200">09055380387</div>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri, 9am - 6pm WAT</div>
                                     </div>
                                 </div>
                             </div>

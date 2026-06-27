@@ -141,7 +141,7 @@ export default function FAQPage() {
                                 Chat with Support
                             </button>
                         </Link>
-                        <a href="mailto:support@ariya.io" className="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2">
+                        <a href="mailto:ariyainfoteam@gmail.com" className="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2">
                             <Mail className="w-4 h-4" />
                             Email Us
                         </a>
