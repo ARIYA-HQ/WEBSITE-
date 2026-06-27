@@ -76,8 +76,8 @@ export default function GuidesPage() {
                         Get unlimited access to over 500+ premium templates and tools when you join Ariya Pro.
                     </p>
                     <Link to="/pricing">
-                        <button className="bg-white text-primary-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors shadow-xl">
-                            Start Free Trial
+                        <button className="inline-flex items-center gap-2 bg-white text-primary-600 px-10 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary-50 transition-all shadow-2xl hover:shadow-white/20 hover:scale-105">
+                            Start Free Trial →
                         </button>
                     </Link>
                 </div>

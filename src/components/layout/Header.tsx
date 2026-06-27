@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, List, Star } from 'lucide-react';
+import { ArrowRight, Menu, Star } from 'lucide-react';
 import NavDropdown from '../NavDropdown';
 import MobileNav from './MobileNav';
 import { ThemeToggle } from '../ThemeToggle';
@@ -10,11 +10,22 @@ import Button from '../common/Button';
 export default function Header() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 40);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     return (
-        <header className="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border-b border-white/20 dark:border-gray-800 transition-all duration-300">
+        <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+            scrolled
+                ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl border-b border-gray-100/60 dark:border-gray-800/60 shadow-sm'
+                : 'bg-transparent border-b border-transparent'
+        }`}>
             <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-                <Link to="/" className="text-2xl font-black tracking-tighter text-primary-600">ÀRIYÁ</Link>
+                <Link to="/" className={`text-2xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-primary-600' : 'text-white'}`}>ÀRIYÁ</Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex space-x-8 items-center">
@@ -23,6 +34,7 @@ export default function Header() {
                         title={NAVIGATION_CONFIG.product.title}
                         activeDropdown={activeDropdown}
                         setActiveDropdown={setActiveDropdown}
+                        transparent={!scrolled}
                     >
                         <div className="flex w-[800px]">
                             <div className="flex-1 p-8 bg-white dark:bg-gray-900">
@@ -64,6 +76,7 @@ export default function Header() {
                         title={NAVIGATION_CONFIG.solutions.title}
                         activeDropdown={activeDropdown}
                         setActiveDropdown={setActiveDropdown}
+                        transparent={!scrolled}
                     >
                         <div className="flex w-[600px]">
                             <div className="flex-1 p-8 bg-white dark:bg-gray-900">
@@ -97,6 +110,7 @@ export default function Header() {
                         title={NAVIGATION_CONFIG.vendors.title}
                         activeDropdown={activeDropdown}
                         setActiveDropdown={setActiveDropdown}
+                        transparent={!scrolled}
                     >
                         <div className="flex w-[600px]">
                             <div className="flex-1 p-8 bg-white dark:bg-gray-900">
@@ -146,6 +160,7 @@ export default function Header() {
                         title={NAVIGATION_CONFIG.resources.title}
                         activeDropdown={activeDropdown}
                         setActiveDropdown={setActiveDropdown}
+                        transparent={!scrolled}
                     >
                         <div className="flex w-[600px]">
                             <div className="flex-1 p-8 bg-white dark:bg-gray-900">
@@ -184,8 +199,8 @@ export default function Header() {
                 </nav>
 
                 <nav className="hidden md:flex items-center gap-6">
-                    <ThemeToggle />
-                    <a href="https://ariya-io.onrender.com/auth/login" className="text-sm font-bold hover:text-primary-600 transition-colors text-gray-900 dark:text-white">Log In</a>
+                    <span className={!scrolled ? '[&_button]:text-white [&_button]:hover:bg-white/10' : ''}><ThemeToggle /></span>
+                    <a href="https://ariya-io.onrender.com/auth/login" className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>Log In</a>
                     <a href="https://ariya-io.onrender.com/auth/signup">
                         <Button size="sm">
                             Get Started
@@ -197,10 +212,10 @@ export default function Header() {
                 <div className="md:hidden">
                     <button
                         onClick={() => setMobileNavOpen(true)}
-                        className="p-2 -mr-2 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        className={`p-2 -mr-2 transition-colors ${scrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'}`}
                         aria-label="Open Mobile Menu"
                     >
-                        <List className="w-6 h-6" />
+                        <Menu className="w-6 h-6" />
                     </button>
                 </div>
             </div>

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Play } from 'lucide-react';
 
-// Import local cinematic asset
-import cinematicAsset from '../assets/images/showcase_cinematic.jpg';
+// Cinematic fallback — elegant event ballroom from Unsplash
+const cinematicAsset = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=90';
 
 export default function VideoShowcase() {
     const [isHovered, setIsHovered] = useState(false);
@@ -58,10 +58,11 @@ export default function VideoShowcase() {
             {/* Background Video (YouTube for maximum reliability) */}
             <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}>
                 <iframe
-                    src="https://www.youtube.com/embed/R_0XpL5_c9M?autoplay=1&mute=1&loop=1&playlist=R_0XpL5_c9M&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&origin=http://localhost:5173"
+                    src={`https://www.youtube.com/embed/R_0XpL5_c9M?autoplay=1&mute=1&loop=1&playlist=R_0XpL5_c9M&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : 'https://ariyahq.com')}`}
                     className="absolute w-[300%] h-[300%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                     allow="autoplay; encrypted-media"
                     frameBorder="0"
+                    title="Ariya Events Showcase"
                 ></iframe>
             </div>
 

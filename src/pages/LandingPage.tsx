@@ -7,16 +7,18 @@ import VideoShowcase from '../components/VideoShowcase';
 import { LANDING_CONFIG } from '../config/landing';
 import Button from '../components/common/Button';
 
-// Import local assets
-import template1 from '../assets/images/template_1.jpg';
-import template2 from '../assets/images/template_2.jpg';
-import template3 from '../assets/images/template_3.jpg';
+// Event website showcase images — elegant event/wedding aesthetic
+const SHOWCASE_IMAGES = [
+    'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80', // wedding flowers table
+    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80', // elegant reception hall
+    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80', // gala dinner setup
+];
 
 export default function LandingPage() {
     return (
-        <main className="pt-24">
-            {/* Hero Section */}
-            <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <main>
+            {/* Hero Section — full viewport, transparent nav overlays */}
+            <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <HeroSlider />
                 <div className="relative z-10 text-center text-white px-4 max-w-5xl animate-in">
                     <h1 className="text-4xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
@@ -192,28 +194,24 @@ export default function LandingPage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-16">
-                        <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[350px]">
-                            <img
-                                src={template1}
-                                className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
-                                alt="Website template 1"
-                            />
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[350px]">
-                            <img
-                                src={template2}
-                                className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
-                                alt="Website template 2"
-                            />
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[350px]">
-                            <img
-                                src={template3}
-                                className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
-                                alt="Website template 3"
-                            />
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-16">
+                        {SHOWCASE_IMAGES.map((src, i) => (
+                            <div key={i} className="relative bg-white/10 backdrop-blur-md rounded-[2rem] p-4 group hover:bg-white/20 transition-all duration-500 overflow-hidden h-[380px]">
+                                <img
+                                    src={src}
+                                    className="w-full h-full object-cover rounded-[1.5rem] group-hover:scale-105 transition-transform duration-700"
+                                    alt={`Event website showcase ${i + 1}`}
+                                    loading="lazy"
+                                />
+                                {/* Browser chrome mockup strip */}
+                                <div className="absolute top-4 left-4 right-4 h-7 rounded-t-2xl bg-white/20 backdrop-blur-sm flex items-center gap-1.5 px-3 pointer-events-none">
+                                    <span className="w-2 h-2 rounded-full bg-white/40" />
+                                    <span className="w-2 h-2 rounded-full bg-white/40" />
+                                    <span className="w-2 h-2 rounded-full bg-white/40" />
+                                    <span className="flex-1 mx-2 h-3 rounded-full bg-white/20 text-[7px] text-white/60 flex items-center px-2 font-mono">ariya.io/events/your-event</span>
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
                     <a href="https://ariya-io.onrender.com/auth/signup">

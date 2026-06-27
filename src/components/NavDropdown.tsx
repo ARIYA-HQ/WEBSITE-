@@ -8,10 +8,12 @@ interface NavDropdownProps {
     activeDropdown: string | null;
     setActiveDropdown: (title: string | null) => void;
     className?: string;
+    transparent?: boolean;
 }
 
-export default function NavDropdown({ title, children, activeDropdown, setActiveDropdown, className = '' }: NavDropdownProps) {
+export default function NavDropdown({ title, children, activeDropdown, setActiveDropdown, className = '', transparent = false }: NavDropdownProps) {
     const isOpen = activeDropdown === title;
+    const baseColor = transparent ? 'text-white/90 hover:text-white' : 'text-gray-900 dark:text-white hover:text-primary-600';
 
     return (
         <div
@@ -19,7 +21,7 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
             onMouseEnter={() => setActiveDropdown(title)}
             onMouseLeave={() => setActiveDropdown(null)}
         >
-            <button className={`text-sm font-bold uppercase tracking-widest flex items-center gap-1 transition-colors ${isOpen ? 'text-primary-600' : 'text-gray-900 dark:text-white hover:text-primary-600'}`}>
+            <button className={`text-sm font-bold uppercase tracking-widest flex items-center gap-1 transition-colors ${isOpen ? 'text-primary-600' : baseColor}`}>
                 {title}
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
             </button>

@@ -183,8 +183,8 @@ export default function BlogPage() {
                     <p className="text-gray-400 mb-10 text-lg">
                         Get the latest trends, tips, and industry secrets delivered straight to your inbox every week.
                     </p>
-                    <div className="max-w-md mx-auto space-y-4">
-                        <form onSubmit={handleSubscribe} className="flex gap-2">
+                    <div className="max-w-lg mx-auto space-y-4">
+                        <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
                             <input
                                 type="email"
                                 value={email}
@@ -192,12 +192,12 @@ export default function BlogPage() {
                                 placeholder="Enter your email"
                                 required
                                 disabled={submitting}
-                                className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary-600 transition-colors disabled:opacity-50"
+                                className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-primary-600 transition-colors disabled:opacity-50 min-w-0"
                             />
                             <button
                                 type="submit"
                                 disabled={submitting}
-                                className="bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-xs hover:bg-primary-700 transition-colors disabled:opacity-50"
+                                className="shrink-0 bg-primary-600 text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-xs hover:bg-primary-700 transition-colors disabled:opacity-50 whitespace-nowrap"
                             >
                                 {submitting ? '...' : 'Subscribe'}
                             </button>
