@@ -108,13 +108,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
                             <div className="mt-10 pt-8 border-t border-gray-100 dark:border-gray-800 space-y-4">
                                 <a
-                                    href="https://ariya-io.onrender.com/auth/login"
+                                    href="https://app.ariyahq.com/auth/login"
                                     onClick={onClose}
                                     className="block w-full text-center py-4 rounded-xl text-sm font-bold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                                 >
                                     Log In
                                 </a>
-                                <a href="https://ariya-io.onrender.com/auth/signup" className="block w-full">
+                                <a href="https://app.ariyahq.com/auth/login" className="block w-full">
                                     <Button fullWidth>
                                         Get Started
                                     </Button>

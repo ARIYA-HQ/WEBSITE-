@@ -28,12 +28,12 @@ export default function LandingPage() {
                         From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — ÀRIYÁ supports you through it all.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <a href="https://ariya-io.onrender.com/auth/login">
+                        <a href="https://app.ariyahq.com/auth/login">
                             <Button size="lg">
                                 Explore Vendors
                             </Button>
                         </a>
-                        <a href="https://ariya-io.onrender.com/auth/login">
+                        <a href="https://app.ariyahq.com/auth/login">
                             <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
                                 Create Website
                             </Button>
@@ -59,7 +59,7 @@ export default function LandingPage() {
                     ))}
                 </div>
                 <div className="mt-12 text-center">
-                    <a href="https://ariya-io.onrender.com/auth/login">
+                    <a href="https://app.ariyahq.com/auth/login">
                         <Button variant="outline">
                             View All Vendors
                         </Button>
@@ -85,7 +85,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="mt-16 text-center">
-                        <a href="https://ariya-io.onrender.com/auth/login">
+                        <a href="https://app.ariyahq.com/auth/login">
                             <Button size="lg">
                                 Explore All Venues
                             </Button>
@@ -214,7 +214,7 @@ export default function LandingPage() {
                         ))}
                     </div>
 
-                    <a href="https://ariya-io.onrender.com/auth/signup">
+                    <a href="https://app.ariyahq.com/auth/login">
                         <Button variant="white" size="lg">
                             Get Started Free
                         </Button>
@@ -296,7 +296,7 @@ export default function LandingPage() {
                         </h2>
 
                         <div className="flex flex-col items-center gap-6">
-                            <a href="https://ariya-io.onrender.com/auth/signup">
+                            <a href="https://app.ariyahq.com/auth/login">
                                 <Button size="lg" icon={ArrowRight} iconPosition="right" className="px-14 py-6 shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)]">
                                     Get Started Free
                                 </Button>

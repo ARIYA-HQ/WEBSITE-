@@ -15,7 +15,7 @@ export default function PlanningPage() {
                         <p className="text-xl text-gray-500 dark:text-gray-400 mb-10 font-medium max-w-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
                             Manage tasks, timelines, and team collaboration in one unified view. Keep every detail on track, from the big picture to the smallest minute.
                         </p>
-                        <a href="https://ariya-io.onrender.com/auth/signup">
+                        <a href="https://app.ariyahq.com/auth/login">
                             <button className="bg-purple-600 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
                                 Start Planning Free
                             </button>
