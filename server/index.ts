@@ -331,11 +331,18 @@ app.get('/api/health', async (req, res) => {
 });
 
 // Serve built frontend in production
+// Use process.cwd() (always the project root) instead of __dirname
+// which can resolve incorrectly with tsx + ESM
+const distPath = path.join(process.cwd(), 'dist');
 if (process.env.NODE_ENV === 'production') {
-    const distPath = path.resolve(__dirname, '../dist');
-    app.use(express.static(distPath));
-    app.get('*', (_req, res) => {
-        res.sendFile(path.join(distPath, 'index.html'));
+    app.use(express.static(distPath, { index: false }));
+    app.get('*', (req, res) => {
+        // Only fall back to index.html for non-file requests
+        if (req.path.includes('.')) {
+            res.status(404).send('Not found');
+        } else {
+            res.sendFile(path.join(distPath, 'index.html'));
+        }
     });
 }
 
