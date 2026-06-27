@@ -16,7 +16,7 @@ export default defineConfig({
     optimizeDeps: {
         include: ['react-is'],
     },
-    base: process.env.BASE_PATH || (process.env.VERCEL ? '/' : '/WEBSITE-/'),
+    base: process.env.BASE_PATH || (process.env.VERCEL || process.env.RENDER ? '/' : '/WEBSITE-/'),
     server: {
         host: true, // Listen on all addresses
         proxy: {
