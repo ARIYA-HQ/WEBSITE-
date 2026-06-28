@@ -36,20 +36,21 @@ export default function LandingPage() {
                         Event Planning Begins with ÀRIYÁ
                     </h1>
                     <p className="text-base md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed shadow-sm">
-                        From choosing vendors and booking venues to designing save-the-dates, a free event website, a registry, and even your cake — ÀRIYÁ supports you through it all.
+                        Vendors, budgets, guests, registry, event website, tickets — one platform, built for Nigerian celebrations. Free to create an account.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                         <a href="https://app.ariyahq.com/auth/login">
                             <Button size="lg">
-                                Explore Vendors
+                                Start Planning — It's Free
                             </Button>
                         </a>
                         <a href="https://app.ariyahq.com/auth/login">
                             <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
-                                Create Website
+                                I'm a Vendor →
                             </Button>
                         </a>
                     </div>
+                    <p className="mt-5 text-white/40 text-[11px] font-bold uppercase tracking-widest">No credit card · No subscription · No catch</p>
                 </div>
             </section>
 

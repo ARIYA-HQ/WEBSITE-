@@ -199,11 +199,11 @@ export default function Header() {
                 </nav>
 
                 <nav className="hidden md:flex items-center gap-6">
-                    <span className={!scrolled ? '[&_button]:text-white [&_button]:hover:bg-white/10' : ''}><ThemeToggle /></span>
+                    <ThemeToggle />
                     <a href="https://app.ariyahq.com/auth/login" className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>Log In</a>
                     <a href="https://app.ariyahq.com/auth/login">
                         <Button size="sm">
-                            Get Started
+                            Start Free
                         </Button>
                     </a>
                 </nav>
