@@ -133,9 +133,9 @@ export default function PlannersPage() {
                     {/* Detailed Features Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
                         <FeatureItem title="Automated Timelines" desc="Templates that intelligently adapt based on your event date." />
-                        <FeatureItem title="Collaborative Workspace" desc="Invite team members with granular permission controls for every event." />
+                        <FeatureItem title="Collaborative Workspace" desc="Invite team members and assign them to specific events." />
                         <FeatureItem title="Vendor Sync" desc="Centralized communication hub for all vendors across your entire portfolio." />
-                        <FeatureItem title="Proposal Builder" desc="Create stunning, conversion-optimized proposals in seconds." />
+                        <FeatureItem title="Proposal Builder" desc="Build client proposals with your branding and send them in minutes." />
                         <FeatureItem title="Digital Contracts" desc="Legally binding agreements with automated signing workflows." />
                         <FeatureItem title="Inventory Engine" desc="Track assets, rentals, and equipment across multiple venues." />
                     </div>

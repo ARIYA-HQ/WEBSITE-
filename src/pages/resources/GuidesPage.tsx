@@ -71,15 +71,15 @@ export default function GuidesPage() {
             <section className="py-20 bg-primary-600 mx-4 md:mx-8 rounded-[3rem] text-center text-white relative overflow-hidden mb-12">
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
                 <div className="relative z-10 max-w-2xl mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-6">Unlock Full Access</h2>
+                    <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-6">Ready to start planning?</h2>
                     <p className="text-primary-100 text-lg mb-8 font-medium">
-                        Get unlimited access to over 500+ premium templates and tools when you join Ariya Pro.
+                        Create your account free. No subscription, no credit card.
                     </p>
-                    <Link to="/pricing">
+                    <a href="https://app.ariyahq.com/auth/login">
                         <button className="inline-flex items-center gap-2 bg-white text-primary-600 px-10 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary-50 transition-all shadow-2xl hover:shadow-white/20 hover:scale-105">
-                            Start Free Trial →
+                            Start Free →
                         </button>
-                    </Link>
+                    </a>
                 </div>
             </section>
         </main>

@@ -90,7 +90,7 @@ export default function WebsitesPage() {
                     <DesignPillar
                         icon={Palette}
                         title="Artisan Templates"
-                        desc="Choose from 50+ award-winning themes designed by world-class stationery artists."
+                        desc="Pick a theme, add your event details, and publish. Your site is live in minutes."
                     />
                     <DesignPillar
                         icon={Smartphone}
@@ -100,7 +100,7 @@ export default function WebsitesPage() {
                     <DesignPillar
                         icon={Gift}
                         title="Universal Registry"
-                        desc="Link physical gifts, cash funds, or honeymoon dreams in a single, elegant list."
+                        desc="Add items with target amounts. Guests contribute via Paystack. You withdraw when you're ready."
                     />
                 </div>
 

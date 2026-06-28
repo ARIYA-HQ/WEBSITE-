@@ -213,8 +213,8 @@ export default function AgenciesPage() {
                         answer="The Agency tier includes unlimited staff seats. You only pay based on your portfolio volume, ensuring your team can grow without cost-per-seat anxiety."
                     />
                     <AgencyFaqItem
-                        question="Can we integrate our existing CRM?"
-                        answer="Yes. Our Enterprise API allows seamless integration with Salesforce, HubSpot, and custom accounting software."
+                        question="Can multiple team members work on the same event?"
+                        answer="Yes. You can invite team members and assign them to specific events. Each member sees only what's relevant to their role. Team member access is a paid unlock per member."
                     />
                 </div>
             </section>

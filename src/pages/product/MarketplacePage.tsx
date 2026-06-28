@@ -12,7 +12,7 @@ export default function MarketplacePage() {
                         Curated pros, <br /> at your fingertips.
                     </h1>
                     <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto font-medium animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                        Discover, vet, and hire top-rated event professionals. From venues to videographers, find your dream team in minutes.
+                        Search by category, city, and budget. Message vendors, review portfolios, and book — all in one place.
                     </p>
 
                     <div className="max-w-2xl mx-auto relative animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">

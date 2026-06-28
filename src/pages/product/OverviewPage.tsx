@@ -49,7 +49,7 @@ export default function OverviewPage() {
                 <div className="text-center mb-20">
                     <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6 text-gray-900 dark:text-white">The Power of 4 Pillars</h2>
                     <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-                        Built on a robust foundation to handle every aspect of your event lifecycle.
+                        Four tools that cover every part of your event, start to finish.
                     </p>
                 </div>
 
@@ -95,20 +95,17 @@ export default function OverviewPage() {
             <section className="bg-gray-900 dark:bg-black text-white py-24 px-8 overflow-hidden">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
                     <div className="md:w-1/2">
-                        <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">Plays well with others.</h2>
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">One platform. No duct tape.</h2>
                         <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                            Ariya integrates seamlessly with the tools you already use. Sync calendars, process payments, and export data without breaking a sweat.
+                            Most planners juggle WhatsApp, Excel, Google Docs, and bank transfers. Ariya replaces all of it — budgets, guests, vendors, payments, websites, and tickets in a single dashboard.
                         </p>
                         <ul className="space-y-4 mb-8">
-                            {["Google Workspace", "QuickBooks & Xero", "Stripe & Square", "DocuSign"].map((i) => (
+                            {["Budget tracking with expense splits", "Guest list, RSVPs & seating", "Vendor discovery & booking", "Escrow-backed payments via Paystack"].map((i) => (
                                 <li key={i} className="flex items-center gap-3 font-bold">
                                     <CheckCircle2 className="w-5 h-5 text-primary-500" /> {i}
                                 </li>
                             ))}
                         </ul>
-                        <a href="#integrations" className="text-primary-400 font-bold uppercase tracking-widest text-xs flex items-center gap-2 hover:text-white transition-colors">
-                            View all integrations <ArrowRight className="w-4 h-4" />
-                        </a>
                     </div>
                     <div className="md:w-1/2 grid grid-cols-2 gap-4 opacity-50">
                         {/* Placeholder logos - using simple text boxes for now as placeholders for actual SVG logos */}

@@ -84,9 +84,9 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="section-label">Venues</span>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter mt-4">Find Unforgettable Venues</h2>
+                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter mt-4">Find the Right Venue</h2>
                         <p className="text-gray-500 mt-4 max-w-xl mx-auto font-medium">
-                            Discover the perfect backdrop for your next masterpiece, from grand ballrooms to intimate garden retreats.
+                            Browse halls, gardens, and outdoor spaces across Nigeria. Filter by city, capacity, and budget.
                         </p>
                     </div>
 
@@ -127,21 +127,21 @@ export default function LandingPage() {
                             <div className="text-primary-600 font-black text-6xl opacity-20 group-hover:opacity-100 transition-opacity duration-500">01.</div>
                             <h4 className="text-2xl font-black uppercase tracking-widest">Smart Search</h4>
                             <p className="text-gray-400 font-medium leading-relaxed">
-                                Our AI-driven matching engine connects you with vendors who align perfectly with your style, budget, and vision.
+                                Tell us your event type, date, and budget. We surface vendors that match — no scrolling through irrelevant listings.
                             </p>
                         </div>
                         <div className="space-y-6 group">
                             <div className="text-primary-600 font-black text-6xl opacity-20 group-hover:opacity-100 transition-opacity duration-500">02.</div>
                             <h4 className="text-2xl font-black uppercase tracking-widest">Unified Dashboard</h4>
                             <p className="text-gray-400 font-medium leading-relaxed">
-                                Manage your guest list, track your budget, and communicate with vendors all in one beautiful, intuitive workspace.
+                                Guest list, budget tracker, vendor messages — all in one place. Nothing falls through the cracks.
                             </p>
                         </div>
                         <div className="space-y-6 group">
                             <div className="text-primary-600 font-black text-6xl opacity-20 group-hover:opacity-100 transition-opacity duration-500">03.</div>
                             <h4 className="text-2xl font-black uppercase tracking-widest">ÀRIYÁ Intel</h4>
                             <p className="text-gray-400 font-medium leading-relaxed">
-                                Get real-time insights and recommendations specifically tailored to your event's unique requirements.
+                                See your budget breakdown, guest response rate, and vendor status at a glance. No digging required.
                             </p>
                         </div>
                     </div>
@@ -167,7 +167,7 @@ export default function LandingPage() {
                             </div>
                             <h3 className="text-2xl font-black uppercase tracking-widest mb-4">Vendor Intelligence</h3>
                             <p className="text-white/80 font-medium leading-relaxed">
-                                Real-time availability, portfolio analysis, and cross-platform reviews curated for your specific event vibe.
+                                See availability, read reviews, and message vendors directly — before you commit to anything.
                             </p>
                         </div>
 
@@ -178,7 +178,7 @@ export default function LandingPage() {
                             </div>
                             <h3 className="text-2xl font-black uppercase tracking-widest mb-4">Venue Matching</h3>
                             <p className="text-white/80 font-medium leading-relaxed">
-                                360-degree virtual tours, floor plan simulations, and direct booking integration for exclusive partner venues.
+                                Browse venue photos, compare capacities, and request quotes without making a single phone call.
                             </p>
                         </div>
 
@@ -189,7 +189,7 @@ export default function LandingPage() {
                             </div>
                             <h3 className="text-2xl font-black uppercase tracking-widest mb-4">Registry & Guest List</h3>
                             <p className="text-white/80 font-medium leading-relaxed">
-                                Seamless invitation tracking, RSVP management, and a unified registry supporting multi-store syncing.
+                                Track who's coming, collect dietary notes, manage seating, and link a registry — all from one URL you share with guests.
                             </p>
                         </div>
                     </div>
@@ -202,7 +202,7 @@ export default function LandingPage() {
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Create Event Website</h2>
                         <p className="text-white/80 max-w-xl mx-auto font-medium leading-relaxed">
-                            Elevate your event with a gorgeous, high-converting website. Customize every detail to match your theme perfectly.
+                            Every event gets a free website. Share it with guests, collect RSVPs, and link your registry — in minutes.
                         </p>
                     </div>
 
@@ -242,7 +242,7 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
                     <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Join Our Community</h2>
                     <p className="text-gray-400 max-w-xl mb-16 font-medium">
-                        Over 200,000 planners and vendors are already using ÀRIYÁ to build their dream events.
+                        Join planners and vendors across Nigeria already running events on Ariya.
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-4xl mb-16">

@@ -36,7 +36,7 @@ export default function AboutPage() {
                             Event planning has traditionally been a fragmented, stressful process. We saw a world where creativity was stifled by logistics.
                         </p>
                         <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                            Ariya bridges the gap between vision and reality. By combining cutting-edge AI with a curated network of top-tier professionals, we give everyone—from couples to corporate planners—the superpowers to create magic.
+                            We built Ariya because planning an event in Nigeria was too fragmented — WhatsApp threads, manual budgets, chasing vendors for quotes. Ariya puts everything in one place: vendors, budgets, guests, websites, registries, and tickets.
                         </p>
                         <div className="grid grid-cols-2 gap-8">
                             <div className="flex flex-col">

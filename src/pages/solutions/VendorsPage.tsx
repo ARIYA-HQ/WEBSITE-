@@ -58,7 +58,7 @@ export default function VendorsPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
-                        { icon: TrendingUp, title: "Showcase Your Work", desc: "Create a stunning portfolio that highlights your style, pricing, and availability." },
+                        { icon: TrendingUp, title: "Showcase Your Work", desc: "Build a profile with your portfolio, pricing, and availability. Planners find you through search." },
                         { icon: MessageSquare, title: "Qualified Leads", desc: "Our AI matches you with clients who fit your budget and vibe. No more tire kickers." },
                         { icon: DollarSign, title: "Get Paid Securely", desc: "Funds are held in escrow via the Ariya Guarantee and released after your event. A 7% platform fee applies on completed bookings only — no subscription, no upfront cost." },
                     ].map((step, i) => (
