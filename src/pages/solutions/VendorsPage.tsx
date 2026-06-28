@@ -35,8 +35,8 @@ export default function VendorsPage() {
                                 <div className="text-xs font-bold uppercase tracking-widest text-gray-500">More Inquiries</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg translate-y-8">
-                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">0%</div>
-                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Commission Fees</div>
+                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">7%</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Only on Completed Bookings</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg">
                                 <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">24h</div>
@@ -60,7 +60,7 @@ export default function VendorsPage() {
                     {[
                         { icon: TrendingUp, title: "Showcase Your Work", desc: "Create a stunning portfolio that highlights your style, pricing, and availability." },
                         { icon: MessageSquare, title: "Qualified Leads", desc: "Our AI matches you with clients who fit your budget and vibe. No more tire kickers." },
-                        { icon: DollarSign, title: "Instant Booking", desc: "Send contracts and get paid directly through the platform with no hidden fees." },
+                        { icon: DollarSign, title: "Get Paid Securely", desc: "Funds are held in escrow via the Ariya Guarantee and released after your event. A 7% platform fee applies on completed bookings only — no subscription, no upfront cost." },
                     ].map((step, i) => (
                         <div key={i} className="text-center px-4">
                             <div className="w-16 h-16 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-primary-600">
