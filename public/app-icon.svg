@@ -1,0 +1,14 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ariya">
+  <defs>
+    <linearGradient id="ariyaBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8893A"/>
+      <stop offset="0.55" stop-color="#D0771E"/>
+      <stop offset="1" stop-color="#B5610F"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#ariyaBg)"/>
+  <!-- "A" monogram -->
+  <path d="M256 116 L372 396 H316 L292 334 H220 L196 396 H140 L256 116 Z M256 214 L235 286 H277 L256 214 Z" fill="#FFFFFF"/>
+  <!-- celebration spark -->
+  <path d="M372 132 L384 160 L412 172 L384 184 L372 212 L360 184 L332 172 L360 160 Z" fill="#FFFFFF" opacity="0.92"/>
+</svg>
