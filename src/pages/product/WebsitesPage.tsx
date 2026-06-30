@@ -99,20 +99,20 @@ export default function WebsitesPage() {
                     />
                     <DesignPillar
                         icon={Gift}
-                        title="Universal Registry"
+                        title="Universal Wishlist"
                         desc="Add items with target amounts. Guests contribute via Paystack. You withdraw when you're ready."
                     />
                 </div>
 
-                {/* Registry Sync Deep Dive */}
+                {/* Wishlist Sync Deep Dive */}
                 <div className="bg-gray-950 rounded-[50px] p-12 md:p-24 overflow-hidden relative">
                     <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-tl from-indigo-900/30 to-transparent pointer-events-none" />
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <motion.div {...fadeIn}>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-4 block">Integrated Registry</span>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-4 block">Integrated Wishlist</span>
                             <h2 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight leading-tight">Gifting made <br /> effortless & elegant.</h2>
                             <p className="text-gray-400 mb-10 leading-relaxed font-medium">
-                                No more disconnected Excel sheets. Your registry is hard-wired into your
+                                No more disconnected Excel sheets. Your wishlist is hard-wired into your
                                 guest list. When a guest buys a gift, your guest list updates in real-time
                                 for your thank-you notes.
                             </p>
@@ -127,7 +127,7 @@ export default function WebsitesPage() {
                             <div className="p-8 bg-white/5 rounded-3xl border border-white/10 flex flex-col justify-center items-center text-center">
                                 <Gift className="w-10 h-10 text-indigo-400 mb-4" />
                                 <div className="text-2xl font-black text-white tracking-widest">₦5.4M</div>
-                                <div className="text-[10px] font-bold text-gray-500 uppercase mt-1">Registry Total</div>
+                                <div className="text-[10px] font-bold text-gray-500 uppercase mt-1">Wishlist Total</div>
                             </div>
                             <div className="p-8 bg-indigo-600 rounded-3xl flex flex-col justify-center items-center text-center">
                                 <Heart className="w-10 h-10 text-white mb-4" />

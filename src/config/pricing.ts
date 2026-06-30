@@ -16,7 +16,7 @@ export const PRICING_CONFIG = {
                 'Budget Tracker & Expense Splits',
                 'Guest Management & RSVPs',
                 'Vendor Discovery & Bookings',
-                'Gift Registry',
+                'Gift Wishlist',
                 'Event Website (Ariya-branded)',
                 'Tickets & Check-in',
                 'AI Event Planner',
@@ -76,7 +76,7 @@ export const PRICING_CONFIG = {
         { title: "Vendor Featured Listing", price: "From ₦15,000", icon: Zap },
         { title: "Enhanced Vendor Profile", price: "₦15,000 one-time", icon: Store },
         { title: "Gallery Storage Top-up", price: "From ₦5,000", icon: ImageIcon },
-        { title: "Registry Premium Controls", price: "₦7,500 / event", icon: Gift },
+        { title: "Wishlist Premium Controls", price: "₦7,500 / event", icon: Gift },
         { title: "Ariya Guarantee (Escrow)", price: "Free opt-in for vendors", icon: Lock },
     ],
     vendorFees: {
@@ -88,7 +88,7 @@ export const PRICING_CONFIG = {
         platformRate: 0.08,
         paystackRate: 0.02,
         totalRate: 0.10,
-        description: 'A 10% total fee (8% Ariya + 2% Paystack) is deducted from the planner payout when registry funds are withdrawn. Buyers pay face value.',
+        description: 'A 10% total fee (8% Ariya + 2% Paystack) is deducted from the planner payout when wishlist funds are withdrawn. Buyers pay face value.',
     },
     ticketFees: {
         rate: 0.03,
@@ -117,8 +117,8 @@ export const PRICING_CONFIG = {
             answer: "Vendor verification is a one-time ₦30,000 payment. You submit your NIN and/or CAC documents, our team reviews within 24–48 hours, and your profile gets a permanent verified badge that planners can filter by."
         },
         {
-            question: "How do registry and ticket fees work?",
-            answer: "Registry: buyers pay face value, and a 10% total fee (8% Ariya + 2% Paystack) is deducted from the planner's withdrawal amount. Tickets: buyers pay the price you set, and a 3% service fee is deducted from your payout. No upfront costs."
+            question: "How do wishlist and ticket fees work?",
+            answer: "Wishlist: buyers pay face value, and a 10% total fee (8% Ariya + 2% Paystack) is deducted from the planner's withdrawal amount. Tickets: buyers pay the price you set, and a 3% service fee is deducted from your payout. No upfront costs."
         },
         {
             question: "Are feature unlocks permanent?",

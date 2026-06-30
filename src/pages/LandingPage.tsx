@@ -36,7 +36,7 @@ export default function LandingPage() {
                         Event Planning Begins with ÀRIYÁ
                     </h1>
                     <p className="text-base md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed shadow-sm">
-                        Vendors, budgets, guests, registry, event website, tickets — one platform, built for Nigerian celebrations. Free to create an account.
+                        Vendors, budgets, guests, wishlist, event website, tickets — one platform, built for Nigerian celebrations. Free to create an account.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                         <a href="https://app.ariyahq.com/auth/login">
@@ -187,9 +187,9 @@ export default function LandingPage() {
                             <div className="absolute top-10 left-10">
                                 <div className="w-12 h-1 bg-white/30 mb-4" />
                             </div>
-                            <h3 className="text-2xl font-black uppercase tracking-widest mb-4">Registry & Guest List</h3>
+                            <h3 className="text-2xl font-black uppercase tracking-widest mb-4">Wishlist & Guest List</h3>
                             <p className="text-white/80 font-medium leading-relaxed">
-                                Track who's coming, collect dietary notes, manage seating, and link a registry — all from one URL you share with guests.
+                                Track who's coming, collect dietary notes, manage seating, and link a wishlist — all from one URL you share with guests.
                             </p>
                         </div>
                     </div>
@@ -202,7 +202,7 @@ export default function LandingPage() {
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Create Event Website</h2>
                         <p className="text-white/80 max-w-xl mx-auto font-medium leading-relaxed">
-                            Every event gets a free website. Share it with guests, collect RSVPs, and link your registry — in minutes.
+                            Every event gets a free website. Share it with guests, collect RSVPs, and link your wishlist — in minutes.
                         </p>
                     </div>
 

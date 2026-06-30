@@ -47,7 +47,7 @@ export const NAVIGATION_CONFIG = {
                         color: "green"
                     },
                     {
-                        title: "Websites & Registry",
+                        title: "Websites & Wishlist",
                         description: "Share your story",
                         href: "/product/websites",
                         icon: Globe,

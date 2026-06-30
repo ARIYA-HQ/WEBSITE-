@@ -66,7 +66,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                         <MobileLink to="/product/ai-planning" icon={Bot} label="AI Planning" onClick={onClose} />
                                         <MobileLink to="/product/marketplace" icon={Store} label="Vendor Marketplace" onClick={onClose} />
                                         <MobileLink to="/product/finance" icon={Calculator} label="Budget & Guest List" onClick={onClose} />
-                                        <MobileLink to="/product/websites" icon={Globe} label="Websites & Registry" onClick={onClose} />
+                                        <MobileLink to="/product/websites" icon={Globe} label="Websites & Wishlist" onClick={onClose} />
                                     </div>
                                 </MobileAccordion>
 

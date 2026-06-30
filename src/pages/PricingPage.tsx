@@ -98,7 +98,7 @@ const PricingPage = () => {
                                 accent: 'border-t-primary-600',
                             },
                             {
-                                label: 'Gift Registry',
+                                label: 'Gift Wishlist',
                                 rate: '10%',
                                 sub: 'on planner withdrawal',
                                 detail: '8% Ariya + 2% Paystack processing. Guests always pay the exact price you set — no hidden markup.',

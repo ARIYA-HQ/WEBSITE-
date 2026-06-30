@@ -30,7 +30,7 @@ const faqs = [
         questions: [
             {
                 q: "Is Ariya free?",
-                a: "Yes — completely. Creating an account, unlimited events, guest management, budget tracking, vendor discovery, gift registry, and ticket sales are all free. You only pay for specific premium capabilities when you need them."
+                a: "Yes — completely. Creating an account, unlimited events, guest management, budget tracking, vendor discovery, gift wishlist, and ticket sales are all free. You only pay for specific premium capabilities when you need them."
             },
             {
                 q: "Are there any subscription fees?",
@@ -45,8 +45,8 @@ const faqs = [
                 a: "Vendors pay a 7% platform fee on completed bookings — deducted from their payout after service delivery is confirmed. There are no upfront costs, no subscription, and no fee on inquiries or cancelled bookings. Optional paid unlocks include visibility boosts, an enhanced profile, and the one-time Verified Badge (₦30,000)."
             },
             {
-                q: "How do registry fees work?",
-                a: "Setting up a registry is free. When a planner withdraws collected funds, a 10% fee is deducted — 8% Ariya platform fee and 2% Paystack processing. Guests always pay the exact face value you set — no hidden markup."
+                q: "How do wishlist fees work?",
+                a: "Setting up a wishlist is free. When a planner withdraws collected funds, a 10% fee is deducted — 8% Ariya platform fee and 2% Paystack processing. Guests always pay the exact face value you set — no hidden markup."
             },
             {
                 q: "How do ticket fees work?",
@@ -99,8 +99,8 @@ const faqs = [
                 a: "Yes. Planners can buy SMS credit bundles — 50 SMS for ₦2,500, 200 for ₦8,000, or 500 for ₦17,500 — and use them to send RSVP reminders, day-of updates, and thank-you messages directly to guests' phones. Credits are per-event and never expire."
             },
             {
-                q: "How does the gift registry work?",
-                a: "Create a registry, add items with target amounts, and share the link with guests. Guests contribute directly via Paystack. Funds accumulate in your balance and you withdraw whenever you're ready. A 10% fee is deducted at withdrawal — nothing is charged to guests."
+                q: "How does the gift wishlist work?",
+                a: "Create a wishlist, add items with target amounts, and share the link with guests. Guests contribute directly via Paystack. Funds accumulate in your balance and you withdraw whenever you're ready. A 10% fee is deducted at withdrawal — nothing is charged to guests."
             },
             {
                 q: "Is my data secure?",

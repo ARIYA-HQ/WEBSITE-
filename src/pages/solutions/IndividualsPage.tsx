@@ -131,7 +131,7 @@ export default function IndividualsPage() {
 
                         <div className="space-y-12 mt-12">
                             <StepItem num="01" title="Dream It" desc="Tell us your theme, budget, and guest count. Our AI generates your initial roadmap." />
-                            <StepItem num="02" title="Assemble It" desc="Hire vetted vendors and build your registry. Everything stays synced automatically." />
+                            <StepItem num="02" title="Assemble It" desc="Hire vetted vendors and build your wishlist. Everything stays synced automatically." />
                             <StepItem num="03" title="Live It" desc="Launch your event website and manage check-ins on the big day via our mobile app." />
                         </div>
                     </motion.div>
