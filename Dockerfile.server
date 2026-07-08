@@ -1,0 +1,24 @@
+# Runs the marketing site's Node server (Express in server/index.ts), which
+# serves the built Vite SPA (dist/) AND its /api routes. The default Dockerfile
+# in this repo is nginx-static and drops the API, so the VPS deployment uses
+# this one instead. DB access is plain `pg` via DATABASE_URL (point at Neon).
+FROM node:20-alpine
+
+WORKDIR /app
+
+# The repo's .dockerignore excludes package-lock.json, so use install (not ci),
+# matching the Render build. --include=dev keeps tsx/vite for build + runtime.
+COPY package*.json ./
+RUN npm install --include=dev --legacy-peer-deps
+
+COPY . .
+RUN npm run build
+
+ENV NODE_ENV=production
+ENV PORT=3001
+EXPOSE 3001
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD wget -qO- http://localhost:3001/api/ping || exit 1
+
+CMD ["npm", "start"]
