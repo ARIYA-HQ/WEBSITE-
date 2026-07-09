@@ -12,6 +12,9 @@ COPY package*.json ./
 RUN npm install --include=dev --legacy-peer-deps
 
 COPY . .
+# Serve from the domain root (not the GitHub-Pages '/WEBSITE-/' base that
+# vite.config falls back to when no host env is set).
+ENV BASE_PATH=/
 RUN npm run build
 
 ENV NODE_ENV=production
