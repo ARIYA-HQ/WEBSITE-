@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Users, Star, ArrowRight } from 'lucide-react';
 
-export default function VenueCard({ name, location, image, capacity, rating, price }: any) {
+export default function VenueCard({ name, location, image, capacity, rating }: any) {
     return (
         <div className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer">
             {/* Image */}
@@ -23,8 +23,6 @@ export default function VenueCard({ name, location, image, capacity, rating, pri
                             <h3 className="text-2xl font-black mb-2">{name}</h3>
                             <div className="flex gap-4 text-sm font-medium opacity-80">
                                 <span>{capacity} Guests</span>
-                                <span>•</span>
-                                <span>{price}</span>
                             </div>
                         </div>
                         <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full">
