@@ -74,5 +74,8 @@
     "recharts": "^3.7.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0"
+  },
+  "overrides": {
+    "qs": "6.16.0"
   }
 }
