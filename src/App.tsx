@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { SHOW_CASE_STUDIES } from './config/features';
 import { AnimatePresence } from 'framer-motion';
 
 // lib & Providers
@@ -99,8 +100,8 @@ export default function App() {
                                                 {/* Resources Pages */}
                                                 <Route path="/resources/blog" element={<BlogPage />} />
                                                 <Route path="/resources/blog/:slug" element={<BlogPostPage />} />
-                                                <Route path="/resources/case-studies" element={<CaseStudiesPage />} />
-                                                <Route path="/resources/case-studies/:slug" element={<CaseStudyPage />} />
+                                                <Route path="/resources/case-studies" element={SHOW_CASE_STUDIES ? <CaseStudiesPage /> : <Navigate to="/resources/blog" replace />} />
+                                                <Route path="/resources/case-studies/:slug" element={SHOW_CASE_STUDIES ? <CaseStudyPage /> : <Navigate to="/resources/blog" replace />} />
                                                 <Route path="/resources/guides" element={<GuidesPage />} />
                                                 <Route path="/resources/faq" element={<FAQPage />} />
                                                 <Route path="/resources/help-center" element={<HelpCenterPage />} />

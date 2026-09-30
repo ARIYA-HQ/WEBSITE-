@@ -10,17 +10,29 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
 const { Pool } = pg;
 
+// Verify the server certificate by default (Neon uses a publicly trusted CA).
+// Set DATABASE_SSL_NO_VERIFY=true only for a DB with a self-signed certificate.
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
+    ssl: { rejectUnauthorized: process.env.DATABASE_SSL_NO_VERIFY !== 'true' },
     max: 10,
 });
+
+export const WAITLIST_ROLES = ['individual', 'pro', 'vendor', 'subscriber'] as const;
+export type WaitlistRole = typeof WAITLIST_ROLES[number];
+
+const SLUG_TABLES = ['blog_posts', 'case_studies', 'resources'] as const;
+
+function slugify(text: string) {
+    return text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80) || 'untitled';
+}
 
 export interface WaitlistEntry {
     id?: string;
     email: string;
     name?: string;
-    role: 'individual' | 'agency' | 'vendor' | 'subscriber';
+    role: WaitlistRole;
     company?: string;
     created_at?: string;
 }
@@ -69,6 +81,7 @@ export interface Resource {
     description?: string;
     content: string;
     image?: string;
+    download_url?: string;
     type?: 'Guide' | 'Template' | 'Checklist';
     format?: string;
     size?: string;
@@ -78,6 +91,21 @@ export interface Resource {
 }
 
 export const db = {
+    // Returns a slug based on `text` that isn't used yet in `table`.
+    async uniqueSlug(table: typeof SLUG_TABLES[number], text: string) {
+        if (!SLUG_TABLES.includes(table)) throw new Error(`Unknown table ${table}`);
+        const base = slugify(text);
+        const { rows } = await pool.query(
+            `SELECT slug FROM ${table} WHERE slug = $1 OR slug LIKE $2`,
+            [base, `${base}-%`]
+        );
+        const taken = new Set(rows.map(r => r.slug));
+        if (!taken.has(base)) return base;
+        let n = 2;
+        while (taken.has(`${base}-${n}`)) n++;
+        return `${base}-${n}`;
+    },
+
     waitlist: {
         async getAll() {
             const { rows } = await pool.query(
@@ -122,6 +150,14 @@ export const db = {
             const { rows } = await pool.query(
                 'SELECT * FROM blog_posts WHERE id = $1 LIMIT 1',
                 [id]
+            );
+            return rows[0] ?? null;
+        },
+
+        async getBySlug(slug: string) {
+            const { rows } = await pool.query(
+                'SELECT * FROM blog_posts WHERE slug = $1 LIMIT 1',
+                [slug]
             );
             return rows[0] ?? null;
         },
@@ -180,10 +216,18 @@ export const db = {
             return rows;
         },
 
-        async getById(id: string) {
+        async getById(id: number) {
             const { rows } = await pool.query(
                 'SELECT * FROM case_studies WHERE id = $1 LIMIT 1',
                 [id]
+            );
+            return rows[0] ?? null;
+        },
+
+        async getBySlug(slug: string) {
+            const { rows } = await pool.query(
+                'SELECT * FROM case_studies WHERE slug = $1 LIMIT 1',
+                [slug]
             );
             return rows[0] ?? null;
         },
@@ -208,7 +252,7 @@ export const db = {
             return rows[0];
         },
 
-        async update(id: string, study: Partial<CaseStudy>) {
+        async update(id: number, study: Partial<CaseStudy>) {
             const { rows } = await pool.query(
                 `UPDATE case_studies SET
                  title = COALESCE($1, title),
@@ -238,7 +282,7 @@ export const db = {
             return rows[0];
         },
 
-        async delete(id: string) {
+        async delete(id: number) {
             await pool.query('DELETE FROM case_studies WHERE id = $1', [id]);
         },
     },
@@ -264,12 +308,13 @@ export const db = {
         async create(resource: Resource) {
             const { rows } = await pool.query(
                 `INSERT INTO resources
-                 (title, slug, description, content, image, type, format, size, status)
-                 VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`,
+                 (title, slug, description, content, image, type, format, size, status, download_url)
+                 VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`,
                 [
                     resource.title, resource.slug ?? null, resource.description ?? null,
-                    resource.content, resource.image ?? null, resource.type ?? null,
+                    resource.content ?? null, resource.image ?? null, resource.type ?? null,
                     resource.format ?? null, resource.size ?? null, resource.status ?? 'draft',
+                    resource.download_url ?? null,
                 ]
             );
             return rows[0];
@@ -286,12 +331,14 @@ export const db = {
                  type = COALESCE($6, type),
                  format = COALESCE($7, format),
                  size = COALESCE($8, size),
-                 status = COALESCE($9, status)
-                 WHERE id = $10 RETURNING *`,
+                 status = COALESCE($9, status),
+                 download_url = COALESCE($10, download_url)
+                 WHERE id = $11 RETURNING *`,
                 [
                     resource.title, resource.slug, resource.description,
                     resource.content, resource.image, resource.type,
-                    resource.format, resource.size, resource.status, id,
+                    resource.format, resource.size, resource.status,
+                    resource.download_url, id,
                 ]
             );
             return rows[0];
@@ -302,6 +349,24 @@ export const db = {
         },
     },
 };
+
+// Newsletter signups use the 'subscriber' role, which the original schema's
+// CHECK constraint rejects. Warn loudly if api/db/migration_roles.sql hasn't run.
+export async function checkWaitlistRoleConstraint() {
+    try {
+        const { rows } = await pool.query(
+            `SELECT pg_get_constraintdef(oid) AS def FROM pg_constraint
+             WHERE conrelid = 'waitlist'::regclass AND contype = 'c'`
+        );
+        const def = rows.map(r => r.def).join(' ');
+        const missing = WAITLIST_ROLES.filter(r => def && !def.includes(`'${r}'`));
+        if (missing.length) {
+            console.error(`⚠️ waitlist CHECK constraint rejects roles: ${missing.join(', ')} — run api/db/migration_roles.sql`);
+        }
+    } catch (err) {
+        console.error('Could not verify waitlist role constraint:', err);
+    }
+}
 
 export async function testConnection() {
     try {

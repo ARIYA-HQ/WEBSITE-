@@ -4,6 +4,7 @@ import { Download, FileText, CheckSquare, Layers, ArrowRight, Filter } from 'luc
 import { cmsService } from '../../services/cmsService';
 import { Resource } from '../../types/cms';
 import ResourceCard from '../../components/resources/ResourceCard';
+import { APP_LINKS } from '../../config/links';
 
 export default function GuidesPage() {
     const [resources, setResources] = useState<Resource[]>([]);
@@ -75,7 +76,7 @@ export default function GuidesPage() {
                     <p className="text-primary-100 text-lg mb-8 font-medium">
                         Create your account free. No subscription, no credit card.
                     </p>
-                    <a href="https://app.ariyahq.com/auth/login">
+                    <a href={APP_LINKS.signup}>
                         <button className="inline-flex items-center gap-2 bg-white text-primary-600 px-10 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-primary-50 transition-all shadow-2xl hover:shadow-white/20 hover:scale-105">
                             Start Free →
                         </button>

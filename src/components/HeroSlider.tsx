@@ -24,19 +24,22 @@ export default function HeroSlider() {
 
     return (
         <div className="absolute inset-0 z-0">
-            <AnimatePresence mode="wait">
+            {/* Crossfade (no "wait" mode) so there's never a frame without an image,
+                which used to flash the white page background behind the white headline. */}
+            <AnimatePresence initial={false}>
                 <motion.img
                     key={index}
                     src={heroImages[index]}
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 1.5, ease: "easeInOut" }}
-                    className="w-full h-full object-cover brightness-50"
-                    alt="Hero background slide"
+                    className="absolute inset-0 w-full h-full object-cover brightness-50"
+                    alt=""
+                    fetchPriority={index === 0 ? 'high' : undefined}
                 />
             </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
         </div>
     );
 }

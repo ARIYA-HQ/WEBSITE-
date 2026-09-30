@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-const TOKEN_KEY = 'ariya_admin_token';
+import { ADMIN_TOKEN_KEY as TOKEN_KEY } from '../services/cmsService';
+
+// Same origin by default: the Express server serves both the SPA and /api,
+// and the Vite dev server proxies /api to it.
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 interface AdminUser { email: string; role: string; }
 

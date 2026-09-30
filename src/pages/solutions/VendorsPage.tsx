@@ -1,5 +1,6 @@
 import React from 'react';
-import { TrendingUp, MessageSquare, Star, DollarSign } from 'lucide-react';
+import { TrendingUp, MessageSquare, DollarSign } from 'lucide-react';
+import { APP_LINKS } from '../../config/links';
 
 export default function VendorsPage() {
     return (
@@ -15,36 +16,33 @@ export default function VendorsPage() {
                             Join the marketplace where high-intent couples and planners find their perfect match. Stop chasing leads, start signing contracts.
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://app.ariyahq.com/auth/login">
+                            <a href={APP_LINKS.vendorSignup}>
                                 <button className="bg-[#D0771E] text-white font-black uppercase tracking-widest px-8 py-4 rounded-full text-sm hover:bg-[#b56619] transition-colors shadow-xl">
                                     Join Network
                                 </button>
                             </a>
-                            <div className="flex items-center gap-2 px-6 py-4">
-                                <span className="font-bold text-gray-900 dark:text-white">4.9/5 Rating</span>
-                                <div className="flex text-[#D0771E]">
-                                    {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-4 h-4 fill-current" />)}
-                                </div>
+                            <div className="flex items-center px-6 py-4">
+                                <span className="font-bold text-gray-900 dark:text-white">Free profile · No subscription</span>
                             </div>
                         </div>
                     </div>
                     <div className="flex-1">
                         <div className="grid grid-cols-2 gap-6">
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg">
-                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">3x</div>
-                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">More Inquiries</div>
+                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">₦0</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">To List Your Business</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg translate-y-8">
                                 <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">7%</div>
                                 <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Only on Completed Bookings</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg">
-                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">24h</div>
-                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Avg. Response</div>
+                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">Escrow</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Paid via Ariya Guarantee</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg translate-y-8">
-                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">50k+</div>
-                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Active Planners</div>
+                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">0</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Fees on Inquiries or Quotes</div>
                             </div>
                         </div>
                     </div>

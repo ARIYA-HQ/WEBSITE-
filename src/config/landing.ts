@@ -1,3 +1,5 @@
+import type { AccentColor } from './colors';
+
 export const LANDING_CONFIG = {
     vendors: [
         { name: 'Photographers', color: 'red' },
@@ -8,37 +10,33 @@ export const LANDING_CONFIG = {
         { name: 'Bakers', color: 'pink' },
         { name: 'Decor', color: 'indigo' },
         { name: 'Rental', color: 'teal' },
-    ],
+    ] as { name: string; color: AccentColor }[],
+    // Venue types, not specific listings — real venues live in the app.
     venues: [
         {
-            name: "The Emerald Pavilion",
-            location: "Lagos, Nigeria",
+            name: "Banquet Halls",
+            location: "Lagos",
             image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800",
-            capacity: "500+",
-            rating: 4.9,
-            price: "₦12,500,000"
+            blurb: "Large indoor halls for weddings and big celebrations",
         },
         {
-            name: "Oasis Grand Gardens",
-            location: "Port Harcourt, Nigeria",
+            name: "Garden & Outdoor",
+            location: "Port Harcourt",
             image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800",
-            capacity: "200-300",
-            rating: 4.8,
-            price: "₦7,000,000"
+            blurb: "Open-air spaces for receptions and daytime events",
         },
         {
-            name: "Royal Crown Event Center",
-            location: "Abuja, Nigeria",
+            name: "Event Centres",
+            location: "Abuja",
             image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&q=80&w=800",
-            capacity: "150-250",
-            rating: 5.0,
-            price: "₦4,500,000"
+            blurb: "Flexible spaces for parties, launches, and conferences",
         }
     ],
+    // Product facts only (see config/pricing.ts) — no usage numbers until we can back them up.
     stats: [
-        { val: "50k+", label: "Planners" },
-        { val: "15k+", label: "Vendors" },
-        { val: "200k+", label: "Events" },
-        { val: "80+", label: "Countries" }
+        { val: "₦0", label: "To plan an event" },
+        { val: "0", label: "Subscriptions" },
+        { val: "7%", label: "Vendor fee, only on completed bookings" },
+        { val: "1 link", label: "For your website, RSVPs & wishlist" }
     ]
 };

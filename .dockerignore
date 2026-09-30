@@ -39,3 +39,6 @@ coverage
 # Misc
 *.log
 .cache
+
+# Runtime uploads (persisted via a volume)
+uploads

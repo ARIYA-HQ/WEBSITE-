@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     X, ChevronDown, LayoutDashboard, Kanban, Store, Calculator, Globe, Bot,
-    Search, List, Star, UserPlus, FileText, Copy, Award, LifeBuoy, HelpCircle,
+    Search, UserPlus, FileText, Copy, Award, LifeBuoy, HelpCircle,
     ArrowRight
 } from 'lucide-react';
 import { ThemeToggle } from '../ThemeToggle';
 import Button from '../common/Button';
+import { APP_LINKS } from '../../config/links';
+import { SHOW_CASE_STUDIES } from '../../config/features';
 
 import { createPortal } from 'react-dom';
 
@@ -80,10 +82,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
                                 <MobileAccordion title="Vendors">
                                     <div className="grid gap-4 pl-4">
-                                        <MobileExternalLink href="https://app.ariyahq.com/vendors" icon={Search} label="Browse Vendors" onClick={onClose} />
-                                        <MobileExternalLink href="https://app.ariyahq.com/vendors" icon={List} label="Vendor Categories" onClick={onClose} />
-                                        <MobileExternalLink href="https://app.ariyahq.com/vendors" icon={Star} label="Featured Vendors" onClick={onClose} />
-                                        <MobileExternalLink href="https://app.ariyahq.com/auth/login" icon={UserPlus} label="Become a Vendor" onClick={onClose} />
+                                        <MobileExternalLink href={APP_LINKS.vendors} icon={Search} label="Browse Vendors" onClick={onClose} />
+                                        <MobileExternalLink href={APP_LINKS.vendorSignup} icon={UserPlus} label="Become a Vendor" onClick={onClose} />
+                                        <MobileLink to="/solutions/vendors" icon={Store} label="Why Sell on Ariya" onClick={onClose} />
                                     </div>
                                 </MobileAccordion>
 
@@ -99,7 +100,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                     <div className="grid gap-4 pl-4">
                                         <MobileLink to="/resources/blog" icon={FileText} label="Blog & Insights" onClick={onClose} />
                                         <MobileLink to="/resources/guides" icon={Copy} label="Guides & Templates" onClick={onClose} />
-                                        <MobileLink to="/resources/case-studies" icon={Award} label="Case Studies" onClick={onClose} />
+                                        {SHOW_CASE_STUDIES && <MobileLink to="/resources/case-studies" icon={Award} label="Case Studies" onClick={onClose} />}
                                         <MobileLink to="/resources/help-center" icon={LifeBuoy} label="Help Center" onClick={onClose} />
                                         <MobileLink to="/resources/faq" icon={HelpCircle} label="FAQs" onClick={onClose} />
                                     </div>
@@ -108,14 +109,14 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
                             <div className="mt-10 pt-8 border-t border-gray-100 dark:border-gray-800 space-y-4">
                                 <a
-                                    href="https://app.ariyahq.com/auth/login"
+                                    href={APP_LINKS.login}
                                     onClick={onClose}
                                     className="block w-full text-center py-4 rounded-xl text-sm font-bold text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                                 >
                                     Log In
                                 </a>
-                                <a href="https://app.ariyahq.com/auth/login" className="block w-full">
-                                    <Button fullWidth>
+                                <a href={APP_LINKS.signup} className="block w-full">
+                                    <Button fullWidth tabIndex={-1}>
                                         Get Started
                                     </Button>
                                 </a>

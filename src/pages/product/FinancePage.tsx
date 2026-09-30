@@ -25,11 +25,11 @@ export default function FinancePage() {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <div className="text-xs text-gray-400 font-bold uppercase tracking-widest">Total Budget</div>
-                                    <div className="text-3xl font-black text-gray-900 dark:text-white">$150,000</div>
+                                    <div className="text-3xl font-black text-gray-900 dark:text-white">₦15,000,000</div>
                                 </div>
                                 <div className="text-right">
                                     <div className="text-xs text-gray-400 font-bold uppercase tracking-widest">Remaining</div>
-                                    <div className="text-3xl font-black text-green-600">$24,500</div>
+                                    <div className="text-3xl font-black text-green-600">₦2,450,000</div>
                                 </div>
                             </div>
                             <div className="h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">

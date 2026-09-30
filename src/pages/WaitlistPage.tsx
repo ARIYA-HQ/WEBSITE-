@@ -247,14 +247,9 @@ export default function WaitlistPage() {
                     transition={{ delay: 1 }}
                     className="absolute bottom-12 right-12 bg-white/5 backdrop-blur-2xl p-6 rounded-3xl border border-white/10 shadow-2xl flex items-center gap-4"
                 >
-                    <div className="flex -space-x-3">
-                        {[1, 2, 3, 4].map(i => (
-                            <img key={i} src={`https://i.pravatar.cc/100?u=waitlist${i}`} className="w-10 h-10 rounded-full border-2 border-gray-900" alt="User" />
-                        ))}
-                    </div>
                     <div>
-                        <div className="text-xl font-black text-white">Join 12,000+</div>
-                        <div className="text-[10px] font-bold text-primary-500 uppercase tracking-widest">Early Adopters</div>
+                        <div className="text-xl font-black text-white">Get Early Access</div>
+                        <div className="text-[10px] font-bold text-primary-500 uppercase tracking-widest">Be first in line for new features</div>
                     </div>
                 </motion.div>
             </div>

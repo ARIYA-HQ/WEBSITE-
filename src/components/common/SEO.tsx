@@ -18,7 +18,7 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
     const siteName = 'ÀRIYÁ';
     const defaultDescription = 'ÀRIYÁ is the all-in-one platform for modern event planning, marketplace management, and vendor collaboration.';
-    const defaultImage = 'https://ariyahq.com/og-image.jpg'; // Placeholder for production URL
+    const defaultImage = 'https://ariyahq.com/og-image.jpg'; // public/og-image.jpg
 
     const fullTitle = title ? `${title} | ${siteName}` : siteName;
     const metaDescription = description || defaultDescription;

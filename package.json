@@ -15,7 +15,8 @@
     "build": "vite build",
     "build:prod": "vite build",
     "type-check": "tsc",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",

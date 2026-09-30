@@ -164,14 +164,14 @@ export default function PlannersPage() {
                         <div className="grid grid-cols-2 gap-6 p-4 md:p-12 bg-white dark:bg-gray-800 rounded-[50px] shadow-2xl border border-gray-100 dark:border-gray-700">
                             <div className="aspect-square bg-primary-600 rounded-3xl flex items-center justify-center p-8 text-center rotate-[-4deg]">
                                 <div className="text-white">
-                                    <div className="text-4xl font-black mb-2 leading-none uppercase tracking-widest">40%</div>
-                                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-80">Faster Planning</div>
+                                    <div className="text-4xl font-black mb-2 leading-none uppercase tracking-widest">1</div>
+                                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-80">Dashboard for Every Event</div>
                                 </div>
                             </div>
                             <div className="aspect-square bg-gray-100 dark:bg-gray-900 rounded-3xl flex items-center justify-center p-8 text-center rotate-[4deg] mt-12">
                                 <div className="text-gray-900 dark:text-white">
                                     <div className="text-4xl font-black mb-2 leading-none uppercase tracking-widest">0</div>
-                                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-60">Missed Deadlines</div>
+                                    <div className="text-[10px] font-bold uppercase tracking-widest opacity-60">Spreadsheets Needed</div>
                                 </div>
                             </div>
                         </div>

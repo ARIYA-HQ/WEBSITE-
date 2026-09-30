@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Menu, Star } from 'lucide-react';
+import { ArrowRight, Menu, Store } from 'lucide-react';
 import NavDropdown from '../NavDropdown';
 import MobileNav from './MobileNav';
 import { ThemeToggle } from '../ThemeToggle';
 import { NAVIGATION_CONFIG } from '../../config/navigation';
 import Button from '../common/Button';
+import { APP_LINKS } from '../../config/links';
+import { accentIcon } from '../../config/colors';
 
 export default function Header() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -44,7 +46,7 @@ export default function Header() {
                                         <div className="grid grid-cols-2 gap-8">
                                             {section.items.map((item, i) => (
                                                 <Link key={i} to={item.href} className="flex gap-4 group">
-                                                    <div className={`w-10 h-10 rounded-xl bg-${item.color}-50 dark:bg-${item.color}-900/20 flex items-center justify-center text-${item.color}-600 dark:text-${item.color}-400 group-hover:bg-${item.color}-600 group-hover:text-white transition-colors`}>
+                                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform ${accentIcon(item.color)}`}>
                                                         {item.icon && <item.icon className="w-5 h-5" />}
                                                     </div>
                                                     <div>
@@ -63,9 +65,9 @@ export default function Header() {
                                     <div className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-2">{NAVIGATION_CONFIG.product.featured.label}</div>
                                     <div className="font-bold text-gray-900 dark:text-white mb-2">{NAVIGATION_CONFIG.product.featured.title}</div>
                                     <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{NAVIGATION_CONFIG.product.featured.description}</p>
-                                    <a href={NAVIGATION_CONFIG.product.featured.href} className="text-xs font-bold uppercase tracking-widest text-[#D0771E] flex items-center gap-1 hover:gap-2 transition-all">
+                                    <Link to={NAVIGATION_CONFIG.product.featured.href} className="text-xs font-bold uppercase tracking-widest text-[#D0771E] flex items-center gap-1 hover:gap-2 transition-all">
                                         {NAVIGATION_CONFIG.product.featured.cta} <ArrowRight className="w-3 h-3" />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -119,18 +121,15 @@ export default function Header() {
                                         <div className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-6">{section.label}</div>
                                         <div className="space-y-4">
                                             {section.items.map((item, i) => (
-                                                <React.Fragment key={i}>
-                                                    <a href={item.href} className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
-                                                        <div className={`w-8 h-8 rounded-full bg-${item.color}-100 dark:bg-${item.color}-900/20 flex items-center justify-center text-${item.color}-600 dark:text-${item.color}-400`}>
-                                                            {item.icon && <item.icon className="w-4 h-4" />}
-                                                        </div>
-                                                        <div>
-                                                            <div className="text-sm font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{item.title}</div>
-                                                            <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
-                                                        </div>
-                                                    </a>
-                                                    {(i === 2) && <div className="h-px bg-gray-100 dark:bg-gray-800 my-2" />}
-                                                </React.Fragment>
+                                                <a key={i} href={item.href} className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
+                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${accentIcon(item.color)}`}>
+                                                        {item.icon && <item.icon className="w-4 h-4" />}
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-sm font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{item.title}</div>
+                                                        <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
+                                                    </div>
+                                                </a>
                                             ))}
                                         </div>
                                     </div>
@@ -139,13 +138,13 @@ export default function Header() {
                             <div className="w-48 bg-orange-50 dark:bg-gray-800 p-6 flex flex-col items-center justify-center text-center relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-24 h-24 bg-orange-200 dark:bg-orange-900/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 opacity-50" />
                                 <div className="w-12 h-12 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-lg mb-3 text-[#D0771E] relative z-10">
-                                    <Star className="w-5 h-5 fill-current" />
+                                    <Store className="w-5 h-5" />
                                 </div>
-                                <div className="text-xs font-bold text-gray-900 dark:text-white relative z-10">{NAVIGATION_CONFIG.vendors.featuredVendor.title}</div>
-                                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-2 mb-4 relative z-10">Spotlight on {NAVIGATION_CONFIG.vendors.featuredVendor.name}</p>
-                                <button className="text-[10px] font-black uppercase tracking-widest bg-white text-[#D0771E] px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all relative z-10">
-                                    View Profile
-                                </button>
+                                <div className="text-xs font-bold text-gray-900 dark:text-white relative z-10">{NAVIGATION_CONFIG.vendors.featured.title}</div>
+                                <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-2 mb-4 relative z-10">{NAVIGATION_CONFIG.vendors.featured.description}</p>
+                                <Link to={NAVIGATION_CONFIG.vendors.featured.href} className="text-[10px] font-black uppercase tracking-widest bg-white text-[#D0771E] px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all relative z-10">
+                                    {NAVIGATION_CONFIG.vendors.featured.cta}
+                                </Link>
                             </div>
                         </div>
                     </NavDropdown>
@@ -170,7 +169,7 @@ export default function Header() {
                                         <div className="space-y-4">
                                             {section.items.map((item, i) => (
                                                 <Link key={i} to={item.href} className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
-                                                    <div className={`w-8 h-8 rounded-full bg-${item.color}-100 dark:bg-${item.color}-900/20 flex items-center justify-center text-${item.color}-600 dark:text-${item.color}-400`}>
+                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${accentIcon(item.color)}`}>
                                                         {item.icon && <item.icon className="w-4 h-4" />}
                                                     </div>
                                                     <div>
@@ -189,9 +188,9 @@ export default function Header() {
                                     <div className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-2">{NAVIGATION_CONFIG.resources.featured.label}</div>
                                     <h4 className="text-lg font-black leading-tight mb-2 text-gray-900 dark:text-white">{NAVIGATION_CONFIG.resources.featured.title}</h4>
                                     <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{NAVIGATION_CONFIG.resources.featured.description}</p>
-                                    <a href={NAVIGATION_CONFIG.resources.featured.href} className="text-xs font-bold uppercase tracking-widest text-[#D0771E] flex items-center gap-1 hover:gap-2 transition-all">
+                                    <Link to={NAVIGATION_CONFIG.resources.featured.href} className="text-xs font-bold uppercase tracking-widest text-[#D0771E] flex items-center gap-1 hover:gap-2 transition-all">
                                         {NAVIGATION_CONFIG.resources.featured.cta} <ArrowRight className="w-3 h-3" />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -200,9 +199,9 @@ export default function Header() {
 
                 <nav className="hidden md:flex items-center gap-6">
                     <ThemeToggle />
-                    <a href="https://app.ariyahq.com/auth/login" className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>Log In</a>
-                    <a href="https://app.ariyahq.com/auth/login">
-                        <Button size="sm">
+                    <a href={APP_LINKS.login} className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>Log In</a>
+                    <a href={APP_LINKS.signup}>
+                        <Button size="sm" tabIndex={-1}>
                             Start Free
                         </Button>
                     </a>

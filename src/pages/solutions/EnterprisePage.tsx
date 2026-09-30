@@ -73,12 +73,12 @@ export default function EnterprisePage() {
                     </div>
                     <div className="flex gap-4">
                         <div className="px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800">
-                            <div className="text-2xl font-black text-primary-600">99.99%</div>
-                            <div className="text-[10px] font-black uppercase tracking-widest text-gray-500">Uptime SLA</div>
+                            <div className="text-2xl font-black text-primary-600">Custom</div>
+                            <div className="text-[10px] font-black uppercase tracking-widest text-gray-500">SLA on Request</div>
                         </div>
                         <div className="px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800">
-                            <div className="text-2xl font-black text-primary-600">24/7</div>
-                            <div className="text-[10px] font-black uppercase tracking-widest text-gray-500">Premium Support</div>
+                            <div className="text-2xl font-black text-primary-600">Priority</div>
+                            <div className="text-[10px] font-black uppercase tracking-widest text-gray-500">Support</div>
                         </div>
                     </div>
                 </div>

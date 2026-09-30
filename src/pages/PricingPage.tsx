@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Check, Lock, MessageSquare, Star, ShieldCheck, Globe, Users, BarChart2, Gift, Zap, Store, Image as ImageIcon, TrendingUp } from 'lucide-react';
 import { PRICING_CONFIG } from '../config/pricing';
 import Button from '../components/common/Button';
+import { APP_LINKS } from '../config/links';
 
 const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -75,7 +76,7 @@ const PricingPage = () => {
                                     </div>
                                 ))}
                             </div>
-                            <a href="https://app.ariyahq.com/auth/login">
+                            <a href={plan.id === 'vendor' ? APP_LINKS.vendorSignup : APP_LINKS.signup}>
                                 <Button variant={plan.featured ? 'primary' : plan.id === 'vendor' ? 'outline' : 'dark'} fullWidth>{plan.buttonText}</Button>
                             </a>
                         </motion.div>
@@ -177,7 +178,7 @@ const PricingPage = () => {
                                 <div className="text-xs text-gray-400 mt-0.5">No annual renewal</div>
                             </div>
                         </div>
-                        <a href="https://app.ariyahq.com/dashboard/vendor/badges">
+                        <a href={APP_LINKS.vendorBadges}>
                             <Button variant="dark">Get Verified</Button>
                         </a>
                     </div>

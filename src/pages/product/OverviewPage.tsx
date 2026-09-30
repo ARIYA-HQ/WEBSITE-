@@ -2,6 +2,7 @@ import React from 'react';
 import { LayoutDashboard, Kanban, Sparkles, Store, Calculator, Globe, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroPremium from '../../assets/images/hero_premium.png';
+import { APP_LINKS } from '../../config/links';
 
 export default function OverviewPage() {
     return (
@@ -19,7 +20,7 @@ export default function OverviewPage() {
                             Ariya brings your entire event workflow into one intuitive interface. Say goodbye to scattered spreadsheets and hello to streamlined success.
                         </p>
                         <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                            <a href="https://app.ariyahq.com/auth/login">
+                            <a href={APP_LINKS.signup}>
                                 <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-colors shadow-xl">
                                     Get Started Free
                                 </button>

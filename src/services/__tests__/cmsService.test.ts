@@ -23,7 +23,7 @@ describe('CmsService', () => {
 
         const posts = await cmsService.getBlogPosts();
         expect(posts).toEqual(mockPosts);
-        expect(fetch).toHaveBeenCalledWith('/api/posts');
+        expect(fetch).toHaveBeenCalledWith('/api/posts', { headers: {} });
     });
 
     it('should throw an error when fetch fails', async () => {
@@ -46,6 +46,19 @@ describe('CmsService', () => {
 
         const post = await cmsService.getBlogPostById(1);
         expect(post).toEqual(mockPost);
-        expect(fetch).toHaveBeenCalledWith('/api/posts/1');
+        expect(fetch).toHaveBeenCalledWith('/api/posts/1', { headers: {} });
+    });
+});
+
+describe('CmsService admin auth', () => {
+    beforeEach(() => {
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => [] }));
+        localStorage.setItem('ariya_admin_token', 'tok');
+    });
+
+    it('sends the admin token on admin requests', async () => {
+        await cmsService.getWaitlist();
+        expect(fetch).toHaveBeenCalledWith('/api/waitlist', { headers: { Authorization: 'Bearer tok' } });
+        localStorage.removeItem('ariya_admin_token');
     });
 });

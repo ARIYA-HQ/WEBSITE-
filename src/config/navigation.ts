@@ -1,8 +1,10 @@
 import {
     LayoutDashboard, Kanban, Bot, Store, Calculator, Globe,
-    Search, List, Star, UserPlus, FileText, Copy, Award,
+    Search, UserPlus, FileText, Copy, Award,
     LifeBuoy, HelpCircle
 } from 'lucide-react';
+import { APP_LINKS } from './links';
+import { SHOW_CASE_STUDIES } from './features';
 
 export const NAVIGATION_CONFIG = {
     product: {
@@ -57,11 +59,11 @@ export const NAVIGATION_CONFIG = {
             }
         ],
         featured: {
-            label: "New Feature",
-            title: "AI Contract Analysis",
-            description: "Upload any vendor contract and get instant analysis.",
-            cta: "Try It Now",
-            href: "#"
+            label: "Featured",
+            title: "AI Planning",
+            description: "Draft timelines, budgets, and vendor shortlists in minutes.",
+            cta: "Learn More",
+            href: "/product/ai-planning"
         }
     },
     solutions: {
@@ -101,39 +103,26 @@ export const NAVIGATION_CONFIG = {
                 items: [
                     {
                         title: "Browse Vendors",
-                        description: "Explore the network",
-                        href: "#",
+                        description: "Find vendors by category and city",
+                        href: APP_LINKS.vendors,
                         icon: Search,
                         color: "orange"
                     },
                     {
-                        title: "Vendor Categories",
-                        description: "Find by type",
-                        href: "#",
-                        icon: List,
-                        color: "blue"
-                    },
-                    {
-                        title: "Featured Vendors",
-                        description: "Top rated pros",
-                        href: "#",
-                        icon: Star,
-                        color: "purple"
-                    },
-                    {
                         title: "Become a Vendor",
-                        description: "Join Ariya",
-                        href: "#",
+                        description: "Create your free vendor profile",
+                        href: APP_LINKS.vendorSignup,
                         icon: UserPlus,
                         color: "green"
                     }
                 ]
             }
         ],
-        featuredVendor: {
-            title: "Vendor of the Month",
-            name: "Elite Catering Co.",
-            href: "#"
+        featured: {
+            title: "For Vendors",
+            description: "Get discovered by planners. No subscription — 7% only on completed bookings.",
+            cta: "Learn More",
+            href: "/solutions/vendors"
         }
     },
     resources: {
@@ -156,13 +145,13 @@ export const NAVIGATION_CONFIG = {
                         icon: Copy,
                         color: "teal"
                     },
-                    {
+                    ...(SHOW_CASE_STUDIES ? [{
                         title: "Case Studies",
                         description: "Success stories",
                         href: "/resources/case-studies",
                         icon: Award,
                         color: "yellow"
-                    },
+                    }] : []),
                     {
                         title: "Help Center",
                         description: "Get support",
@@ -185,7 +174,7 @@ export const NAVIGATION_CONFIG = {
             title: "2026 Event Trends",
             description: "Discover what's hot this season in our annual report.",
             cta: "Read Report",
-            href: "#"
+            href: "/resources/guides"
         }
     }
 };

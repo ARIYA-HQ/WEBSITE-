@@ -1,96 +1,54 @@
 # Ariya HQ Website
 
-Event planning platform website built with React, TypeScript, and Vite.
+Marketing site and blog CMS for Ariya, built with React, TypeScript, Vite and Express.
+The product itself lives at https://app.ariyahq.com (separate codebase).
 
 ## Live Site
 
-https://ariya-hq.github.io/WEBSITE-/
+https://ariyahq.com
 
 ## Quick Start
 
-### 1. Environment Setup
-
-Create a `.env` file in the project root:
-
 ```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your credentials:
-
-```bash
-SUPABASE_URL=your-supabase-project-url
-SUPABASE_ANON_KEY=your-supabase-anon-key
-DATABASE_URL=your-postgresql-connection-string
-LOOPS_API_KEY=your_loops_api_key_here
-ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=your-secure-password
-NODE_ENV=production
-```
-
-### 2. Local Development
-
-```bash
-# Install dependencies
+cp .env.example .env   # then fill in the values
 npm install
-
-# Start development server (frontend + backend)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev            # Vite on :5173, Express API on :3001 (proxied at /api)
 ```
 
-## Local Development (Without Docker)
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server (frontend + backend)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
+See `.env.example` for every variable. In production `ADMIN_JWT_SECRET` (32+ chars) is
+required for the admin CMS; without it the public site runs but `/admin` is disabled.
 
 ## Architecture
 
-### Setup
-- **Frontend**: Vite dev server with hot-reload (port 5173)
-- **Backend**: Node.js Express API with Supabase integration (port 3001)
-- **Database**: External Supabase PostgreSQL
-- **Email**: Loops.so integration for automation
+- **Frontend**: React SPA in `src/` (Vite). CTAs link into the app via `src/config/links.ts`.
+- **API**: Express app in `api/app.ts`, shared by `server/index.ts` (VPS/Docker, also serves
+  `dist/`) and `api/index.ts` (Vercel entry).
+- **Database**: Neon Postgres via `pg` (`api/db/supabase.ts`); schema in `api/db/schema.sql`.
+- **Email**: Loops.so for waitlist/newsletter automation.
 
-## Troubleshooting
+### Admin CMS
 
-### Port Already in Use
+`/admin` signs in with `ADMIN_EMAIL` / `ADMIN_PASSWORD` and gets a 24h JWT. Every write
+endpoint, the waitlist, analytics, uploads and `?admin=true` (drafts) require that token.
+Uploaded files are written to `UPLOAD_DIR` and served from `/uploads` — mount a volume there.
 
-If ports 5173 or 3001 are already in use, you can specify different ports in the environment or terminal.
+### Database migrations
 
-### Environment Variables Not Loading
+Run these once against the production database if you haven't already:
 
-Ensure your `.env` file is in the project root and contains all required variables. 
+- `api/db/migration.sql` — `download_url` on resources, optional `content`
+- `api/db/migration_roles.sql` — allows the `subscriber` role used by newsletter signups
+  (the server logs a warning at startup if it's missing)
 
-### Database Connection Issues
-
-Verify your `DATABASE_URL` and `SUPABASE_URL` are correct. Check the console for errors.
-
-## Deployment
-
+## Deployment (VPS)
 
 ```bash
-# Tag images
-docker tag ariyahq-frontend:latest your-registry/ariyahq-frontend:latest
-docker tag ariyahq-backend:latest your-registry/ariyahq-backend:latest
+docker build -f Dockerfile.server -t ariya-web .
+docker run -d -p 3001:3001 --env-file .env -v ariya-uploads:/app/uploads ariya-web
+```
 
-# Push to registry
-docker push your-registry/ariyahq-frontend:latest
-docker push your-registry/ariyahq-backend:latest
+## Tests
+
+```bash
+npm test
 ```

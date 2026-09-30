@@ -73,7 +73,7 @@ export default function AgenciesPage() {
                                 <AgencyStatCard icon={Users2} title="Team Velocity" val="+24%" desc="Q4 staffing efficiency" />
                             </div>
                             <div className="space-y-4">
-                                <AgencyStatCard icon={Shield} title="Compliance" val="SOC2" desc="Enterprise grade" />
+                                <AgencyStatCard icon={Shield} title="Access" val="Roles" desc="Per-member permissions" />
                                 <AgencyStatCard icon={Zap} title="Automation" val="82k" desc="Workflows triggered" />
                             </div>
                         </div>

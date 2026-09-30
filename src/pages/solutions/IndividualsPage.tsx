@@ -10,10 +10,10 @@ import {
     Camera,
     Music,
     Smile,
-    Calendar,
-    Star
+    Calendar
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { APP_LINKS } from '../../config/links';
 
 export default function IndividualsPage() {
     const fadeIn = {
@@ -49,7 +49,7 @@ export default function IndividualsPage() {
                             tools used by elite planners, made simple enough for anyone to use.
                         </p>
                         <div className="flex flex-col sm:row gap-4">
-                            <a href="https://app.ariyahq.com/auth/login">
+                            <a href={APP_LINKS.signup}>
                                 <button className="bg-rose-500 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-rose-600 transition-all shadow-xl shadow-rose-600/20 w-full sm:w-auto">
                                     Start Planning Free
                                 </button>
@@ -98,26 +98,16 @@ export default function IndividualsPage() {
                 </div>
             </section>
 
-            {/* Testimonial Section */}
+            {/* Promise Section */}
             <section className="py-32 bg-gray-50 dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
                 <div className="max-w-5xl mx-auto px-8 relative">
                     <div className="flex flex-col items-center text-center">
-                        <div className="flex text-rose-500 mb-8">
-                            {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-6 h-6 fill-current" />)}
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-12 tracking-tighter italic leading-tight">
-                            "Ariya turned my messy Pinterest boards into a <span className="text-rose-500">flawless reality.</span> I actually enjoyed the planning process for once."
+                        <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 tracking-tighter leading-tight">
+                            Turn your Pinterest boards into a <span className="text-rose-500">plan you can actually run.</span>
                         </h2>
-
-                        <div className="flex items-center gap-4">
-                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-rose-500 p-0.5">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Sarah" className="w-full h-full object-cover rounded-full" />
-                            </div>
-                            <div className="text-left">
-                                <div className="text-lg font-black text-gray-900 dark:text-white leading-none mb-1">Amaka Okafor</div>
-                                <div className="text-xs font-bold uppercase tracking-widest text-gray-400 font-sans">Recently Married</div>
-                            </div>
-                        </div>
+                        <p className="text-lg text-gray-500 dark:text-gray-400 font-medium max-w-2xl">
+                            Vendors, budget, guest list, and your event website in one place, so you can enjoy the lead-up instead of chasing WhatsApp threads.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -155,7 +145,7 @@ export default function IndividualsPage() {
                     <h2 className="text-4xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tighter mb-12 leading-[0.85] uppercase italic">
                         The Best Day <br /> <span className="text-rose-500">Starts Here.</span>
                     </h2>
-                    <a href="https://app.ariyahq.com/auth/login">
+                    <a href={APP_LINKS.signup}>
                         <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-black dark:hover:bg-primary-50 transition-all shadow-2xl">
                             Start Planning Now
                         </button>

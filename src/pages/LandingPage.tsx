@@ -6,6 +6,8 @@ import VenueCard from '../components/VenueCard';
 import VideoShowcase from '../components/VideoShowcase';
 import { LANDING_CONFIG } from '../config/landing';
 import Button from '../components/common/Button';
+import { APP_LINKS, EVENT_SITE_EXAMPLE } from '../config/links';
+import { accentIcon } from '../config/colors';
 
 // Event website showcase images — elegant event/wedding aesthetic
 const SHOWCASE_IMAGES = [
@@ -29,28 +31,28 @@ export default function LandingPage() {
     return (
         <main>
             {/* Hero Section — full viewport, transparent nav overlays */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-950">
                 <HeroSlider />
                 <div className="relative z-10 text-center text-white px-4 max-w-5xl animate-in">
                     <h1 className="text-4xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
                         Event Planning Begins with ÀRIYÁ
                     </h1>
-                    <p className="text-base md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed shadow-sm">
+                    <p className="text-base md:text-xl font-medium text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed [text-shadow:0_1px_12px_rgb(0_0_0_/0.5)]">
                         Vendors, budgets, guests, wishlist, event website, tickets — one platform, built for Nigerian celebrations. Free to create an account.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <a href="https://app.ariyahq.com/auth/login">
-                            <Button size="lg">
+                        <a href={APP_LINKS.signup}>
+                            <Button size="lg" tabIndex={-1}>
                                 Start Planning — It's Free
                             </Button>
                         </a>
-                        <a href="https://app.ariyahq.com/auth/login">
-                            <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
+                        <a href={APP_LINKS.vendorSignup}>
+                            <Button variant="outline" size="lg" tabIndex={-1} className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20">
                                 I'm a Vendor →
                             </Button>
                         </a>
                     </div>
-                    <p className="mt-5 text-white/40 text-[11px] font-bold uppercase tracking-widest">No credit card · No subscription · No catch</p>
+                    <p className="mt-5 text-white/70 text-[11px] font-bold uppercase tracking-widest">No credit card · Free to start planning</p>
                 </div>
             </section>
 
@@ -62,17 +64,17 @@ export default function LandingPage() {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {LANDING_CONFIG.vendors.map((vendor, i) => (
-                        <div key={i} className="premium-card p-8 flex flex-col items-center text-center group cursor-pointer bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
-                            <div className={`w-16 h-16 rounded-full mb-6 flex items-center justify-center bg-${vendor.color}-100 dark:bg-${vendor.color}-900/20 group-hover:scale-110 transition-transform`}>
+                        <a key={i} href={APP_LINKS.vendors} className="premium-card p-8 flex flex-col items-center text-center group bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                            <div className={`w-16 h-16 rounded-full mb-6 flex items-center justify-center group-hover:scale-110 transition-transform ${accentIcon(vendor.color)}`}>
                                 <div className="w-8 h-8 rounded-full bg-white/40 dark:bg-white/10" />
                             </div>
                             <h3 className="text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white">{vendor.name}</h3>
-                        </div>
+                        </a>
                     ))}
                 </div>
                 <div className="mt-12 text-center">
-                    <a href="https://app.ariyahq.com/auth/login">
-                        <Button variant="outline">
+                    <a href={APP_LINKS.vendors}>
+                        <Button variant="outline" tabIndex={-1}>
                             View All Vendors
                         </Button>
                     </a>
@@ -92,13 +94,13 @@ export default function LandingPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
                         {LANDING_CONFIG.venues.map((venue, i) => (
-                            <VenueCard key={i} {...venue} />
+                            <VenueCard key={i} {...venue} href={APP_LINKS.vendors} />
                         ))}
                     </div>
 
                     <div className="mt-16 text-center">
-                        <a href="https://app.ariyahq.com/auth/login">
-                            <Button size="lg">
+                        <a href={APP_LINKS.vendors}>
+                            <Button size="lg" tabIndex={-1}>
                                 Explore All Venues
                             </Button>
                         </a>
@@ -220,14 +222,14 @@ export default function LandingPage() {
                                     <span className="w-2 h-2 rounded-full bg-white/40" />
                                     <span className="w-2 h-2 rounded-full bg-white/40" />
                                     <span className="w-2 h-2 rounded-full bg-white/40" />
-                                    <span className="flex-1 mx-2 h-3 rounded-full bg-white/20 text-[7px] text-white/60 flex items-center px-2 font-mono">ariya.io/events/your-event</span>
+                                    <span className="flex-1 mx-2 h-3 rounded-full bg-white/20 text-[7px] text-white/60 flex items-center px-2 font-mono">{EVENT_SITE_EXAMPLE}</span>
                                 </div>
                             </div>
                         ))}
                     </div>
 
-                    <a href="https://app.ariyahq.com/auth/login">
-                        <Button variant="white" size="lg">
+                    <a href={APP_LINKS.signup}>
+                        <Button variant="white" size="lg" tabIndex={-1}>
                             Get Started Free
                         </Button>
                     </a>
@@ -242,10 +244,11 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
                     <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Join Our Community</h2>
                     <p className="text-gray-400 max-w-xl mb-16 font-medium">
-                        Join planners and vendors across Nigeria already running events on Ariya.
+                        Follow along for planning tips, vendor spotlights, and product updates.
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-4xl mb-16">
+                        {/* Product facts, not usage numbers — see LANDING_CONFIG.stats */}
                         {LANDING_CONFIG.stats.map((stat, i) => (
                             <div key={i} className="flex flex-col items-center">
                                 <div className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-2">{stat.val}</div>
@@ -254,8 +257,8 @@ export default function LandingPage() {
                         ))}
                     </div>
 
-                    <a href="https://instagram.com/ariya_hq">
-                        <Button variant="white" size="lg">
+                    <a href="https://instagram.com/ariya_hq" target="_blank" rel="noopener noreferrer">
+                        <Button variant="white" size="lg" tabIndex={-1}>
                             Join The Community
                         </Button>
                     </a>
@@ -295,13 +298,13 @@ export default function LandingPage() {
                         </h2>
 
                         <div className="flex flex-col items-center gap-6">
-                            <a href="https://app.ariyahq.com/auth/login">
-                                <Button size="lg" icon={ArrowRight} iconPosition="right" className="px-14 py-6 shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)]">
+                            <a href={APP_LINKS.signup}>
+                                <Button size="lg" tabIndex={-1} icon={ArrowRight} iconPosition="right" className="px-14 py-6 shadow-[0_0_40px_-10px_rgba(208,119,30,0.6)] hover:shadow-[0_0_60px_-10px_rgba(208,119,30,0.8)]">
                                     Get Started Free
                                 </Button>
                             </a>
                             <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">
-                                No credit card required • Join 200k+ planners
+                                No credit card required • Free to start
                             </p>
                         </div>
                     </motion.div>

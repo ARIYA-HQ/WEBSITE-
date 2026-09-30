@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import { Save, User, Globe, Shield, Bell, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -102,31 +103,30 @@ function SocialInput({ icon, placeholder }: any) {
 }
 
 function TeamSettings() {
+    const { user } = useAuth();
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-            <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-10">
+            <div className="mb-10">
                 <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Team Members</h2>
-                <button className="text-[10px] font-black text-primary-600 uppercase tracking-widest hover:underline transition-all ring-offset-4 rounded">+ Invite Member</button>
+                <p className="text-sm text-gray-500 mt-2">
+                    Admin access is a single account configured on the server (ADMIN_EMAIL / ADMIN_PASSWORD).
+                </p>
             </div>
 
-            <div className="grid gap-4">
-                {[
-                    { name: 'Sarah Jenkins', role: 'Admin', email: 'sarah@ariya.io', img: 'https://i.pravatar.cc/150?u=1' },
-                    { name: 'Michael Chen', role: 'Editor', email: 'mike@ariya.io', img: 'https://i.pravatar.cc/150?u=2' },
-                    { name: 'Elena R.', role: 'Viewer', email: 'elena@ariya.io', img: 'https://i.pravatar.cc/150?u=3' },
-                ].map((member, i) => (
-                    <div key={i} className="flex items-center justify-between p-5 bg-gray-50 dark:bg-gray-800/30 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all border border-transparent hover:border-gray-100 dark:hover:border-gray-700 group">
-                        <div className="flex items-center gap-4">
-                            <img src={member.img} alt={member.name} className="w-12 h-12 rounded-full ring-2 ring-white dark:ring-gray-700 shadow-sm" />
-                            <div>
-                                <div className="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{member.name}</div>
-                                <div className="text-xs text-gray-500 font-medium">{member.email}</div>
-                            </div>
+            {user && (
+                <div className="flex items-center justify-between p-5 bg-gray-50 dark:bg-gray-800/30 rounded-2xl border border-transparent">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center font-black uppercase">
+                            {user.email.charAt(0)}
                         </div>
-                        <span className="px-4 py-1.5 bg-white dark:bg-gray-900 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 shadow-sm border border-gray-100 dark:border-gray-800">{member.role}</span>
+                        <div>
+                            <div className="font-bold text-gray-900 dark:text-white">{user.email}</div>
+                            <div className="text-xs text-gray-500 font-medium">Signed in</div>
+                        </div>
                     </div>
-                ))}
-            </div>
+                    <span className="px-4 py-1.5 bg-white dark:bg-gray-900 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 shadow-sm border border-gray-100 dark:border-gray-800">{user.role}</span>
+                </div>
+            )}
         </div>
     );
 }

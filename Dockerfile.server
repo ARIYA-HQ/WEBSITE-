@@ -19,6 +19,9 @@ RUN npm run build
 
 ENV NODE_ENV=production
 ENV PORT=3001
+# Admin uploads live here; mount a named volume so they survive redeploys:
+#   docker run -v ariya-uploads:/app/uploads -e ADMIN_JWT_SECRET=... ...
+ENV UPLOAD_DIR=/app/uploads
 EXPOSE 3001
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \

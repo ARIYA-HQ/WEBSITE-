@@ -40,12 +40,12 @@ export default function AboutPage() {
                         </p>
                         <div className="grid grid-cols-2 gap-8">
                             <div className="flex flex-col">
-                                <span className="text-4xl font-black text-gray-900 dark:text-white">200k+</span>
-                                <span className="text-xs font-bold uppercase tracking-widest text-gray-500">Events Planned</span>
+                                <span className="text-4xl font-black text-gray-900 dark:text-white">1 place</span>
+                                <span className="text-xs font-bold uppercase tracking-widest text-gray-500">For vendors, budgets & guests</span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-4xl font-black text-gray-900 dark:text-white">50k+</span>
-                                <span className="text-xs font-bold uppercase tracking-widest text-gray-500">Vendors</span>
+                                <span className="text-4xl font-black text-gray-900 dark:text-white">₦0</span>
+                                <span className="text-xs font-bold uppercase tracking-widest text-gray-500">To start planning</span>
                             </div>
                         </div>
                     </div>
