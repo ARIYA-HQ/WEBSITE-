@@ -50,7 +50,7 @@ const faqs = [
             },
             {
                 q: "How do ticket fees work?",
-                a: "Creating events and ticketing is free. A 3% service fee is deducted from the organiser's payout at withdrawal. Attendees pay exactly the price you set — no buyer-facing fees are added."
+                a: "Creating events and ticketing is free. A 3% service fee is deducted from the organiser's ticket price at withdrawal. Attendees pay the price you set plus Paystack's card processing fee, which is passed on at cost and which Ariya does not keep."
             },
             {
                 q: "Are feature unlocks permanent?",

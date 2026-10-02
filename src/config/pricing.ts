@@ -92,7 +92,7 @@ export const PRICING_CONFIG = {
     },
     ticketFees: {
         rate: 0.03,
-        description: 'A 3% service fee is deducted from the organiser payout on ticket sales. Buyers pay the face value you set.',
+        description: "A 3% service fee is deducted from the ticket price when you withdraw your ticket sales. Buyers pay your ticket price plus Paystack's card fee, passed on at cost.",
     },
     smsBundles: [
         { label: '50 SMS', price: '₦2,500' },
@@ -118,7 +118,7 @@ export const PRICING_CONFIG = {
         },
         {
             question: "How do wishlist and ticket fees work?",
-            answer: "Wishlist: buyers pay face value, and a 10% total fee (8% Ariya + 2% Paystack) is deducted from the planner's withdrawal amount. Tickets: buyers pay the price you set, and a 3% service fee is deducted from your payout. No upfront costs."
+            answer: "Wishlist: buyers pay face value, and a 10% total fee (8% Ariya + 2% Paystack) is deducted from the planner's withdrawal amount. Tickets: buyers pay the price you set plus Paystack's card fee (passed on at cost), and a 3% service fee is deducted from your payout. No upfront costs."
         },
         {
             question: "Are feature unlocks permanent?",

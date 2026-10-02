@@ -109,7 +109,7 @@ const PricingPage = () => {
                                 label: 'Ticket Sales',
                                 rate: '3%',
                                 sub: 'of organiser payout',
-                                detail: 'Attendees pay what you set. The 3% is only deducted from your withdrawal — no buyer-facing fees.',
+                                detail: "Attendees pay your ticket price plus Paystack's card fee, passed on at cost. Our 3% is deducted only from your withdrawal.",
                                 accent: 'border-t-emerald-500',
                             },
                         ].map(({ label, rate, sub, detail, accent }) => (
