@@ -87,10 +87,11 @@ export const PRICING_CONFIG = {
     registryFees: {
         // Ariya's fee, deducted from the planner payout (the planner keeps 90%).
         platformRate: 0.10,
-        // Paid by the guest on top of the gift; covers card processing.
-        guestProcessingRate: 0.02,
+        // Guests pay the exact gift price: no fee on top. Ariya's 10% covers
+        // payment processing.
+        guestProcessingRate: 0,
         totalRate: 0.10,
-        description: 'A 10% fee is deducted from the planner payout when wishlist funds are withdrawn, so you receive 90% of each gift. Guests pay the gift plus a 2% processing fee that covers card processing.',
+        description: 'A 10% fee is deducted from the planner payout when wishlist funds are withdrawn, so you receive 90% of each gift. Guests pay exactly the gift price; the 10% also covers payment processing.',
     },
     ticketFees: {
         rate: 0.03,
@@ -120,7 +121,7 @@ export const PRICING_CONFIG = {
         },
         {
             question: "How do wishlist and ticket fees work?",
-            answer: "Wishlist: guests pay the gift plus a 2% processing fee, and a 10% Ariya fee is deducted from the planner's withdrawal amount (you receive 90% of each gift). Tickets: buyers pay the price you set plus Paystack's card fee (passed on at cost), and a 3% service fee is deducted from your payout. No upfront costs."
+            answer: "Wishlist: guests pay exactly the gift price, and a 10% Ariya fee, which also covers payment processing, is deducted from the planner's withdrawal amount (you receive 90% of each gift). Tickets: buyers pay the price you set plus Paystack's card fee (passed on at cost), and a 3% service fee is deducted from your payout. No upfront costs."
         },
         {
             question: "Are feature unlocks permanent?",

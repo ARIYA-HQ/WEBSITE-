@@ -46,7 +46,7 @@ const faqs = [
             },
             {
                 q: "How do wishlist fees work?",
-                a: "Setting up a wishlist is free. When a planner withdraws collected funds, Ariya's 10% fee is deducted, so you receive 90% of each gift. Guests pay the gift price you set plus a 2% processing fee for card processing, shown at checkout — nothing else."
+                a: "Setting up a wishlist is free. When a planner withdraws collected funds, Ariya's 10% fee is deducted, so you receive 90% of each gift. Guests pay exactly the gift price you set. There is no fee on top for them, and Ariya's 10% also covers payment processing."
             },
             {
                 q: "How do ticket fees work?",
@@ -100,7 +100,7 @@ const faqs = [
             },
             {
                 q: "How does the gift wishlist work?",
-                a: "Create a wishlist, add items with target amounts, and share the link with guests. Guests contribute directly via Paystack. Funds accumulate in your balance and you withdraw whenever you're ready. A 10% fee is deducted at withdrawal, and guests pay a 2% processing fee on top of the gift, shown at checkout."
+                a: "Create a wishlist, add items with target amounts, and share the link with guests. Guests contribute directly via Paystack. Funds accumulate in your balance and you withdraw whenever you're ready. A 10% fee, which also covers payment processing, is deducted at withdrawal. Guests pay exactly the gift price, with nothing added on top."
             },
             {
                 q: "Is my data secure?",
