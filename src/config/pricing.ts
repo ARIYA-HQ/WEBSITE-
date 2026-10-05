@@ -121,7 +121,7 @@ export const PRICING_CONFIG = {
         },
         {
             question: "How do wishlist and ticket fees work?",
-            answer: "Wishlist: guests pay exactly the gift price, and a 10% Ariya fee, which also covers payment processing, is deducted from the planner's withdrawal amount (you receive 90% of each gift). Tickets: buyers pay the price you set plus Paystack's card fee (passed on at cost), and a 3% service fee is deducted from your payout. No upfront costs."
+            answer: "Wishlist: guests pay exactly the gift price, and a 10% Ariya fee, which also covers payment processing, is deducted from the planner's withdrawal amount (you receive 90% of each gift), and wishlist money can be withdrawn from 2 days after your event. Tickets: buyers pay the price you set plus Paystack's card fee (passed on at cost), and a 3% service fee is deducted from your payout. No upfront costs."
         },
         {
             question: "Are feature unlocks permanent?",
