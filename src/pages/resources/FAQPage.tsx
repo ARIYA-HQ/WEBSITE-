@@ -152,7 +152,7 @@ export default function FAQPage() {
                 {filtered.length === 0 && (
                     <p className="text-center text-gray-400 py-16">
                         No questions match "{search}".{' '}
-                        <a href="mailto:ariyainfoteam@gmail.com" className="text-primary-600 font-bold underline">Email us</a> and we'll help.
+                        <a href="mailto:support@ariyahq.com" className="text-primary-600 font-bold underline">Email us</a> and we'll help.
                     </p>
                 )}
                 {filtered.map((section, sIdx) => (
@@ -213,9 +213,9 @@ export default function FAQPage() {
                                 Contact Us
                             </button>
                         </Link>
-                        <a href="mailto:ariyainfoteam@gmail.com" className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2">
+                        <a href="mailto:support@ariyahq.com" className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2">
                             <Mail className="w-4 h-4" />
-                            ariyainfoteam@gmail.com
+                            support@ariyahq.com
                         </a>
                     </div>
                 </div>

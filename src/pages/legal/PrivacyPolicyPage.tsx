@@ -32,6 +32,11 @@ const sections = [
         title: '6. Rights, Access, and Global Compliance Standards',
         content: 'ÀRIYÁ is a global platform, and as such, we align our data protection practices with the most rigorous international frameworks, including the General Data Protection Regulation (GDPR) for our European users and the California Consumer Privacy Act (CCPA) for those in North America. Regardless of your physical jurisdiction, ÀRIYÁ provides every user with the capability to exercise their fundamental data rights. This includes the Right to Portability (exporting your event data in a machine-readable format), the Right to Rectification (correcting inaccuracies in your profile), and the Right to Erasure (the "Right to be Forgotten"). You may manage these rights directly through your centralized Privacy Dashboard or by reaching out to our dedicated Data Protection Officer. We also maintain a strictly enforced data retention policy, ensuring that account and event data are only stored for the duration necessary to satisfy the purposes for which they were collected or as required by statutory legal mandates.'
     },
+    {
+        id: 'contact',
+        title: '7. Contact',
+        content: 'Questions about this policy, or a request about your data, can be sent to support@ariyahq.com.',
+    },
 ];
 
 export default function PrivacyPolicyPage() {

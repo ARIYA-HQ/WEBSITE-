@@ -32,6 +32,11 @@ const sections = [
         title: '6. Comprehensive Limitation of Liability and Indemnification',
         content: 'To the maximum extent permitted by applicable law, ÀRIYÁ and its affiliates, officers, and employees shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, or goodwill, arising from your access to or use of the services. This includes any damages resulting from unauthorized access to your data or the conduct of any third party on the platform. You agree to indemnify and hold ÀRIYÁ harmless from any claims, damages, or costs (including legal fees) arising from your breach of these Terms or your violation of any law or the rights of a third party. Our total aggregate liability for all claims related to the services shall not exceed the amount paid by you to ÀRIYÁ for the use of the services in the six months preceding the event giving rise to the claim.'
     },
+    {
+        id: 'contact',
+        title: '7. Contact',
+        content: 'Questions about these Terms can be sent to support@ariyahq.com.',
+    },
 ];
 
 export default function TermsOfServicePage() {

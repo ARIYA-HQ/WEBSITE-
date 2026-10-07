@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function ContactPage() {
-    const [form, setForm] = useState({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '' });
+    const [form, setForm] = useState({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '', website: '' });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -15,18 +15,26 @@ export default function ContactPage() {
         setStatus('loading');
         setErrorMsg('');
         try {
-            const res = await fetch('/api/contact', {
+            // Messages go to Ariya's own API, which keeps them and tells the team.
+            const res = await fetch('https://app.ariyahq.com/api/v1/support/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form),
+                body: JSON.stringify({
+                    name: `${form.firstName} ${form.lastName}`.trim(),
+                    email: form.email,
+                    topic: form.topic,
+                    message: form.message,
+                    website: form.website,
+                }),
             });
             if (res.ok) {
                 setStatus('success');
-                setForm({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '' });
+                setForm({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '', website: '' });
             } else {
                 const data = await res.json().catch(() => ({}));
                 setStatus('error');
-                setErrorMsg(data.error || 'Failed to send message. Please try again.');
+                const said = Array.isArray(data.message) ? data.message[0] : data.message;
+                setErrorMsg(said || 'Failed to send message. Please try again.');
             }
         } catch {
             setStatus('error');
@@ -86,6 +94,12 @@ export default function ContactPage() {
                                         />
                                     </div>
                                 </div>
+                                {/* Hidden from people; a bot fills it in and is ignored. */}
+                                <input
+                                    type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"
+                                    value={form.website} onChange={handleChange}
+                                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                                />
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email Address</label>
                                     <input
@@ -149,7 +163,10 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Email</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">ariyainfoteam@gmail.com</div>
+                                        <a href="mailto:hello@ariyahq.com" className="font-medium text-gray-900 dark:text-gray-200 hover:text-primary-600">hello@ariyahq.com</a>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">General and press</div>
+                                        <a href="mailto:support@ariyahq.com" className="mt-3 block font-medium text-gray-900 dark:text-gray-200 hover:text-primary-600">support@ariyahq.com</a>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Help with your account</div>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -167,8 +184,9 @@ export default function ContactPage() {
                                         <Phone className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone</div>
-                                        <div className="font-medium text-gray-900 dark:text-gray-200">09055380387</div>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone &amp; WhatsApp</div>
+                                        <a href="https://wa.me/2349055380387?text=Hi%20Ariya%2C%20I%20need%20some%20help." target="_blank" rel="noopener noreferrer" className="font-medium text-gray-900 dark:text-gray-200 hover:text-primary-600">09055380387</a>
+                                        <div className="text-sm text-gray-500 dark:text-gray-400">Chat with us on WhatsApp</div>
                                         <div className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri, 9am - 6pm WAT</div>
                                     </div>
                                 </div>
