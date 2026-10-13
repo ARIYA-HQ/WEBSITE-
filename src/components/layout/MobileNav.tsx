@@ -45,8 +45,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-8">
-                                <Link to="/" onClick={onClose} className="text-2xl font-black tracking-tighter text-primary-600">
-                                    ÀRIYÁ
+                                <Link to="/" onClick={onClose} aria-label="Àríyá home" className="flex items-center">
+                                    <img src="/brand/ariya-horizontal-primary.svg" alt="Àríyá" className="h-7 w-auto dark:hidden" />
+                                    <img src="/brand/ariya-horizontal-reverse.svg" alt="Àríyá" className="hidden h-7 w-auto dark:block" />
                                 </Link>
                                 <div className="flex items-center gap-4">
                                     <ThemeToggle />

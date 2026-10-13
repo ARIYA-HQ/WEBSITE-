@@ -48,7 +48,8 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
                 {/* Logo Area */}
                 <div className="mb-12 px-2 flex justify-between items-start">
                     <Link to="/admin" className="block" onClick={onClose}>
-                        <h1 className="text-2xl font-black tracking-tighter text-primary-600">ÀRIYÁ</h1>
+                        <img src="/brand/ariya-horizontal-primary.svg" alt="Àríyá" className="h-7 w-auto dark:hidden" />
+                        <img src="/brand/ariya-horizontal-reverse.svg" alt="Àríyá" className="hidden h-7 w-auto dark:block" />
                         <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">Admin Console</p>
                     </Link>
                     <div className="scale-75 origin-top-right">

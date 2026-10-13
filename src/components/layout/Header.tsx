@@ -27,7 +27,18 @@ export default function Header() {
                 : 'bg-transparent border-b border-transparent'
         }`}>
             <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-                <Link to="/" className={`text-2xl font-black tracking-tighter transition-colors duration-300 ${scrolled ? 'text-primary-600' : 'text-white'}`}>ÀRIYÁ</Link>
+                <Link to="/" aria-label="Àríyá home" className="flex shrink-0 items-center">
+                    <img
+                        src="/brand/ariya-horizontal-primary.svg"
+                        alt="Àríyá"
+                        className={`h-6 w-auto sm:h-7 ${scrolled ? 'dark:hidden' : 'hidden'}`}
+                    />
+                    <img
+                        src="/brand/ariya-horizontal-reverse.svg"
+                        alt="Àríyá"
+                        className={`h-6 w-auto sm:h-7 ${scrolled ? 'hidden dark:block' : 'block'}`}
+                    />
+                </Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex space-x-8 items-center">

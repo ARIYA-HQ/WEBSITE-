@@ -40,7 +40,9 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                 {/* Brand Column */}
                 <div className="md:col-span-4">
-                    <Link to="/" className="text-3xl font-black tracking-tighter mb-6 text-primary-600 block">{FOOTER_CONFIG.brand.name}</Link>
+                    <Link to="/" aria-label={`${FOOTER_CONFIG.brand.name} home`} className="mb-6 block w-fit">
+                        <img src="/brand/ariya-horizontal-reverse.svg" alt={FOOTER_CONFIG.brand.name} className="h-9 w-auto" />
+                    </Link>
                     <p className="text-gray-400 max-w-sm mb-8 font-medium leading-relaxed">
                         {FOOTER_CONFIG.brand.description}
                     </p>
