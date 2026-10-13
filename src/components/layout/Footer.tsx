@@ -41,7 +41,7 @@ export default function Footer() {
                 {/* Brand Column */}
                 <div className="md:col-span-4">
                     <Link to="/" aria-label={`${FOOTER_CONFIG.brand.name} home`} className="mb-6 block w-fit">
-                        <img src="/brand/ariya-horizontal-reverse.svg" alt={FOOTER_CONFIG.brand.name} className="h-9 w-auto" />
+                        <img src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-reverse.svg`} alt={FOOTER_CONFIG.brand.name} className="h-9 w-auto" />
                     </Link>
                     <p className="text-gray-400 max-w-sm mb-8 font-medium leading-relaxed">
                         {FOOTER_CONFIG.brand.description}

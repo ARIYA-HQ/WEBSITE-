@@ -32,7 +32,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] md:hidden"
+                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] xl:hidden"
                     />
 
                     {/* Drawer */}
@@ -41,13 +41,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-y-0 right-0 w-full sm:w-[400px] bg-white dark:bg-gray-900 shadow-2xl z-[100] overflow-y-auto md:hidden border-l border-gray-100 dark:border-gray-800"
+                        className="fixed inset-y-0 right-0 w-full sm:w-[400px] bg-white dark:bg-gray-900 shadow-2xl z-[100] overflow-y-auto xl:hidden border-l border-gray-100 dark:border-gray-800"
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-8">
                                 <Link to="/" onClick={onClose} aria-label="Àríyá home" className="flex items-center">
-                                    <img src="/brand/ariya-horizontal-primary.svg" alt="Àríyá" className="h-7 w-auto dark:hidden" />
-                                    <img src="/brand/ariya-horizontal-reverse.svg" alt="Àríyá" className="hidden h-7 w-auto dark:block" />
+                                    <img src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-primary.svg`} alt="Àríyá" className="h-7 w-auto dark:hidden" />
+                                    <img src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-reverse.svg`} alt="Àríyá" className="hidden h-7 w-auto dark:block" />
                                 </Link>
                                 <div className="flex items-center gap-4">
                                     <ThemeToggle />

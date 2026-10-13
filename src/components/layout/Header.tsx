@@ -29,19 +29,19 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
                 <Link to="/" aria-label="Àríyá home" className="flex shrink-0 items-center">
                     <img
-                        src="/brand/ariya-horizontal-primary.svg"
+                        src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-primary.svg`}
                         alt="Àríyá"
                         className={`h-6 w-auto sm:h-7 ${scrolled ? 'dark:hidden' : 'hidden'}`}
                     />
                     <img
-                        src="/brand/ariya-horizontal-reverse.svg"
+                        src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-reverse.svg`}
                         alt="Àríyá"
                         className={`h-6 w-auto sm:h-7 ${scrolled ? 'hidden dark:block' : 'block'}`}
                     />
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex space-x-8 items-center">
+                <nav className="hidden xl:flex space-x-8 items-center">
                     {/* PRODUCT */}
                     <NavDropdown
                         title={NAVIGATION_CONFIG.product.title}
@@ -208,7 +208,7 @@ export default function Header() {
                     </NavDropdown>
                 </nav>
 
-                <nav className="hidden md:flex items-center gap-6">
+                <nav className="hidden xl:flex items-center gap-6">
                     <ThemeToggle />
                     <a href={APP_LINKS.login} className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>Log In</a>
                     <a href={APP_LINKS.signup}>
@@ -219,7 +219,7 @@ export default function Header() {
                 </nav>
 
                 {/* Mobile Menu Toggle */}
-                <div className="md:hidden">
+                <div className="xl:hidden">
                     <button
                         onClick={() => setMobileNavOpen(true)}
                         className={`p-2 -mr-2 transition-colors ${scrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'}`}
