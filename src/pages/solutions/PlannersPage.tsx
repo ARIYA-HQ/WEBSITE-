@@ -16,6 +16,7 @@ import {
     Target
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { APP_LINKS } from '../../config/links';
 
 export default function PlannersPage() {
     const fadeIn = {
@@ -52,11 +53,11 @@ export default function PlannersPage() {
                             of a conductor.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Link to="/pricing">
+                            <a href={APP_LINKS.signup}>
                                 <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                                    Get Pro Access
+                                    Start Free
                                 </button>
-                            </Link>
+                            </a>
                             <Link to="/contact">
                                 <button className="text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-white/10 hover:bg-white/5 transition-all">
                                     Request a Demo
@@ -199,11 +200,11 @@ export default function PlannersPage() {
                     <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter mb-12 leading-[0.85]">
                         Build a Legacy, <br className="md:hidden" /> not just an event.
                     </h2>
-                    <Link to="/pricing">
+                    <a href={APP_LINKS.signup}>
                         <button className="bg-primary-600 text-white font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-primary-700 transition-all shadow-xl shadow-primary-600/20">
-                            Join the Pro Ranks
+                            Create a Planner Account
                         </button>
-                    </Link>
+                    </a>
                 </div>
             </section>
         </main>
@@ -246,4 +247,3 @@ const FaqItem = ({ question, answer }: { question: string, answer: string }) => 
         <p className="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed">{answer}</p>
     </div>
 );
-

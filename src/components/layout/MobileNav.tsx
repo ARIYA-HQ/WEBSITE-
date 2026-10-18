@@ -89,14 +89,6 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                     </div>
                                 </MobileAccordion>
 
-                                <Link
-                                    to="/pricing"
-                                    onClick={onClose}
-                                    className="block text-lg font-bold text-gray-900 dark:text-white py-2"
-                                >
-                                    Pricing
-                                </Link>
-
                                 <MobileAccordion title="Resources">
                                     <div className="grid gap-4 pl-4">
                                         <MobileLink to="/resources/blog" icon={FileText} label="Blog & Insights" onClick={onClose} />

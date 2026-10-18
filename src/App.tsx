@@ -36,7 +36,6 @@ const GuidesPage = lazy(() => import('./pages/resources/GuidesPage'));
 const CaseStudiesPage = lazy(() => import('./pages/resources/CaseStudiesPage'));
 const CaseStudyPage = lazy(() => import('./pages/resources/CaseStudyPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-const PricingPage = lazy(() => import('./pages/PricingPage'));
 
 // Legal Pages (Lazy Loaded)
 const PrivacyPolicyPage = lazy(() => import('./pages/legal/PrivacyPolicyPage'));
@@ -106,7 +105,6 @@ export default function App() {
                                                 <Route path="/resources/faq" element={<FAQPage />} />
                                                 <Route path="/resources/help-center" element={<HelpCenterPage />} />
 
-                                                <Route path="/pricing" element={<PricingPage />} />
                                                 <Route path="/about" element={<AboutPage />} />
 
                                                 {/* CMS / Blog Routes */}

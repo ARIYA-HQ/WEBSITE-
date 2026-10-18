@@ -32,7 +32,7 @@ export const LANDING_CONFIG = {
             blurb: "Flexible spaces for parties, launches, and conferences",
         }
     ],
-    // Product facts only (see config/pricing.ts) — no usage numbers until we can back them up.
+    // Product facts only — no usage numbers until we can back them up.
     stats: [
         { val: "₦0", label: "To plan an event" },
         { val: "0", label: "Subscriptions" },

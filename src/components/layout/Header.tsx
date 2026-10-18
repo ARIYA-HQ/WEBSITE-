@@ -160,11 +160,6 @@ export default function Header() {
                         </div>
                     </NavDropdown>
 
-                    {/* PRICING (Direct Link) */}
-                    <Link to="/pricing" className={`text-sm font-bold uppercase tracking-widest hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
-                        Pricing
-                    </Link>
-
                     {/* RESOURCES */}
                     <NavDropdown
                         title={NAVIGATION_CONFIG.resources.title}
