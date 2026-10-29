@@ -402,31 +402,33 @@ export default function PricingPage() {
             {/* Trust strip */}
             <section className="border-t border-gray-100 dark:border-gray-800 py-16 px-6 bg-white dark:bg-gray-900">
                 <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-                    {[
-                        {
-                            icon: Tag,
-                            title: 'No subscriptions',
-                            body: 'Pay once per feature or event. No monthly bills, no lock-in.',
-                        },
-                        {
-                            icon: Check,
-                            title: 'Who pays which fee',
-                            body: "Cash fund guests pay the exact amount they choose — Ariya's 10% (which covers Paystack) comes from your payout. Physical registry items have no Ariya fee. Ticket buyers pay face value plus Paystack's card fee; our 3% comes from the organiser payout.",
-                        },
-                        {
-                            icon: Zap,
-                            title: 'Full transparency',
-                            body: 'Every fee is shown before you collect a payment. No surprises at payout.',
-                        },
-                    ].map(({ icon: Icon, title, body }) => (
-                        <div key={title} className="space-y-3">
-                            <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
-                                <Icon className="w-6 h-6 text-primary-600" />
-                            </div>
-                            <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">{title}</h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{body}</p>
+                    <div className="space-y-3">
+                        <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
+                            <Tag className="w-6 h-6 text-primary-600" />
                         </div>
-                    ))}
+                        <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">No subscriptions</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Pay once per feature or event. No monthly bills, no lock-in.</p>
+                    </div>
+
+                    <div className="space-y-3">
+                        <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
+                            <Check className="w-6 h-6 text-primary-600" />
+                        </div>
+                        <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">Who pays which fee</h3>
+                        <ul className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed space-y-1 text-left inline-block">
+                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Cash fund</span> — Ariya's 10% (incl. Paystack) from your payout</li>
+                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Registry</span> — no Ariya fee on physical items</li>
+                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Tickets</span> — Paystack card fee + 3% from organiser payout</li>
+                        </ul>
+                    </div>
+
+                    <div className="space-y-3">
+                        <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
+                            <Zap className="w-6 h-6 text-primary-600" />
+                        </div>
+                        <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">Full transparency</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Every fee is shown before you collect a payment. No surprises at payout.</p>
+                    </div>
                 </div>
             </section>
 
