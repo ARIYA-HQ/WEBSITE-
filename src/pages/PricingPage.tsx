@@ -195,89 +195,86 @@ function PlannerTab() {
             </div>
 
             {/* Pay-as-you-go add-ons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-                {/* Website keep-forever */}
-                <Card>
-                    <CardBody compact>
-                        <CardTitle
-                            icon={Globe}
-                            title="Keep website live"
-                            sub="One-time · no renewal"
-                            iconBg="bg-amber-100 dark:bg-amber-900/30"
-                            iconColor="text-amber-600 dark:text-amber-400"
-                            compact
-                        />
-                        <Row label="Live after your event" value={`${WEBSITE_FREE_MONTHS} months free`} compact />
-                        <Row label="Archive page" value={`Until month ${WEBSITE_OFFLINE_MONTHS}`} compact />
-                        <Row label="Keep it live forever" value={fmt(WEBSITE_KEEP_FOREVER_NAIRA)} compact />
-                    </CardBody>
-                </Card>
-
-                {/* Storage */}
-                <Card>
-                    <CardBody compact>
-                        <CardTitle
-                            icon={Image}
-                            title="Extra photo storage"
-                            sub="One-time per event · stackable"
-                            iconBg="bg-purple-100 dark:bg-purple-900/30"
-                            iconColor="text-purple-600 dark:text-purple-400"
-                            compact
-                        />
-                        <Row label={`First ${STORAGE_FREE_PHOTOS} photos`} value={<FreeTag />} compact />
-                        {STORAGE_TIERS.map(t => (
-                            <Row key={t.label} label={t.label} value={fmt(t.priceNaira)} compact />
-                        ))}
-                    </CardBody>
-                </Card>
-
-                {/* Guest messaging */}
-                <Card>
-                    <CardBody compact>
-                        <CardTitle
-                            icon={MessageSquare}
-                            title="Guest messaging"
-                            sub="SMS · WhatsApp · Email · Nigeria only"
-                            iconBg="bg-sky-100 dark:bg-sky-900/30"
-                            iconColor="text-sky-600 dark:text-sky-400"
-                            compact
-                        />
-                        {SMS_BUNDLES.map(b => (
-                            <Row
-                                key={b.label}
-                                label={b.label}
-                                value={fmt(b.priceNaira)}
-                                note={`≈ ${fmt(Math.round(b.priceNaira / b.count))}/credit`}
-                                compact
+            <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 mb-4">Pay-as-you-go add-ons</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Website keep-forever */}
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                icon={Globe}
+                                title="Keep website live"
+                                sub="One-time · no renewal"
+                                iconBg="bg-amber-100 dark:bg-amber-900/30"
+                                iconColor="text-amber-600 dark:text-amber-400"
                             />
-                        ))}
-                    </CardBody>
-                </Card>
+                            <Row label="Live after your event" value={`${WEBSITE_FREE_MONTHS} months free`} />
+                            <Row label="Archive page" value={`Until month ${WEBSITE_OFFLINE_MONTHS}`} />
+                            <Row label="Keep it live forever" value={fmt(WEBSITE_KEEP_FOREVER_NAIRA)} />
+                        </CardBody>
+                    </Card>
 
-                {/* Guest QR passes */}
-                <Card>
-                    <CardBody compact>
-                        <CardTitle
-                            icon={QrCode}
-                            title="Guest QR passes"
-                            sub={`${GUEST_PASS_FREE_TEST} free test passes · per event`}
-                            iconBg="bg-indigo-100 dark:bg-indigo-900/30"
-                            iconColor="text-indigo-600 dark:text-indigo-400"
-                            compact
-                        />
-                        {GUEST_PASS_TIERS.map(t => (
-                            <Row
-                                key={t.label}
-                                label={t.label}
-                                value={`${fmt(t.pricePerGuestNaira)}/guest`}
-                                compact
+                    {/* Storage */}
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                icon={Image}
+                                title="Extra photo storage"
+                                sub="One-time per event · stackable"
+                                iconBg="bg-purple-100 dark:bg-purple-900/30"
+                                iconColor="text-purple-600 dark:text-purple-400"
                             />
-                        ))}
-                        <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
-                            <p className="text-[11px] text-gray-400">Min. charge {fmt(GUEST_PASS_MINIMUM_NAIRA)} per event</p>
-                        </div>
-                    </CardBody>
-                </Card>
+                            <Row label={`First ${STORAGE_FREE_PHOTOS} photos`} value={<FreeTag />} />
+                            {STORAGE_TIERS.map(t => (
+                                <Row key={t.label} label={t.label} value={fmt(t.priceNaira)} />
+                            ))}
+                        </CardBody>
+                    </Card>
+
+                    {/* Guest messaging */}
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                icon={MessageSquare}
+                                title="Guest messaging"
+                                sub="SMS · WhatsApp · Email · Nigeria only"
+                                iconBg="bg-sky-100 dark:bg-sky-900/30"
+                                iconColor="text-sky-600 dark:text-sky-400"
+                            />
+                            {SMS_BUNDLES.map(b => (
+                                <Row
+                                    key={b.label}
+                                    label={b.label}
+                                    value={fmt(b.priceNaira)}
+                                    note={`≈ ${fmt(Math.round(b.priceNaira / b.count))}/credit`}
+                                />
+                            ))}
+                        </CardBody>
+                    </Card>
+
+                    {/* Guest QR passes */}
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                icon={QrCode}
+                                title="Guest QR passes"
+                                sub={`${GUEST_PASS_FREE_TEST} free test passes · per event`}
+                                iconBg="bg-indigo-100 dark:bg-indigo-900/30"
+                                iconColor="text-indigo-600 dark:text-indigo-400"
+                            />
+                            {GUEST_PASS_TIERS.map(t => (
+                                <Row
+                                    key={t.label}
+                                    label={t.label}
+                                    value={`${fmt(t.pricePerGuestNaira)}/guest`}
+                                />
+                            ))}
+                            <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+                                <p className="text-xs text-gray-400">Min. charge {fmt(GUEST_PASS_MINIMUM_NAIRA)} per event</p>
+                            </div>
+                        </CardBody>
+                    </Card>
+                </div>
             </div>
         </div>
     );
