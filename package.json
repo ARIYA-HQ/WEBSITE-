@@ -16,7 +16,8 @@
     "build:prod": "vite build",
     "type-check": "tsc",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "import:journal": "tsx api/import-ariya-journal.ts"
   },
   "keywords": [],
   "author": "",
@@ -76,6 +77,6 @@
     "tailwind-merge": "^3.4.0"
   },
   "overrides": {
-    "qs": "6.16.0"
+    "qs": "6.17.1"
   }
 }
