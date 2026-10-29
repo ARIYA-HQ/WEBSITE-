@@ -132,9 +132,9 @@ function PlannerTab() {
                                 note="Deducted from your payout. Buyers cover only Paystack's card fee."
                             />
                             <Row
-                                label="Wishlist / registry contributions"
+                                label="Cash fund contributions"
                                 value={pct(REGISTRY_SERVICE_FEE_RATE)}
-                                note="Guests pay the exact gift price. Ariya's fee comes from your payout."
+                                note="Applies to cash gifts only (includes Paystack processing). Physical registry items have no Ariya fee."
                             />
                             <Row
                                 label="Vendor payments"
@@ -317,7 +317,7 @@ export default function PricingPage() {
                         {
                             icon: Check,
                             title: 'Who pays which fee',
-                            body: "Wishlist guests pay the exact gift price — our fee comes from your payout. Ticket buyers pay the face value plus Paystack's card fee; our 3% comes from the organiser payout.",
+                            body: "Cash fund guests pay the exact amount they choose — Ariya's 10% (which covers Paystack) comes from your payout. Physical registry items have no Ariya fee. Ticket buyers pay face value plus Paystack's card fee; our 3% comes from the organiser payout.",
                         },
                         {
                             icon: Zap,
