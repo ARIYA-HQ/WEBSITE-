@@ -204,7 +204,7 @@ export default function Header() {
                     {/* PRICING */}
                     <Link
                         to="/pricing"
-                        className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-800 dark:text-white' : 'text-white'}`}
+                        className={`text-sm font-bold uppercase tracking-widest hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-800 dark:text-white' : 'text-white'}`}
                     >
                         Pricing
                     </Link>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Zap, Globe, Image, MessageSquare, ShieldCheck, TrendingUp, Tag } from 'lucide-react';
-import Button from '../components/common/Button';
+import { Check, Zap, Globe, Image, MessageSquare, ShieldCheck, TrendingUp, Tag, QrCode } from 'lucide-react';
 import { APP_LINKS } from '../config/links';
 
 // ── Pricing constants (kept in sync with the dashboard's data/pricing.ts) ─────
@@ -27,9 +26,9 @@ const VENDOR_FEATURES = [
     { label: 'Premium placement', priceNaira: 50_000 },
 ];
 const SMS_BUNDLES = [
-    { label: '50 credits', count: 50, priceNaira: 2_500 },
-    { label: '200 credits', count: 200, priceNaira: 8_000 },
-    { label: '500 credits', count: 500, priceNaira: 17_500 },
+    { label: '50 messaging credits', count: 50, priceNaira: 2_500 },
+    { label: '200 messaging credits', count: 200, priceNaira: 8_000 },
+    { label: '500 messaging credits', count: 500, priceNaira: 17_500 },
 ];
 const DOMAIN_PRICES_NAIRA: Record<string, number> = {
     com: 30_000,
@@ -61,9 +60,9 @@ function Row({ label, value, note }: { label: string; value: React.ReactNode; no
     );
 }
 
-function Card({ children, accent }: { children: React.ReactNode; accent: string }) {
+function Card({ children }: { children: React.ReactNode }) {
     return (
-        <div className={`rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden border-t-4 ${accent}`}>
+        <div className="rounded-2xl bg-white dark:bg-gray-900 shadow-[0_2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_24px_rgba(0,0,0,0.35)] ring-1 ring-black/[0.04] dark:ring-white/[0.06] overflow-hidden">
             {children}
         </div>
     );
@@ -73,11 +72,23 @@ function CardBody({ children }: { children: React.ReactNode }) {
     return <div className="p-6 md:p-8">{children}</div>;
 }
 
-function CardTitle({ icon: Icon, title, sub }: { icon: React.ElementType; title: string; sub?: string }) {
+function CardTitle({
+    icon: Icon,
+    title,
+    sub,
+    iconBg = 'bg-gray-100 dark:bg-gray-800',
+    iconColor = 'text-gray-600 dark:text-gray-400',
+}: {
+    icon: React.ElementType;
+    title: string;
+    sub?: string;
+    iconBg?: string;
+    iconColor?: string;
+}) {
     return (
         <div className="flex items-center gap-3 mb-6">
-            <div className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
-                <Icon className="w-5 h-5" />
+            <div className={`p-2.5 rounded-xl ${iconBg}`}>
+                <Icon className={`w-5 h-5 ${iconColor}`} />
             </div>
             <div>
                 <h3 className="text-base font-black uppercase tracking-tight text-gray-900 dark:text-white">{title}</h3>
@@ -95,9 +106,15 @@ function PlannerTab() {
         <div className="space-y-8">
             {/* Free tier */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card accent="border-t-green-500">
+                <Card>
                     <CardBody>
-                        <CardTitle icon={Check} title="Always free" sub="No card needed · unlimited events" />
+                        <CardTitle
+                            icon={Check}
+                            title="Always free"
+                            sub="No card needed · unlimited events"
+                            iconBg="bg-green-100 dark:bg-green-900/30"
+                            iconColor="text-green-600 dark:text-green-400"
+                        />
                         <ul className="space-y-0">
                             {[
                                 'Unlimited event creation',
@@ -111,6 +128,7 @@ function PlannerTab() {
                                 'Ticket sales setup',
                                 `${STORAGE_FREE_PHOTOS} gallery photos`,
                                 'AI planning assistant',
+                                'QR code check-in for guests',
                             ].map(item => (
                                 <li key={item} className="flex items-center gap-3 py-2.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
                                     <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
@@ -123,9 +141,15 @@ function PlannerTab() {
 
                 <div className="space-y-6">
                     {/* Platform fees */}
-                    <Card accent="border-t-blue-500">
+                    <Card>
                         <CardBody>
-                            <CardTitle icon={Zap} title="Platform fees" sub="Only when you collect money" />
+                            <CardTitle
+                                icon={Zap}
+                                title="Platform fees"
+                                sub="Only when you collect money"
+                                iconBg="bg-blue-100 dark:bg-blue-900/30"
+                                iconColor="text-blue-600 dark:text-blue-400"
+                            />
                             <Row
                                 label="Ticket sales"
                                 value={pct(TICKET_SERVICE_FEE_RATE)}
@@ -145,9 +169,15 @@ function PlannerTab() {
                     </Card>
 
                     {/* Custom domain */}
-                    <Card accent="border-t-primary-500">
+                    <Card>
                         <CardBody>
-                            <CardTitle icon={Globe} title="Custom domain" sub="Includes hosting + Ariya branding removed" />
+                            <CardTitle
+                                icon={Globe}
+                                title="Custom domain"
+                                sub="Includes hosting + Ariya branding removed"
+                                iconBg="bg-orange-100 dark:bg-orange-900/30"
+                                iconColor="text-primary-600"
+                            />
                             {Object.entries(DOMAIN_PRICES_NAIRA).map(([tld, price]) => (
                                 <Row key={tld} label={`.${tld}`} value={`${fmt(price)}/yr`} />
                             ))}
@@ -159,9 +189,15 @@ function PlannerTab() {
             {/* Pay-as-you-go add-ons */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Website keep-forever */}
-                <Card accent="border-t-amber-500">
+                <Card>
                     <CardBody>
-                        <CardTitle icon={Globe} title="Keep website live" sub="One-time · no renewal" />
+                        <CardTitle
+                            icon={Globe}
+                            title="Keep website live"
+                            sub="One-time · no renewal"
+                            iconBg="bg-amber-100 dark:bg-amber-900/30"
+                            iconColor="text-amber-600 dark:text-amber-400"
+                        />
                         <Row label={`Live after your event`} value={`${WEBSITE_FREE_MONTHS} months free`} />
                         <Row label="Archive page" value={`Until month ${WEBSITE_OFFLINE_MONTHS}`} />
                         <Row label="Keep it live forever" value={fmt(WEBSITE_KEEP_FOREVER_NAIRA)} />
@@ -169,9 +205,15 @@ function PlannerTab() {
                 </Card>
 
                 {/* Storage */}
-                <Card accent="border-t-purple-500">
+                <Card>
                     <CardBody>
-                        <CardTitle icon={Image} title="Extra photo storage" sub="One-time per event · stackable" />
+                        <CardTitle
+                            icon={Image}
+                            title="Extra photo storage"
+                            sub="One-time per event · stackable"
+                            iconBg="bg-purple-100 dark:bg-purple-900/30"
+                            iconColor="text-purple-600 dark:text-purple-400"
+                        />
                         <Row label={`First ${STORAGE_FREE_PHOTOS} photos`} value={<FreeTag />} />
                         {STORAGE_TIERS.map(t => (
                             <Row key={t.label} label={t.label} value={fmt(t.priceNaira)} />
@@ -179,17 +221,22 @@ function PlannerTab() {
                     </CardBody>
                 </Card>
 
-                {/* SMS */}
-                <Card accent="border-t-sky-500">
+                {/* Guest messaging */}
+                <Card>
                     <CardBody>
-                        <CardTitle icon={MessageSquare} title="SMS guest notifications" sub="Nigeria only · credits roll up" />
-                        <Row label="Email invites" value={<FreeTag />} />
+                        <CardTitle
+                            icon={MessageSquare}
+                            title="Guest messaging"
+                            sub="SMS · WhatsApp · Email · Nigeria only"
+                            iconBg="bg-sky-100 dark:bg-sky-900/30"
+                            iconColor="text-sky-600 dark:text-sky-400"
+                        />
                         {SMS_BUNDLES.map(b => (
                             <Row
                                 key={b.label}
                                 label={b.label}
                                 value={fmt(b.priceNaira)}
-                                note={`≈ ${fmt(Math.round(b.priceNaira / b.count))}/SMS`}
+                                note={`≈ ${fmt(Math.round(b.priceNaira / b.count))}/credit`}
                             />
                         ))}
                     </CardBody>
@@ -204,9 +251,15 @@ function VendorTab() {
         <div className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Free listing */}
-                <Card accent="border-t-green-500">
+                <Card>
                     <CardBody>
-                        <CardTitle icon={Check} title="Basic listing" sub="Always free" />
+                        <CardTitle
+                            icon={Check}
+                            title="Basic listing"
+                            sub="Always free"
+                            iconBg="bg-green-100 dark:bg-green-900/30"
+                            iconColor="text-green-600 dark:text-green-400"
+                        />
                         <ul className="space-y-0">
                             {[
                                 'Directory listing',
@@ -231,9 +284,15 @@ function VendorTab() {
                 </Card>
 
                 {/* Visibility boosts */}
-                <Card accent="border-t-primary-500">
+                <Card>
                     <CardBody>
-                        <CardTitle icon={TrendingUp} title="Visibility boosts" sub="One-time per listing · no recurring fee" />
+                        <CardTitle
+                            icon={TrendingUp}
+                            title="Visibility boosts"
+                            sub="One-time per listing · no recurring fee"
+                            iconBg="bg-orange-100 dark:bg-orange-900/30"
+                            iconColor="text-primary-600"
+                        />
                         {VENDOR_FEATURES.map(f => (
                             <Row key={f.label} label={f.label} value={fmt(f.priceNaira)} />
                         ))}
@@ -241,9 +300,15 @@ function VendorTab() {
                 </Card>
 
                 {/* Verification badge */}
-                <Card accent="border-t-amber-500">
+                <Card>
                     <CardBody>
-                        <CardTitle icon={ShieldCheck} title="Verified badge" sub="One-time · permanent · identity verified" />
+                        <CardTitle
+                            icon={ShieldCheck}
+                            title="Verified badge"
+                            sub="One-time · permanent · identity verified"
+                            iconBg="bg-amber-100 dark:bg-amber-900/30"
+                            iconColor="text-amber-600 dark:text-amber-400"
+                        />
                         <Row
                             label="NIN + CAC document review"
                             value={fmt(VENDOR_VERIFICATION_FEE_NAIRA)}
@@ -270,14 +335,6 @@ export default function PricingPage() {
                 <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
                     Free to plan. Pay only when you upgrade, sell tickets, or collect gifts — and only what's shown here.
                 </p>
-                <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
-                    <a href={APP_LINKS.signup}>
-                        <Button size="lg" tabIndex={-1}>Start free</Button>
-                    </a>
-                    <a href={APP_LINKS.vendorSignup} className="text-sm font-bold text-gray-500 dark:text-gray-400 hover:text-primary-600 transition-colors">
-                        I'm a Vendor →
-                    </a>
-                </div>
             </section>
 
             {/* Tabs */}
@@ -341,7 +398,9 @@ export default function PricingPage() {
                 <h2 className="text-3xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Ready to plan your event?</h2>
                 <p className="text-gray-500 dark:text-gray-400 mb-8">Create your account free. No credit card required.</p>
                 <a href={APP_LINKS.signup}>
-                    <Button size="lg" tabIndex={-1}>Start Planning — It's Free</Button>
+                    <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-colors shadow-xl">
+                        Start Planning — It's Free
+                    </button>
                 </a>
             </section>
         </main>
