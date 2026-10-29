@@ -30,6 +30,14 @@ const SMS_BUNDLES = [
     { label: '200 messaging credits', count: 200, priceNaira: 8_000 },
     { label: '500 messaging credits', count: 500, priceNaira: 17_500 },
 ];
+const GUEST_PASS_TIERS = [
+    { label: '1–199 guests', pricePerGuestNaira: 400 },
+    { label: '200–499 guests', pricePerGuestNaira: 350 },
+    { label: '500–999 guests', pricePerGuestNaira: 300 },
+    { label: '1,000+ guests', pricePerGuestNaira: 250 },
+];
+const GUEST_PASS_MINIMUM_NAIRA = 20_000;
+const GUEST_PASS_FREE_TEST = 5;
 const DOMAIN_PRICES_NAIRA: Record<string, number> = {
     com: 30_000,
     ng: 25_000,
@@ -128,7 +136,6 @@ function PlannerTab() {
                                 'Ticket sales setup',
                                 `${STORAGE_FREE_PHOTOS} gallery photos`,
                                 'AI planning assistant',
-                                'QR code check-in for guests',
                             ].map(item => (
                                 <li key={item} className="flex items-center gap-3 py-2.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
                                     <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
@@ -187,7 +194,7 @@ function PlannerTab() {
             </div>
 
             {/* Pay-as-you-go add-ons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {/* Website keep-forever */}
                 <Card>
                     <CardBody>
@@ -239,6 +246,29 @@ function PlannerTab() {
                                 note={`≈ ${fmt(Math.round(b.priceNaira / b.count))}/credit`}
                             />
                         ))}
+                    </CardBody>
+                </Card>
+
+                {/* Guest QR passes */}
+                <Card>
+                    <CardBody>
+                        <CardTitle
+                            icon={QrCode}
+                            title="Guest QR passes"
+                            sub={`${GUEST_PASS_FREE_TEST} free test passes · per event`}
+                            iconBg="bg-indigo-100 dark:bg-indigo-900/30"
+                            iconColor="text-indigo-600 dark:text-indigo-400"
+                        />
+                        {GUEST_PASS_TIERS.map(t => (
+                            <Row
+                                key={t.label}
+                                label={t.label}
+                                value={`${fmt(t.pricePerGuestNaira)}/guest`}
+                            />
+                        ))}
+                        <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+                            <p className="text-xs text-gray-400">Min. charge {fmt(GUEST_PASS_MINIMUM_NAIRA)} per event</p>
+                        </div>
                     </CardBody>
                 </Card>
             </div>
