@@ -39,10 +39,9 @@ const GUEST_PASS_TIERS = [
 const GUEST_PASS_MINIMUM_NAIRA = 20_000;
 const GUEST_PASS_FREE_TEST = 5;
 const DOMAIN_PRICES_NAIRA: Record<string, number> = {
-    com: 30_000,
-    ng: 25_000,
-    'com.ng': 20_000,
-    'org.ng': 18_000,
+    com: 50_000,
+    net: 60_000,
+    org: 40_000,
 };
 
 const fmt = (n: number) => `₦${n.toLocaleString()}`;
