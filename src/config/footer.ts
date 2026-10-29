@@ -27,7 +27,7 @@ export const FOOTER_CONFIG = {
                 { label: 'Careers', href: '/careers' },
                 { label: 'Contact Us', href: '/contact' },
                 { label: 'support@ariyahq.com', href: 'mailto:support@ariyahq.com' },
-                { label: 'WhatsApp', href: 'https://wa.me/2349055380387' },
+                { label: 'WhatsApp', href: 'https://wa.me/2347035208062' },
                 { label: 'Press', href: '#' }
             ]
         }

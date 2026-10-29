@@ -185,7 +185,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone &amp; WhatsApp</div>
-                                        <a href="https://wa.me/2349055380387?text=Hi%20Ariya%2C%20I%20need%20some%20help." target="_blank" rel="noopener noreferrer" className="font-medium text-gray-900 dark:text-gray-200 hover:text-primary-600">09055380387</a>
+                                        <a href="https://wa.me/2347035208062?text=Hi%20Ariya%2C%20I%20need%20some%20help." target="_blank" rel="noopener noreferrer" className="font-medium text-gray-900 dark:text-gray-200 hover:text-primary-600">07035208062</a>
                                         <div className="text-sm text-gray-500 dark:text-gray-400">Chat with us on WhatsApp</div>
                                         <div className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri, 9am - 6pm WAT</div>
                                     </div>
