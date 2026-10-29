@@ -49,6 +49,7 @@ const CaseStudyEditorPage = lazy(() => import('./pages/admin/CaseStudyEditorPage
 const ResourceEditorPage = lazy(() => import('./pages/admin/ResourceEditorPage'));
 const AnalyticsPage = lazy(() => import('./pages/admin/AnalyticsPage'));
 const SettingsPage = lazy(() => import('./pages/admin/SettingsPage'));
+const PricingPage = lazy(() => import('./pages/PricingPage'));
 const WaitlistPage = lazy(() => import('./pages/WaitlistPage'));
 const AdminLoginPage = lazy(() => import('./pages/admin/LoginPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -105,7 +106,8 @@ export default function App() {
                                                 <Route path="/resources/faq" element={<FAQPage />} />
                                                 <Route path="/resources/help-center" element={<HelpCenterPage />} />
 
-                                                <Route path="/about" element={<AboutPage />} />
+                                                <Route path="/pricing" element={<PricingPage />} />
+                                <Route path="/about" element={<AboutPage />} />
 
                                                 {/* CMS / Blog Routes */}
                                                 <Route path="/contact" element={<ContactPage />} />

@@ -19,7 +19,7 @@ export default function AIPlanningPage() {
                     </h1>
 
                     <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                        Harness the power of generative AI to build timelines, source vendors, and negotiate contracts—instantly.
+                        Tell Ariya about your event and get a full planning timeline, budget breakdown, and vendor shortlist — in minutes.
                     </p>
 
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
@@ -36,20 +36,20 @@ export default function AIPlanningPage() {
                     {[
                         {
                             icon: BrainCircuit,
-                            title: "Generative Timelines",
-                            desc: "Input your event date and type, and watch as Ariya builds a detailed minute-by-minute run of show in seconds.",
+                            title: "Instant Timeline",
+                            desc: "Tell Ariya your event date and type. It generates a structured run-of-show and task checklist so nothing slips through.",
                             gradient: "from-blue-500/20 via-blue-500/5 to-transparent border-blue-500/20"
                         },
                         {
                             icon: Bot,
-                            title: "Smart Sourcing",
-                            desc: "Our AI matches you with vendors who fit your specific style, budget, and availability criteria. No more cold calling.",
+                            title: "Vendor Shortlist",
+                            desc: "Describe what you need and Ariya surfaces a curated vendor shortlist grouped by budget category — ready for you to review.",
                             gradient: "from-purple-500/20 via-purple-500/5 to-transparent border-purple-500/20"
                         },
                         {
                             icon: Zap,
-                            title: "Contract Analysis",
-                            desc: "Upload any vendor contract. Ariya will highlight red flags, negotiate terms, and suggest edits based on industry standards.",
+                            title: "Budget Breakdown",
+                            desc: "Input your total budget and Ariya recommends how to split it across categories — catering, decor, venue, and more.",
                             gradient: "from-orange-500/20 via-orange-500/5 to-transparent border-orange-500/20"
                         }
                     ].map((feature, idx) => (
@@ -76,19 +76,18 @@ export default function AIPlanningPage() {
             {/* Interactive Visual Placeholder */}
             <section className="py-24 px-8 border-t border-white/10">
                 <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="text-4xl font-black tracking-tight mb-16">It feels like sci-fi. <br /> It works like <span className="text-primary-500">science</span>.</h2>
+                    <h2 className="text-4xl font-black tracking-tight mb-16">Your event brief. <br /> A full plan <span className="text-primary-500">in minutes</span>.</h2>
 
-                    {/* Abstract Visual Representation */}
+                    {/* Step visual */}
                     <div className="relative h-96 w-full rounded-[3rem] border border-white/10 bg-black overflow-hidden flex items-center justify-center">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-stops))] from-primary-900/40 via-transparent to-transparent animate-pulse" />
-                        <div className="grid grid-cols-6 gap-4 opacity-30 scale-150 rotate-12">
-                            {[...Array(24)].map((_, i) => (
-                                <div key={i} className="w-32 h-32 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-stops))] from-primary-900/40 via-transparent to-transparent" />
+                        <div className="relative z-10 flex flex-col gap-4 w-full max-w-sm px-8">
+                            {["Describe your event", "Ariya drafts your plan", "Review & refine in the dashboard"].map((step, i) => (
+                                <div key={i} className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 py-4 backdrop-blur-sm">
+                                    <div className="w-7 h-7 rounded-full bg-primary-600 text-white text-xs font-black flex items-center justify-center flex-shrink-0">{i + 1}</div>
+                                    <span className="text-sm font-medium text-white/80">{step}</span>
+                                </div>
                             ))}
-                        </div>
-                        <div className="absolute z-10 bg-black/80 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-full flex items-center gap-4 shadow-2xl">
-                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                            <span className="font-mono text-sm text-primary-400">Processing 1,500 data points...</span>
                         </div>
                     </div>
                 </div>

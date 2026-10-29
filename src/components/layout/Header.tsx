@@ -201,6 +201,13 @@ export default function Header() {
                             </div>
                         </div>
                     </NavDropdown>
+                    {/* PRICING */}
+                    <Link
+                        to="/pricing"
+                        className={`text-sm font-bold hover:text-primary-600 transition-colors ${scrolled ? 'text-gray-800 dark:text-white' : 'text-white'}`}
+                    >
+                        Pricing
+                    </Link>
                 </nav>
 
                 <nav className="hidden xl:flex items-center gap-6">
