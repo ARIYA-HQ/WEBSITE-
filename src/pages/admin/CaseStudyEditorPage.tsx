@@ -4,6 +4,7 @@ import { ArrowLeft, Save, Plus, Trash2, Eye, X } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { CaseStudy } from '../../types/cms';
 import CaseStudyDetailView from '../../components/resources/CaseStudyDetailView';
+import ImageUploadField from '../../components/admin/ImageUploadField';
 
 export default function CaseStudyEditorPage() {
     const navigate = useNavigate();
@@ -208,15 +209,14 @@ export default function CaseStudyEditorPage() {
 
                     <div className="space-y-6">
                         <h3 className="text-sm font-black uppercase tracking-widest text-gray-400">Assets & Branding</h3>
-                        <div className="grid grid-cols-2 gap-6">
-                            <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Hero Image URL</label>
-                                <input name="image" value={formData.image} onChange={handleChange} className="w-full bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 py-3 text-gray-900 dark:text-white" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Logo Text/Emoji</label>
-                                <input name="logo" value={formData.logo} onChange={handleChange} className="w-full bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 py-3 text-gray-900 dark:text-white" />
-                            </div>
+                        <ImageUploadField
+                            value={formData.image || ''}
+                            onChange={(url) => setFormData(prev => ({ ...prev, image: url }))}
+                            label="Hero Image"
+                        />
+                        <div>
+                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Logo Text/Emoji</label>
+                            <input name="logo" value={formData.logo} onChange={handleChange} className="w-full bg-gray-50 dark:bg-gray-800 border-none rounded-xl px-4 py-3 text-gray-900 dark:text-white" />
                         </div>
                     </div>
 

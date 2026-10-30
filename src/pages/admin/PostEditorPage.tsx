@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Plus, Save, Eye, Hash, Image as ImageIcon, FileText, Calendar, User, Layout, X } from 'lucide-react';
+import { ArrowLeft, Plus, Save, Eye, Hash, FileText, User, Layout, X } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
 import RichTextEditor from '../../components/admin/RichTextEditor';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
+import ImageUploadField from '../../components/admin/ImageUploadField';
 
 export default function PostEditorPage() {
     const navigate = useNavigate();
@@ -263,23 +264,10 @@ export default function PostEditorPage() {
                                         className="w-full bg-gray-50 dark:bg-gray-800/50 border-none rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-600 outline-none"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-gray-500 mb-2">Cover Image</label>
-                                    <div className="flex gap-2">
-                                        <input
-                                            type="text"
-                                            name="image"
-                                            value={formData.image}
-                                            onChange={handleChange}
-                                            className="w-full bg-gray-50 dark:bg-gray-800/50 border-none rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-600 outline-none"
-                                        />
-                                    </div>
-                                    {formData.image && (
-                                        <div className="mt-2 rounded-lg overflow-hidden h-32 w-full">
-                                            <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
-                                        </div>
-                                    )}
-                                </div>
+                                <ImageUploadField
+                                    value={formData.image || ''}
+                                    onChange={(url) => setFormData(prev => ({ ...prev, image: url }))}
+                                />
                             </div>
                         </div>
 
