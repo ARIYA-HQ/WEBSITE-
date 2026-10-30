@@ -4,6 +4,26 @@ import { ArrowLeft, Save, Plus, Eye, X, ImagePlus } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { Resource } from '../../types/cms';
 import ResourceCard from '../../components/resources/ResourceCard';
+import * as pdfjsLib from 'pdfjs-dist';
+import pdfjsWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
+
+const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070';
+
+async function pdfFirstPageToPng(file: File): Promise<File> {
+    const data = new Uint8Array(await file.arrayBuffer());
+    const pdf = await pdfjsLib.getDocument({ data }).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 2 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    await page.render({ canvasContext: canvas.getContext('2d')!, viewport, canvas }).promise;
+    const blob = await new Promise<Blob>((res) => canvas.toBlob(b => res(b!), 'image/png'));
+    const base = file.name.replace(/\.[^.]+$/, '');
+    return new File([blob], `${base}_cover.png`, { type: 'image/png' });
+}
 
 export default function ResourceEditorPage() {
     const navigate = useNavigate();
@@ -204,6 +224,24 @@ export default function ResourceEditorPage() {
                                                     size: `${(file.size / (1024 * 1024)).toFixed(2)} MB`,
                                                     format: file.name.split('.').pop()?.toUpperCase() || 'FILE'
                                                 }));
+
+                                                // Auto-generate cover image from first page of PDF
+                                                // if no custom image has been set yet
+                                                if (file.type === 'application/pdf') {
+                                                    setFormData(prev => {
+                                                        const hasCustomImage = prev.image && prev.image !== DEFAULT_IMAGE;
+                                                        if (hasCustomImage) return prev;
+                                                        // trigger async thumbnail generation
+                                                        pdfFirstPageToPng(file).then(thumb => {
+                                                            setImageUploading(true);
+                                                            return cmsService.uploadFile(thumb)
+                                                                .then(imgUrl => setFormData(p => ({ ...p, image: imgUrl })))
+                                                                .catch(() => {/* silent */})
+                                                                .finally(() => setImageUploading(false));
+                                                        }).catch(() => {/* silent */});
+                                                        return prev;
+                                                    });
+                                                }
                                             } catch (err) {
                                                 alert('Upload failed');
                                             } finally {

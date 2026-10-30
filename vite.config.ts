@@ -15,6 +15,7 @@ export default defineConfig({
     ],
     optimizeDeps: {
         include: ['react-is'],
+        exclude: ['pdfjs-dist'],
     },
     base: process.env.BASE_PATH || (process.env.VERCEL || process.env.RENDER ? '/' : '/WEBSITE-/'),
     server: {
