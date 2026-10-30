@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Save, Plus, Eye, X } from 'lucide-react';
+import { ArrowLeft, Save, Plus, Eye, X, ImagePlus } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { Resource } from '../../types/cms';
 import ResourceCard from '../../components/resources/ResourceCard';
@@ -11,6 +11,8 @@ export default function ResourceEditorPage() {
     const isEditMode = Boolean(id);
     const [loading, setLoading] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
+    const [imageUploading, setImageUploading] = useState(false);
+    const imageInputRef = useRef<HTMLInputElement>(null);
 
     const [formData, setFormData] = useState<Partial<Resource>>({
         title: '',
@@ -237,13 +239,20 @@ export default function ResourceEditorPage() {
                         <div className="bg-white dark:bg-gray-900 p-6 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 sticky top-8">
                             <h2 className="text-lg font-black text-gray-900 dark:text-white mb-6">Cover Image</h2>
 
-                            <div className="mb-6">
+                            {/* Image preview */}
+                            <div className="mb-4">
                                 <div className="aspect-video w-full rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-200 dark:border-gray-700 relative group">
                                     {formData.image ? (
                                         <>
                                             <img src={formData.image} alt="Preview" className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-700" />
                                             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                <p className="text-white font-bold text-sm">Change URL below box</p>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => imageInputRef.current?.click()}
+                                                    className="bg-white text-gray-900 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-gray-100 transition-colors"
+                                                >
+                                                    Replace Image
+                                                </button>
                                             </div>
                                         </>
                                     ) : (
@@ -255,8 +264,46 @@ export default function ResourceEditorPage() {
                                 </div>
                             </div>
 
+                            {/* Upload dropzone */}
+                            <div className="mb-4">
+                                <input
+                                    ref={imageInputRef}
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={async (e) => {
+                                        const file = e.target.files?.[0];
+                                        if (!file) return;
+                                        setImageUploading(true);
+                                        try {
+                                            const url = await cmsService.uploadFile(file);
+                                            setFormData(prev => ({ ...prev, image: url }));
+                                        } catch {
+                                            alert('Image upload failed');
+                                        } finally {
+                                            setImageUploading(false);
+                                            e.target.value = '';
+                                        }
+                                    }}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => imageInputRef.current?.click()}
+                                    disabled={imageUploading}
+                                    className="w-full border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl py-4 flex flex-col items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group cursor-pointer disabled:opacity-60"
+                                >
+                                    <div className="w-9 h-9 bg-primary-100 text-primary-600 dark:bg-primary-900/30 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        <ImagePlus className="w-4 h-4" />
+                                    </div>
+                                    <p className="text-xs font-bold text-gray-900 dark:text-white">
+                                        {imageUploading ? 'Uploading…' : 'Upload image from device'}
+                                    </p>
+                                    <p className="text-[10px] text-gray-400">JPG, PNG, WebP up to 10MB</p>
+                                </button>
+                            </div>
+
                             <div className="mb-8">
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Image URL</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Or paste image URL</label>
                                 <input
                                     name="image"
                                     value={formData.image}
