@@ -87,7 +87,7 @@ export default function BlogPage() {
             {/* Featured Post */}
             {featuredPost && (
                 <section className="max-w-7xl mx-auto px-8 mb-24">
-                    <Link to={`/resources/blog/${featuredPost.id}`} className="group block relative rounded-[3rem] overflow-hidden aspect-[16/9] md:aspect-[21/9]">
+                    <Link to={`/resources/blog/${featuredPost.slug || featuredPost.id}`} className="group block relative rounded-[3rem] overflow-hidden aspect-[16/9] md:aspect-[21/9]">
                         <img
                             src={featuredPost.image}
                             alt={featuredPost.title}
@@ -144,7 +144,7 @@ export default function BlogPage() {
                                 transition={{ duration: 0.3 }}
                                 key={post.id}
                             >
-                                <Link to={`/resources/blog/${post.id}`} className="group h-full flex flex-col">
+                                <Link to={`/resources/blog/${post.slug || post.id}`} className="group h-full flex flex-col">
                                     <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 bg-gray-100 dark:bg-gray-800 relative">
                                         <img
                                             src={post.image}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, User, Twitter, Facebook, Linkedin } from 'lucide-react';
 import { BlogPost } from '../../types/cms';
 import DOMPurify from 'dompurify';
+import ReaderPoll from './ReaderPoll';
 
 interface BlogPostDetailViewProps {
     post: BlogPost;
@@ -10,6 +11,12 @@ interface BlogPostDetailViewProps {
 }
 
 export default function BlogPostDetailView({ post, preview = false }: BlogPostDetailViewProps) {
+    const contentSegments = post.content.split(/<!-- ariya-poll:(ariya-poll-\d+) -->/g);
+    const parsedDate = post.date ? new Date(post.date) : null;
+    const dateLabel = parsedDate && !Number.isNaN(parsedDate.getTime())
+        ? new Intl.DateTimeFormat('en-NG', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(parsedDate)
+        : post.date;
+
     return (
         <article className={`bg-white dark:bg-gray-950 min-h-screen ${preview ? '' : 'pt-24'}`}>
             <div className="max-w-4xl mx-auto px-8 py-16 animate-in fade-in slide-in-from-bottom-8 duration-700">
@@ -21,7 +28,7 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                 )}
 
                 <header className="mb-16 text-center">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-6">{post.category} • {post.date}</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-6">{post.category} • {dateLabel}</div>
                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 leading-tight text-gray-900 dark:text-white">
                         {post.title}
                     </h1>
@@ -48,10 +55,20 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                 </div>
 
                 {/* Render HTML content safely */}
-                <div
-                    className="prose prose-lg prose-gray dark:prose-invert mx-auto prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-700"
-                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
-                />
+                <div className="prose prose-lg prose-gray dark:prose-invert mx-auto prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-700">
+                    {contentSegments.map((segment, index) => {
+                        if (index % 2 === 1) {
+                            return <ReaderPoll key={`${segment}-${index}`} pollId={segment} />;
+                        }
+
+                        return (
+                            <div
+                                key={`article-content-${index}`}
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(segment) }}
+                            />
+                        );
+                    })}
+                </div>
 
                 <hr className="my-16 border-gray-100 dark:border-gray-800" />
 

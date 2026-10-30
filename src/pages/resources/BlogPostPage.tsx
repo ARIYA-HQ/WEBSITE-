@@ -17,12 +17,8 @@ export default function BlogPostPage() {
             setLoading(true);
             try {
                 if (slug) {
-                    const numericId = parseInt(slug);
-                    // Try to find by ID first if numeric
-                    let fetchedPost: BlogPost | undefined;
-                    if (!isNaN(numericId)) {
-                        fetchedPost = await cmsService.getBlogPostById(numericId);
-                    }
+                    // Try slug first (text slugs and numeric fallback handled by getBlogPostBySlug)
+                    const fetchedPost = await cmsService.getBlogPostBySlug(slug);
 
                     setPost(fetchedPost || null);
 
@@ -94,7 +90,7 @@ export default function BlogPostPage() {
                         <h3 className="text-2xl font-black tracking-tight mb-12 text-gray-900 dark:text-white">Read Next</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {relatedPosts.map((related) => (
-                                <Link to={`/resources/blog/${related.id}`} key={related.id} className="group cursor-pointer">
+                                <Link to={`/resources/blog/${related.slug || related.id}`} key={related.id} className="group cursor-pointer">
                                     <div className="aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-4 bg-gray-200 dark:bg-gray-800 relative">
                                         <img
                                             src={related.image}

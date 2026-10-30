@@ -4,6 +4,7 @@ import { Plus, Edit2, Trash2, CheckCircle, Clock, Search as SearchIcon, FileText
 import { cmsService } from '../../services/cmsService';
 import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../../types/cms';
 import { useCms } from '../../context/CmsContext';
+import journalPosts from '../../data/ariyaJournal.json';
 
 type TabView = 'overview' | 'posts' | 'case-studies' | 'resources' | 'waitlist';
 
@@ -29,6 +30,7 @@ export default function AdminDashboardPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'archived'>('all');
     const [pendingDeleteId, setPendingDeleteId] = useState<any>(null);
+    const [importingJournal, setImportingJournal] = useState(false);
 
     const fetchData = async () => {
         await performAction(async () => {
@@ -134,6 +136,55 @@ export default function AdminDashboardPage() {
         if (view === 'waitlist') return; // Waitlist entries are created by users on the public site
     };
 
+    const handleImportJournal = async () => {
+        if (view !== 'posts' || importingJournal) return;
+
+        const existing = new Set(posts.flatMap(post => {
+            const slug = (post as BlogPost & { slug?: string }).slug;
+            return [slug, post.title.trim().toLocaleLowerCase()].filter(Boolean) as string[];
+        }));
+        const missing = journalPosts.filter(post =>
+            !existing.has(post.slug) && !existing.has(post.title.trim().toLocaleLowerCase())
+        );
+        if (missing.length === 0) {
+            window.alert('All prepared Ariya Journal articles are already in the CMS.');
+            return;
+        }
+        if (!window.confirm(`Publish ${missing.length} missing Ariya Journal article${missing.length === 1 ? '' : 's'} now? Existing posts will be left unchanged.`)) return;
+
+        setImportingJournal(true);
+        const failures: string[] = [];
+        let imported = 0;
+        // Create in reverse order because the CMS lists newest entries first.
+        for (const post of [...missing].reverse()) {
+            try {
+                await cmsService.createBlogPost({
+                    title: post.title,
+                    excerpt: post.excerpt,
+                    content: post.content,
+                    date: post.date,
+                    author: post.author,
+                    category: post.category,
+                    tags: post.tags,
+                    readTime: post.read_time,
+                    image: post.image,
+                    status: post.status,
+                    slug: post.slug,
+                } as Omit<BlogPost, 'id'>);
+                imported += 1;
+            } catch {
+                failures.push(post.title);
+            }
+        }
+        await fetchData();
+        setImportingJournal(false);
+        if (failures.length) {
+            window.alert(`Imported ${imported} article${imported === 1 ? '' : 's'}. ${failures.length} failed: ${failures.join('; ')}`);
+        } else {
+            window.alert(`Published ${imported} Ariya Journal article${imported === 1 ? '' : 's'}.`);
+        }
+    };
+
     const handleEdit = (id: any) => {
         if (view === 'posts') navigate(`/admin/posts/${id}/edit`);
         if (view === 'case-studies') navigate(`/admin/case-studies/${id}/edit`);
@@ -218,6 +269,15 @@ export default function AdminDashboardPage() {
                         </p>
                     </div>
                     <div className="flex items-center gap-3 w-full md:w-auto">
+                        {view === 'posts' && (
+                            <button
+                                onClick={handleImportJournal}
+                                disabled={importingJournal || loading || cmsLoading}
+                                className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 px-5 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 transition-all hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 whitespace-nowrap w-full md:w-auto"
+                            >
+                                <Layers className="w-4 h-4" /> {importingJournal ? 'Importing…' : 'Import Ariya Journal'}
+                            </button>
+                        )}
                         {view === 'waitlist' && (
                             <button
                                 onClick={handleExportCSV}

@@ -108,8 +108,16 @@ class CmsService {
         return localPosts.find(p => p.id === id);
     }
 
-    // Compat for earlier usage
     async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+        // Try text slug first (local data)
+        const bySlug = localPosts.find(p => p.slug === slug);
+        if (bySlug) return bySlug;
+        // Try API slug endpoint
+        try {
+            const res = await this.fetchWithRetry(`/api/posts/by-slug/${encodeURIComponent(slug)}`, { headers: authHeaders() });
+            if (res.ok) return readItem<BlogPost>(res);
+        } catch { }
+        // Fall back to numeric ID for legacy URLs
         const id = parseInt(slug);
         if (!isNaN(id)) return this.getBlogPostById(id);
         return undefined;
