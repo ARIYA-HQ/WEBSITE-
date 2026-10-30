@@ -10,6 +10,8 @@ export interface BlogPost {
     readTime: string;
     image: string;
     status: 'published' | 'draft' | 'archived';
+    pollId?: string;
+    slug?: string;
 }
 
 export interface CaseStudy {

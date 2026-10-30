@@ -1,4 +1,22 @@
 import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../types/cms';
+import journalRaw from '../data/ariyaJournal.json';
+
+// Local static fallback — used when the API is unreachable or returns an error.
+const localPosts: BlogPost[] = (journalRaw as any[]).map(entry => ({
+    id: entry.sourceNumber as number,
+    title: entry.title,
+    excerpt: entry.excerpt,
+    content: entry.content,
+    date: entry.date,
+    author: entry.author,
+    category: entry.category,
+    tags: entry.tags,
+    readTime: entry.read_time,
+    image: entry.image,
+    status: entry.status as BlogPost['status'],
+    pollId: entry.pollId,
+    slug: entry.slug,
+}));
 
 class CmsError extends Error {
     constructor(public message: string, public status?: number, public body?: string) {
@@ -62,25 +80,32 @@ class CmsService {
         if (options.status) queryParams.append('status', options.status);
 
         const url = `/api/posts${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-        const res = await this.fetchWithRetry(url, { headers: authHeaders() });
-
-        if (!res.ok) {
-            const text = await res.text();
-            throw new CmsError(`Failed to fetch posts: ${res.status}`, res.status, text);
-        }
-
         try {
-            return await readList<BlogPost>(res);
-        } catch (e) {
-            throw new CmsError('Failed to parse CMS response', res.status);
+            const res = await this.fetchWithRetry(url, { headers: authHeaders() });
+            if (res.ok) {
+                const posts = await readList<BlogPost>(res);
+                if (posts.length > 0) return posts;
+            }
+        } catch {
+            // Fall through to local data
         }
+
+        // Local fallback: serve from ariyaJournal.json
+        const filtered = options.status
+            ? localPosts.filter(p => p.status === options.status)
+            : localPosts;
+        return filtered;
     }
 
     async getBlogPostById(id: number): Promise<BlogPost | undefined> {
-        const res = await fetch(`/api/posts/${id}`, { headers: authHeaders() });
-        if (res.status === 404) return undefined;
-        if (!res.ok) throw new Error('Failed to fetch post');
-        return readItem<BlogPost>(res);
+        try {
+            const res = await fetch(`/api/posts/${id}`, { headers: authHeaders() });
+            if (res.status === 404) return localPosts.find(p => p.id === id);
+            if (res.ok) return readItem<BlogPost>(res);
+        } catch {
+            // Fall through to local data
+        }
+        return localPosts.find(p => p.id === id);
     }
 
     // Compat for earlier usage
