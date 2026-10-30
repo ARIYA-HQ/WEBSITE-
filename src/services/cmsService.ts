@@ -109,15 +109,13 @@ class CmsService {
     }
 
     async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
-        // Try text slug first (local data)
-        const bySlug = localPosts.find(p => p.slug === slug);
-        if (bySlug) return bySlug;
-        // Try API slug endpoint
+        // Fetch all posts (API with local fallback) and find by slug
         try {
-            const res = await this.fetchWithRetry(`/api/posts/by-slug/${encodeURIComponent(slug)}`, { headers: authHeaders() });
-            if (res.ok) return readItem<BlogPost>(res);
+            const all = await this.getBlogPosts();
+            const found = all.find(p => p.slug === slug);
+            if (found) return found;
         } catch { }
-        // Fall back to numeric ID for legacy URLs
+        // Legacy numeric ID fallback for old /blog/123 URLs
         const id = parseInt(slug);
         if (!isNaN(id)) return this.getBlogPostById(id);
         return undefined;
