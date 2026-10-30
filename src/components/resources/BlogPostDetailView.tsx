@@ -55,7 +55,7 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                 </div>
 
                 {/* Render HTML content safely */}
-                <div className="prose prose-lg prose-gray dark:prose-invert mx-auto prose-headings:font-black prose-headings:tracking-tight prose-a:text-primary-600 hover:prose-a:text-primary-700">
+                <div className="article-content">
                     {contentSegments.map((segment, index) => {
                         if (index % 2 === 1) {
                             return <ReaderPoll key={`${segment}-${index}`} pollId={segment} />;
