@@ -133,8 +133,9 @@ function PlannerTab() {
                                 'Seating planner',
                                 'Vendor discovery & bookings',
                                 `Event website at yourslug.ariyahq.com`,
-                                'Wishlist / gift registry setup',
-                                'Ticket sales setup',
+                                    'Wishlist / gift registry setup',
+                                'Ticket sales with promo / discount codes',
+                                'Waitlist for sold-out events',
                                 `${STORAGE_FREE_PHOTOS} gallery photos`,
                                 'AI planning assistant',
                             ].map(item => (
@@ -161,7 +162,7 @@ function PlannerTab() {
                             <Row
                                 label="Ticket sales"
                                 value={pct(TICKET_SERVICE_FEE_RATE)}
-                                note="Deducted from your payout. Buyers cover only Paystack's card fee."
+                                note="Deducted from your payout. Buyers cover only Paystack's card fee. Promo/discount codes included free."
                             />
                             <Row
                                 label="Cash fund contributions"
@@ -237,7 +238,7 @@ function PlannerTab() {
                             <CardTitle
                                 icon={MessageSquare}
                                 title="Guest messaging"
-                                sub="SMS · WhatsApp · Email · Nigeria only"
+                                sub="SMS · Email · Nigeria only · WhatsApp coming soon"
                                 iconBg="bg-sky-100 dark:bg-sky-900/30"
                                 iconColor="text-sky-600 dark:text-sky-400"
                             />
@@ -415,7 +416,7 @@ export default function PricingPage() {
                         <ul className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed space-y-1 text-left inline-block">
                             <li><span className="font-semibold text-gray-700 dark:text-gray-300">Cash fund</span> — Ariya's 10% (incl. Paystack) from your payout</li>
                             <li><span className="font-semibold text-gray-700 dark:text-gray-300">Registry</span> — no Ariya fee on physical items</li>
-                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Tickets</span> — Paystack card fee + 3% from organiser payout</li>
+                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Tickets</span> — Paystack card fee + 3% from organiser payout · promo codes free</li>
                         </ul>
                     </div>
 
