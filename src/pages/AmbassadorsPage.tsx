@@ -39,7 +39,7 @@ export default function AmbassadorsPage() {
                         <span className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary-400/20 bg-primary-500/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-primary-300">
                             <Users className="h-4 w-4" /> Ariya community programme
                         </span>
-                        <h1 className="max-w-3xl text-5xl font-black leading-[0.95] tracking-tight sm:text-7xl">
+                        <h1 className="max-w-3xl text-5xl font-black leading-[0.95] tracking-tighter sm:text-7xl">
                             Bring your people. <span className="text-primary-400">Grow with Ariya.</span>
                         </h1>
                         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-gray-300 sm:text-xl">
@@ -58,7 +58,7 @@ export default function AmbassadorsPage() {
                         </p>
                     </div>
 
-                    <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-7 shadow-2xl backdrop-blur sm:p-9">
+                    <div className="rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-7 shadow-2xl shadow-black/10 backdrop-blur dark:shadow-none sm:p-10">
                         <p className="text-xs font-black uppercase tracking-[0.2em] text-primary-300">A clear, simple referral</p>
                         <div className="mt-7 space-y-5">
                             <div className="flex gap-4">
@@ -87,7 +87,7 @@ export default function AmbassadorsPage() {
                     </div>
                     <div className="grid gap-5 md:grid-cols-3">
                         {steps.map(({ number, title, description, icon: Icon }) => (
-                            <article key={number} className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm dark:border-gray-800 dark:bg-gray-900 sm:p-9">
+                            <article key={number} className="rounded-[2.5rem] border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-900 sm:p-10">
                                 <div className="flex items-center justify-between">
                                     <span className="text-sm font-black tracking-widest text-primary-600">{number}</span>
                                     <Icon className="h-6 w-6 text-primary-600" />
@@ -113,7 +113,7 @@ export default function AmbassadorsPage() {
                         </ul>
                         <p className="mt-5 text-sm leading-relaxed text-gray-500 dark:text-gray-400">Physical gifts, shipping, failed or test payments, refunded transactions, and duplicate purchases are excluded.</p>
                     </div>
-                    <div className="rounded-3xl border border-gray-200 bg-white p-7 dark:border-gray-800 dark:bg-gray-950 sm:p-9">
+                    <div className="rounded-[2.5rem] border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-950 sm:p-10">
                         <div className="flex items-center gap-3"><CalendarClock className="h-6 w-6 text-primary-600" /><h3 className="text-xl font-black">When are rewards available?</h3></div>
                         <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">The standard rate is 0.5% of eligible value, capped at the net revenue available after applicable costs. A reward may be lower or zero if the margin does not support it.</p>
                         <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">Rewards stay pending until the transaction clears its verification, refund and release checks. The standard holding period is 14 days after the event is completed for ticket sales, or after settlement for QR-pass and cash-fund payments.</p>
@@ -125,7 +125,7 @@ export default function AmbassadorsPage() {
             </section>
 
             <section className="px-6 py-20 sm:px-10 sm:py-28">
-                <div className="mx-auto max-w-4xl rounded-[2rem] bg-gray-950 px-7 py-12 text-center text-white sm:px-14 sm:py-16">
+                <div className="mx-auto max-w-4xl rounded-[2.5rem] bg-gray-950 px-7 py-12 text-center text-white sm:px-14 sm:py-16">
                     <h2 className="text-3xl font-black tracking-tight sm:text-5xl">Ready to apply?</h2>
                     <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-gray-300 sm:text-base">Create an Ariya account or sign in, then open the Ambassador dashboard to review the terms and apply. If pilot enrollment is closed, check back when applications reopen.</p>
                     <a href={APP_LINKS.ambassador} className="mt-8 inline-flex items-center justify-center gap-3 rounded-full bg-primary-600 px-8 py-4 text-xs font-black uppercase tracking-widest transition hover:bg-primary-500">
