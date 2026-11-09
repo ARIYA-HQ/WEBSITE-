@@ -15,6 +15,7 @@ import { Toaster } from 'sonner';
 // Pages (Lazy Loaded)
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const AmbassadorsPage = lazy(() => import('./pages/AmbassadorsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const CareersPage = lazy(() => import('./pages/CareersPage'));
 const IndividualsPage = lazy(() => import('./pages/solutions/IndividualsPage'));
@@ -108,6 +109,7 @@ export default function App() {
 
                                                 <Route path="/pricing" element={<PricingPage />} />
                                 <Route path="/about" element={<AboutPage />} />
+                                                <Route path="/ambassadors" element={<AmbassadorsPage />} />
 
                                                 {/* CMS / Blog Routes */}
                                                 <Route path="/contact" element={<ContactPage />} />

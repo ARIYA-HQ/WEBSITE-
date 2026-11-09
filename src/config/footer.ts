@@ -24,6 +24,7 @@ export const FOOTER_CONFIG = {
             title: "Company",
             links: [
                 { label: 'About Us', href: '/about' },
+                { label: 'Become an Ambassador', href: '/ambassadors' },
                 { label: 'Careers', href: '/careers' },
                 { label: 'Contact Us', href: '/contact' },
                 { label: 'support@ariyahq.com', href: 'mailto:support@ariyahq.com' },

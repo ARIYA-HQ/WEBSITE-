@@ -6,6 +6,7 @@ export const APP_LINKS = {
     login: `${APP_ORIGIN}/auth/login`,
     signup: `${APP_ORIGIN}/auth/signup`,
     vendorSignup: `${APP_ORIGIN}/auth/vendor-signup`,
+    ambassador: `${APP_ORIGIN}/dashboard/ambassador`,
     vendors: `${APP_ORIGIN}/vendors`,
     vendorBadges: `${APP_ORIGIN}/dashboard/vendor/badges`,
 };
