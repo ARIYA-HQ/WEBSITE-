@@ -27,6 +27,7 @@ const eligibleActivity = [
     'Verified ticket purchases',
     'Paid guest QR-pass purchases',
     'Cash-fund contributions through a registry',
+    'Settled booking value from vendors you refer',
 ];
 
 export default function AmbassadorsPage() {
@@ -43,7 +44,7 @@ export default function AmbassadorsPage() {
                             Bring your people. <span className="text-primary-400">Grow with Ariya.</span>
                         </h1>
                         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-gray-300 sm:text-xl">
-                            Help friends and communities discover a simpler way to plan celebrations. Share your invite link and earn rewards when eligible activity from new referrals is verified.
+                            Help friends, communities, planners, and vendors discover Ariya. Share one referral link; each person chooses their account type at signup, and eligible activity is tracked under your code.
                         </p>
                         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                             <a href={APP_LINKS.ambassador} className="inline-flex items-center justify-center gap-3 rounded-full bg-primary-600 px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-xl shadow-primary-950/30 transition hover:bg-primary-500">
@@ -63,11 +64,11 @@ export default function AmbassadorsPage() {
                         <div className="mt-7 space-y-5">
                             <div className="flex gap-4">
                                 <div className="rounded-xl bg-primary-500/10 p-3 text-primary-300"><Link2 className="h-5 w-5" /></div>
-                                <div><h2 className="font-bold">Your own invite link</h2><p className="mt-1 text-sm leading-relaxed text-gray-400">New signups are attributed to you when they register through your link.</p></div>
+                                <div><h2 className="font-bold">One link for every account type</h2><p className="mt-1 text-sm leading-relaxed text-gray-400">People choose planner, professional planner, or vendor when they sign up. Their account and eligible activity are attributed to your link.</p></div>
                             </div>
                             <div className="flex gap-4">
                                 <div className="rounded-xl bg-primary-500/10 p-3 text-primary-300"><Banknote className="h-5 w-5" /></div>
-                                <div><h2 className="font-bold">Up to 0.5% on eligible activity</h2><p className="mt-1 text-sm leading-relaxed text-gray-400">Rewards are capped by Ariya’s approved net revenue for each transaction. Signups alone do not earn rewards.</p></div>
+                                <div><h2 className="font-bold">Rewards depend on account type</h2><p className="mt-1 text-sm leading-relaxed text-gray-400">Vendor referrals earn 0.5% of settled booking value, capped by Ariya’s approved net revenue. Planner and professional planner referrals follow the existing eligible activity rules. Signups alone do not earn rewards.</p></div>
                             </div>
                             <div className="flex gap-4">
                                 <div className="rounded-xl bg-primary-500/10 p-3 text-primary-300"><ShieldCheck className="h-5 w-5" /></div>
@@ -105,7 +106,7 @@ export default function AmbassadorsPage() {
                     <div>
                         <span className="mb-4 block text-xs font-black uppercase tracking-[0.24em] text-primary-600">What can earn a reward?</span>
                         <h2 className="text-3xl font-black tracking-tight sm:text-4xl">Only verified, eligible activity</h2>
-                        <p className="mt-5 max-w-xl leading-relaxed text-gray-500 dark:text-gray-400">A referral must be a new Ariya account linked to your code at signup. Rewards are based on qualifying purchases by that account—not simply on registration or on activity by someone else.</p>
+                        <p className="mt-5 max-w-xl leading-relaxed text-gray-500 dark:text-gray-400">A referral must be a new Ariya account linked to your code at signup. Your one referral link works for vendors, personal planners, and professional planners; each earns under the applicable account type’s rules. Signups alone do not earn rewards.</p>
                         <ul className="mt-7 space-y-4">
                             {eligibleActivity.map((activity) => (
                                 <li key={activity} className="flex items-start gap-3 text-sm font-semibold"><BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" />{activity}</li>
