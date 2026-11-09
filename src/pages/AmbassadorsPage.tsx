@@ -31,7 +31,7 @@ const eligibleActivity = [
 
 export default function AmbassadorsPage() {
     return (
-        <main className="min-h-screen bg-white pt-24 text-gray-900 selection:bg-primary-600 selection:text-white dark:bg-gray-950 dark:text-white">
+        <main className="min-h-screen bg-white text-gray-900 selection:bg-primary-600 selection:text-white dark:bg-gray-950 dark:text-white">
             <section className="relative overflow-hidden bg-gray-950 px-6 py-24 text-white sm:px-10 sm:py-32">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-700/30 via-transparent to-transparent" />
                 <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
@@ -117,7 +117,7 @@ export default function AmbassadorsPage() {
                         <div className="flex items-center gap-3"><CalendarClock className="h-6 w-6 text-primary-600" /><h3 className="text-xl font-black">When are rewards available?</h3></div>
                         <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">The standard rate is 0.5% of eligible value, capped at the net revenue available after applicable costs. A reward may be lower or zero if the margin does not support it.</p>
                         <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">Rewards stay pending until the transaction clears its verification, refund and release checks. The standard holding period is 14 days after the event is completed for ticket sales, or after settlement for QR-pass and cash-fund payments.</p>
-                        <div className="mt-6 rounded-2xl bg-primary-50 p-5 text-sm leading-relaxed text-primary-950 dark:bg-primary-950/30 dark:text-primary-100">
+                        <div className="mt-6 rounded-2xl border border-orange-100 bg-orange-50 p-5 text-sm leading-relaxed text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
                             Withdrawals require at least <strong>₦10,000</strong> in available rewards and a verified bank account. Refunds or chargebacks can reverse unpaid rewards or create an adjustment.
                         </div>
                     </div>
