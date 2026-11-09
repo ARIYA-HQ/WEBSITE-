@@ -17,7 +17,7 @@ const steps = [
     },
     {
         number: '03',
-        title: 'Share your personal link',
+        title: 'Share your referral link',
         description: 'Invite new people in your community to create an Ariya account through your unique referral link.',
         icon: Link2,
     },
@@ -106,7 +106,7 @@ export default function AmbassadorsPage() {
                     <div>
                         <span className="mb-4 block text-xs font-black uppercase tracking-[0.24em] text-primary-600">What can earn a reward?</span>
                         <h2 className="text-3xl font-black tracking-tight sm:text-4xl">Only verified, eligible activity</h2>
-                        <p className="mt-5 max-w-xl leading-relaxed text-gray-500 dark:text-gray-400">A referral must be a new Ariya account linked to your code at signup. Your one referral link works for vendors, personal planners, and professional planners; each earns under the applicable account type’s rules. Signups alone do not earn rewards.</p>
+                        <p className="mt-5 max-w-xl leading-relaxed text-gray-500 dark:text-gray-400">A referral must be a new Ariya account linked to your code at signup. Your one referral link works for vendors, personal planners, and professional planners; each earns under the applicable account type’s rules. Transactions completed before referral attribution are not backfilled. Signups alone do not earn rewards.</p>
                         <ul className="mt-7 space-y-4">
                             {eligibleActivity.map((activity) => (
                                 <li key={activity} className="flex items-start gap-3 text-sm font-semibold"><BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" />{activity}</li>
@@ -117,7 +117,7 @@ export default function AmbassadorsPage() {
                     <div className="rounded-[2.5rem] border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-950 sm:p-10">
                         <div className="flex items-center gap-3"><CalendarClock className="h-6 w-6 text-primary-600" /><h3 className="text-xl font-black">When are rewards available?</h3></div>
                         <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">The standard rate is 0.5% of eligible value, capped at the net revenue available after applicable costs. A reward may be lower or zero if the margin does not support it.</p>
-                        <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">Rewards stay pending until the transaction clears its verification, refund and release checks. The standard holding period is 14 days after the event is completed for ticket sales, or after settlement for QR-pass and cash-fund payments.</p>
+                        <p className="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">Rewards stay pending until the transaction clears its verification, refund and release checks. The standard holding period is 14 days after the event is completed for ticket sales, or after settlement for QR-pass, cash-fund, and vendor booking payments.</p>
                         <div className="mt-6 rounded-2xl border border-orange-100 bg-orange-50 p-5 text-sm leading-relaxed text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
                             Withdrawals require at least <strong>₦10,000</strong> in available rewards and a verified bank account. Refunds or chargebacks can reverse unpaid rewards or create an adjustment.
                         </div>
