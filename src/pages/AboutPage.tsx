@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Heart, Users, Globe } from 'lucide-react';
+import { EVENT_IMAGES } from '../config/eventImages';
 
 export default function AboutPage() {
     return (
@@ -9,9 +10,9 @@ export default function AboutPage() {
             <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-white dark:bg-gray-900">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069"
+                        src={EVENT_IMAGES.womenCelebrating}
                         className="w-full h-full object-cover opacity-80"
-                        alt="Team celebration"
+                        alt="Women celebrating together at a Nigerian event"
                     />
                     <div className="absolute inset-0 bg-white/60 dark:bg-black/60 backdrop-blur-[2px]" />
                 </div>
@@ -52,9 +53,9 @@ export default function AboutPage() {
                     <div className="relative">
                         <div className="aspect-square bg-gray-200 rounded-[2rem] overflow-hidden">
                             <img
-                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800"
+                                src={EVENT_IMAGES.eventPlanner}
                                 className="w-full h-full object-cover"
-                                alt="Founders working"
+                                alt="Nigerian event planner coordinating a celebration"
                             />
                         </div>
                         <div className="absolute -bottom-10 -left-10 bg-white dark:bg-gray-800 p-8 rounded-[1.5rem] shadow-xl max-w-xs hidden md:block">

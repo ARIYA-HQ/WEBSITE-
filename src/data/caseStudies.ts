@@ -1,3 +1,5 @@
+import { EVENT_IMAGES } from '../config/eventImages';
+
 export interface CaseStudy {
     id: string;
     client: string;
@@ -29,7 +31,7 @@ export const caseStudies: CaseStudy[] = [
             { label: "Vendor ROI", value: "25%" },
             { label: "Client NPS", value: "100" }
         ],
-        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2069",
+        image: EVENT_IMAGES.eventPlanner,
         logo: "LUX",
         challenge: "Luxe Events was tasked with organizing a high-stakes tech gala for a Fortune 500 client with only 3 months lead time. The scope included 3 days of events, 500 attendees, and complex AV requirements.",
         solution: "They used Ariya's AI Timeline Builder to generate a minute-by-minute run of show instantly. The Vendor Marketplace allowed them to source and contract AV specialists in 48 hours, a process that usually takes weeks.",
@@ -51,7 +53,7 @@ export const caseStudies: CaseStudy[] = [
             { label: "Guests", value: "150" },
             { label: "Stress Level", value: "0" }
         ],
-        image: "https://images.unsplash.com/photo-1519225421980-715cb0202128?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.yorubaCouple,
         logo: "B&J",
         challenge: "Planning a destination wedding in Tuscany from New York presented massive logistical challenges, specifically around currency conversion, vendor communication, and guest travel logistics.",
         solution: "The couple used Ariya's Budget Tracker to manage expenses in multiple currencies. The Guest List features helped track RSVPs, dietary restrictions, and shuttle assignments seamlessly.",
@@ -73,7 +75,7 @@ export const caseStudies: CaseStudy[] = [
             { label: "Emails Saved", value: "500+" },
             { label: "Efficiency", value: "3x" }
         ],
-        image: "https://images.unsplash.com/photo-1459749411177-287ceae888cb?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.pinkGeleCelebration,
         logo: "SW",
         challenge: "With a small core team, coordinating load-in times, insurance, and riders for over 50 vendors and artists was turning into a logistical nightmare.",
         solution: "SoundWave adopted Ariya for its centralized Vendor Portal. They automated document collection and used the real-time floor plan tool to assign vendor plots.",

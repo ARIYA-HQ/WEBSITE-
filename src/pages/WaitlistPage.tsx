@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Star, Shield, Zap, Instagram, Twitter, Linked
 import waitlistHero from '../assets/images/waitlist_hero.png';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
+import { trackConversion } from '../analytics/analytics';
 
 type UserRole = 'individual' | 'pro' | 'vendor';
 
@@ -29,6 +30,7 @@ export default function WaitlistPage() {
 
             if (response.ok) {
                 setSubmitted(true);
+                trackConversion('sign_up', { method: 'waitlist', role: formData.role });
             } else {
                 const data = await response.json();
                 alert(data.error || 'Failed to join waitlist');
@@ -113,7 +115,7 @@ export default function WaitlistPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div className="space-y-4 md:col-span-2">
                                             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Join as a</label>
-                                            <div className="grid grid-cols-3 gap-3">
+                                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                                                 <RoleButton
                                                     active={formData.role === 'individual'}
                                                     onClick={() => setFormData(prev => ({ ...prev, role: 'individual' }))}

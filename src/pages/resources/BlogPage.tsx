@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
+import { trackConversion } from '../../analytics/analytics';
 
 export default function BlogPage() {
     const { data: posts = [], isLoading } = useQuery({
@@ -31,6 +32,7 @@ export default function BlogPage() {
 
             if (response.ok) {
                 toast.success('Successfully subscribed!');
+                trackConversion('generate_lead', { method: 'newsletter' });
                 setEmail('');
             } else {
                 const data = await response.json();

@@ -1,6 +1,10 @@
 import React from 'react';
 import { TrendingUp, MessageSquare, DollarSign } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { APP_LINKS } from '../../config/links';
+import { VENDOR_COMMISSION_RATE, VENDOR_FEATURES, VENDOR_VERIFICATION_FEE_NAIRA } from '../../config/pricing';
+
+const formatNaira = (amount: number) => `₦${amount.toLocaleString('en-NG')}`;
 
 export default function VendorsPage() {
     return (
@@ -33,7 +37,7 @@ export default function VendorsPage() {
                                 <div className="text-xs font-bold uppercase tracking-widest text-gray-500">To List Your Business</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg translate-y-8">
-                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">7%</div>
+                                <div className="text-4xl font-black text-gray-900 dark:text-white mb-2">{Math.round(VENDOR_COMMISSION_RATE * 100)}%</div>
                                 <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Only on Completed Bookings</div>
                             </div>
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-[2rem] shadow-lg">
@@ -58,7 +62,7 @@ export default function VendorsPage() {
                     {[
                         { icon: TrendingUp, title: "Showcase Your Work", desc: "Build a profile with your portfolio, pricing, and availability. Planners find you through search." },
                         { icon: MessageSquare, title: "Qualified Leads", desc: "Our AI matches you with clients who fit your budget and vibe. No more tire kickers." },
-                        { icon: DollarSign, title: "Get Paid Securely", desc: "Funds are held in escrow via the Ariya Guarantee and released after your event. A 7% platform fee applies on completed bookings only — no subscription, no upfront cost." },
+                        { icon: DollarSign, title: "Get Paid Securely", desc: `Funds are held in escrow via the Ariya Guarantee and released after your event. A ${Math.round(VENDOR_COMMISSION_RATE * 100)}% platform fee applies on completed bookings only — no subscription, no upfront cost.` },
                     ].map((step, i) => (
                         <div key={i} className="text-center px-4">
                             <div className="w-16 h-16 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6 text-primary-600">
@@ -68,6 +72,38 @@ export default function VendorsPage() {
                             <p className="text-gray-500 dark:text-gray-400">{step.desc}</p>
                         </div>
                     ))}
+                </div>
+            </section>
+
+            <section className="bg-gray-50 px-8 py-20 dark:bg-gray-900/50">
+                <div className="mx-auto max-w-7xl">
+                    <div className="max-w-3xl">
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-600">Ariya vendor fees</span>
+                        <h2 className="mt-3 text-3xl font-black tracking-tight text-gray-900 dark:text-white">Optional upgrades, clearly priced</h2>
+                        <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                            A basic vendor profile is free. The booking fee applies only to completed bookings paid out through Ariya; verification and visibility upgrades are optional.
+                        </p>
+                    </div>
+                    <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                        <div className="rounded-3xl border border-gray-100 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+                            <p className="text-2xl font-black text-gray-900 dark:text-white">₦0</p>
+                            <h3 className="mt-2 font-bold text-gray-900 dark:text-white">Basic profile</h3>
+                            <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">No subscription or listing fee.</p>
+                        </div>
+                        <div className="rounded-3xl border border-gray-100 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+                            <p className="text-2xl font-black text-gray-900 dark:text-white">{formatNaira(VENDOR_VERIFICATION_FEE_NAIRA)}</p>
+                            <h3 className="mt-2 font-bold text-gray-900 dark:text-white">Verification review</h3>
+                            <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Optional one-time fee for a verification review.</p>
+                        </div>
+                        <div className="rounded-3xl border border-gray-100 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+                            <p className="text-2xl font-black text-gray-900 dark:text-white">From {formatNaira(Math.min(...VENDOR_FEATURES.map(({ priceNaira }) => priceNaira)))}</p>
+                            <h3 className="mt-2 font-bold text-gray-900 dark:text-white">Visibility boosts</h3>
+                            <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Optional paid placement tools; durations and prices vary by boost.</p>
+                        </div>
+                    </div>
+                    <Link to="/pricing" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-700 hover:text-primary-600 dark:text-primary-300">
+                        View full pricing <span aria-hidden="true">→</span>
+                    </Link>
                 </div>
             </section>
         </main>

@@ -8,12 +8,12 @@ import { LANDING_CONFIG } from '../config/landing';
 import Button from '../components/common/Button';
 import { APP_LINKS, EVENT_SITE_EXAMPLE } from '../config/links';
 import { accentIcon } from '../config/colors';
+import { EVENT_IMAGES } from '../config/eventImages';
 
-// Event website showcase images — elegant event/wedding aesthetic
 const SHOWCASE_IMAGES = [
-    'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80', // wedding flowers table
-    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80', // elegant reception hall
-    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80', // gala dinner setup
+    EVENT_IMAGES.yorubaCouple,
+    EVENT_IMAGES.pinkGeleDance,
+    EVENT_IMAGES.eventPlanner,
 ];
 
 export default function LandingPage() {
@@ -112,9 +112,9 @@ export default function LandingPage() {
             <section className="py-40 bg-gray-900 text-white relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=2070"
+                        src={EVENT_IMAGES.pinkGeleDance}
                         className="w-full h-full object-cover opacity-30"
-                        alt="Sparkling Background"
+                        alt="Guests dancing at a Nigerian celebration"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-gray-900" />
                 </div>

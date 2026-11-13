@@ -5,6 +5,7 @@ import { cmsService } from '../../services/cmsService';
 import { CaseStudy } from '../../types/cms';
 import CaseStudyDetailView from '../../components/resources/CaseStudyDetailView';
 import ImageUploadField from '../../components/admin/ImageUploadField';
+import { EVENT_IMAGES } from '../../config/eventImages';
 
 export default function CaseStudyEditorPage() {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function CaseStudyEditorPage() {
         status: 'published',
         metrics: [{ label: '', value: '' }],
         testimonial: { quote: '', author: '', role: '' },
-        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2069',
+        image: EVENT_IMAGES.eventPlanner,
         logo: 'CS',
         challenge: '',
         solution: '',

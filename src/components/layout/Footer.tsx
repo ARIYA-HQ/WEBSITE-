@@ -37,9 +37,9 @@ export default function Footer() {
 
     return (
         <footer className="bg-neutral-900 border-t border-white/10 pt-20 pb-10 px-8 text-white mt-auto">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-12 mb-16 md:grid-cols-2 xl:grid-cols-12">
                 {/* Brand Column */}
-                <div className="md:col-span-4">
+                <div className="md:col-span-1 xl:col-span-3">
                     <Link to="/" aria-label={`${FOOTER_CONFIG.brand.name} home`} className="mb-6 block w-fit">
                         <img src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-reverse.svg`} alt={FOOTER_CONFIG.brand.name} className="h-9 w-auto" />
                     </Link>
@@ -64,9 +64,9 @@ export default function Footer() {
 
                 {/* Links Columns */}
                 {FOOTER_CONFIG.columns.map((column, idx) => (
-                    <div key={idx} className="md:col-span-2">
+                    <div key={idx} className="min-w-0 md:col-span-1 xl:col-span-2">
                         <h5 className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-6">{column.title}</h5>
-                        <ul className="space-y-4 text-sm font-medium text-gray-400">
+                        <ul className="space-y-3 text-sm font-medium text-gray-400">
                             {column.links.map((link, i) => (
                                 <li key={i}>
                                     {link.href.startsWith('/') ? (
@@ -85,7 +85,7 @@ export default function Footer() {
                 ))}
 
                 {/* Newsletter Column */}
-                <div className="md:col-span-4">
+                <div className="md:col-span-2 xl:col-span-3">
                     <h5 className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-6">{FOOTER_CONFIG.newsletter.title}</h5>
                     <p className="text-gray-400 text-sm mb-6">
                         {FOOTER_CONFIG.newsletter.description}

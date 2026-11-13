@@ -7,10 +7,11 @@ import ResourceCard from '../../components/resources/ResourceCard';
 import ImageUploadField from '../../components/admin/ImageUploadField';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfjsWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+import { EVENT_IMAGES } from '../../config/eventImages';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
 
-const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070';
+const DEFAULT_IMAGE = EVENT_IMAGES.eventPlanner;
 
 async function pdfFirstPageToPng(file: File): Promise<File> {
     const data = new Uint8Array(await file.arrayBuffer());
@@ -39,7 +40,7 @@ export default function ResourceEditorPage() {
         type: 'Guide',
         format: 'PDF',
         size: '1 MB',
-        image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070',
+        image: DEFAULT_IMAGE,
         downloadUrl: '#',
         status: 'published'
     });

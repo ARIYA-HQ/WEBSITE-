@@ -24,7 +24,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ...props
     }, ref) => {
 
-        const baseStyles = 'inline-flex items-center justify-center font-black uppercase tracking-widest transition-all duration-300 rounded-full disabled:opacity-50 disabled:cursor-not-allowed';
+        const baseStyles = 'inline-flex items-center justify-center whitespace-nowrap font-black uppercase tracking-widest transition-all duration-300 rounded-full disabled:opacity-50 disabled:cursor-not-allowed';
 
         const variants = {
             primary: 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg shadow-primary-600/20 forced-colors:bg-[Highlight]',

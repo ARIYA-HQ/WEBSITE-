@@ -1,6 +1,6 @@
 import {
-    LayoutDashboard, Kanban, Bot, Store, Calculator, Globe,
-    Search, UserPlus, FileText, Copy, Award,
+    LayoutDashboard, Kanban, Bot, Store, Calculator, Globe, Palette,
+    Search, UserPlus, FileText, Copy, Award, Gift,
     LifeBuoy, HelpCircle
 } from 'lucide-react';
 import { APP_LINKS } from './links';
@@ -42,6 +42,13 @@ export const NAVIGATION_CONFIG = {
                         color: "pink"
                     },
                     {
+                        title: "Wishlist Catalogue",
+                        description: "Browse current Ariya gift items",
+                        href: "/product/wishlist",
+                        icon: Gift,
+                        color: "pink"
+                    },
+                    {
                         title: "Budget & Guest List",
                         description: "Manage finances & RSVPs",
                         href: "/product/finance",
@@ -49,11 +56,18 @@ export const NAVIGATION_CONFIG = {
                         color: "green"
                     },
                     {
-                        title: "Websites & Wishlist",
-                        description: "Share your story",
+                        title: "Event Website Themes",
+                        description: "Browse current event website designs",
                         href: "/product/websites",
                         icon: Globe,
                         color: "indigo"
+                    },
+                    {
+                        title: "Ariya Studio Designs",
+                        description: "Explore invitations and event stationery",
+                        href: "/product/studio-designs",
+                        icon: Palette,
+                        color: "purple"
                     }
                 ]
             }
@@ -104,7 +118,7 @@ export const NAVIGATION_CONFIG = {
                     {
                         title: "Browse Vendors",
                         description: "Find vendors by category and city",
-                        href: APP_LINKS.vendors,
+                        href: "/product/marketplace",
                         icon: Search,
                         color: "orange"
                     },

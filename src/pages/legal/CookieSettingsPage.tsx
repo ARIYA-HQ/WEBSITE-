@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import SEO from '../../components/common/SEO';
 import { Shield, Bell, BarChart, Settings as SettingsIcon } from 'lucide-react';
+import {
+    CookiePreferences,
+    getCookiePreferences,
+    saveCookiePreferences,
+} from '../../analytics/analytics';
 
 interface CookiePreference {
-    id: string;
+    id: keyof CookiePreferences;
     title: string;
     description: string;
     icon: any;
@@ -27,7 +32,7 @@ export default function CookieSettingsPage() {
             description: 'These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular.',
             icon: BarChart,
             required: false,
-            enabled: true
+            enabled: false
         },
         {
             id: 'marketing',
@@ -43,24 +48,19 @@ export default function CookieSettingsPage() {
             description: 'These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third party providers whose services we have added to our pages.',
             icon: SettingsIcon,
             required: false,
-            enabled: true
+            enabled: false
         }
     ]);
 
     const [saved, setSaved] = useState(false);
 
     useEffect(() => {
-        const savedPrefs = localStorage.getItem('cookie-preferences');
+        const savedPrefs = getCookiePreferences();
         if (savedPrefs) {
-            try {
-                const parsed = JSON.parse(savedPrefs);
-                setPreferences(prev => prev.map(p => ({
-                    ...p,
-                    enabled: p.required ? true : (parsed[p.id] ?? p.enabled)
-                })));
-            } catch (e) {
-                console.error('Failed to parse cookie preferences');
-            }
+            setPreferences(prev => prev.map(p => ({
+                ...p,
+                enabled: p.required ? true : (savedPrefs[p.id] ?? p.enabled)
+            })));
         }
     }, []);
 
@@ -75,8 +75,13 @@ export default function CookieSettingsPage() {
     };
 
     const handleSave = () => {
-        const prefObj = preferences.reduce((acc, p) => ({ ...acc, [p.id]: p.enabled }), {});
-        localStorage.setItem('cookie-preferences', JSON.stringify(prefObj));
+        const prefObj: CookiePreferences = {
+            essential: true,
+            analytics: preferences.find(p => p.id === 'analytics')?.enabled ?? false,
+            marketing: preferences.find(p => p.id === 'marketing')?.enabled ?? false,
+            preferences: preferences.find(p => p.id === 'preferences')?.enabled ?? false,
+        };
+        saveCookiePreferences(prefObj);
         setSaved(true);
         setTimeout(() => setSaved(false), 3000);
     };

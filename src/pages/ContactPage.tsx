@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { trackConversion } from '../analytics/analytics';
 
 export default function ContactPage() {
     const [form, setForm] = useState({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '', website: '' });
@@ -29,6 +30,7 @@ export default function ContactPage() {
             });
             if (res.ok) {
                 setStatus('success');
+                trackConversion('generate_lead', { method: 'contact_form' });
                 setForm({ firstName: '', lastName: '', email: '', topic: 'General Inquiry', message: '', website: '' });
             } else {
                 const data = await res.json().catch(() => ({}));

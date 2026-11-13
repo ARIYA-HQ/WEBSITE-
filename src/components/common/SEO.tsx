@@ -7,6 +7,8 @@ interface SEOProps {
     image?: string;
     article?: boolean;
     canonical?: string;
+    robots?: string;
+    structuredData?: Record<string, unknown>;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -14,7 +16,9 @@ const SEO: React.FC<SEOProps> = ({
     description,
     image,
     article,
-    canonical
+    canonical,
+    robots,
+    structuredData
 }) => {
     const siteName = 'ÀRIYÁ';
     const defaultDescription = 'ÀRIYÁ is the all-in-one platform for modern event planning, marketplace management, and vendor collaboration.';
@@ -30,6 +34,12 @@ const SEO: React.FC<SEOProps> = ({
             <title>{fullTitle}</title>
             <meta name="description" content={metaDescription} />
             {canonical && <link rel="canonical" href={canonical} />}
+            {robots && <meta name="robots" content={robots} />}
+            {structuredData && (
+                <script type="application/ld+json">
+                    {JSON.stringify(structuredData).replace(/</g, '\\u003c')}
+                </script>
+            )}
 
             {/* Open Graph / Facebook */}
             <meta property="og:type" content={article ? 'article' : 'website'} />

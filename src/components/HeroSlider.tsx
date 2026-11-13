@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import local images
-import heroRomance from '../assets/images/hero_romance.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
 import heroFloral from '../assets/images/hero_floral.jpg';
+import { EVENT_IMAGES } from '../config/eventImages';
 
 const heroImages = [
-    heroRomance, // Couple (1st)
+    EVENT_IMAGES.coupleReception, // Nigerian couple (1st)
     heroTable,   // Table (2nd)
     heroFloral   // Floral (3rd)
 ];

@@ -6,6 +6,7 @@ import { BlogPost } from '../../types/cms';
 import RichTextEditor from '../../components/admin/RichTextEditor';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
 import ImageUploadField from '../../components/admin/ImageUploadField';
+import { EVENT_IMAGES } from '../../config/eventImages';
 
 export default function PostEditorPage() {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function PostEditorPage() {
         category: 'General',
         author: 'Admin',
         readTime: '5 min read',
-        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2069',
+        image: EVENT_IMAGES.yorubaCouple,
         content: '',
         tags: [],
         status: 'published'

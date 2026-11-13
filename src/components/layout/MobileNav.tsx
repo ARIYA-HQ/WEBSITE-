@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    X, ChevronDown, LayoutDashboard, Kanban, Store, Calculator, Globe, Bot,
+    X, ChevronDown, LayoutDashboard, Kanban, Store, Calculator, Globe, Bot, Palette, Gift,
     Search, UserPlus, FileText, Copy, Award, LifeBuoy, HelpCircle,
     ArrowRight
 } from 'lucide-react';
@@ -68,8 +68,10 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                         <MobileLink to="/product/planning" icon={Kanban} label="Planning Dashboard" onClick={onClose} />
                                         <MobileLink to="/product/ai-planning" icon={Bot} label="AI Planning" onClick={onClose} />
                                         <MobileLink to="/product/marketplace" icon={Store} label="Vendor Marketplace" onClick={onClose} />
+                                        <MobileLink to="/product/wishlist" icon={Gift} label="Wishlist Catalogue" onClick={onClose} />
                                         <MobileLink to="/product/finance" icon={Calculator} label="Budget & Guest List" onClick={onClose} />
-                                        <MobileLink to="/product/websites" icon={Globe} label="Websites & Wishlist" onClick={onClose} />
+                                        <MobileLink to="/product/websites" icon={Globe} label="Event Website Themes" onClick={onClose} />
+                                        <MobileLink to="/product/studio-designs" icon={Palette} label="Ariya Studio Designs" onClick={onClose} />
                                     </div>
                                 </MobileAccordion>
 
@@ -83,7 +85,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
                                 <MobileAccordion title="Vendors">
                                     <div className="grid gap-4 pl-4">
-                                        <MobileExternalLink href={APP_LINKS.vendors} icon={Search} label="Browse Vendors" onClick={onClose} />
+                                        <MobileLink to="/product/marketplace" icon={Search} label="Browse Vendors" onClick={onClose} />
                                         <MobileExternalLink href={APP_LINKS.vendorSignup} icon={UserPlus} label="Become a Vendor" onClick={onClose} />
                                         <MobileLink to="/solutions/vendors" icon={Store} label="Why Sell on Ariya" onClick={onClose} />
                                     </div>

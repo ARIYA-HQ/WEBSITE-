@@ -1,3 +1,5 @@
+import { EVENT_IMAGES } from '../config/eventImages';
+
 export interface BlogPost {
     id: number;
     title: string;
@@ -20,7 +22,7 @@ export const blogPosts: BlogPost[] = [
         author: "Sarah James",
         date: "Jan 12, 2026",
         readTime: "5 min read",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2069",
+        image: EVENT_IMAGES.yorubaCouple,
         tags: ["Design", "Decor", "Trends"],
         content: `
             <p class="lead">After years of "quiet luxury" and minimalist aesthetics, 2026 is ushering in a new era of bold expression. Couples are ditching the safe choices for vibrant colors, immersive experiences, and decor that commands attention.</p>
@@ -45,7 +47,7 @@ export const blogPosts: BlogPost[] = [
         author: "Michael Chen",
         date: "Jan 10, 2026",
         readTime: "8 min read",
-        image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.coupleWalking,
         tags: ["Budget", "Travel", "Destination"],
         content: `
             <p class="lead">Dreaming of saying "I do" on a sun-soaked beach or in a historic European castle? Destination weddings are magical, but they come with a unique set of financial challenges. Here is how to keep your wallet happy while planning the trip of a lifetime.</p>
@@ -68,7 +70,7 @@ export const blogPosts: BlogPost[] = [
         author: "Emma Wilson",
         date: "Jan 08, 2026",
         readTime: "6 min read",
-        image: "https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.coupleVenue,
         tags: ["Italy", "Europe", "Venues"],
         content: `
              <p class="lead">Tuscany remains the gold standard for romantic destination weddings. For 2026, we've scouted the region to find hidden gems that combine history with modern luxury.</p>
@@ -91,7 +93,7 @@ export const blogPosts: BlogPost[] = [
         author: "David Ross",
         date: "Jan 05, 2026",
         readTime: "10 min read",
-        image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.eventPlanner,
         tags: ["Legal", "Contracts", "Business"],
         content: `
             <p class="lead">Contracts aren't the most romantic part of wedding planning, but they are arguably the most important. A solid contract protects both you and your vendors.</p>
@@ -114,7 +116,7 @@ export const blogPosts: BlogPost[] = [
         author: "Lisa Green",
         date: "Jan 03, 2026",
         readTime: "7 min read",
-        image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.florist,
         tags: ["Eco-friendly", "Green", "Planning"],
         content: `
             <p class="lead">Sustainability is no longer a niche trend; it's a responsibility. Hosting a zero-waste event doesn't mean sacrificing style.</p>
@@ -137,7 +139,7 @@ export const blogPosts: BlogPost[] = [
         author: "Alex Kim",
         date: "Jan 01, 2026",
         readTime: "4 min read",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070",
+        image: EVENT_IMAGES.eventPlanner,
         tags: ["AI", "Tools", "productivity"],
         content: `
             <p class="lead">Artificial Intelligence is changing the game for event professionals. From floor plan generation to automated client communication, these tools give you back your most valuable resource: specific time.</p>

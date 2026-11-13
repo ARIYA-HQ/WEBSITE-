@@ -2,6 +2,12 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+const productApiProxy = {
+    target: process.env.ARIYA_API_URL || 'https://app.ariyahq.com',
+    changeOrigin: true,
+    secure: true,
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
     test: {
@@ -17,10 +23,11 @@ export default defineConfig({
         include: ['react-is'],
         exclude: ['pdfjs-dist'],
     },
-    base: process.env.BASE_PATH || (process.env.VERCEL || process.env.RENDER ? '/' : '/WEBSITE-/'),
+    base: process.env.BASE_PATH || '/',
     server: {
         host: true, // Listen on all addresses
         proxy: {
+            '/api/v1': productApiProxy,
             '/api': {
                 target: process.env.API_URL || 'http://localhost:3001',
                 changeOrigin: true,
@@ -47,6 +54,11 @@ export default defineConfig({
                 }
             }
         }
+    },
+    preview: {
+        proxy: {
+            '/api/v1': productApiProxy,
+        },
     },
     build: {
         rollupOptions: {

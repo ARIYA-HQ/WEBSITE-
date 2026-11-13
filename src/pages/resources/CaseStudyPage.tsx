@@ -42,6 +42,11 @@ export default function CaseStudyPage() {
     if (!study) {
         return (
             <main className="pt-32 min-h-screen flex flex-col items-center justify-center text-center px-4 bg-white dark:bg-gray-900">
+                <SEO
+                    title="Case Study Not Found"
+                    description="The requested AriyaHQ customer story could not be found."
+                    robots="noindex, nofollow"
+                />
                 <AlertCircle className="w-16 h-16 text-gray-300 mb-6" />
                 <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-4">Case Study Not Found</h1>
                 <Link to="/resources/case-studies" className="text-primary-600 underline mt-4 block font-bold">Back to All Stories</Link>
@@ -60,4 +65,3 @@ export default function CaseStudyPage() {
         </main>
     );
 }
-

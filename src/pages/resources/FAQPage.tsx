@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Plus, Minus, Search, MessageCircle, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const faqs = [
+export const faqs = [
     {
         category: "General",
         questions: [

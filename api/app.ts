@@ -6,12 +6,19 @@ import fs from 'fs';
 import path from 'path';
 import { db, WAITLIST_ROLES, WaitlistRole } from './db/supabase.js';
 import { loopsService } from './loopsService.js';
+import { buildSitemapXml } from '../src/seo/sitemap.js';
 
 // Shared Express app for the marketing site's API. server/index.ts adds static
 // file serving + listen for the VPS; api/index.ts re-exports it for Vercel.
 
 const app = express();
 app.set('trust proxy', 'loopback, linklocal, uniquelocal');
+app.use((req, res, next) => {
+    if (req.hostname.toLowerCase() === 'www.ariyahq.com') {
+        return res.redirect(301, `https://ariyahq.com${req.originalUrl}`);
+    }
+    next();
+});
 app.use(cors());
 app.use((_req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -25,6 +32,17 @@ app.use((_req, res, next) => {
 const publicJson = express.json({ limit: '20kb' });
 const adminJson = express.json({ limit: '2mb' });
 const uploadJson = express.json({ limit: '15mb' });
+
+app.get('/sitemap.xml', async (_req, res) => {
+    try {
+        const publishedPosts = await db.blogPosts.getAll();
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        res.type('application/xml').send(buildSitemapXml(publishedPosts));
+    } catch (err) {
+        console.error('Sitemap generation error:', err);
+        res.status(500).type('text/plain').send('Unable to generate sitemap');
+    }
+});
 
 // --- Auth ---
 

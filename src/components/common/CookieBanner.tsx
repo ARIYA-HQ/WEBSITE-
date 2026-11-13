@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Cookie, X } from 'lucide-react';
+import { saveCookiePreferences } from '../../analytics/analytics';
 
 export default function CookieBanner() {
     const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +24,7 @@ export default function CookieBanner() {
             marketing: true,
             preferences: true
         };
-        localStorage.setItem('cookie-preferences', JSON.stringify(allConsent));
+        saveCookiePreferences(allConsent);
         setIsVisible(false);
     };
 
@@ -34,7 +35,7 @@ export default function CookieBanner() {
             marketing: false,
             preferences: false
         };
-        localStorage.setItem('cookie-preferences', JSON.stringify(essentialOnly));
+        saveCookiePreferences(essentialOnly);
         setIsVisible(false);
     };
 

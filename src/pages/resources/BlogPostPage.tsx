@@ -61,6 +61,11 @@ export default function BlogPostPage() {
     if (!post) {
         return (
             <main className="pt-32 bg-white dark:bg-gray-950 min-h-screen flex flex-col items-center justify-center text-center px-4">
+                <SEO
+                    title="Article Not Found"
+                    description="The requested Ariya Journal article could not be found."
+                    robots="noindex, nofollow"
+                />
                 <AlertCircle className="w-16 h-16 text-gray-300 mb-6" />
                 <h1 className="text-4xl font-black tracking-tight mb-4 text-gray-900 dark:text-white">Article Not Found</h1>
                 <p className="text-gray-500 mb-8 max-w-md">We couldn't find the article you're looking for. It might have been moved or deleted.</p>
@@ -78,6 +83,26 @@ export default function BlogPostPage() {
                 description={post.excerpt || post.content.substring(0, 160)}
                 image={post.image}
                 article={true}
+                canonical={`https://ariyahq.com/resources/blog/${encodeURIComponent(post.slug || String(post.id))}`}
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Article',
+                    headline: post.title,
+                    description: post.excerpt || post.content.substring(0, 160),
+                    image: post.image ? [post.image] : undefined,
+                    datePublished: Number.isNaN(Date.parse(post.date))
+                        ? undefined
+                        : new Date(post.date).toISOString(),
+                    author: post.author
+                        ? { '@type': 'Person', name: post.author }
+                        : undefined,
+                    publisher: {
+                        '@type': 'Organization',
+                        name: 'AriyaHQ',
+                        url: 'https://ariyahq.com',
+                    },
+                    mainEntityOfPage: `https://ariyahq.com/resources/blog/${encodeURIComponent(post.slug || String(post.id))}`,
+                }}
             />
             <BlogPostDetailView post={post} />
 

@@ -7,6 +7,8 @@ import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { HelmetProvider } from 'react-helmet-async';
+import RouteSEO from './components/common/RouteSEO';
+import AnalyticsTracker from './components/common/AnalyticsTracker';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './lib/queryClient';
 import { Toaster } from 'sonner';
@@ -27,8 +29,10 @@ const OverviewPage = lazy(() => import('./pages/product/OverviewPage'));
 const AIPlanningPage = lazy(() => import('./pages/product/AIPlanningPage'));
 const PlanningPage = lazy(() => import('./pages/product/PlanningPage'));
 const MarketplacePage = lazy(() => import('./pages/product/MarketplacePage'));
+const WishlistCataloguePage = lazy(() => import('./pages/product/WishlistCataloguePage'));
 const FinancePage = lazy(() => import('./pages/product/FinancePage'));
 const WebsitesPage = lazy(() => import('./pages/product/WebsitesPage'));
+const StudioDesignsPage = lazy(() => import('./pages/product/StudioDesignsPage'));
 const BlogPage = lazy(() => import('./pages/resources/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/resources/BlogPostPage'));
 const FAQPage = lazy(() => import('./pages/resources/FAQPage'));
@@ -51,6 +55,25 @@ const ResourceEditorPage = lazy(() => import('./pages/admin/ResourceEditorPage')
 const AnalyticsPage = lazy(() => import('./pages/admin/AnalyticsPage'));
 const SettingsPage = lazy(() => import('./pages/admin/SettingsPage'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
+const WeddingPlanningPage = lazy(() => import('./pages/WeddingPlanningPage'));
+const WeddingWebsitePage = lazy(() => import('./pages/WeddingWebsitePage'));
+const WeddingBudgetPage = lazy(() => import('./pages/WeddingBudgetPage'));
+const AsoEbiNigeriaPage = lazy(() => import('./pages/AsoEbiNigeriaPage'));
+const WeddingInvitationCardsNigeriaPage = lazy(() => import('./pages/WeddingInvitationCardsNigeriaPage'));
+const WeddingGiftRegistryNigeriaPage = lazy(() => import('./pages/WeddingGiftRegistryNigeriaPage'));
+const WeddingWishlistPage = lazy(() => import('./pages/WeddingWishlistPage'));
+const EventTicketingNigeriaPage = lazy(() => import('./pages/EventTicketingNigeriaPage'));
+const EventRegistrationNigeriaPage = lazy(() => import('./pages/EventRegistrationNigeriaPage'));
+const DigitalWeddingInvitationsPage = lazy(() => import('./pages/DigitalWeddingInvitationsPage'));
+const WeddingRsvpGuestManagementPage = lazy(() => import('./pages/WeddingRsvpGuestManagementPage'));
+const WeddingVendorsNigeriaPage = lazy(() => import('./pages/WeddingVendorsNigeriaPage'));
+const WeddingVenuesNigeriaPage = lazy(() => import('./pages/WeddingVenuesNigeriaPage'));
+const WeddingChecklistTimelinePage = lazy(() => import('./pages/WeddingChecklistTimelinePage'));
+const NigerianTraditionalWeddingPage = lazy(() => import('./pages/NigerianTraditionalWeddingPage'));
+const YorubaTraditionalWeddingPage = lazy(() => import('./pages/YorubaTraditionalWeddingPage'));
+const IgboTraditionalWeddingPage = lazy(() => import('./pages/IgboTraditionalWeddingPage'));
+const HausaTraditionalWeddingPage = lazy(() => import('./pages/HausaTraditionalWeddingPage'));
+const NigerianWeddingEngagementListPage = lazy(() => import('./pages/NigerianWeddingEngagementListPage'));
 const WaitlistPage = lazy(() => import('./pages/WaitlistPage'));
 const AdminLoginPage = lazy(() => import('./pages/admin/LoginPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -77,6 +100,8 @@ export default function App() {
                         <CmsProvider>
                             <Router basename={import.meta.env.BASE_URL}>
                                 <ErrorBoundary>
+                                    <RouteSEO />
+                                    <AnalyticsTracker />
                                     <Suspense fallback={<PageLoader />}>
                                         <Routes>
                                             {/* Public Routes - Wrapped in PublicLayout (Has Header/Footer) */}
@@ -88,8 +113,10 @@ export default function App() {
                                                 <Route path="/product/planning" element={<PlanningPage />} />
                                                 <Route path="/product/ai-planning" element={<AIPlanningPage />} />
                                                 <Route path="/product/marketplace" element={<MarketplacePage />} />
+                                                <Route path="/product/wishlist" element={<WishlistCataloguePage />} />
                                                 <Route path="/product/finance" element={<FinancePage />} />
                                                 <Route path="/product/websites" element={<WebsitesPage />} />
+                                                <Route path="/product/studio-designs" element={<StudioDesignsPage />} />
 
                                                 {/* Solutions Pages */}
                                                 <Route path="/solutions/agencies" element={<AgenciesPage />} />
@@ -108,7 +135,26 @@ export default function App() {
                                                 <Route path="/resources/help-center" element={<HelpCenterPage />} />
 
                                                 <Route path="/pricing" element={<PricingPage />} />
-                                <Route path="/about" element={<AboutPage />} />
+                                                <Route path="/wedding-planning" element={<WeddingPlanningPage />} />
+                                                <Route path="/wedding-budget" element={<WeddingBudgetPage />} />
+                                                <Route path="/aso-ebi-in-nigeria" element={<AsoEbiNigeriaPage />} />
+                                                <Route path="/wedding-invitation-cards-nigeria" element={<WeddingInvitationCardsNigeriaPage />} />
+                                                <Route path="/wedding-gift-registry-nigeria" element={<WeddingGiftRegistryNigeriaPage />} />
+                                                <Route path="/wedding-wishlist" element={<WeddingWishlistPage />} />
+                                                <Route path="/event-ticketing-nigeria" element={<EventTicketingNigeriaPage />} />
+                                                <Route path="/event-registration-nigeria" element={<EventRegistrationNigeriaPage />} />
+                                                <Route path="/wedding-website" element={<WeddingWebsitePage />} />
+                                                <Route path="/digital-wedding-invitations" element={<DigitalWeddingInvitationsPage />} />
+                                                <Route path="/wedding-rsvp-guest-management" element={<WeddingRsvpGuestManagementPage />} />
+                                                <Route path="/wedding-vendors-nigeria" element={<WeddingVendorsNigeriaPage />} />
+                                                <Route path="/wedding-venues-nigeria" element={<WeddingVenuesNigeriaPage />} />
+                                                <Route path="/wedding-checklist-timeline" element={<WeddingChecklistTimelinePage />} />
+                                                <Route path="/nigerian-traditional-wedding" element={<NigerianTraditionalWeddingPage />} />
+                                                <Route path="/yoruba-traditional-wedding" element={<YorubaTraditionalWeddingPage />} />
+                                                <Route path="/igbo-traditional-wedding" element={<IgboTraditionalWeddingPage />} />
+                                                <Route path="/hausa-traditional-wedding" element={<HausaTraditionalWeddingPage />} />
+                                                <Route path="/nigerian-wedding-engagement-list" element={<NigerianWeddingEngagementListPage />} />
+                                                <Route path="/about" element={<AboutPage />} />
                                                 <Route path="/ambassadors" element={<AmbassadorsPage />} />
 
                                                 {/* CMS / Blog Routes */}

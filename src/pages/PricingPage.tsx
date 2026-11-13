@@ -1,48 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Zap, Globe, Image, MessageSquare, ShieldCheck, TrendingUp, Tag, QrCode } from 'lucide-react';
+import { Check, Zap, Globe, Image, MessageSquare, ShieldCheck, TrendingUp, Tag, QrCode, Palette } from 'lucide-react';
 import { APP_LINKS } from '../config/links';
-
-// ── Pricing constants (kept in sync with the dashboard's data/pricing.ts) ─────
-const VENDOR_COMMISSION_RATE = 0.07;
-const TICKET_SERVICE_FEE_RATE = 0.03;
-const REGISTRY_SERVICE_FEE_RATE = 0.1;
-const STORAGE_FREE_PHOTOS = 100;
-const WEBSITE_FREE_MONTHS = 3;
-const WEBSITE_OFFLINE_MONTHS = 6;
-const WEBSITE_KEEP_FOREVER_NAIRA = 35_000;
-const VENDOR_VERIFICATION_FEE_NAIRA = 30_000;
-
-const STORAGE_TIERS = [
-    { label: '+500 photos', priceNaira: 5_000 },
-    { label: '+2,000 photos', priceNaira: 12_000 },
-    { label: '+5,000 photos', priceNaira: 25_000 },
-];
-const VENDOR_FEATURES = [
-    { label: 'Enhanced profile', priceNaira: 15_000 },
-    { label: 'Featured — 7 days', priceNaira: 15_000 },
-    { label: 'Featured — 30 days', priceNaira: 45_000 },
-    { label: 'Category boost', priceNaira: 20_000 },
-    { label: 'Premium placement', priceNaira: 50_000 },
-];
-const SMS_BUNDLES = [
-    { label: '50 messaging credits', count: 50, priceNaira: 2_500 },
-    { label: '200 messaging credits', count: 200, priceNaira: 8_000 },
-    { label: '500 messaging credits', count: 500, priceNaira: 17_500 },
-];
-const GUEST_PASS_TIERS = [
-    { label: '1–199 guests', pricePerGuestNaira: 400 },
-    { label: '200–499 guests', pricePerGuestNaira: 350 },
-    { label: '500–999 guests', pricePerGuestNaira: 300 },
-    { label: '1,000+ guests', pricePerGuestNaira: 250 },
-];
-const GUEST_PASS_MINIMUM_NAIRA = 20_000;
-const GUEST_PASS_FREE_TEST = 5;
-const DOMAIN_PRICES_NAIRA: Record<string, number> = {
-    com: 50_000,
-    net: 60_000,
-    org: 40_000,
-};
+import {
+    DOMAIN_PRICES_NAIRA,
+    GUEST_PASS_FREE_TEST,
+    GUEST_PASS_MINIMUM_NAIRA,
+    GUEST_PASS_TIERS,
+    REGISTRY_SERVICE_FEE_RATE,
+    SMS_BUNDLES,
+    STORAGE_FREE_PHOTOS,
+    STORAGE_TIERS,
+    STUDIO_PREMIUM_PRICE_NAIRA,
+    TICKET_SERVICE_FEE_RATE,
+    VENDOR_COMMISSION_RATE,
+    VENDOR_FEATURES,
+    VENDOR_VERIFICATION_FEE_NAIRA,
+    WEBSITE_FREE_MONTHS,
+    WEBSITE_KEEP_FOREVER_NAIRA,
+    WEBSITE_OFFLINE_MONTHS,
+} from '../config/pricing';
 
 const fmt = (n: number) => `₦${n.toLocaleString()}`;
 const pct = (r: number) => `${(r * 100).toFixed(0)}%`;
@@ -162,7 +139,7 @@ function PlannerTab() {
                             <Row
                                 label="Ticket sales"
                                 value={pct(TICKET_SERVICE_FEE_RATE)}
-                                note="Deducted from your payout. Buyers cover only Paystack's card fee. Promo/discount codes included free."
+                                note="Ariya's 3% service fee may be passed to buyers or deducted from organiser proceeds. Paystack's card fee is separate."
                             />
                             <Row
                                 label="Cash fund contributions"
@@ -188,7 +165,10 @@ function PlannerTab() {
                                 iconColor="text-primary-600"
                             />
                             {Object.entries(DOMAIN_PRICES_NAIRA).map(([tld, price]) => (
-                                <Row key={tld} label={`.${tld}`} value={`${fmt(price)}/yr`} />
+                                <React.Fragment key={tld}>
+                                    <Row label={`.${tld} first year`} value={fmt(price)} />
+                                    <Row label={`.${tld} renewal`} value={`${fmt(Math.round(price * 1.6))}/yr`} />
+                                </React.Fragment>
                             ))}
                         </CardBody>
                     </Card>
@@ -212,6 +192,19 @@ function PlannerTab() {
                             <Row label="Live after your event" value={`${WEBSITE_FREE_MONTHS} months free`} />
                             <Row label="Archive page" value={`Until month ${WEBSITE_OFFLINE_MONTHS}`} />
                             <Row label="Keep it live forever" value={fmt(WEBSITE_KEEP_FOREVER_NAIRA)} />
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardBody>
+                            <CardTitle
+                                icon={Palette}
+                                title="Ariya Studio Premium"
+                                sub="One-time · lifetime access"
+                                iconBg="bg-indigo-100 dark:bg-indigo-900/30"
+                                iconColor="text-indigo-600 dark:text-indigo-400"
+                            />
+                            <Row label="Premium template library" value={fmt(STUDIO_PREMIUM_PRICE_NAIRA)} />
                         </CardBody>
                     </Card>
 
@@ -416,7 +409,7 @@ export default function PricingPage() {
                         <ul className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed space-y-1 text-left inline-block">
                             <li><span className="font-semibold text-gray-700 dark:text-gray-300">Cash fund</span> — Ariya's 10% (incl. Paystack) from your payout</li>
                             <li><span className="font-semibold text-gray-700 dark:text-gray-300">Registry</span> — no Ariya fee on physical items</li>
-                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Tickets</span> — Paystack card fee + 3% from organiser payout · promo codes free</li>
+                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Tickets</span> — 3% Ariya service fee with payer choice, plus Paystack card fee</li>
                         </ul>
                     </div>
 

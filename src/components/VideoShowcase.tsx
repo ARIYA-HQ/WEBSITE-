@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Play } from 'lucide-react';
+import { EVENT_IMAGES } from '../config/eventImages';
 
-// Cinematic fallback — elegant event ballroom from Unsplash
-const cinematicAsset = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=90';
+const cinematicAsset = EVENT_IMAGES.pinkGeleCelebration;
 
 export default function VideoShowcase() {
     const [isHovered, setIsHovered] = useState(false);

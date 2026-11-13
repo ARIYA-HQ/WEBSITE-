@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { APP_LINKS } from '../../config/links';
+import { EVENT_IMAGES } from '../../config/eventImages';
 
 export default function IndividualsPage() {
     const fadeIn = {
@@ -63,10 +64,10 @@ export default function IndividualsPage() {
 
                     <div className="flex-1 relative">
                         <div className="grid grid-cols-2 gap-4">
-                            <GalleryImage src="https://images.unsplash.com/photo-1519741497674-611481863552" label="Weddings" />
-                            <GalleryImage src="https://images.unsplash.com/photo-1530103043960-ef38714abb15" label="Parties" mt="mt-12" />
-                            <GalleryImage src="https://images.unsplash.com/photo-1505232458627-41bed6811447" label="Showers" />
-                            <GalleryImage src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3" label="Celebrations" mt="mt-12" />
+                            <GalleryImage src={EVENT_IMAGES.yorubaCouple} label="Weddings" />
+                            <GalleryImage src={EVENT_IMAGES.pinkGeleDance} label="Parties" mt="mt-12" />
+                            <GalleryImage src={EVENT_IMAGES.womenCelebrating} label="Showers" />
+                            <GalleryImage src={EVENT_IMAGES.menCelebrating} label="Celebrations" mt="mt-12" />
                         </div>
                     </div>
                 </div>
@@ -129,8 +130,8 @@ export default function IndividualsPage() {
                     <div className="relative">
                         <div className="aspect-[4/5] bg-rose-100 dark:bg-rose-900/10 rounded-[60px] p-4">
                             <img
-                                src="https://images.unsplash.com/photo-1469334031218-e382a71b716b"
-                                alt="Event success"
+                                src={EVENT_IMAGES.eventPlanner}
+                                alt="Nigerian event planner preparing a celebration"
                                 className="w-full h-full object-cover rounded-[50px] shadow-2xl"
                             />
                         </div>

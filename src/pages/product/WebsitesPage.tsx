@@ -2,17 +2,36 @@ import React from 'react';
 import {
     Globe,
     Smartphone,
-    Monitor,
     Gift,
-    Layout,
     ArrowRight,
     Palette,
-    Zap,
-    Heart,
-    ShieldCheck,
     CheckCircle2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { APP_LINKS } from '../../config/links';
+import { EVENT_IMAGES } from '../../config/eventImages';
+import { DOMAIN_PRICES_NAIRA, STUDIO_PREMIUM_PRICE_NAIRA, WEBSITE_FREE_MONTHS, WEBSITE_KEEP_FOREVER_NAIRA, WEBSITE_OFFLINE_MONTHS } from '../../config/pricing';
+
+const formatNaira = (amount: number) => `₦${amount.toLocaleString('en-NG')}`;
+
+const websiteTemplates = [
+    { name: 'Midnight Serenade', color: '#1A202C', layout: 'Split hero', image: EVENT_IMAGES.coupleWalking, premium: false },
+    { name: 'Secret Garden', color: '#1F3B2C', layout: 'Centered hero', image: EVENT_IMAGES.yorubaCouple, premium: false },
+    { name: 'Modern Muse', color: '#000000', layout: 'Split hero', image: EVENT_IMAGES.coupleReception, premium: false },
+    { name: 'Boho Rhapsody', color: '#C05621', layout: 'Centered hero', image: EVENT_IMAGES.pinkGeleCelebration, premium: false },
+    { name: 'Vintage Velvet', color: '#9B2C2C', layout: 'Split hero', image: EVENT_IMAGES.coupleVenue, premium: false },
+    { name: 'Industrial Glow', color: '#2D3748', layout: 'Split hero', image: EVENT_IMAGES.coupleReceptionGuests, premium: true },
+    { name: 'Azure Breeze', color: '#2B6CB0', layout: 'Centered hero', image: EVENT_IMAGES.coupleEmbrace, premium: true },
+    { name: 'Royal Jubilee', color: '#553C9A', layout: 'Split hero', image: EVENT_IMAGES.pinkGeleDance, premium: true },
+    { name: 'Rustic Timber', color: '#744210', layout: 'Centered hero', image: EVENT_IMAGES.womenCelebrating, premium: true },
+    { name: 'Celestial Dream', color: '#2C5282', layout: 'Split hero', image: EVENT_IMAGES.menCelebrating, premium: true },
+    { name: 'Atelier Vows', color: '#111111', layout: 'Centered hero', image: EVENT_IMAGES.coupleWalking, premium: true },
+    { name: 'Villa Aurelia', color: '#2C3428', layout: 'Split hero', image: EVENT_IMAGES.yorubaCouple, premium: true },
+    { name: 'Black Tie Bloom', color: '#070707', layout: 'Split hero', image: EVENT_IMAGES.coupleReception, premium: true },
+    { name: 'Maison Floral', color: '#6F3D46', layout: 'Centered hero', image: EVENT_IMAGES.pinkGeleCelebration, premium: true },
+    { name: 'Heritage Union', color: '#3A2A20', layout: 'Centered hero', image: EVENT_IMAGES.coupleVenue, premium: true },
+];
 
 export default function WebsitesPage() {
     const fadeIn = {
@@ -34,50 +53,36 @@ export default function WebsitesPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="section-label mb-4 block text-indigo-600 dark:text-indigo-400">Design Studio</span>
+                        <span className="section-label mb-4 block text-indigo-600 dark:text-indigo-400">Event websites</span>
                         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 dark:text-white mb-8 leading-[0.85]">
                             The Stage for <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-primary-600">Your Story.</span>
                         </h1>
                         <p className="text-xl text-gray-500 dark:text-gray-400 font-medium max-w-xl mb-12 leading-relaxed">
-                            AriyaHQ gives you the tools to build a digital invitation so beautiful,
-                            it feels as personal as a handwritten note. Integrated RSVPs and
-                            registries included.
+                            Build an event website with the details your guests need, plus integrated
+                            RSVPs and a wishlist. Choose a current Ariya website theme and make it your own.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <button className="bg-indigo-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-600/20">
+                            <a href={APP_LINKS.signup} className="inline-flex items-center justify-center whitespace-nowrap bg-indigo-600 text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-600/20">
                                 Start Your Website
-                            </button>
-                            <button className="text-gray-900 dark:text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-gray-200 dark:border-gray-800 hover:bg-white dark:hover:bg-gray-900 transition-all">
+                            </a>
+                            <a href="#templates" className="inline-flex items-center justify-center whitespace-nowrap text-gray-900 dark:text-white font-black uppercase tracking-widest px-10 py-5 rounded-full text-xs border border-gray-200 dark:border-gray-800 hover:bg-white dark:hover:bg-gray-900 transition-all">
                                 View Templates
-                            </button>
+                            </a>
                         </div>
                     </motion.div>
 
                     <div className="relative">
                         <div className="absolute inset-0 bg-indigo-600/5 rounded-[50px] rotate-3" />
                         <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[50px] shadow-2xl p-4 md:p-12 relative z-10 overflow-hidden">
-                            {/* Website Mockup */}
-                            <div className="aspect-video bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden relative">
-                                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/10 to-transparent" />
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full px-8">
-                                    <h4 className="font-serif text-3xl md:text-5xl text-gray-900 dark:text-white mb-4 italic">Bolu & Adaora</h4>
-                                    <div className="text-[10px] uppercase font-black tracking-[0.3em] text-indigo-600">May 24, 2025 • Lagos</div>
-                                    <div className="mt-8 flex justify-center gap-4">
-                                        <div className="px-6 py-2 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full">RSVP NOW</div>
-                                        <div className="px-6 py-2 border border-gray-900 text-gray-900 text-[10px] font-black uppercase tracking-widest rounded-full dark:border-white dark:text-white">REGISTRY</div>
-                                    </div>
+                            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl" style={{ backgroundColor: websiteTemplates[0].color }}>
+                                <img src={websiteTemplates[0].image} alt="Nigerian wedding celebration, featured with the Midnight Serenade Ariya website theme" className="h-full w-full object-cover" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                                <div className="absolute inset-x-6 bottom-6 text-white">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">Current wedding website theme</span>
+                                    <h2 className="mt-2 font-serif text-3xl md:text-4xl">{websiteTemplates[0].name}</h2>
+                                    <p className="mt-2 text-sm text-white/80">{websiteTemplates[0].layout} · Included template</p>
                                 </div>
-                            </div>
-                            {/* Floating Elements */}
-                            <div className="absolute bottom-8 right-8 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-4 border border-gray-100 dark:border-gray-700 max-w-[150px] hidden md:block group hover:scale-105 transition-transform">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center text-emerald-600">
-                                        <CheckCircle2 className="w-4 h-4" />
-                                    </div>
-                                    <span className="text-[10px] font-bold text-gray-900 dark:text-white">New RSVP</span>
-                                </div>
-                                <div className="text-[8px] text-gray-500">Omotola Williams + 2</div>
                             </div>
                         </div>
                     </div>
@@ -100,7 +105,7 @@ export default function WebsitesPage() {
                     <DesignPillar
                         icon={Gift}
                         title="Universal Wishlist"
-                        desc="Add items with target amounts. Guests contribute via Paystack. You withdraw when you're ready."
+                        desc="Add gift ideas or cash-fund goals. Review the current payment and settlement terms before sharing your list."
                     />
                 </div>
 
@@ -112,9 +117,8 @@ export default function WebsitesPage() {
                             <span className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-4 block">Integrated Wishlist</span>
                             <h2 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight leading-tight">Gifting made <br /> effortless & elegant.</h2>
                             <p className="text-gray-400 mb-10 leading-relaxed font-medium">
-                                No more disconnected Excel sheets. Your wishlist is hard-wired into your
-                                guest list. When a guest buys a gift, your guest list updates in real-time
-                                for your thank-you notes.
+                                Keep event details and gift ideas together in one place. Add physical
+                                items or a cash-fund goal, then share the wishlist with invited guests.
                             </p>
                             <div className="space-y-4">
                                 <SyncItem text="Direct ₦ Cash Fund integration for local accounts." />
@@ -124,39 +128,80 @@ export default function WebsitesPage() {
                         </motion.div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-8 bg-white/5 rounded-3xl border border-white/10 flex flex-col justify-center items-center text-center">
-                                <Gift className="w-10 h-10 text-indigo-400 mb-4" />
-                                <div className="text-2xl font-black text-white tracking-widest">₦5.4M</div>
-                                <div className="text-[10px] font-bold text-gray-500 uppercase mt-1">Wishlist Total</div>
-                            </div>
-                            <div className="p-8 bg-indigo-600 rounded-3xl flex flex-col justify-center items-center text-center">
-                                <Heart className="w-10 h-10 text-white mb-4" />
-                                <div className="text-2xl font-black text-white tracking-widest">124</div>
-                                <div className="text-[10px] font-bold text-indigo-200 uppercase mt-1">Gifts Received</div>
-                            </div>
+                            {['Home essentials', 'Kitchen items', 'Experiences', 'Cash fund'].map((category) => (
+                                <div key={category} className="flex min-h-28 items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-5 text-center text-sm font-bold text-white">
+                                    {category}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Template Gallery Preview */}
-            <section className="py-32 bg-gray-50 dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
+            <section id="templates" className="scroll-mt-24 py-24 bg-gray-50 dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
                 <div className="max-w-7xl mx-auto px-8">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
                         <div>
-                            <span className="section-label mb-4 block">Gallery</span>
-                            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight">The Modern Collection</h2>
+                            <span className="section-label mb-4 block">Current Ariya website templates</span>
+                            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight">Choose your event website theme</h2>
+                            <p className="mt-4 max-w-2xl text-sm leading-6 text-gray-500 dark:text-gray-400">
+                                Browse current Ariya wedding website themes. Names, colors, layouts and access tiers match the template library. Sign in to customize a theme for your event.
+                            </p>
                         </div>
-                        <button className="flex items-center gap-2 text-indigo-600 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
-                            Browse All Themes <ArrowRight className="w-4 h-4" />
-                        </button>
+                        <a href={APP_LINKS.login} className="inline-flex items-center gap-2 whitespace-nowrap text-indigo-600 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
+                            Log in to view designs <ArrowRight className="w-4 h-4" />
+                        </a>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <ThemeCard title="Midnight Minimal" type="Contemporary" color="bg-gray-900" />
-                        <ThemeCard title="Ethereal Flora" type="Classic Wedding" color="bg-rose-50" />
-                        <ThemeCard title="Industrial Loft" type="Corporate" color="bg-amber-50" />
+                    <h3 className="mb-5 text-xs font-black uppercase tracking-widest text-gray-500 dark:text-gray-400">Wedding website templates</h3>
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {websiteTemplates.map((template) => (
+                            <a key={template.name} href={APP_LINKS.login} className="group overflow-hidden rounded-3xl border border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-950">
+                                <div className="relative aspect-[4/3] overflow-hidden" style={{ backgroundColor: template.color }}>
+                                    <img src={template.image} alt="" aria-hidden="true" loading="lazy" className="h-full w-full object-cover opacity-80 transition duration-500 group-hover:scale-105" />
+                                    {template.premium && <span className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[9px] font-black uppercase tracking-wider text-gray-900">Premium</span>}
+                                </div>
+                                <div className="p-5">
+                                    <h4 className="font-black text-gray-900 dark:text-white">{template.name}</h4>
+                                    <div className="mt-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                                        <span aria-hidden="true" className="h-3 w-3 rounded-full border border-black/10" style={{ backgroundColor: template.color }} />
+                                        <span>{template.layout} · {template.premium ? 'Premium' : 'Included'}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
                     </div>
+                    <div className="mt-12 rounded-3xl border border-gray-100 bg-white p-8 dark:border-gray-800 dark:bg-gray-950">
+                        <h3 className="text-xl font-black text-gray-900 dark:text-white">Looking for invitations and stationery?</h3>
+                        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">Ariya Studio designs are on their own page, separate from event website themes.</p>
+                        <Link to="/product/studio-designs" className="mt-5 inline-flex items-center gap-2 whitespace-nowrap text-sm font-bold text-indigo-700 dark:text-indigo-300">
+                            Browse Ariya Studio designs <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            <section className="px-8 py-24">
+                <div className="mx-auto max-w-7xl">
+                    <div className="max-w-3xl">
+                        <span className="section-label mb-4 block">Transparent pricing</span>
+                        <h2 className="text-3xl font-black tracking-tight text-gray-900 dark:text-white md:text-4xl">Website and design costs</h2>
+                        <p className="mt-4 text-sm leading-6 text-gray-500 dark:text-gray-400">Start with the included event website; pay only for optional upgrades you choose.</p>
+                    </div>
+                    <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                        <PriceCard title="Event website" value="Free" detail={`${WEBSITE_FREE_MONTHS} months live after the event; archive access continues until month ${WEBSITE_OFFLINE_MONTHS}.`} />
+                        <PriceCard title="Premium template library" value={`${formatNaira(STUDIO_PREMIUM_PRICE_NAIRA)} once`} detail="Lifetime access to Ariya Studio Premium." />
+                        <PriceCard title="Keep a website live" value={`${formatNaira(WEBSITE_KEEP_FOREVER_NAIRA)} once`} detail="One-time per website, with no renewal." />
+                        <PriceCard
+                            title="Custom domain registration"
+                            value={`${formatNaira(DOMAIN_PRICES_NAIRA.com)} first year`}
+                            detail={`.com renewal: ${formatNaira(Math.round(DOMAIN_PRICES_NAIRA.com * 1.6))}/year. Other supported domains and renewals are listed on the pricing page.`}
+                        />
+                    </div>
+                    <Link to="/pricing" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo-700 dark:text-indigo-300">
+                        See all domain prices and fees <ArrowRight className="h-4 w-4" />
+                    </Link>
                 </div>
             </section>
 
@@ -165,9 +210,9 @@ export default function WebsitesPage() {
                 <div className="max-w-4xl mx-auto">
                     <Globe className="w-12 h-12 text-white/50 mx-auto mb-10" />
                     <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 leading-tight italic">Your domain. Your design. <br /> Your day.</h2>
-                    <button className="bg-white text-indigo-600 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-gray-100 transition-all shadow-xl">
+                    <a href={APP_LINKS.signup} className="inline-flex items-center justify-center whitespace-nowrap bg-white text-indigo-600 font-black uppercase tracking-widest px-12 py-5 rounded-full text-xs hover:bg-gray-100 transition-all shadow-xl">
                         Launch Your Site
-                    </button>
+                    </a>
                 </div>
             </section>
         </main>
@@ -193,16 +238,10 @@ const SyncItem = ({ text }: { text: string }) => (
     </div>
 );
 
-const ThemeCard = ({ title, type, color }: { title: string, type: string, color: string }) => (
-    <div className="group cursor-pointer">
-        <div className={`aspect-[4/3] ${color} rounded-[3rem] border border-gray-100 dark:border-gray-800 mb-6 overflow-hidden relative`}>
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity" />
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="px-6 py-2 bg-white text-gray-900 text-[10px] font-black rounded-full uppercase tracking-widest">Preview Theme</div>
-            </div>
-        </div>
-        <div className="text-[10px] font-black uppercase tracking-widest text-indigo-600 mb-1">{type}</div>
-        <h4 className="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight">{title}</h4>
+const PriceCard = ({ title, value, detail }: { title: string; value: string; detail: string }) => (
+    <div className="rounded-3xl border border-gray-100 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
+        <h3 className="text-xs font-black uppercase tracking-wider text-gray-500 dark:text-gray-400">{title}</h3>
+        <p className="mt-3 text-xl font-black text-gray-900 dark:text-white">{value}</p>
+        <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">{detail}</p>
     </div>
 );
-

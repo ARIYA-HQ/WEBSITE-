@@ -21,6 +21,10 @@ body {
   background-color: var(--beige-100);
 }
 
+:where(button, [role="button"]) {
+  white-space: nowrap;
+}
+
 @theme {
   --color-primary-600: #D0771E;
   --color-primary-100: #fbeee6;
@@ -178,3 +182,40 @@ html.dark body {
   color: #6b7280;
 }
 .dark .article-content blockquote { color: #9ca3af; }
+@media print {
+    body:has(.wedding-checklist-page) header,
+    body:has(.wedding-checklist-page) footer,
+    body:has(.wedding-checklist-page) div.fixed.bottom-3,
+    body:has(.wedding-checklist-page) .wedding-checklist-print-controls {
+        display: none !important;
+    }
+
+    .wedding-checklist-page > :not(#at-a-glance):not(#timeline):not(#final-week) {
+        display: none !important;
+    }
+
+    .wedding-checklist-page > #at-a-glance,
+    .wedding-checklist-page > #timeline,
+    .wedding-checklist-page > #final-week {
+        display: block !important;
+        padding: 1rem !important;
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    .wedding-checklist-page > #at-a-glance *,
+    .wedding-checklist-page > #timeline *,
+    .wedding-checklist-page > #final-week * {
+        color: #000 !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .wedding-checklist-page #at-a-glance li,
+    .wedding-checklist-page #timeline li {
+        break-inside: avoid;
+        border-color: #ccc !important;
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
