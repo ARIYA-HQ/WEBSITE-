@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import NavDropdown from '../NavDropdown';
@@ -107,31 +107,20 @@ function SpotlightCard({ menuTitle }: { menuTitle: string }) {
 export default function Header() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 40);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
 
     return (
-        <header className={`fixed top-0 z-50 w-full transition-all duration-500 ${
-            scrolled
-                ? 'border-b border-gray-100/60 bg-white/80 shadow-sm backdrop-blur-2xl dark:border-gray-800/60 dark:bg-gray-900/80'
-                : 'border-b border-transparent bg-transparent'
-        }`}>
+        <header className="fixed top-0 z-50 w-full border-b border-gray-200/80 bg-white/95 shadow-sm backdrop-blur-2xl dark:border-gray-800/80 dark:bg-gray-950/95">
             <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 2xl:px-8">
                 <Link to="/" aria-label="Àríyá home" className="flex shrink-0 items-center">
                     <img
                         src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-primary.svg`}
                         alt="Àríyá"
-                        className={`h-6 w-auto sm:h-7 ${scrolled ? 'dark:hidden' : 'hidden'}`}
+                        className="h-6 w-auto dark:hidden sm:h-7"
                     />
                     <img
                         src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-reverse.svg`}
                         alt="Àríyá"
-                        className={`h-6 w-auto sm:h-7 ${scrolled ? 'hidden dark:block' : 'block'}`}
+                        className="hidden h-6 w-auto dark:block sm:h-7"
                     />
                 </Link>
 
@@ -142,7 +131,7 @@ export default function Header() {
                             title={menu.title}
                             activeDropdown={activeDropdown}
                             setActiveDropdown={setActiveDropdown}
-                            transparent={!scrolled}
+                            transparent={false}
                         >
                                 <div className="grid w-[min(94vw,980px)] grid-cols-[minmax(0,1fr)_280px] gap-5 rounded-[1.7rem] bg-[#fdfbf8] p-5 dark:bg-gray-900">
                                     <div>
@@ -163,7 +152,7 @@ export default function Header() {
                     ))}
                     <Link
                         to="/pricing"
-                        className={`whitespace-nowrap px-1 text-xs font-semibold transition-colors hover:text-primary-600 ${scrolled ? 'text-gray-800 dark:text-white' : 'text-white'}`}
+                        className="whitespace-nowrap px-1 text-xs font-semibold text-gray-800 transition-colors hover:text-primary-600 dark:text-gray-100"
                     >
                         Pricing
                     </Link>
@@ -171,7 +160,7 @@ export default function Header() {
 
                 <nav aria-label="Account" className="hidden shrink-0 items-center gap-4 xl:flex 2xl:gap-6">
                     <ThemeToggle />
-                    <a href={APP_LINKS.login} className={`whitespace-nowrap text-sm font-semibold transition-colors hover:text-primary-600 ${scrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>Log In</a>
+                    <a href={APP_LINKS.login} className="whitespace-nowrap text-sm font-semibold text-gray-900 transition-colors hover:text-primary-600 dark:text-white">Log In</a>
                     <a href={APP_LINKS.signup} className="whitespace-nowrap">
                         <Button size="sm" tabIndex={-1}>Start Free</Button>
                     </a>
@@ -181,7 +170,7 @@ export default function Header() {
                     <button
                         type="button"
                         onClick={() => setMobileNavOpen(true)}
-                        className={`-mr-2 p-2 transition-colors ${scrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'}`}
+                        className="-mr-2 p-2 text-gray-700 transition-colors hover:text-primary-700 dark:text-gray-200 dark:hover:text-primary-300"
                         aria-label="Open menu"
                         aria-expanded={mobileNavOpen}
                     >

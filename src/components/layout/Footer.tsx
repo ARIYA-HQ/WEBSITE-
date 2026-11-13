@@ -36,24 +36,24 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-neutral-900 border-t border-white/10 pt-20 pb-10 px-8 text-white mt-auto">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 gap-12 mb-16 md:grid-cols-2 xl:grid-cols-12">
+        <footer className="mt-auto border-t border-white/10 bg-neutral-900 px-6 pb-8 pt-14 text-white sm:px-8 sm:pt-16">
+            <div className="mx-auto mb-12 grid max-w-[1440px] grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
                 {/* Brand Column */}
-                <div className="md:col-span-1 xl:col-span-3">
-                    <Link to="/" aria-label={`${FOOTER_CONFIG.brand.name} home`} className="mb-6 block w-fit">
+                <div className="sm:col-span-2 lg:col-span-1">
+                    <Link to="/" aria-label={`${FOOTER_CONFIG.brand.name} home`} className="mb-5 block w-fit">
                         <img src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-reverse.svg`} alt={FOOTER_CONFIG.brand.name} className="h-9 w-auto" />
                     </Link>
-                    <p className="text-gray-400 max-w-sm mb-8 font-medium leading-relaxed">
+                    <p className="mb-6 max-w-sm font-medium leading-relaxed text-gray-300">
                         {FOOTER_CONFIG.brand.description}
                     </p>
-                    <div className="flex space-x-4">
+                    <div className="flex gap-3">
                         {FOOTER_CONFIG.brand.socials.map(({ icon: Icon, href, label }) => (
                             <a
                                 key={label}
                                 href={href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary-600 hover:scale-110 transition-all duration-300"
+                                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:scale-105 hover:bg-primary-600"
                                 aria-label={label}
                             >
                                 <Icon className="w-4 h-4" />
@@ -64,17 +64,17 @@ export default function Footer() {
 
                 {/* Links Columns */}
                 {FOOTER_CONFIG.columns.map((column, idx) => (
-                    <div key={idx} className="min-w-0 md:col-span-1 xl:col-span-2">
-                        <h5 className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-6">{column.title}</h5>
-                        <ul className="space-y-3 text-sm font-medium text-gray-400">
-                            {column.links.map((link, i) => (
-                                <li key={i}>
+                    <div key={column.title} className="min-w-0">
+                        <h5 className="mb-4 text-[10px] font-black uppercase tracking-[0.16em] text-[#E18A32]">{column.title}</h5>
+                        <ul className="space-y-2.5 text-sm font-medium text-gray-300">
+                            {column.links.map((link) => (
+                                <li key={link.href}>
                                     {link.href.startsWith('/') ? (
-                                        <Link to={link.href} className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center gap-2">
+                                        <Link to={link.href} className="flex items-start gap-2 transition-colors duration-200 hover:text-white">
                                             {link.label}
                                         </Link>
                                     ) : (
-                                        <a href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center gap-2">
+                                        <a href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'} className="flex items-start gap-2 transition-colors duration-200 hover:text-white">
                                             {link.label}
                                         </a>
                                     )}
@@ -85,13 +85,13 @@ export default function Footer() {
                 ))}
 
                 {/* Newsletter Column */}
-                <div className="md:col-span-2 xl:col-span-3">
-                    <h5 className="text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-6">{FOOTER_CONFIG.newsletter.title}</h5>
-                    <p className="text-gray-400 text-sm mb-6">
+                <div className="sm:col-span-2 lg:col-span-1">
+                    <h5 className="mb-4 text-[10px] font-black uppercase tracking-[0.16em] text-[#E18A32]">{FOOTER_CONFIG.newsletter.title}</h5>
+                    <p className="mb-5 text-sm leading-6 text-gray-300">
                         {FOOTER_CONFIG.newsletter.description}
                     </p>
                     <form onSubmit={handleSubmit} className="space-y-3">
-                        <div className="flex gap-2">
+                        <div className="flex flex-col gap-2">
                             <input
                                 type="email"
                                 value={email}
@@ -99,15 +99,15 @@ export default function Footer() {
                                 placeholder="Enter your email"
                                 required
                                 disabled={status === 'loading' || status === 'success'}
-                                className="flex-1 bg-white/5 border border-white/10 rounded-full px-6 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-primary-600 transition-colors disabled:opacity-50"
+                                className="min-h-11 w-full rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30 disabled:opacity-50"
                             />
                             <button
                                 type="submit"
                                 disabled={status === 'loading' || status === 'success'}
-                                className="bg-white text-neutral-900 rounded-full px-6 py-3 text-sm font-bold hover:bg-primary-600 hover:text-white transition-all duration-300 disabled:opacity-50"
+                                className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold text-neutral-900 transition-all duration-300 hover:bg-primary-600 hover:text-white disabled:opacity-50"
                             >
                                 {status === 'loading' ? (
-                                    <div className="w-4 h-4 border-2 border-neutral-900/30 border-t-neutral-900 rounded-full animate-spin" />
+                                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-neutral-900/30 border-t-neutral-900" />
                                 ) : 'Subscribe'}
                             </button>
                         </div>
@@ -125,11 +125,11 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] font-black uppercase tracking-widest text-gray-500">
+            <div className="mx-auto flex max-w-[1440px] flex-col gap-4 border-t border-white/10 pt-6 text-[10px] font-bold uppercase tracking-wider text-gray-400 sm:flex-row sm:items-center sm:justify-between">
                 <p>{FOOTER_CONFIG.legal.copyright}</p>
-                <div className="flex gap-8 mt-4 md:mt-0">
-                    {FOOTER_CONFIG.legal.links.map((link, i) => (
-                        <Link key={i} to={link.href} className="hover:text-white transition-colors">{link.label}</Link>
+                <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    {FOOTER_CONFIG.legal.links.map((link) => (
+                        <Link key={link.href} to={link.href} className="transition-colors hover:text-white">{link.label}</Link>
                     ))}
                 </div>
             </div>

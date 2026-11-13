@@ -13,7 +13,7 @@ interface NavDropdownProps {
 
 export default function NavDropdown({ title, children, activeDropdown, setActiveDropdown, className = '', transparent = false }: NavDropdownProps) {
     const isOpen = activeDropdown === title;
-    const baseColor = transparent ? 'text-white/90 hover:text-white' : 'text-gray-900 dark:text-white hover:text-primary-600';
+    const baseColor = transparent ? 'text-white/90 hover:text-white' : 'text-gray-800 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-300';
 
     return (
         <div
@@ -26,7 +26,7 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
                 aria-expanded={isOpen}
                 aria-haspopup="true"
                 onFocus={() => setActiveDropdown(title)}
-                className={`flex items-center gap-1 whitespace-nowrap text-xs font-semibold transition-colors ${isOpen ? 'text-primary-600' : baseColor}`}
+                className={`flex items-center gap-1 whitespace-nowrap text-sm font-semibold transition-colors ${isOpen ? 'text-primary-600 dark:text-primary-300' : baseColor} ${className}`}
             >
                 {title}
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
