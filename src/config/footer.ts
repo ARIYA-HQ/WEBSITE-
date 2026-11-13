@@ -38,7 +38,7 @@ export const FOOTER_CONFIG = {
             links: [
                 { label: 'Event Ticketing in Nigeria', href: '/event-ticketing-nigeria' },
                 { label: 'Event Registration in Nigeria', href: '/event-registration-nigeria' },
-                { label: 'Event Planning Tools', href: '/product/planning' },
+                { label: 'Wedding Planning Tools & Guide', href: '/wedding-planning' },
                 { label: 'Event Marketplace', href: '/product/marketplace' },
                 { label: 'Wishlist Catalogue', href: '/product/wishlist' },
                 { label: 'Event Websites', href: '/product/websites' },

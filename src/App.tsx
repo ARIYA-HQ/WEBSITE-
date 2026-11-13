@@ -25,13 +25,10 @@ const PlannersPage = lazy(() => import('./pages/solutions/PlannersPage'));
 const AgenciesPage = lazy(() => import('./pages/solutions/AgenciesPage'));
 const VendorsPage = lazy(() => import('./pages/solutions/VendorsPage'));
 const EnterprisePage = lazy(() => import('./pages/solutions/EnterprisePage'));
-const OverviewPage = lazy(() => import('./pages/product/OverviewPage'));
-const AIPlanningPage = lazy(() => import('./pages/product/AIPlanningPage'));
-const PlanningPage = lazy(() => import('./pages/product/PlanningPage'));
 const MarketplacePage = lazy(() => import('./pages/product/MarketplacePage'));
 const WishlistCataloguePage = lazy(() => import('./pages/product/WishlistCataloguePage'));
-const FinancePage = lazy(() => import('./pages/product/FinancePage'));
 const WebsitesPage = lazy(() => import('./pages/product/WebsitesPage'));
+const InvitationDesignsPage = lazy(() => import('./pages/product/InvitationDesignsPage'));
 const StudioDesignsPage = lazy(() => import('./pages/product/StudioDesignsPage'));
 const BlogPage = lazy(() => import('./pages/resources/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/resources/BlogPostPage'));
@@ -109,13 +106,14 @@ export default function App() {
                                                 <Route path="/" element={<LandingPage />} />
 
                                                 {/* Product Pages */}
-                                                <Route path="/product/overview" element={<OverviewPage />} />
-                                                <Route path="/product/planning" element={<PlanningPage />} />
-                                                <Route path="/product/ai-planning" element={<AIPlanningPage />} />
+                                                <Route path="/product/overview" element={<Navigate to="/" replace />} />
+                                                <Route path="/product/planning" element={<Navigate to="/wedding-planning" replace />} />
+                                                <Route path="/product/ai-planning" element={<Navigate to="/wedding-planning" replace />} />
                                                 <Route path="/product/marketplace" element={<MarketplacePage />} />
                                                 <Route path="/product/wishlist" element={<WishlistCataloguePage />} />
-                                                <Route path="/product/finance" element={<FinancePage />} />
+                                                <Route path="/product/finance" element={<Navigate to="/wedding-budget" replace />} />
                                                 <Route path="/product/websites" element={<WebsitesPage />} />
+                                                <Route path="/product/invitations" element={<InvitationDesignsPage />} />
                                                 <Route path="/product/studio-designs" element={<StudioDesignsPage />} />
 
                                                 {/* Solutions Pages */}

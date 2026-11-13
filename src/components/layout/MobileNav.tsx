@@ -2,15 +2,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-    X, ChevronDown, LayoutDashboard, Kanban, Store, Calculator, Globe, Bot, Palette, Gift,
-    Search, UserPlus, FileText, Copy, Award, LifeBuoy, HelpCircle,
-    ArrowRight
-} from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 import { ThemeToggle } from '../ThemeToggle';
 import Button from '../common/Button';
 import { APP_LINKS } from '../../config/links';
-import { SHOW_CASE_STUDIES } from '../../config/features';
+import { NAVIGATION_CONFIG } from '../../config/navigation';
+import type { NavigationItem } from '../../config/navigation';
 
 import { createPortal } from 'react-dom';
 
@@ -61,35 +58,14 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                 </div>
                             </div>
 
-                            <div className="space-y-6">
-                                <MobileAccordion title="Product">
-                                    <div className="grid gap-4 pl-4">
-                                        <MobileLink to="/product/overview" icon={LayoutDashboard} label="Overview" onClick={onClose} />
-                                        <MobileLink to="/product/planning" icon={Kanban} label="Planning Dashboard" onClick={onClose} />
-                                        <MobileLink to="/product/ai-planning" icon={Bot} label="AI Planning" onClick={onClose} />
-                                        <MobileLink to="/product/marketplace" icon={Store} label="Vendor Marketplace" onClick={onClose} />
-                                        <MobileLink to="/product/wishlist" icon={Gift} label="Wishlist Catalogue" onClick={onClose} />
-                                        <MobileLink to="/product/finance" icon={Calculator} label="Budget & Guest List" onClick={onClose} />
-                                        <MobileLink to="/product/websites" icon={Globe} label="Event Website Themes" onClick={onClose} />
-                                        <MobileLink to="/product/studio-designs" icon={Palette} label="Ariya Studio Designs" onClick={onClose} />
-                                    </div>
-                                </MobileAccordion>
-
-                                <MobileAccordion title="Solutions">
-                                    <div className="grid gap-4 pl-4">
-                                        <MobileLink to="/solutions/agencies" label="For Agencies" onClick={onClose} />
-                                        <MobileLink to="/solutions/vendors" label="For Vendors" onClick={onClose} />
-                                        <MobileLink to="/solutions/enterprise" label="Enterprise" onClick={onClose} />
-                                    </div>
-                                </MobileAccordion>
-
-                                <MobileAccordion title="Vendors">
-                                    <div className="grid gap-4 pl-4">
-                                        <MobileLink to="/product/marketplace" icon={Search} label="Browse Vendors" onClick={onClose} />
-                                        <MobileExternalLink href={APP_LINKS.vendorSignup} icon={UserPlus} label="Become a Vendor" onClick={onClose} />
-                                        <MobileLink to="/solutions/vendors" icon={Store} label="Why Sell on Ariya" onClick={onClose} />
-                                    </div>
-                                </MobileAccordion>
+                            <div className="space-y-4">
+                                {NAVIGATION_CONFIG.map((menu, index) => (
+                                    <MobileAccordion key={menu.title} title={menu.title} index={index}>
+                                        <div className="grid gap-2 pl-2">
+                                            {menu.items.map((item, itemIndex) => <MobileMenuItem key={item.href} item={item} index={itemIndex} onClick={onClose} />)}
+                                        </div>
+                                    </MobileAccordion>
+                                ))}
 
                                 <div className="border-b border-gray-100 dark:border-gray-800 pb-4">
                                     <Link
@@ -101,15 +77,6 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                     </Link>
                                 </div>
 
-                                <MobileAccordion title="Resources">
-                                    <div className="grid gap-4 pl-4">
-                                        <MobileLink to="/resources/blog" icon={FileText} label="Blog & Insights" onClick={onClose} />
-                                        <MobileLink to="/resources/guides" icon={Copy} label="Guides & Templates" onClick={onClose} />
-                                        {SHOW_CASE_STUDIES && <MobileLink to="/resources/case-studies" icon={Award} label="Case Studies" onClick={onClose} />}
-                                        <MobileLink to="/resources/help-center" icon={LifeBuoy} label="Help Center" onClick={onClose} />
-                                        <MobileLink to="/resources/faq" icon={HelpCircle} label="FAQs" onClick={onClose} />
-                                    </div>
-                                </MobileAccordion>
                             </div>
 
                             <div className="mt-10 pt-8 border-t border-gray-100 dark:border-gray-800 space-y-4">
@@ -122,7 +89,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                 </a>
                                 <a href={APP_LINKS.signup} className="block w-full">
                                     <Button fullWidth tabIndex={-1}>
-                                        Get Started
+                                        Start Free
                                     </Button>
                                 </a>
                             </div>
@@ -135,18 +102,28 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
     );
 }
 
-function MobileAccordion({ title, children }: { title: string, children: React.ReactNode }) {
+const mobileAccents = [
+    'bg-primary-50 text-primary-800 dark:bg-primary-950/50 dark:text-primary-300',
+    'bg-rose-50 text-rose-800 dark:bg-rose-950/50 dark:text-rose-300',
+    'bg-amber-50 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300',
+    'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300',
+    'bg-violet-50 text-violet-800 dark:bg-violet-950/50 dark:text-violet-300',
+    'bg-sky-50 text-sky-800 dark:bg-sky-950/50 dark:text-sky-300',
+];
+
+function MobileAccordion({ title, children, index }: { title: string, children: React.ReactNode, index: number }) {
     const [isOpen, setIsOpen] = useState(false);
+    const accent = mobileAccents[index % mobileAccents.length];
 
     return (
-        <div className="border-b border-gray-100 dark:border-gray-800 pb-4">
+        <div className="border-b border-gray-100 pb-3 dark:border-gray-800">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
-                className="flex w-full justify-between items-center py-2 text-lg font-bold text-gray-900 dark:text-white"
+                className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-base font-bold transition ${isOpen ? accent : 'text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-gray-800'}`}
             >
                 {title}
-                <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-5 w-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </button>
             <AnimatePresence>
                 {isOpen && (
@@ -167,28 +144,35 @@ function MobileAccordion({ title, children }: { title: string, children: React.R
     );
 }
 
-function MobileLink({ to, icon: Icon, label, onClick }: { to: string, icon?: any, label: string, onClick: () => void }) {
+function MobileMenuItem({ item, onClick, index }: { item: NavigationItem, onClick: () => void, index: number }) {
+    const Icon = item.icon;
+    const accent = mobileAccents[index % mobileAccents.length];
+    const content = (
+        <>
+            <span className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${accent}`}>
+                <Icon className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <span>
+                <span className="block text-sm font-medium">{item.title}</span>
+                <span className="mt-0.5 block text-xs leading-5 text-gray-500 dark:text-gray-400">{item.description}</span>
+            </span>
+        </>
+    );
+    const className = 'flex items-start gap-3 rounded-2xl border border-transparent bg-white p-3 text-gray-600 shadow-sm transition hover:border-gray-100 hover:shadow-md hover:text-primary-700 dark:bg-gray-950 dark:text-gray-300 dark:hover:border-gray-700';
+
+    return item.href.startsWith('http')
+        ? <a href={item.href} onClick={onClick} className={className}>{content}</a>
+        : <Link to={item.href} onClick={onClick} className={className}>{content}</Link>;
+}
+
+function MobileLink({ to, label, onClick }: { to: string, label: string, onClick: () => void }) {
     return (
         <Link
             to={to}
             onClick={onClick}
             className="flex items-center gap-3 py-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
         >
-            {Icon && <Icon className="w-4 h-4" />}
             <span className="text-sm font-medium">{label}</span>
         </Link>
-    );
-}
-
-function MobileExternalLink({ href, icon: Icon, label, onClick }: { href: string, icon?: any, label: string, onClick: () => void }) {
-    return (
-        <a
-            href={href}
-            onClick={onClick}
-            className="flex items-center gap-3 py-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-        >
-            {Icon && <Icon className="w-4 h-4" />}
-            <span className="text-sm font-medium">{label}</span>
-        </a>
     );
 }

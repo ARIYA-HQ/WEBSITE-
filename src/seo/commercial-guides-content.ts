@@ -274,7 +274,7 @@ export const ticketingGuide: ResourceGuideContent = {
     ],
     related: [
         { label: 'Event registration guide', href: '/event-registration-nigeria' },
-        { label: 'Event planning tools', href: '/product/planning' },
+        { label: 'Wedding planning guide', href: '/wedding-planning' },
         { label: 'Explore the event marketplace', href: '/product/marketplace' },
     ],
 };
@@ -331,7 +331,7 @@ export const registrationGuide: ResourceGuideContent = {
     ],
     related: [
         { label: 'Event ticketing guide', href: '/event-ticketing-nigeria' },
-        { label: 'Event planning tools', href: '/product/planning' },
+        { label: 'Wedding planning guide', href: '/wedding-planning' },
         { label: 'AriyaHQ help center', href: '/resources/help-center' },
     ],
 };

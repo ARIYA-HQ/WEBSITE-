@@ -28,6 +28,20 @@ function isPublishedBlogPost(value: unknown): value is BlogPost {
 if (process.env.NODE_ENV === 'production') {
     const distPath = path.join(process.cwd(), 'dist');
     const templatePath = path.join(distPath, 'index.html');
+    const retiredProductRoutes: Record<string, string> = {
+        '/product/overview': '/',
+        '/product/planning': '/wedding-planning',
+        '/product/ai-planning': '/wedding-planning',
+        '/product/finance': '/wedding-budget',
+    };
+    app.use((req, res, next) => {
+        const destination = retiredProductRoutes[req.path.replace(/\/+$/, '') || '/'];
+        if (destination) {
+            res.redirect(301, destination);
+            return;
+        }
+        next();
+    });
     app.use((req, res, next) => {
         const path = req.path.replace(/\/+$/, '') || '/';
         if (

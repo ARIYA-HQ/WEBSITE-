@@ -57,8 +57,8 @@ const NotFoundPage = () => {
                     {/* Helpful Links */}
                     <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                         <div>
-                            <span className="block text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-2">Product</span>
-                            <Link to="/product/overview" className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Overview</Link>
+                            <span className="block text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-2">Explore</span>
+                            <Link to="/product/marketplace" className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Find Vendors</Link>
                         </div>
                         <div>
                             <span className="block text-[10px] font-black uppercase tracking-widest text-[#D0771E] mb-2">Company</span>

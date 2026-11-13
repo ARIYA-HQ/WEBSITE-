@@ -10,6 +10,7 @@ describe('buildSitemapXml', () => {
 
         expect(sitemap).toContain('<loc>https://ariyahq.com/</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/product/wishlist</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/product/invitations</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/wedding-website</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/wedding-budget</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/aso-ebi-in-nigeria</loc>');
@@ -39,6 +40,10 @@ describe('buildSitemapXml', () => {
         expect(sitemap).not.toContain('/waitlist');
         expect(sitemap).not.toContain('/legal/cookies');
         expect(sitemap).not.toContain('/resources/case-studies');
+        expect(sitemap).not.toContain('/product/overview');
+        expect(sitemap).not.toContain('/product/planning');
+        expect(sitemap).not.toContain('/product/ai-planning');
+        expect(sitemap).not.toContain('/product/finance');
     });
 
     it('URL-encodes reserved characters in CMS slugs', () => {

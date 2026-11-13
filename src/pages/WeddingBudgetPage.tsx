@@ -636,10 +636,10 @@ export default function WeddingBudgetPage() {
                         Organise your wedding guest list and RSVPs <ArrowRight className="h-4 w-4" />
                     </Link>
                     <Link
-                        to="/product/finance"
+                        to="/wedding-rsvp-guest-management"
                         className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-400"
                     >
-                        Explore AriyaHQ event finance tools <ArrowRight className="h-4 w-4" />
+                        Organise your wedding guest list and RSVPs <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
             </section>

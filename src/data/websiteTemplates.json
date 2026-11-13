@@ -1,0 +1,1712 @@
+[
+  {
+    "id": "wedding-0",
+    "type": "wedding",
+    "name": "Midnight Serenade",
+    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1A202C",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "wedding-1",
+    "type": "wedding",
+    "name": "Secret Garden",
+    "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1F3B2C",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "wedding-2",
+    "type": "wedding",
+    "name": "Modern Muse",
+    "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#000000",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "wedding-3",
+    "type": "wedding",
+    "name": "Boho Rhapsody",
+    "image": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#C05621",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "wedding-4",
+    "type": "wedding",
+    "name": "Vintage Velvet",
+    "image": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#9B2C2C",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "wedding-5",
+    "type": "wedding",
+    "name": "Industrial Glow",
+    "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#2D3748",
+      "fontHeading": "font-mono",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "wedding-6",
+    "type": "wedding",
+    "name": "Azure Breeze",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#2B6CB0",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "wedding-7",
+    "type": "wedding",
+    "name": "Royal Jubilee",
+    "image": "https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#553C9A",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "wedding-8",
+    "type": "wedding",
+    "name": "Rustic Timber",
+    "image": "https://images.unsplash.com/photo-1518131394191-05c040212076?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#744210",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "grid",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "wedding-9",
+    "type": "wedding",
+    "name": "Celestial Dream",
+    "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#2C5282",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "wedding-10",
+    "type": "wedding",
+    "name": "Atelier Vows",
+    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#111111",
+      "accentColor": "#D7B46A",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "luxury",
+      "buttonStyle": "outline",
+      "imageTreatment": "monochrome",
+      "backgroundMode": "paper",
+      "texture": "grain",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "wedding-11",
+    "type": "wedding",
+    "name": "Villa Aurelia",
+    "image": "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#2C3428",
+      "accentColor": "#E6CFA7",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "glass",
+      "sectionStyle": "editorial",
+      "buttonStyle": "monogram",
+      "imageTreatment": "warm",
+      "backgroundMode": "layered",
+      "texture": "linen",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "wedding-12",
+    "type": "wedding",
+    "name": "Black Tie Bloom",
+    "image": "https://images.unsplash.com/photo-1519225421980-715cb0202128?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#070707",
+      "accentColor": "#F4E6D0",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "dark",
+      "sectionStyle": "luxury",
+      "buttonStyle": "solid",
+      "imageTreatment": "contrast",
+      "backgroundMode": "dark",
+      "texture": "spotlight",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "wedding-13",
+    "type": "wedding",
+    "name": "Maison Floral",
+    "image": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#6F3D46",
+      "accentColor": "#F1C6B8",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "gallery",
+      "navStyle": "floating",
+      "sectionStyle": "magazine",
+      "buttonStyle": "pill",
+      "imageTreatment": "soft",
+      "backgroundMode": "paper",
+      "texture": "linen",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "wedding-14",
+    "type": "wedding",
+    "name": "Heritage Union",
+    "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#3A2A20",
+      "accentColor": "#C99B63",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "editorial",
+      "buttonStyle": "outline",
+      "imageTreatment": "warm",
+      "backgroundMode": "layered",
+      "texture": "grain",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-0",
+    "type": "corporate",
+    "name": "Summit",
+    "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1e3a8a",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-1",
+    "type": "corporate",
+    "name": "Innovation",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#0f172a",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "corporate-2",
+    "type": "corporate",
+    "name": "Legacy",
+    "image": "https://images.unsplash.com/photo-1560439514-4e9645039924?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#334155",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "corporate-3",
+    "type": "corporate",
+    "name": "Nexus",
+    "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#0284c7",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-4",
+    "type": "corporate",
+    "name": "Momentum",
+    "image": "https://images.unsplash.com/photo-1528605105345-5344ea20e269?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#475569",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "corporate-5",
+    "type": "corporate",
+    "name": "Global",
+    "image": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#2563eb",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "corporate-6",
+    "type": "corporate",
+    "name": "Frontier",
+    "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#0d9488",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-7",
+    "type": "corporate",
+    "name": "Elite",
+    "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#111827",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "grid",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "corporate-8",
+    "type": "corporate",
+    "name": "Velocity",
+    "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#4f46e5",
+      "fontHeading": "font-mono",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "corporate-9",
+    "type": "corporate",
+    "name": "Alliance",
+    "image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#3b82f6",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-10",
+    "type": "corporate",
+    "name": "Capital Forum",
+    "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#101820",
+      "accentColor": "#8FB8DE",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "minimal",
+      "sectionStyle": "magazine",
+      "buttonStyle": "solid",
+      "imageTreatment": "contrast",
+      "backgroundMode": "layered",
+      "texture": "grain",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-11",
+    "type": "corporate",
+    "name": "Keynote One",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#09111F",
+      "accentColor": "#4FD1C5",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "dark",
+      "sectionStyle": "editorial",
+      "buttonStyle": "outline",
+      "imageTreatment": "duotone",
+      "backgroundMode": "dark",
+      "texture": "spotlight",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "corporate-12",
+    "type": "corporate",
+    "name": "Executive Retreat",
+    "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#24322B",
+      "accentColor": "#B8D8BA",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "glass",
+      "sectionStyle": "luxury",
+      "buttonStyle": "pill",
+      "imageTreatment": "soft",
+      "backgroundMode": "paper",
+      "texture": "linen",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "corporate-13",
+    "type": "corporate",
+    "name": "Product Theatre",
+    "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#0B1020",
+      "accentColor": "#A78BFA",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "gallery",
+      "navStyle": "dark",
+      "sectionStyle": "magazine",
+      "buttonStyle": "solid",
+      "imageTreatment": "contrast",
+      "backgroundMode": "dark",
+      "texture": "grain",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "corporate-14",
+    "type": "corporate",
+    "name": "Boardroom Luxe",
+    "image": "https://images.unsplash.com/photo-1560439514-4e9645039924?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#1F2933",
+      "accentColor": "#D6B46F",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "minimal",
+      "sectionStyle": "luxury",
+      "buttonStyle": "monogram",
+      "imageTreatment": "warm",
+      "backgroundMode": "layered",
+      "texture": "grain",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "birthday-0",
+    "type": "birthday",
+    "name": "Celebration",
+    "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#ec4899",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "birthday-1",
+    "type": "birthday",
+    "name": "Neon",
+    "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#f59e0b",
+      "fontHeading": "font-mono",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "birthday-2",
+    "type": "birthday",
+    "name": "Pastel",
+    "image": "https://images.unsplash.com/photo-1558636508-e0969e8bfb39?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#fb7185",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "birthday-3",
+    "type": "birthday",
+    "name": "Disco",
+    "image": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#8b5cf6",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "birthday-4",
+    "type": "birthday",
+    "name": "Garden",
+    "image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#10b981",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "birthday-5",
+    "type": "birthday",
+    "name": "Carnival",
+    "image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#ef4444",
+      "fontHeading": "font-mono",
+      "layoutMode": "split",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "birthday-6",
+    "type": "birthday",
+    "name": "Glow",
+    "image": "https://images.unsplash.com/photo-1569937379829-d4c10f1dab3d?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#3b82f6",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "birthday-7",
+    "type": "birthday",
+    "name": "Fiesta",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#f97316",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "birthday-8",
+    "type": "birthday",
+    "name": "Safari",
+    "image": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#84cc16",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "birthday-9",
+    "type": "birthday",
+    "name": "Stellar",
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#6366f1",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "birthday-10",
+    "type": "birthday",
+    "name": "Rooftop Velvet",
+    "image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#251225",
+      "accentColor": "#F7A8B8",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "dark",
+      "sectionStyle": "luxury",
+      "buttonStyle": "pill",
+      "imageTreatment": "contrast",
+      "backgroundMode": "dark",
+      "texture": "spotlight",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "birthday-11",
+    "type": "birthday",
+    "name": "Dinner Club",
+    "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#402218",
+      "accentColor": "#E8B66D",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "minimal",
+      "sectionStyle": "editorial",
+      "buttonStyle": "outline",
+      "imageTreatment": "warm",
+      "backgroundMode": "paper",
+      "texture": "grain",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "birthday-12",
+    "type": "birthday",
+    "name": "Neon Suite",
+    "image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#10101A",
+      "accentColor": "#22D3EE",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "gallery",
+      "navStyle": "dark",
+      "sectionStyle": "magazine",
+      "buttonStyle": "solid",
+      "imageTreatment": "duotone",
+      "backgroundMode": "dark",
+      "texture": "grain",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "birthday-13",
+    "type": "birthday",
+    "name": "Little Luxe",
+    "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#B65F7A",
+      "accentColor": "#FFE4A8",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "glass",
+      "sectionStyle": "luxury",
+      "buttonStyle": "pill",
+      "imageTreatment": "soft",
+      "backgroundMode": "layered",
+      "texture": "linen",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "birthday-14",
+    "type": "birthday",
+    "name": "Milestone Edit",
+    "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#1B1B1B",
+      "accentColor": "#F5D7A1",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "magazine",
+      "buttonStyle": "monogram",
+      "imageTreatment": "monochrome",
+      "backgroundMode": "paper",
+      "texture": "grain",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "baby_shower-0",
+    "type": "baby_shower",
+    "name": "Blossom",
+    "image": "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#fbcfe8",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "baby_shower-1",
+    "type": "baby_shower",
+    "name": "Cloud",
+    "image": "https://images.unsplash.com/photo-1578926288207-32e3a02394d9?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#d1fae5",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "baby_shower-2",
+    "type": "baby_shower",
+    "name": "Nursery",
+    "image": "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#fef3c7",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "baby_shower-3",
+    "type": "baby_shower",
+    "name": "Sweet",
+    "image": "https://images.unsplash.com/photo-1584839404932-d30e75b25d9f?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#e0f2fe",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "baby_shower-4",
+    "type": "baby_shower",
+    "name": "Wander",
+    "image": "https://images.unsplash.com/photo-1548574505-5ad7436997da?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#fae8ff",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "baby_shower-5",
+    "type": "baby_shower",
+    "name": "Tender",
+    "image": "https://images.unsplash.com/photo-1531956531700-dc0ee0f1f9a5?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#ede9fe",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "baby_shower-6",
+    "type": "baby_shower",
+    "name": "Giggles",
+    "image": "https://images.unsplash.com/photo-1623113566153-7d82a0b8d8aa?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#ffedd5",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "baby_shower-7",
+    "type": "baby_shower",
+    "name": "Lullaby",
+    "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#f1f5f9",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "baby_shower-8",
+    "type": "baby_shower",
+    "name": "Cuddle",
+    "image": "https://images.unsplash.com/photo-1562092775-bef8e4e7d6c3?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#ecfdf5",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "baby_shower-9",
+    "type": "baby_shower",
+    "name": "Dreamy",
+    "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#fdf2f8",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "baby_shower-10",
+    "type": "baby_shower",
+    "name": "Botanical Nest",
+    "image": "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#536A5A",
+      "accentColor": "#F4D6C3",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "glass",
+      "sectionStyle": "luxury",
+      "buttonStyle": "pill",
+      "imageTreatment": "soft",
+      "backgroundMode": "paper",
+      "texture": "linen",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "baby_shower-11",
+    "type": "baby_shower",
+    "name": "Heirloom Baby",
+    "image": "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#8A6F5A",
+      "accentColor": "#F8E8D0",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "minimal",
+      "sectionStyle": "editorial",
+      "buttonStyle": "outline",
+      "imageTreatment": "warm",
+      "backgroundMode": "paper",
+      "texture": "linen",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "baby_shower-12",
+    "type": "baby_shower",
+    "name": "Cloud Atelier",
+    "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#7A8FA3",
+      "accentColor": "#E8F3F5",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "gallery",
+      "navStyle": "floating",
+      "sectionStyle": "magazine",
+      "buttonStyle": "pill",
+      "imageTreatment": "soft",
+      "backgroundMode": "layered",
+      "texture": "linen",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "baby_shower-13",
+    "type": "baby_shower",
+    "name": "Modern Neutral",
+    "image": "https://images.unsplash.com/photo-1578926288207-32e3a02394d9?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#5B5148",
+      "accentColor": "#D7C4AA",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "luxury",
+      "buttonStyle": "solid",
+      "imageTreatment": "warm",
+      "backgroundMode": "paper",
+      "texture": "grain",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "baby_shower-14",
+    "type": "baby_shower",
+    "name": "Storybook Luxe",
+    "image": "https://images.unsplash.com/photo-1548574505-5ad7436997da?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#7B677E",
+      "accentColor": "#F6D5E5",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "glass",
+      "sectionStyle": "editorial",
+      "buttonStyle": "monogram",
+      "imageTreatment": "soft",
+      "backgroundMode": "layered",
+      "texture": "spotlight",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "gala-0",
+    "type": "gala",
+    "name": "Soiree",
+    "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#000000",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "gala-1",
+    "type": "gala",
+    "name": "Elegance",
+    "image": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1e1b4b",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "gala-2",
+    "type": "gala",
+    "name": "Lustre",
+    "image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#312e81",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "gala-3",
+    "type": "gala",
+    "name": "Grandeur",
+    "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#171717",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "gala-4",
+    "type": "gala",
+    "name": "Opal",
+    "image": "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#262626",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "gala-5",
+    "type": "gala",
+    "name": "Velvet",
+    "image": "https://images.unsplash.com/photo-1508997449629-303059a039c0?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#4506ce",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "gala-6",
+    "type": "gala",
+    "name": "Gilded",
+    "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#b45309",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "gala-7",
+    "type": "gala",
+    "name": "Royal",
+    "image": "https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#4c1d95",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "gala-8",
+    "type": "gala",
+    "name": "Starlight",
+    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#1e1b4b",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "gala-9",
+    "type": "gala",
+    "name": "Majesty",
+    "image": "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#3f2b96",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "gala-10",
+    "type": "gala",
+    "name": "Museum Benefit",
+    "image": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#111111",
+      "accentColor": "#D9B66F",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "luxury",
+      "buttonStyle": "outline",
+      "imageTreatment": "monochrome",
+      "backgroundMode": "paper",
+      "texture": "grain",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "gala-11",
+    "type": "gala",
+    "name": "Velvet Opera",
+    "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#2A0712",
+      "accentColor": "#C9A66B",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "dark",
+      "sectionStyle": "luxury",
+      "buttonStyle": "monogram",
+      "imageTreatment": "contrast",
+      "backgroundMode": "dark",
+      "texture": "spotlight",
+      "scheduleLayout": "cards",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "gala-12",
+    "type": "gala",
+    "name": "Champagne Room",
+    "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#3D3328",
+      "accentColor": "#F6D99A",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "glass",
+      "sectionStyle": "editorial",
+      "buttonStyle": "solid",
+      "imageTreatment": "warm",
+      "backgroundMode": "layered",
+      "texture": "grain",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "gala-13",
+    "type": "gala",
+    "name": "Auction House",
+    "image": "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#18211B",
+      "accentColor": "#CDBA7D",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "gallery",
+      "navStyle": "minimal",
+      "sectionStyle": "magazine",
+      "buttonStyle": "outline",
+      "imageTreatment": "soft",
+      "backgroundMode": "paper",
+      "texture": "linen",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "gala-14",
+    "type": "gala",
+    "name": "Noir Patron",
+    "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#050505",
+      "accentColor": "#FFFFFF",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "dark",
+      "sectionStyle": "magazine",
+      "buttonStyle": "solid",
+      "imageTreatment": "monochrome",
+      "backgroundMode": "dark",
+      "texture": "spotlight",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "graduation-0",
+    "type": "graduation",
+    "name": "Honor",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1e40af",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "graduation-1",
+    "type": "graduation",
+    "name": "Achievement",
+    "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1e3a8a",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "graduation-2",
+    "type": "graduation",
+    "name": "Journey",
+    "image": "https://images.unsplash.com/photo-1627556704302-624286467c65?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#3730a3",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "carousel",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "graduation-3",
+    "type": "graduation",
+    "name": "Vision",
+    "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#111827",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "graduation-4",
+    "type": "graduation",
+    "name": "Future",
+    "image": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": false,
+    "design": {
+      "primaryColor": "#1f2937",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "graduation-5",
+    "type": "graduation",
+    "name": "Summit",
+    "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#111827",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "graduation-6",
+    "type": "graduation",
+    "name": "Crest",
+    "image": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#1e3a8a",
+      "fontHeading": "font-sans",
+      "layoutMode": "centered",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "graduation-7",
+    "type": "graduation",
+    "name": "Milestone",
+    "image": "https://images.unsplash.com/photo-1601775509894-ebf9cf75e553?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#312e81",
+      "fontHeading": "font-mono",
+      "layoutMode": "split",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "masonry",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "graduation-8",
+    "type": "graduation",
+    "name": "Legacy",
+    "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#1e293b",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "graduation-9",
+    "type": "graduation",
+    "name": "Horizon",
+    "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#0f172a",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "carousel",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "graduation-10",
+    "type": "graduation",
+    "name": "Ivy Honors",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#173B2F",
+      "accentColor": "#D8B45F",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "luxury",
+      "buttonStyle": "outline",
+      "imageTreatment": "warm",
+      "backgroundMode": "paper",
+      "texture": "grain",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "grid",
+      "faqLayout": "minimal",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "graduation-11",
+    "type": "graduation",
+    "name": "Modern Scholar",
+    "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#101820",
+      "accentColor": "#76E4F7",
+      "fontHeading": "font-sans",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "panel",
+      "navStyle": "glass",
+      "sectionStyle": "magazine",
+      "buttonStyle": "solid",
+      "imageTreatment": "contrast",
+      "backgroundMode": "layered",
+      "texture": "grain",
+      "scheduleLayout": "cards",
+      "galleryLayout": "masonry",
+      "faqLayout": "accordion",
+      "travelLayout": "cards"
+    }
+  },
+  {
+    "id": "graduation-12",
+    "type": "graduation",
+    "name": "Future Stage",
+    "image": "https://images.unsplash.com/photo-1627556704302-624286467c65?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#111827",
+      "accentColor": "#A7F3D0",
+      "fontHeading": "font-mono",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "cinematic",
+      "navStyle": "dark",
+      "sectionStyle": "editorial",
+      "buttonStyle": "pill",
+      "imageTreatment": "duotone",
+      "backgroundMode": "dark",
+      "texture": "spotlight",
+      "scheduleLayout": "minimal",
+      "galleryLayout": "carousel",
+      "faqLayout": "grid",
+      "travelLayout": "list"
+    }
+  },
+  {
+    "id": "graduation-13",
+    "type": "graduation",
+    "name": "Family Ceremony",
+    "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#283747",
+      "accentColor": "#F6D365",
+      "fontHeading": "font-serif",
+      "layoutMode": "split",
+      "visualTier": "premium",
+      "heroVariant": "editorial",
+      "navStyle": "minimal",
+      "sectionStyle": "luxury",
+      "buttonStyle": "monogram",
+      "imageTreatment": "soft",
+      "backgroundMode": "paper",
+      "texture": "linen",
+      "scheduleLayout": "cards",
+      "galleryLayout": "grid",
+      "faqLayout": "accordion",
+      "travelLayout": "split"
+    }
+  },
+  {
+    "id": "graduation-14",
+    "type": "graduation",
+    "name": "Legacy Crest",
+    "image": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=90&w=1400&auto=format&fit=crop",
+    "isPremium": true,
+    "design": {
+      "primaryColor": "#1B2330",
+      "accentColor": "#C7A35F",
+      "fontHeading": "font-serif",
+      "layoutMode": "centered",
+      "visualTier": "premium",
+      "heroVariant": "gallery",
+      "navStyle": "glass",
+      "sectionStyle": "magazine",
+      "buttonStyle": "outline",
+      "imageTreatment": "monochrome",
+      "backgroundMode": "layered",
+      "texture": "grain",
+      "scheduleLayout": "timeline",
+      "galleryLayout": "masonry",
+      "faqLayout": "minimal",
+      "travelLayout": "cards"
+    }
+  }
+]

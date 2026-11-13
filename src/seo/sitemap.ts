@@ -2,13 +2,10 @@ const SITE_URL = 'https://ariyahq.com';
 
 const PUBLIC_PATHS = [
     '/',
-    '/product/overview',
-    '/product/planning',
-    '/product/ai-planning',
     '/product/marketplace',
     '/product/wishlist',
-    '/product/finance',
     '/product/websites',
+    '/product/invitations',
     '/product/studio-designs',
     '/solutions/agencies',
     '/solutions/vendors',

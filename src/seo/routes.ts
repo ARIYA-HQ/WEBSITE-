@@ -9,33 +9,21 @@ export const publicPages: Record<string, { title: string; description: string }>
         title: 'Event Planning Made Easier',
         description: DEFAULT_DESCRIPTION,
     },
-    '/product/overview': {
-        title: 'Event Planning Platform Overview',
-        description: 'Explore AriyaHQ tools for planning events, managing guests, working with vendors and creating event websites.',
-    },
-    '/product/planning': {
-        title: 'Event Planning Tools',
-        description: 'Organise event tasks, budgets, guests and vendors with practical planning tools from AriyaHQ.',
-    },
-    '/product/ai-planning': {
-        title: 'AI Event Planning',
-        description: 'Explore AriyaHQ planning assistance for organising event ideas, budgets and details.',
-    },
     '/product/marketplace': {
         title: 'Event Vendor Marketplace',
         description: 'Discover event vendors and services for weddings, celebrations and other occasions with AriyaHQ.',
     },
     '/product/wishlist': {
         title: 'Ariya Wishlist Catalogue',
-        description: 'Browse current gift items in the Ariya catalogue and sign in to add gifts to your wishlist.',
-    },
-    '/product/finance': {
-        title: 'Event Budget and Finance Tools',
-        description: 'Plan event spending and manage event finances with AriyaHQ tools.',
+        description: 'Browse current gift items in the Ariya catalogue and find thoughtful additions for your event wishlist.',
     },
     '/product/websites': {
         title: 'Event Website Builder',
         description: 'Create a website for your wedding, party or event and share event information with your guests.',
+    },
+    '/product/invitations': {
+        title: 'Wedding Invitation Designs | Ariya Studio',
+        description: 'Browse Ariya Studio wedding invitation designs and find a style for your celebration.',
     },
     '/product/studio-designs': {
         title: 'Ariya Studio Design Templates',

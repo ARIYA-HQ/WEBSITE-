@@ -17,11 +17,17 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
 
     return (
         <div
-            className="relative h-full flex items-center"
+            className="relative flex h-full items-center"
             onMouseEnter={() => setActiveDropdown(title)}
             onMouseLeave={() => setActiveDropdown(null)}
         >
-            <button className={`text-sm font-bold uppercase tracking-widest flex items-center gap-1 transition-colors ${isOpen ? 'text-primary-600' : baseColor}`}>
+            <button
+                type="button"
+                aria-expanded={isOpen}
+                aria-haspopup="true"
+                onFocus={() => setActiveDropdown(title)}
+                className={`flex items-center gap-1 whitespace-nowrap text-xs font-semibold transition-colors ${isOpen ? 'text-primary-600' : baseColor}`}
+            >
                 {title}
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -33,13 +39,14 @@ export default function NavDropdown({ title, children, activeDropdown, setActive
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-4 bg-white dark:bg-gray-900 rounded-[2rem] shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden"
+                        className="absolute left-0 top-full z-[60] pt-3"
                     >
-                        {children}
+                        <div className="overflow-hidden rounded-[1.8rem] border border-white/80 bg-white shadow-2xl shadow-gray-950/15 dark:border-gray-700 dark:bg-gray-900">
+                            {children}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
         </div>
     );
 }
-

@@ -1,194 +1,66 @@
 import {
-    LayoutDashboard, Kanban, Bot, Store, Calculator, Globe, Palette,
-    Search, UserPlus, FileText, Copy, Award, Gift,
-    LifeBuoy, HelpCircle
+    BookOpen, Calculator, CalendarDays, ClipboardList, Gift, Globe,
+    HelpCircle, Mail, Palette, Search, Store, Ticket, UserPlus,
 } from 'lucide-react';
 import { APP_LINKS } from './links';
 import { SHOW_CASE_STUDIES } from './features';
 
-export const NAVIGATION_CONFIG = {
-    product: {
-        title: "Product",
-        sections: [
-            {
-                label: "Platform Overview",
-                items: [
-                    {
-                        title: "Overview",
-                        description: "The complete platform summary",
-                        href: "/product/overview",
-                        icon: LayoutDashboard,
-                        color: "orange"
-                    },
-                    {
-                        title: "Planning Dashboard",
-                        description: "Your central command center",
-                        href: "/product/planning",
-                        icon: Kanban,
-                        color: "purple"
-                    },
-                    {
-                        title: "AI Planning",
-                        description: "Smart assistance & insights",
-                        href: "/product/ai-planning",
-                        icon: Bot,
-                        color: "blue"
-                    },
-                    {
-                        title: "Vendor Marketplace",
-                        description: "Connect with top pros",
-                        href: "/product/marketplace",
-                        icon: Store,
-                        color: "pink"
-                    },
-                    {
-                        title: "Wishlist Catalogue",
-                        description: "Browse current Ariya gift items",
-                        href: "/product/wishlist",
-                        icon: Gift,
-                        color: "pink"
-                    },
-                    {
-                        title: "Budget & Guest List",
-                        description: "Manage finances & RSVPs",
-                        href: "/product/finance",
-                        icon: Calculator,
-                        color: "green"
-                    },
-                    {
-                        title: "Event Website Themes",
-                        description: "Browse current event website designs",
-                        href: "/product/websites",
-                        icon: Globe,
-                        color: "indigo"
-                    },
-                    {
-                        title: "Ariya Studio Designs",
-                        description: "Explore invitations and event stationery",
-                        href: "/product/studio-designs",
-                        icon: Palette,
-                        color: "purple"
-                    }
-                ]
-            }
+export const NAVIGATION_CONFIG = [
+    {
+        title: 'Plan an Event',
+        items: [
+            { title: 'Wedding planning guide', description: 'Practical steps for planning a wedding in Nigeria', href: '/wedding-planning', icon: ClipboardList },
+            { title: 'Budget calculator', description: 'Build and keep track of your wedding budget', href: '/wedding-budget', icon: Calculator },
+            { title: 'Wedding checklist & timeline', description: 'Keep preparations moving in the right order', href: '/wedding-checklist-timeline', icon: CalendarDays },
         ],
-        featured: {
-            label: "Featured",
-            title: "AI Planning",
-            description: "Draft timelines, budgets, and vendor shortlists in minutes.",
-            cta: "Learn More",
-            href: "/product/ai-planning"
-        }
     },
-    solutions: {
-        title: "Solutions",
-        sections: [
-            {
-                label: "Solutions",
-                items: [
-                    {
-                        title: "For Agencies",
-                        description: "Scale your business with ease",
-                        href: "/solutions/agencies"
-                    },
-                    {
-                        title: "For Vendors",
-                        description: "Get booked and paid faster",
-                        href: "/solutions/vendors"
-                    },
-                    {
-                        title: "Enterprise",
-                        description: "Custom solutions for large teams",
-                        href: "/solutions/enterprise"
-                    }
-                ]
-            }
+    {
+        title: 'Find Vendors',
+        items: [
+            { title: 'Browse Ariya vendors', description: 'Explore published vendor profiles and listings', href: '/product/marketplace', icon: Search },
+            { title: 'Wedding vendors guide', description: 'Compare services and prepare to book', href: '/wedding-vendors-nigeria', icon: Store },
+            { title: 'Wedding venues guide', description: 'What to consider when choosing a venue', href: '/wedding-venues-nigeria', icon: Globe },
+            { title: 'Become a vendor', description: 'Create a vendor profile on Ariya', href: APP_LINKS.vendorSignup, icon: UserPlus },
+            { title: 'For event vendors', description: 'Learn about selling services on Ariya', href: '/solutions/vendors', icon: Store },
         ],
-        sidebar: {
-            label: "Industries",
-            items: ["Weddings", "Corporate", "Non-Profit", "Festivals"]
-        }
     },
-    vendors: {
-        title: "Vendors",
-        sections: [
-            {
-                label: "Marketplace",
-                items: [
-                    {
-                        title: "Browse Vendors",
-                        description: "Find vendors by category and city",
-                        href: "/product/marketplace",
-                        icon: Search,
-                        color: "orange"
-                    },
-                    {
-                        title: "Become a Vendor",
-                        description: "Create your free vendor profile",
-                        href: APP_LINKS.vendorSignup,
-                        icon: UserPlus,
-                        color: "green"
-                    }
-                ]
-            }
+    {
+        title: 'Websites & Invitations',
+        items: [
+            { title: 'Event website templates', description: 'Browse the current Ariya website themes', href: '/product/websites', icon: Globe },
+            { title: 'Wedding website guide', description: 'Plan what to share on your event website', href: '/wedding-website', icon: CalendarDays },
+            { title: 'Browse invitation designs', description: 'Explore Ariya Studio wedding invitation designs', href: '/product/invitations', icon: Mail },
+            { title: 'Digital invitation guide', description: 'Learn how to create and share digital wedding invitations', href: '/digital-wedding-invitations', icon: Mail },
+            { title: 'Browse all Ariya Studio designs', description: 'Explore invitations, access cards and event stationery', href: '/product/studio-designs', icon: Palette },
+            { title: 'Wedding invitation guide', description: 'Explore invitation styles and details', href: '/wedding-invitation-cards-nigeria', icon: Mail },
         ],
-        featured: {
-            title: "For Vendors",
-            description: "Get discovered by planners. No subscription — 7% only on completed bookings.",
-            cta: "Learn More",
-            href: "/solutions/vendors"
-        }
     },
-    resources: {
-        title: "Resources",
-        sections: [
-            {
-                label: "Learn & Grow",
-                items: [
-                    {
-                        title: "Blog & Insights",
-                        description: "Industry news",
-                        href: "/resources/blog",
-                        icon: FileText,
-                        color: "pink"
-                    },
-                    {
-                        title: "Guides & Templates",
-                        description: "Downloadable resources",
-                        href: "/resources/guides",
-                        icon: Copy,
-                        color: "teal"
-                    },
-                    ...(SHOW_CASE_STUDIES ? [{
-                        title: "Case Studies",
-                        description: "Success stories",
-                        href: "/resources/case-studies",
-                        icon: Award,
-                        color: "yellow"
-                    }] : []),
-                    {
-                        title: "Help Center",
-                        description: "Get support",
-                        href: "/resources/help-center",
-                        icon: LifeBuoy,
-                        color: "indigo"
-                    },
-                    {
-                        title: "FAQs",
-                        description: "Quick answers",
-                        href: "/resources/faq",
-                        icon: HelpCircle,
-                        color: "gray"
-                    }
-                ]
-            }
+    {
+        title: 'Guests & RSVPs',
+        items: [
+            { title: 'Guest list & RSVP guide', description: 'Organise invitations and track guest responses', href: '/wedding-rsvp-guest-management', icon: ClipboardList },
+            { title: 'Event registration guide', description: 'Learn how to plan an event registration process', href: '/event-registration-nigeria', icon: ClipboardList },
+            { title: 'Event ticketing guide', description: 'Learn about online event ticketing', href: '/event-ticketing-nigeria', icon: Ticket },
         ],
-        featured: {
-            label: "Trend Report",
-            title: "2026 Event Trends",
-            description: "Discover what's hot this season in our annual report.",
-            cta: "Read Report",
-            href: "/resources/guides"
-        }
-    }
-};
+    },
+    {
+        title: 'Gift Registry',
+        items: [
+            { title: 'Browse the wishlist catalogue', description: 'See current gift items available on Ariya', href: '/product/wishlist', icon: Gift },
+            { title: 'Wedding gift registry guide', description: 'Learn how registries and gift lists work', href: '/wedding-gift-registry-nigeria', icon: Gift },
+            { title: 'Wedding wishlist guide', description: 'Get ideas for creating and sharing a wishlist', href: '/wedding-wishlist', icon: ClipboardList },
+        ],
+    },
+    {
+        title: 'Ideas & Advice',
+        items: [
+            { title: 'Wedding planning guides', description: 'Browse practical event and wedding guides', href: '/resources/guides', icon: BookOpen },
+            { title: 'Event planning journal', description: 'Ideas and stories from Ariya', href: '/resources/blog', icon: BookOpen },
+            ...(SHOW_CASE_STUDIES ? [{ title: 'Stories from Ariya', description: 'Read customer and community stories', href: '/resources/case-studies', icon: BookOpen }] : []),
+            { title: 'Help center', description: 'Find help using Ariya', href: '/resources/help-center', icon: HelpCircle },
+            { title: 'FAQs', description: 'Answers to common questions', href: '/resources/faq', icon: HelpCircle },
+        ],
+    },
+];
+
+export type NavigationItem = (typeof NAVIGATION_CONFIG)[number]['items'][number];

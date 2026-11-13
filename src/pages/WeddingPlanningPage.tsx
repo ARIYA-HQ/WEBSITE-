@@ -75,23 +75,23 @@ const planningTools = [
     {
         icon: ClipboardCheck,
         title: 'Tasks and timelines',
-        text: 'Keep next steps and responsibilities visible as plans take shape.',
-        href: '/product/planning',
-        link: 'Explore planning tools',
+        text: 'Use a practical checklist and timeline to organise the work ahead.',
+        href: '/wedding-checklist-timeline',
+        link: 'View the wedding checklist',
     },
     {
         icon: CircleDollarSign,
-        title: 'Event finances',
-        text: 'Give your event spending a central place in the planning process.',
-        href: '/product/finance',
-        link: 'Explore finance tools',
+        title: 'Wedding budget',
+        text: 'Estimate an illustrative budget and compare costs against your priorities.',
+        href: '/wedding-budget',
+        link: 'Open the budget calculator',
     },
     {
         icon: Users,
-        title: 'Guests and event details',
-        text: 'Plan how you will organise guests and communicate important information.',
-        href: '/product/overview',
-        link: 'Explore the platform',
+        title: 'Guests and RSVPs',
+        text: 'Plan your guest list, invitations and response process.',
+        href: '/wedding-rsvp-guest-management',
+        link: 'Read the guest management guide',
     },
     {
         icon: MapPin,
@@ -273,8 +273,8 @@ export default function WeddingPlanningPage() {
                             </Link>
                         </p>
                         <p className="mt-6">
-                            <Link to="/product/finance" className="inline-flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-400">
-                                Explore AriyaHQ event finance tools <ArrowRight className="h-4 w-4" />
+                            <Link to="/wedding-budget" className="inline-flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-400">
+                                Try the wedding budget calculator <ArrowRight className="h-4 w-4" />
                             </Link>
                         </p>
                         <p className="mt-6">
@@ -307,8 +307,8 @@ export default function WeddingPlanningPage() {
                             ))}
                         </div>
                         <p className="mt-6">
-                            <Link to="/product/planning" className="inline-flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-400">
-                                See AriyaHQ planning tools <ArrowRight className="h-4 w-4" />
+                            <Link to="/wedding-checklist-timeline" className="inline-flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-400">
+                                Use the wedding checklist and timeline <ArrowRight className="h-4 w-4" />
                             </Link>
                         </p>
                     </section>
@@ -552,8 +552,8 @@ export default function WeddingPlanningPage() {
                         <a href={APP_LINKS.signup} className="inline-flex min-h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary-600 px-3 py-4 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-primary-500 sm:w-auto sm:px-7 sm:text-xs">
                             Get started <ArrowRight className="h-4 w-4" />
                         </a>
-                        <Link to="/product/overview" className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-full border border-white/20 px-3 py-4 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-white/10 sm:w-auto sm:px-7 sm:text-xs">
-                            Explore the platform
+                        <Link to="/product/marketplace" className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-full border border-white/20 px-3 py-4 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-white/10 sm:w-auto sm:px-7 sm:text-xs">
+                            Browse event vendors
                         </Link>
                     </div>
                 </div>
