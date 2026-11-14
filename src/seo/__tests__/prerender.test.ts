@@ -13,16 +13,16 @@ const template = `<!doctype html><html><head>
 
 describe('prerenderPageHtml', () => {
     it('sets route-specific metadata and canonical URL in the initial HTML', () => {
-        const html = prerenderPageHtml(template, '/product/planning', {
+        const html = prerenderPageHtml(template, '/product/websites', {
             title: 'Planning & Budgets',
             description: 'Plan events with AriyaHQ.',
         });
 
         expect(html).toContain('<title>Planning &amp; Budgets | ÀRIYÁ</title>');
         expect(html).toContain('name="description" content="Plan events with AriyaHQ."');
-        expect(html).toContain('property="og:url" content="https://ariyahq.com/product/planning"');
+        expect(html).toContain('property="og:url" content="https://ariyahq.com/product/websites/"');
         expect(html).toContain('name="robots" content="index, follow"');
-        expect(html).toContain('<link rel="canonical" href="https://ariyahq.com/product/planning">');
+        expect(html).toContain('<link rel="canonical" href="https://ariyahq.com/product/websites/">');
     });
 
     it('escapes metadata values before writing them into HTML attributes', () => {
@@ -45,6 +45,9 @@ describe('prerenderPageHtml', () => {
         });
         expect(articleHtml).toContain('property="og:type" content="article"');
         expect(articleHtml).toContain('property="og:image" content="https://ariyahq.com/article.jpg"');
+        expect(articleHtml).toContain(
+            '<link rel="canonical" href="https://ariyahq.com/resources/blog/example">',
+        );
         expect(articleHtml).toContain('<script type="application/ld+json">{"@type":"Article","headline":"Example article"}</script>');
 
         const missingHtml = prerenderPageHtml(template, '/resources/blog/missing', {

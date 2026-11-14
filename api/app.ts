@@ -7,6 +7,7 @@ import path from 'path';
 import { db, WAITLIST_ROLES, WaitlistRole } from './db/supabase.js';
 import { loopsService } from './loopsService.js';
 import { buildSitemapXml } from '../src/seo/sitemap.js';
+import { mergePublicWeddingSeoPosts, publicWeddingSeoPosts } from '../src/data/publicWeddingBlogPosts.js';
 
 // Shared Express app for the marketing site's API. server/index.ts adds static
 // file serving + listen for the VPS; api/index.ts re-exports it for Vercel.
@@ -37,7 +38,9 @@ app.get('/sitemap.xml', async (_req, res) => {
     try {
         const publishedPosts = await db.blogPosts.getAll();
         res.setHeader('Cache-Control', 'public, max-age=3600');
-        res.type('application/xml').send(buildSitemapXml(publishedPosts));
+        res.type('application/xml').send(
+            buildSitemapXml(mergePublicWeddingSeoPosts(publishedPosts)),
+        );
     } catch (err) {
         console.error('Sitemap generation error:', err);
         res.status(500).type('text/plain').send('Unable to generate sitemap');
@@ -192,14 +195,19 @@ app.get('/api/posts', async (req, res) => {
     const admin = wantsAdminView(req, res);
     if (admin === null) return;
     try {
-        res.json(await db.blogPosts.getAll(admin));
+        const posts = await db.blogPosts.getAll(admin);
+        res.json(admin ? posts : mergePublicWeddingSeoPosts(posts));
     } catch (err) { fail(res, 'fetch posts', err); }
 });
 
 app.get('/api/posts/:id', async (req, res) => {
     try {
         const id = parseId(req.params.id);
-        const post = id ? await db.blogPosts.getById(id) : await db.blogPosts.getBySlug(String(req.params.id));
+        const post = id
+            ? await db.blogPosts.getById(id)
+            : (await db.blogPosts.getBySlug(String(req.params.id))
+                ?? publicWeddingSeoPosts.find((item) => item.slug === req.params.id)
+                ?? null);
         if (!post || (!isPublished(post) && !getAdmin(req))) return res.status(404).json({ error: 'Not found' });
         res.json(post);
     } catch (err) { fail(res, 'fetch post', err); }
@@ -449,39 +457,6 @@ app.get('/api/analytics/waitlist-growth', requireAdmin, async (_req, res) => {
             }));
         res.json(chartData);
     } catch (err) { fail(res, 'fetch growth data', err); }
-});
-
-// --- Sitemap ---
-
-const SITE_URL = process.env.SITE_URL || 'https://ariyahq.com';
-const STATIC_PATHS = [
-    '/', '/pricing', '/about', '/contact', '/careers', '/waitlist',
-    '/product/overview', '/product/planning', '/product/ai-planning', '/product/marketplace',
-    '/product/finance', '/product/websites',
-    '/solutions/individuals', '/solutions/planners', '/solutions/agencies',
-    '/solutions/vendors', '/solutions/enterprise',
-    '/resources/blog', '/resources/guides', '/resources/faq', '/resources/help-center',
-    '/legal/privacy', '/legal/terms', '/legal/cookies',
-];
-
-app.get('/sitemap.xml', async (_req, res) => {
-    const urls = STATIC_PATHS.map(p => ({ loc: SITE_URL + p, lastmod: undefined as string | undefined }));
-    try {
-        for (const post of await db.blogPosts.getAll(false)) {
-            const updated = post.updated_at || post.created_at;
-            urls.push({
-                loc: `${SITE_URL}/resources/blog/${post.id}`,
-                lastmod: updated ? new Date(updated).toISOString().slice(0, 10) : undefined,
-            });
-        }
-    } catch (err) {
-        console.error('Sitemap: failed to load blog posts:', err);
-    }
-    const body = urls.map(u =>
-        `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}</url>`
-    ).join('\n');
-    res.type('application/xml').setHeader('Cache-Control', 'public, max-age=3600');
-    res.send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`);
 });
 
 app.use('/api', (_req, res) => res.status(404).json({ error: 'Not found' }));

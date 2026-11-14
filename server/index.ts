@@ -30,9 +30,9 @@ if (process.env.NODE_ENV === 'production') {
     const templatePath = path.join(distPath, 'index.html');
     const retiredProductRoutes: Record<string, string> = {
         '/product/overview': '/',
-        '/product/planning': '/wedding-planning',
-        '/product/ai-planning': '/wedding-planning',
-        '/product/finance': '/wedding-budget',
+        '/product/planning': '/wedding-planning/',
+        '/product/ai-planning': '/wedding-planning/',
+        '/product/finance': '/wedding-budget/',
     };
     app.use((req, res, next) => {
         const destination = retiredProductRoutes[req.path.replace(/\/+$/, '') || '/'];

@@ -6,17 +6,20 @@ export interface CookiePreferences {
 }
 
 type GtagArguments = [command: string, ...arguments_: unknown[]];
+type DataLayerEntry = GtagArguments | Record<string, unknown>;
 
 declare global {
     interface Window {
-        dataLayer?: GtagArguments[];
+        dataLayer?: DataLayerEntry[];
         gtag?: (...arguments_: GtagArguments) => void;
     }
 }
 
 const MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID?.trim();
 const GA_ID_PATTERN = /^G-[A-Z0-9]+$/;
+const GTM_CONTAINER_ID = 'GTM-5GD9STBD';
 let configuredMeasurementId: string | null = null;
+let configuredTagManager = false;
 
 export function getCookiePreferences(): Partial<CookiePreferences> | null {
     const stored = localStorage.getItem('cookie-preferences');
@@ -62,38 +65,72 @@ function getGtag() {
 }
 
 export function updateAnalyticsConsent() {
-    if (typeof window === 'undefined' || !MEASUREMENT_ID || !GA_ID_PATTERN.test(MEASUREMENT_ID)) {
-        return false;
-    }
+    if (typeof window === 'undefined') return false;
 
-    const hasConsent = hasAnalyticsConsent();
-    if (!hasConsent && !configuredMeasurementId) return false;
+    const preferences = getCookiePreferences();
+    const hasConsent = preferences?.analytics === true;
+    const hasMarketingConsent = preferences?.marketing === true;
+    const hasNonEssentialConsent = hasConsent || hasMarketingConsent;
+    const measurementId =
+        MEASUREMENT_ID && GA_ID_PATTERN.test(MEASUREMENT_ID)
+            ? MEASUREMENT_ID
+            : null;
 
-    const gtag = getGtag();
-    if (!configuredMeasurementId) {
+    if (hasNonEssentialConsent && !configuredTagManager) {
+        const gtag = getGtag();
         gtag('consent', 'default', {
             analytics_storage: 'denied',
             ad_storage: 'denied',
             ad_user_data: 'denied',
             ad_personalization: 'denied',
         });
-        gtag('js', new Date());
-        gtag('config', MEASUREMENT_ID, { send_page_view: false });
+        gtag('consent', 'update', {
+            analytics_storage: hasConsent ? 'granted' : 'denied',
+            ad_storage: hasMarketingConsent ? 'granted' : 'denied',
+            ad_user_data: hasMarketingConsent ? 'granted' : 'denied',
+            ad_personalization: hasMarketingConsent ? 'granted' : 'denied',
+        });
+        window.dataLayer = window.dataLayer ?? [];
+        window.dataLayer.push({
+            'gtm.start': Date.now(),
+            event: 'gtm.js',
+        });
 
         const script = document.createElement('script');
         script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
-        script.dataset.analytics = 'ga4';
+        script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`;
+        script.dataset.tagManager = GTM_CONTAINER_ID;
         document.head.appendChild(script);
-        configuredMeasurementId = MEASUREMENT_ID;
+        configuredTagManager = true;
     }
 
-    gtag('consent', 'update', {
-        analytics_storage: hasConsent ? 'granted' : 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-    });
+    if (
+        hasConsent &&
+        measurementId &&
+        !configuredMeasurementId
+    ) {
+        const gtag = getGtag();
+        gtag('js', new Date());
+        gtag('config', measurementId, { send_page_view: false });
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+        script.dataset.analytics = 'ga4';
+        document.head.appendChild(script);
+        configuredMeasurementId = measurementId;
+    }
+
+    if (configuredTagManager || configuredMeasurementId) {
+        const gtag = getGtag();
+        gtag('consent', 'update', {
+            analytics_storage: hasConsent ? 'granted' : 'denied',
+            ad_storage: hasMarketingConsent ? 'granted' : 'denied',
+            ad_user_data: hasMarketingConsent ? 'granted' : 'denied',
+            ad_personalization: hasMarketingConsent ? 'granted' : 'denied',
+        });
+    }
+
     return hasConsent;
 }
 

@@ -1,48 +1,4 @@
-const SITE_URL = 'https://ariyahq.com';
-
-const PUBLIC_PATHS = [
-    '/',
-    '/product/marketplace',
-    '/product/wishlist',
-    '/product/websites',
-    '/product/invitations',
-    '/product/studio-designs',
-    '/solutions/agencies',
-    '/solutions/vendors',
-    '/solutions/enterprise',
-    '/solutions/individuals',
-    '/solutions/planners',
-    '/resources/blog',
-    '/resources/guides',
-    '/resources/faq',
-    '/resources/help-center',
-    '/pricing',
-    '/wedding-planning',
-    '/wedding-budget',
-    '/aso-ebi-in-nigeria',
-    '/wedding-invitation-cards-nigeria',
-    '/wedding-gift-registry-nigeria',
-    '/wedding-wishlist',
-    '/event-ticketing-nigeria',
-    '/event-registration-nigeria',
-    '/wedding-website',
-    '/digital-wedding-invitations',
-    '/wedding-rsvp-guest-management',
-    '/wedding-vendors-nigeria',
-    '/wedding-venues-nigeria',
-    '/wedding-checklist-timeline',
-    '/nigerian-traditional-wedding',
-    '/yoruba-traditional-wedding',
-    '/igbo-traditional-wedding',
-    '/hausa-traditional-wedding',
-    '/nigerian-wedding-engagement-list',
-    '/about',
-    '/ambassadors',
-    '/contact',
-    '/careers',
-    '/legal/privacy',
-    '/legal/terms',
-];
+import { canonicalPathFor, isIndexableRoute, publicPages, SITE_URL } from './routes';
 
 export interface SitemapBlogPost {
     id: number | string;
@@ -59,10 +15,14 @@ function escapeXml(value: string) {
 }
 
 export function buildSitemapXml(posts: SitemapBlogPost[]) {
-    const paths = new Set(PUBLIC_PATHS);
+    const paths = new Set(
+        Object.keys(publicPages)
+            .filter(isIndexableRoute)
+            .map(canonicalPathFor),
+    );
     for (const post of posts) {
         const slug = post.slug?.trim() || String(post.id);
-        paths.add(`/resources/blog/${encodeURIComponent(slug)}`);
+        paths.add(canonicalPathFor(`/resources/blog/${encodeURIComponent(slug)}`));
     }
 
     const urls = Array.from(paths, (path) =>

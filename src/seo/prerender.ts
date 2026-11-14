@@ -1,4 +1,4 @@
-import { SITE_URL } from './routes';
+import { canonicalPathFor, SITE_URL } from './routes';
 
 function escapeAttribute(value: string) {
     return value
@@ -39,7 +39,7 @@ export function prerenderPageHtml(
     },
 ) {
     const title = `${metadata.title} | ÀRIYÁ`;
-    const canonical = new URL(pathname, SITE_URL).toString();
+    const canonical = new URL(canonicalPathFor(pathname), SITE_URL).toString();
     let html = template.replace(/<title>[^<]*<\/title>/i, `<title>${escapeAttribute(title)}</title>`);
 
     html = setMeta(html, 'name', 'description', metadata.description);

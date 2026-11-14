@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { ArrowLeft, User, Twitter, Facebook, Linkedin } from 'lucide-react';
 import { BlogPost } from '../../types/cms';
 import DOMPurify from 'dompurify';
 import ReaderPoll from './ReaderPoll';
@@ -11,14 +11,56 @@ interface BlogPostDetailViewProps {
 }
 
 export default function BlogPostDetailView({ post, preview = false }: BlogPostDetailViewProps) {
+    const articleRef = useRef<HTMLElement>(null);
+    const [readingProgress, setReadingProgress] = useState(0);
     const contentSegments = post.content.split(/<!-- ariya-poll:(ariya-poll-\d+) -->/g);
     const parsedDate = post.date ? new Date(post.date) : null;
     const dateLabel = parsedDate && !Number.isNaN(parsedDate.getTime())
         ? new Intl.DateTimeFormat('en-NG', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(parsedDate)
         : post.date;
 
+    useEffect(() => {
+        if (preview) return;
+
+        const updateProgress = () => {
+            const article = articleRef.current;
+            if (!article) return;
+
+            const articleTop = article.getBoundingClientRect().top + window.scrollY;
+            const scrollableDistance = article.offsetHeight - window.innerHeight;
+            const progress = scrollableDistance <= 0
+                ? (window.scrollY >= articleTop ? 100 : 0)
+                : ((window.scrollY - articleTop) / scrollableDistance) * 100;
+
+            setReadingProgress(Math.min(100, Math.max(0, progress)));
+        };
+
+        updateProgress();
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress);
+        return () => {
+            window.removeEventListener('scroll', updateProgress);
+            window.removeEventListener('resize', updateProgress);
+        };
+    }, [preview, post.slug, post.id]);
+
     return (
-        <article className={`bg-white dark:bg-gray-950 min-h-screen ${preview ? '' : 'pt-24'}`}>
+        <article ref={articleRef} className={`bg-white dark:bg-gray-950 min-h-screen ${preview ? '' : 'pt-24'}`}>
+            {!preview && (
+                <div
+                    className="fixed left-0 right-0 top-[73px] z-[51] h-1 bg-gray-300/80 dark:bg-gray-700/80"
+                    role="progressbar"
+                    aria-label="Article reading progress"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={Math.round(readingProgress)}
+                >
+                    <div
+                        className="h-full origin-left bg-primary-600 transition-transform duration-100"
+                        style={{ transform: `scaleX(${readingProgress / 100})` }}
+                    />
+                </div>
+            )}
             <div className="max-w-4xl mx-auto px-8 py-16 animate-in fade-in slide-in-from-bottom-8 duration-700">
                 {!preview && (
                     <Link to="/resources/blog" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-primary-600 mb-12 transition-colors group">
@@ -39,10 +81,6 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                             </div>
                             <span>{post.author}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4" />
-                            <span>{post.readTime}</span>
-                        </div>
                     </div>
                 </header>
 
@@ -50,7 +88,7 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                     <img
                         src={post.image}
                         className="w-full h-full object-cover"
-                        alt={post.title}
+                        alt={post.imageAlt || post.title}
                     />
                 </div>
 

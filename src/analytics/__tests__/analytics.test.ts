@@ -58,4 +58,61 @@ describe('analytics consent', () => {
         expect(listener).toHaveBeenCalledOnce();
         window.removeEventListener('cookie-preferences-updated', listener);
     });
+
+    it('does not load third-party tags before non-essential consent', async () => {
+        const { updateAnalyticsConsent } = await import('../analytics');
+
+        expect(updateAnalyticsConsent()).toBe(false);
+        expect(
+            document.querySelector('script[data-tag-manager="GTM-5GD9STBD"]'),
+        ).toBeNull();
+    });
+
+    it('loads the GTM container only after non-essential consent', () => {
+        saveCookiePreferences({
+            essential: true,
+            analytics: true,
+            marketing: false,
+            preferences: false,
+        });
+
+        expect(
+            document.querySelector<HTMLScriptElement>(
+                'script[data-tag-manager="GTM-5GD9STBD"]',
+            )?.src,
+        ).toBe('https://www.googletagmanager.com/gtm.js?id=GTM-5GD9STBD');
+        expect(window.dataLayer).toContainEqual([
+            'consent',
+            'update',
+            {
+                analytics_storage: 'granted',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+            },
+        ]);
+    });
+
+    it('updates GTM consent when a visitor withdraws permission', () => {
+        saveCookiePreferences({
+            essential: true,
+            analytics: false,
+            marketing: false,
+            preferences: false,
+        });
+
+        expect(window.dataLayer).toContainEqual([
+            'consent',
+            'update',
+            {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+            },
+        ]);
+        expect(
+            document.querySelectorAll('script[data-tag-manager="GTM-5GD9STBD"]'),
+        ).toHaveLength(1);
+    });
 });

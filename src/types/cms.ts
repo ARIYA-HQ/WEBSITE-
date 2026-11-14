@@ -9,6 +9,7 @@ export interface BlogPost {
     tags: string[];
     readTime: string;
     image: string;
+    imageAlt?: string;
     status: 'published' | 'draft' | 'archived';
     pollId?: string;
     slug?: string;

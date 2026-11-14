@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Clock, User, Share2, Facebook, Twitter, Linkedin, AlertCircle } from 'lucide-react';
+import { ArrowLeft, User, Share2, Facebook, Twitter, Linkedin, AlertCircle } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
@@ -83,6 +83,7 @@ export default function BlogPostPage() {
                 description={post.excerpt || post.content.substring(0, 160)}
                 image={post.image}
                 article={true}
+                robots="index, follow"
                 canonical={`https://ariyahq.com/resources/blog/${encodeURIComponent(post.slug || String(post.id))}`}
                 structuredData={{
                     '@context': 'https://schema.org',
@@ -119,7 +120,7 @@ export default function BlogPostPage() {
                                     <div className="aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-4 bg-gray-200 dark:bg-gray-800 relative">
                                         <img
                                             src={related.image}
-                                            alt={related.title}
+                                            alt={related.imageAlt || related.title}
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                         />
                                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-primary-600">
@@ -127,7 +128,6 @@ export default function BlogPostPage() {
                                         </div>
                                     </div>
                                     <h4 className="font-bold text-lg leading-tight group-hover:text-primary-600 transition-colors text-gray-900 dark:text-white">{related.title}</h4>
-                                    <div className="text-xs text-gray-500 mt-2 font-bold uppercase tracking-widest">{related.readTime}</div>
                                 </Link>
                             ))}
                         </div>

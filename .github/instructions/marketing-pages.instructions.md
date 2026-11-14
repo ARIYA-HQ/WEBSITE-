@@ -16,8 +16,8 @@ applyTo: ["src/pages/**/*.tsx", "src/seo/**/*.ts", "scripts/prerender-seo.ts"]
 
 ## SEO and route wiring
 
-- For each new indexable page, update all relevant surfaces together: React Router in `src/App.tsx`, route title/description and indexability in `src/seo/routes.ts`, sitemap URLs in `src/seo/sitemap.ts`, and static HTML generation as appropriate. Confirm the VPS and any supported deployment serve the generated page correctly.
-- Use a unique, accurate title and description, a self-referencing canonical on `https://ariyahq.com`, and useful Open Graph/Twitter metadata in the initial HTML. Keep client-side metadata consistent with prerendered metadata.
+- For each new indexable page, update React Router in `src/App.tsx` and route title/description and indexability in `src/seo/routes.ts`. The sitemap derives static URLs from that route registry; add separate sitemap handling only for dynamic content, and update the focused sitemap tests. Confirm the VPS and any supported deployment serve the generated page correctly.
+- Use a unique, accurate title and description, a self-referencing canonical on `https://ariyahq.com`, and useful Open Graph/Twitter metadata in the initial HTML. Static routes use trailing-slash canonicals to match the production server; blog article URLs remain slashless. Keep client-side metadata consistent with prerendered metadata.
 - Exclude private, unavailable, duplicate, or unfinished routes from the sitemap. Unknown routes must remain 404/noindex.
 - Link only to routes and product destinations that actually exist. Proposed future paths such as `/wedding-budget/`, `/wedding-website/`, `/digital-invitations/`, `/event-rsvp/`, and `/gift-registry/` are not automatically valid: verify their implementation before linking. Use descriptive anchor text and sensible links to existing relevant pages.
 - Add structured data only when it accurately describes visible page content. Validate generated JSON-LD and keep FAQ markup aligned with the actual on-page questions and answers.

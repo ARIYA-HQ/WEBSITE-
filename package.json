@@ -17,7 +17,8 @@
     "type-check": "tsc",
     "preview": "vite preview",
     "test": "vitest run",
-    "import:journal": "tsx api/import-ariya-journal.ts"
+    "import:journal": "tsx api/import-ariya-journal.ts",
+    "import:wedding-seo-series": "tsx api/import-nigerian-wedding-seo-series.ts"
   },
   "keywords": [],
   "author": "",

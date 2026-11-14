@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, User, Clock, Tag, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ArrowRight, User, Tag, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
@@ -92,7 +92,7 @@ export default function BlogPage() {
                     <Link to={`/resources/blog/${featuredPost.slug || featuredPost.id}`} className="group block relative rounded-[3rem] overflow-hidden aspect-[16/9] md:aspect-[21/9]">
                         <img
                             src={featuredPost.image}
-                            alt={featuredPost.title}
+                            alt={featuredPost.imageAlt || featuredPost.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -105,7 +105,6 @@ export default function BlogPage() {
                             </h2>
                             <div className="flex items-center gap-6 text-sm font-bold uppercase tracking-widest text-white/80">
                                 <span className="flex items-center gap-2"><User className="w-4 h-4" /> {featuredPost.author}</span>
-                                <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> {featuredPost.readTime}</span>
                             </div>
                         </div>
                     </Link>
@@ -150,7 +149,7 @@ export default function BlogPage() {
                                     <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 bg-gray-100 dark:bg-gray-800 relative">
                                         <img
                                             src={post.image}
-                                            alt={post.title}
+                                            alt={post.imageAlt || post.title}
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
                                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -159,8 +158,6 @@ export default function BlogPage() {
                                     </div>
                                     <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
                                         <span className="text-primary-600">{post.category}</span>
-                                        <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                                        <span>{post.readTime}</span>
                                     </div>
                                     <h3 className="text-2xl font-black tracking-tight mb-3 group-hover:text-primary-600 transition-colors leading-tight text-gray-900 dark:text-white">
                                         {post.title}

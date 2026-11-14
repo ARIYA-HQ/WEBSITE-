@@ -1,48 +1,35 @@
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { DEFAULT_DESCRIPTION, isIndexableRoute, publicPages, SITE_URL } from '../../seo/routes';
-
-function setMeta(name: 'name' | 'property', key: string, value: string) {
-    const matches = Array.from(
-        document.head.querySelectorAll<HTMLMetaElement>(`meta[${name}="${key}"]`),
-    );
-    const meta = matches.shift() ?? document.createElement('meta');
-    meta.setAttribute(name, key);
-    meta.content = value;
-    if (!meta.isConnected) document.head.appendChild(meta);
-    matches.forEach((duplicate) => duplicate.remove());
-}
-
-function setCanonical(url: string | null) {
-    const matches = Array.from(
-        document.head.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]'),
-    );
-    const canonical = matches.shift();
-    matches.forEach((duplicate) => duplicate.remove());
-
-    if (!url) {
-        canonical?.remove();
-        return;
-    }
-
-    const link = canonical ?? document.createElement('link');
-    link.rel = 'canonical';
-    link.href = url;
-    if (!link.isConnected) document.head.appendChild(link);
-}
+import {
+    canonicalPathFor,
+    DEFAULT_DESCRIPTION,
+    isIndexableRoute,
+    publicPages,
+    SITE_URL,
+} from '../../seo/routes';
+import { setCanonical, setMeta } from '../../seo/domMetadata';
 
 export default function RouteSEO() {
     const { pathname } = useLocation();
     const normalizedPath =
         pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
     const page = publicPages[normalizedPath];
+    const pageOwnsSeo = /^\/resources\/blog\/[^/]+$/.test(normalizedPath);
     const indexable = isIndexableRoute(normalizedPath);
     const title = page?.title ?? 'Page Not Found';
     const description = page?.description ?? DEFAULT_DESCRIPTION;
-    const canonicalPath = normalizedPath || '/';
+    const canonicalPath = canonicalPathFor(normalizedPath || '/');
     const canonical = new URL(canonicalPath, SITE_URL).toString();
 
     useLayoutEffect(() => {
+        if (pageOwnsSeo) {
+            setMeta('name', 'robots', 'index, follow');
+            setCanonical(null);
+            document.head.querySelectorAll('meta[property="og:url"]')
+                .forEach((meta) => meta.remove());
+            return;
+        }
+
         const fullTitle = `${title} | ÀRIYÁ`;
         document.title = fullTitle;
         setMeta('name', 'description', description);
@@ -58,7 +45,7 @@ export default function RouteSEO() {
             setCanonical(null);
             document.head.querySelector('meta[property="og:url"]')?.remove();
         }
-    }, [canonical, description, indexable, title]);
+    }, [canonical, description, indexable, pageOwnsSeo, title]);
 
     return null;
 }

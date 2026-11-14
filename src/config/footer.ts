@@ -39,7 +39,7 @@ export const FOOTER_CONFIG = {
             ],
         },
         {
-            title: 'Event Tools & Ideas',
+            title: 'Event Tools & Solutions',
             links: [
                 { label: 'Event Ticketing in Nigeria', href: '/event-ticketing-nigeria' },
                 { label: 'Event Registration in Nigeria', href: '/event-registration-nigeria' },
@@ -50,6 +50,11 @@ export const FOOTER_CONFIG = {
                 { label: 'Ariya Studio Designs', href: '/product/studio-designs' },
                 { label: 'Planning Guides', href: '/resources/guides' },
                 { label: 'Event Planning Journal', href: '/resources/blog' },
+                { label: 'For Individuals & Hosts', href: '/solutions/individuals/' },
+                { label: 'For Event Planners', href: '/solutions/planners/' },
+                { label: 'For Event Vendors', href: '/solutions/vendors/' },
+                { label: 'For Agencies', href: '/solutions/agencies/' },
+                { label: 'For Organisations', href: '/solutions/enterprise/' },
             ],
         },
         {

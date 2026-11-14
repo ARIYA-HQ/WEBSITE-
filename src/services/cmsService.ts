@@ -1,8 +1,9 @@
 import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../types/cms';
 import journalRaw from '../data/ariyaJournal.json';
+import { mergePublicWeddingSeoPosts } from '../data/publicWeddingBlogPosts';
 
 // Local static fallback — used when the API is unreachable or returns an error.
-const localPosts: BlogPost[] = (journalRaw as any[]).map(entry => ({
+const localPosts: BlogPost[] = mergePublicWeddingSeoPosts((journalRaw as any[]).map(entry => ({
     id: entry.sourceNumber as number,
     title: entry.title,
     excerpt: entry.excerpt,
@@ -16,7 +17,7 @@ const localPosts: BlogPost[] = (journalRaw as any[]).map(entry => ({
     status: entry.status as BlogPost['status'],
     pollId: entry.pollId,
     slug: entry.slug,
-}));
+})));
 
 class CmsError extends Error {
     constructor(public message: string, public status?: number, public body?: string) {
@@ -84,7 +85,9 @@ class CmsService {
             const res = await this.fetchWithRetry(url, { headers: authHeaders() });
             if (res.ok) {
                 const posts = await readList<BlogPost>(res);
-                if (posts.length > 0) return posts;
+                if (posts.length > 0) {
+                    return options.admin ? posts : mergePublicWeddingSeoPosts(posts);
+                }
             }
         } catch {
             // Fall through to local data

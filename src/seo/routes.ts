@@ -4,6 +4,13 @@ export const SITE_URL = 'https://ariyahq.com';
 export const DEFAULT_DESCRIPTION =
     'Plan weddings, birthdays and corporate events with AriyaHQ. Create event websites, manage RSVPs, discover vendors, sell tickets and organise wishlists.';
 
+export function canonicalPathFor(pathname: string) {
+    const normalizedPath =
+        pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+    if (/^\/resources\/blog\/[^/]+$/.test(normalizedPath)) return normalizedPath;
+    return normalizedPath === '/' ? '/' : `${normalizedPath}/`;
+}
+
 export const publicPages: Record<string, { title: string; description: string }> = {
     '/': {
         title: 'Event Planning Made Easier',
@@ -180,6 +187,13 @@ export function isIndexableRoute(pathname: string) {
     if (pathname === '/login' || pathname === '/admin/login') return false;
     if (pathname.startsWith('/admin/')) return false;
     if (pathname === '/legal/cookies' || pathname === '/waitlist') return false;
+    if (
+        !SHOW_CASE_STUDIES &&
+        (pathname === '/resources/case-studies' ||
+            /^\/resources\/case-studies\/[^/]+$/.test(pathname))
+    ) {
+        return false;
+    }
     if (/^\/resources\/blog\/[^/]+$/.test(pathname)) return true;
     if (
         SHOW_CASE_STUDIES &&

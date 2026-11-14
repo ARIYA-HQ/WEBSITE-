@@ -1,7 +1,12 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { isIndexableRoute, publicPages, SITE_URL } from '../src/seo/routes';
+import {
+    canonicalPathFor,
+    isIndexableRoute,
+    publicPages,
+    SITE_URL,
+} from '../src/seo/routes';
 import { prerenderPageHtml } from '../src/seo/prerender';
 import { faqs } from '../src/pages/resources/FAQPage';
 import { weddingPlanningFaqs } from '../src/seo/wedding-planning-content';
@@ -19,7 +24,7 @@ function articleSchema(
     description: string,
     image: string,
 ) {
-    const url = new URL(pathname, SITE_URL).toString();
+    const url = new URL(canonicalPathFor(pathname), SITE_URL).toString();
     return {
         '@type': 'Article',
         headline: title,

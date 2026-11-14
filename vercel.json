@@ -5,9 +5,9 @@
     "outputDirectory": "dist",
     "redirects": [
         { "source": "/product/overview", "destination": "/", "permanent": true },
-        { "source": "/product/planning", "destination": "/wedding-planning", "permanent": true },
-        { "source": "/product/ai-planning", "destination": "/wedding-planning", "permanent": true },
-        { "source": "/product/finance", "destination": "/wedding-budget", "permanent": true }
+        { "source": "/product/planning", "destination": "/wedding-planning/", "permanent": true },
+        { "source": "/product/ai-planning", "destination": "/wedding-planning/", "permanent": true },
+        { "source": "/product/finance", "destination": "/wedding-budget/", "permanent": true }
     ],
     "headers": [
         {
