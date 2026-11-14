@@ -54,7 +54,7 @@ export default function ImageUploadField({
                     <>
                         <img
                             src={value}
-                            alt="Preview"
+                            alt={`${label || 'Uploaded image'} preview`}
                             className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-700"
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

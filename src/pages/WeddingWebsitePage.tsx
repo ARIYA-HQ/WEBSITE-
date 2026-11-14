@@ -16,14 +16,15 @@ import heroFloral from '../assets/images/hero_floral.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
 import { EVENT_IMAGES } from '../config/eventImages';
 import { DOMAIN_PRICES_NAIRA, STUDIO_PREMIUM_PRICE_NAIRA, WEBSITE_FREE_MONTHS, WEBSITE_KEEP_FOREVER_NAIRA, WEBSITE_OFFLINE_MONTHS } from '../config/pricing';
-import homePreview from '../assets/images/wedding-website/home-preview.png';
-import photoStoryPreview from '../assets/images/wedding-website/photo-story.png';
-import coupleStoryPreview from '../assets/images/wedding-website/couple-story.png';
-import schedulePreview from '../assets/images/wedding-website/event-schedule.png';
-import rsvpPreview from '../assets/images/wedding-website/guest-rsvp.png';
-import travelPreview from '../assets/images/wedding-website/travel-guide.png';
-import wellWishesPreview from '../assets/images/wedding-website/well-wishes.png';
-import wishlistPreview from '../assets/images/wedding-website/wedding-wishlist.png';
+import homePreview from '../assets/images/wedding-website/home-preview-live.png';
+import photoStoryPreview from '../assets/images/wedding-website/photo-story-live.png';
+import coupleStoryPreview from '../assets/images/wedding-website/couple-story-live.png';
+import schedulePreview from '../assets/images/wedding-website/event-schedule-live.png';
+import rsvpPreview from '../assets/images/wedding-website/guest-rsvp-live.png';
+import travelPreview from '../assets/images/wedding-website/travel-guide-live.png';
+import wellWishesPreview from '../assets/images/wedding-website/well-wishes-live.png';
+import wishlistPreview from '../assets/images/wedding-website/wedding-wishlist-live.png';
+import faqPreview from '../assets/images/wedding-website/faq-live.png';
 import { weddingWebsiteFaqs } from '../seo/wedding-website-content';
 
 const formatNaira = (amount: number) => `₦${amount.toLocaleString('en-NG')}`;
@@ -42,50 +43,65 @@ const websitePreviews = [
     {
         image: homePreview,
         title: 'A personal wedding homepage',
-        description: 'Welcome guests with your names, date, countdown and a direct RSVP prompt.',
-        alt: 'Ariya event website homepage for Zoe and Alexis with wedding date, countdown and RSVP button',
+        description: 'A desktop screenshot of Zoe and Alexis’ live wedding website, with their wedding date, countdown and RSVP link.',
+        alt: 'Desktop screenshot of Zoe and Alexis’ live Ariya wedding website homepage',
+        address: 'zoealexis.ariyahq.com',
     },
     {
         image: photoStoryPreview,
-        title: 'Your photo story',
-        description: 'Share engagement photos and let guests follow your journey together.',
-        alt: 'Ariya wedding website photo story with a couple photo carousel',
+        title: 'A gallery for shared memories',
+        description: 'Invite guests to explore wedding memories and share photos from the celebration.',
+        alt: 'Desktop gallery page on Zoe and Alexis’ live wedding website',
+        address: 'zoealexis.ariyahq.com/w/zoealexis/gallery',
     },
     {
         image: coupleStoryPreview,
         title: 'Your story, in your words',
         description: 'Introduce yourselves with personal stories about how you met.',
         alt: 'Ariya wedding website Our Story page with a couple portrait',
+        address: 'zoealexis.ariyahq.com/#our-story',
     },
     {
         image: schedulePreview,
         title: 'A clear event schedule',
         description: 'Show ceremony times and activities in a timeline guests can check.',
         alt: 'Ariya wedding website schedule showing a timeline for the celebration',
+        address: 'zoealexis.ariyahq.com/w/zoealexis/schedule',
     },
     {
         image: rsvpPreview,
         title: 'Guest RSVP details',
         description: 'The example RSVP form includes attendance, contact details, plus-ones and dietary information.',
         alt: 'Ariya wedding website RSVP form with attendance choice, guest details and dietary field',
+        address: 'zoealexis.ariyahq.com/w/zoealexis/rsvp',
     },
     {
         image: travelPreview,
         title: 'A travel guide for guests',
         description: 'Share the venue location and travel information guests need to plan their visit.',
         alt: 'Ariya wedding website travel guide showing a Lagos venue and map link',
+        address: 'zoealexis.ariyahq.com/w/zoealexis/travel',
     },
     {
         image: wellWishesPreview,
         title: 'A place for well wishes',
         description: 'Invite friends and family to leave a message or blessing for the couple.',
         alt: 'Ariya wedding website well wishes section with an invitation to send a message',
+        address: 'zoealexis.ariyahq.com/#well-wishes',
     },
     {
         image: wishlistPreview,
         title: 'An optional wedding wishlist',
         description: 'The sample shows a wishlist area for the couple’s chosen items.',
         alt: 'Ariya wedding website wishlist page managed by the couple',
+        address: 'zoealexis.ariyahq.com/w/zoealexis/registry',
+    },
+    {
+        image: faqPreview,
+        title: 'Answers to common questions',
+        description: 'Give guests quick answers about the date, venue, dress code and other details.',
+        alt: 'Desktop FAQ page on Zoe and Alexis’ live wedding website',
+        address: 'zoealexis.ariyahq.com/w/zoealexis/faq',
     },
 ];
 
@@ -273,27 +289,42 @@ export default function WeddingWebsitePage() {
                             See what guests can explore
                         </h2>
                         <p className="mt-5 leading-7 text-gray-600 dark:text-gray-300">
-                            These supplied screenshots show a sample Ariya wedding website on a
-                            phone, from the couple’s homepage to RSVP and travel details.
+                            Explore desktop views from Zoe and Alexis’ live website, from their
+                            homepage and schedule to the gallery, FAQ and RSVP.
                         </p>
                     </div>
-                    <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                        {websitePreviews.map(({ image, title, description, alt }) => (
+                    <div className="mt-12 grid gap-8">
+                        {websitePreviews.map(({ image, title, description, alt, address }) => (
                             <figure
                                 key={title}
                                 className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950"
                             >
-                                <div className="bg-gray-100 p-3 dark:bg-gray-900">
-                                    <img
-                                        src={image}
-                                        alt={alt}
-                                        loading="lazy"
-                                        className="mx-auto aspect-[9/19] w-full rounded-2xl object-contain"
-                                    />
+                                <div className="bg-gray-100 p-3 sm:p-5">
+                                    <div className="overflow-hidden rounded-xl border border-gray-300 bg-white shadow-lg">
+                                        <div className="flex h-9 items-center gap-2 border-b border-gray-200 bg-gray-50 px-3">
+                                            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#ef6a5b]" />
+                                            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#f5bd4f]" />
+                                            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#61c454]" />
+                                            <span className="ml-3 flex h-5 min-w-0 flex-1 items-center justify-center rounded-full bg-white px-3 text-[9px] text-gray-500">
+                                                {address}
+                                            </span>
+                                        </div>
+                                        <img
+                                            src={image}
+                                            alt={alt}
+                                            loading="lazy"
+                                            className="block h-auto w-full"
+                                        />
+                                    </div>
                                 </div>
-                                <figcaption className="p-5">
-                                    <h3 className="font-black">{title}</h3>
-                                    <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                                <figcaption className="p-6 sm:p-8 lg:flex lg:items-end lg:justify-between lg:gap-8">
+                                    <div>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-600">
+                                            Live sample
+                                        </span>
+                                        <h3 className="mt-3 text-xl font-black sm:text-2xl">{title}</h3>
+                                    </div>
+                                    <p className="mt-3 max-w-xl text-sm leading-6 text-gray-600 dark:text-gray-400 lg:mt-0">
                                         {description}
                                     </p>
                                 </figcaption>
@@ -301,8 +332,8 @@ export default function WeddingWebsitePage() {
                         ))}
                     </div>
                     <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-5 text-gray-500 dark:text-gray-400">
-                        Sample content is shown in the screenshots, including names, photos,
-                        date and venue. Replace it with details for your own celebration.
+                        These desktop mockups show the live sample in light mode. Names, photos,
+                        date and venue are examples that can be replaced with your own details.
                     </p>
                 </div>
             </section>

@@ -110,7 +110,7 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 z-50 w-full border-b border-gray-200/80 bg-white/95 shadow-sm backdrop-blur-2xl dark:border-gray-800/80 dark:bg-gray-950/95">
-            <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 2xl:px-8">
+            <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-6 py-4 2xl:px-10">
                 <Link to="/" aria-label="Àríyá home" className="flex shrink-0 items-center">
                     <img
                         src={`${import.meta.env.BASE_URL}brand/ariya-horizontal-primary.svg`}
@@ -124,7 +124,7 @@ export default function Header() {
                     />
                 </Link>
 
-                <nav aria-label="Main navigation" className="hidden items-center gap-2 xl:flex 2xl:gap-3">
+                <nav aria-label="Main navigation" className="hidden shrink-0 items-center gap-3 2xl:flex">
                     {NAVIGATION_CONFIG.map((menu) => (
                         <NavDropdown
                             key={menu.title}
@@ -152,13 +152,13 @@ export default function Header() {
                     ))}
                     <Link
                         to="/pricing"
-                        className="whitespace-nowrap px-1 text-xs font-semibold text-gray-800 transition-colors hover:text-primary-600 dark:text-gray-100"
+                        className="whitespace-nowrap rounded-lg px-2 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-primary-50 hover:text-primary-700 dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-primary-300"
                     >
                         Pricing
                     </Link>
                 </nav>
 
-                <nav aria-label="Account" className="hidden shrink-0 items-center gap-4 xl:flex 2xl:gap-6">
+                <nav aria-label="Account" className="hidden shrink-0 items-center gap-5 2xl:flex">
                     <ThemeToggle />
                     <a href={APP_LINKS.login} className="whitespace-nowrap text-sm font-semibold text-gray-900 transition-colors hover:text-primary-600 dark:text-white">Log In</a>
                     <a href={APP_LINKS.signup} className="whitespace-nowrap">
@@ -166,7 +166,7 @@ export default function Header() {
                     </a>
                 </nav>
 
-                <div className="xl:hidden">
+                <div className="2xl:hidden">
                     <button
                         type="button"
                         onClick={() => setMobileNavOpen(true)}

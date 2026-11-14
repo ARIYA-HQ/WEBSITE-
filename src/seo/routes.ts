@@ -7,7 +7,8 @@ export const DEFAULT_DESCRIPTION =
 export const publicPages: Record<string, { title: string; description: string }> = {
     '/': {
         title: 'Event Planning Made Easier',
-        description: DEFAULT_DESCRIPTION,
+        description:
+            'Plan weddings, birthdays and corporate events with AriyaHQ. Discover vendors, create event websites, organise guests and explore digital invitations.',
     },
     '/product/marketplace': {
         title: 'Event Vendor Marketplace',

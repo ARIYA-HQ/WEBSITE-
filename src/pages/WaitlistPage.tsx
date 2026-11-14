@@ -236,7 +236,7 @@ export default function WaitlistPage() {
                 >
                     <img
                         src={waitlistHero}
-                        alt="The Ariya Experience"
+                        alt="ÀRIYÁ branded tablet and event stationery on a decorated reception table"
                         className="w-full h-full object-cover opacity-60"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/20 to-transparent" />

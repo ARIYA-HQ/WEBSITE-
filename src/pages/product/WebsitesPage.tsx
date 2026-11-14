@@ -459,7 +459,7 @@ function FullWebsitePreviewModal({
           >
             <img
               src={template.image}
-              alt=""
+              alt={`${eventLabel(template.type)} website hero photo for the ${template.name} template`}
               className="absolute inset-0 -z-20 h-full w-full object-cover"
               style={heroImageStyle}
             />
@@ -637,7 +637,7 @@ function FullWebsitePreviewModal({
                 >
                   <img
                     src={image}
-                    alt={`Sample event gallery ${index + 1}`}
+                    alt={`${template.name} ${eventLabel(template.type).toLowerCase()} website gallery photo ${index + 1}`}
                     loading="lazy"
                     className="h-full w-full object-cover transition duration-500 hover:scale-105"
                     style={heroImageStyle}

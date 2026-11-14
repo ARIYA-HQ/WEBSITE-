@@ -39,6 +39,60 @@ const InputPopover = ({ label, defaultValue = '', onConfirm, onCancel }: {
     );
 };
 
+const ImageInputPopover = ({ onConfirm, onCancel }: {
+    onConfirm: (src: string, alt: string) => void; onCancel: () => void;
+}) => {
+    const [src, setSrc] = useState('');
+    const [alt, setAlt] = useState('');
+    const canInsert = src.trim().length > 0 && alt.trim().length > 0;
+
+    return (
+        <div className="absolute left-0 top-full z-10 mt-1 flex min-w-[280px] flex-col gap-2 rounded-xl border border-gray-200 bg-white p-3 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+            <input
+                autoFocus
+                type="url"
+                value={src}
+                onChange={(event) => setSrc(event.target.value)}
+                placeholder="https://example.com/image.jpg"
+                aria-label="Image URL"
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            />
+            <input
+                type="text"
+                value={alt}
+                onChange={(event) => setAlt(event.target.value)}
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter' && canInsert) onConfirm(src.trim(), alt.trim());
+                    if (event.key === 'Escape') onCancel();
+                }}
+                placeholder="Describe the image for screen readers and search"
+                aria-label="Image description (alt text)"
+                required
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            />
+            <div className="flex justify-end gap-2">
+                <button
+                    type="button"
+                    onClick={onCancel}
+                    className="rounded-lg bg-gray-100 p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                    aria-label="Cancel image insertion"
+                >
+                    <X className="h-4 w-4" />
+                </button>
+                <button
+                    type="button"
+                    onClick={() => onConfirm(src.trim(), alt.trim())}
+                    disabled={!canInsert}
+                    className="rounded-lg bg-primary-600 p-2 text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
+                    aria-label="Insert image"
+                >
+                    <Check className="h-4 w-4" />
+                </button>
+            </div>
+        </div>
+    );
+};
+
 const MenuBar = ({ editor }: { editor: any }) => {
     const [linkPopover, setLinkPopover] = useState(false);
     const [imagePopover, setImagePopover] = useState(false);
@@ -54,9 +108,9 @@ const MenuBar = ({ editor }: { editor: any }) => {
         }
     };
 
-    const handleAddImage = (url: string) => {
+    const handleAddImage = (url: string, alt: string) => {
         setImagePopover(false);
-        if (url) editor.chain().focus().setImage({ src: url }).run();
+        editor.chain().focus().setImage({ src: url, alt }).run();
     };
 
     return (
@@ -133,8 +187,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
                         <ImageIcon className="w-4 h-4 text-gray-700 dark:text-gray-300" />
                     </button>
                     {imagePopover && (
-                        <InputPopover
-                            label="https://example.com/image.jpg"
+                        <ImageInputPopover
                             onConfirm={handleAddImage}
                             onCancel={() => setImagePopover(false)}
                         />

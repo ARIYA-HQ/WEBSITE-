@@ -1,149 +1,139 @@
-import React, { useState } from 'react';
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import { Play } from 'lucide-react';
 import { EVENT_IMAGES } from '../config/eventImages';
 
-const cinematicAsset = EVENT_IMAGES.pinkGeleCelebration;
-
 export default function VideoShowcase() {
+    const shouldReduceMotion = useReducedMotion();
     const [isHovered, setIsHovered] = useState(false);
-
-    // Magnetic effect basics
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { damping: 20, stiffness: 150 };
-    const springX = useSpring(mouseX, springConfig);
-    const springY = useSpring(mouseY, springConfig);
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const distanceX = e.clientX - centerX;
-        const distanceY = e.clientY - centerY;
-
-        mouseX.set(distanceX * 0.2);
-        mouseY.set(distanceY * 0.2);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-        mouseX.set(0);
-        mouseY.set(0);
-    };
+    const pointerAngle = useMotionValue(0);
+    const smoothPointerAngle = useSpring(pointerAngle, { damping: 24, stiffness: 160 });
 
     return (
         <section
-            className="relative w-full h-[60vh] md:h-[90vh] overflow-hidden bg-black group cursor-none"
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={handleMouseLeave}
+            aria-label="ÀRIYÁ event showcase"
+            className="group relative isolate flex h-[60vh] min-h-[440px] cursor-none items-center justify-center overflow-hidden bg-black text-white md:h-[90vh] md:min-h-[620px]"
+            onPointerEnter={(event) => setIsHovered(event.pointerType === 'mouse')}
+            onPointerLeave={() => setIsHovered(false)}
+            onPointerMove={(event) => {
+                if (event.pointerType !== 'mouse') return;
+
+                const bounds = event.currentTarget.getBoundingClientRect();
+                const x = event.clientX - bounds.left - bounds.width / 2;
+                const y = event.clientY - bounds.top - bounds.height / 2;
+                pointerAngle.set((Math.atan2(y, x) * 180) / Math.PI + 90);
+            }}
         >
-            {/* Cinematic Background Fallback (Behind Video) */}
-            <motion.div
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1.2 }}
-                transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-                className="absolute inset-0 w-full h-full"
-            >
-                <img
-                    src={cinematicAsset}
-                    className="w-full h-full object-cover opacity-60"
-                    alt="Cinematic Backdrop"
-                />
-            </motion.div>
-
-            {/* Background Video (YouTube for maximum reliability) */}
-            <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${isHovered ? 'scale-105 opacity-80' : 'opacity-40'}`}>
-                <iframe
-                    src={`https://www.youtube.com/embed/R_0XpL5_c9M?autoplay=1&mute=1&loop=1&playlist=R_0XpL5_c9M&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : 'https://ariyahq.com')}`}
-                    className="absolute w-[300%] h-[300%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                    allow="autoplay; encrypted-media"
-                    frameBorder="0"
-                    title="Ariya Events Showcase"
-                ></iframe>
-            </div>
-
-            {/* Cinematic Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80 pointer-events-none" />
-
-            {/* Light Leak Effect */}
-            <motion.div
-                animate={{
-                    opacity: [0.1, 0.3, 0.1],
-                    x: ["-10%", "10%", "-10%"]
-                }}
-                transition={{ duration: 8, repeat: Infinity }}
-                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,165,0,0.1),transparent_70%)] pointer-events-none"
+            <motion.img
+                src={EVENT_IMAGES.pinkGeleCelebration}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-60"
+                initial={false}
+                animate={
+                    shouldReduceMotion
+                        ? { scale: 1.04 }
+                        : { scale: isHovered ? 1.05 : [1.04, 1.12, 1.04] }
+                }
+                transition={
+                    isHovered
+                        ? { duration: 1, ease: 'easeOut' }
+                        : { duration: 28, repeat: shouldReduceMotion ? 0 : Infinity, ease: 'linear' }
+                }
             />
-
-            {/* Floating Magnetic UI */}
-            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                <motion.div
-                    style={{ x: springX, y: springY }}
-                    className="relative flex items-center justify-center"
-                >
-                    {/* Animated Ripple Rings */}
-                    <AnimatePresence>
-                        {isHovered && [1, 2, 3].map((i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{ scale: 2.5, opacity: 0 }}
-                                transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    delay: i * 0.6,
-                                    ease: "easeOut"
-                                }}
-                                className="absolute w-32 h-32 border border-white/30 rounded-full"
-                            />
-                        ))}
-                    </AnimatePresence>
-
-                    {/* Central Play Button */}
+            <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black via-transparent to-black opacity-80"
+            />
+            <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,165,0,0.1),transparent_70%)]"
+                animate={
+                    shouldReduceMotion
+                        ? { x: 0 }
+                        : { x: ['-4%', '4%', '-4%'] }
+                }
+                transition={{ duration: 9, repeat: shouldReduceMotion ? 0 : Infinity, ease: 'easeInOut' }}
+            />
+            <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+                <div className="relative flex items-center justify-center">
+                    {[0, 1, 2].map((pulse) => (
+                        <motion.div
+                            key={pulse}
+                            aria-hidden="true"
+                            className="pointer-events-none absolute h-20 w-20 rounded-full border border-white/30 md:h-32 md:w-32"
+                            animate={
+                                shouldReduceMotion || !isHovered
+                                    ? { opacity: 0, scale: 1 }
+                                    : { opacity: [0.55, 0], scale: [1, 2.5] }
+                            }
+                            transition={
+                                shouldReduceMotion || !isHovered
+                                    ? { duration: 0.2 }
+                                    : {
+                                          duration: 2.4,
+                                          delay: pulse * 0.65,
+                                          repeat: Infinity,
+                                          ease: 'easeOut',
+                                      }
+                            }
+                        />
+                    ))}
                     <motion.div
-                        initial={false}
+                        aria-hidden="true"
                         animate={{
                             scale: isHovered ? 1.1 : 1,
-                            backgroundColor: isHovered ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.1)"
                         }}
-                        className="w-24 h-24 md:w-40 md:h-40 flex items-center justify-center rounded-full border border-white/20 backdrop-blur-md transition-shadow hover:shadow-[0_0_50px_rgba(255,255,255,0.3)] pointer-events-auto"
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className={`pointer-events-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/20 backdrop-blur-md transition-[background-color,box-shadow] duration-300 hover:shadow-[0_0_50px_rgba(255,255,255,0.3)] md:h-32 md:w-32 ${
+                            isHovered ? 'bg-white' : 'bg-white/10'
+                        }`}
                     >
-                        <Play className={`w-8 h-8 md:w-16 md:h-16 transition-colors duration-300 translate-x-1 ${isHovered ? 'text-black fill-black' : 'text-white fill-white'}`} />
+                        <Play
+                            aria-hidden="true"
+                            className={`h-6 w-6 translate-x-0.5 transition-colors duration-300 md:h-12 md:w-12 ${
+                                isHovered ? 'fill-black text-black' : 'fill-white text-white'
+                            }`}
+                        />
                     </motion.div>
-
-                    {/* Circular Floating Text */}
                     <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                        className={`absolute -inset-20 md:-inset-24 pointer-events-none transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -inset-12 transition-opacity duration-500 md:-inset-20"
+                        animate={{ opacity: isHovered ? 1 : 0 }}
+                        style={{ rotate: shouldReduceMotion ? 0 : smoothPointerAngle }}
                     >
-                        <svg className="w-full h-full" viewBox="0 0 200 200">
+                        <svg className="h-full w-full" viewBox="0 0 200 200">
                             <defs>
-                                <path id="textCircle" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+                                <path
+                                    id="ariya-showcase-circle"
+                                    d="M 100, 100 m -88, 0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"
+                                />
                             </defs>
-                            <text className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] fill-white/80">
-                                <textPath href="#textCircle">
-                                    • EXPERIENCE THE MAGIC • WATCH THE STORY • ARIYA EVENTS •
+                            <text
+                                textLength="540"
+                                lengthAdjust="spacing"
+                                className="fill-white/90 text-[7px] font-black uppercase tracking-[0.2em] md:text-[8px]"
+                            >
+                                <textPath href="#ariya-showcase-circle">
+                                    • ÀRIYÁ EVENTS • EXPERIENCE THE MAGIC • WATCH THE STORY •
                                 </textPath>
                             </text>
                         </svg>
                     </motion.div>
-                </motion.div>
+                </div>
             </div>
-
-            {/* Bottom Tagline */}
-            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-                <motion.div
-                    animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
-                >
-                    <div className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-4">PRODUCTION 2026</div>
-                    <div className="h-20 w-[1px] bg-gradient-to-t from-primary-600 to-transparent mx-auto" />
-                </motion.div>
-            </div>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 text-center md:bottom-20"
+            >
+                <div className="mb-4 text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
+                    Production 2026
+                </div>
+                <div className="mx-auto h-20 w-px bg-gradient-to-t from-primary-600 to-transparent" />
+            </motion.div>
         </section>
     );
 }
