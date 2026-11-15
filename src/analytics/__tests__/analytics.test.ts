@@ -64,7 +64,7 @@ describe('analytics consent', () => {
 
         expect(updateAnalyticsConsent()).toBe(false);
         expect(
-            document.querySelector('script[data-tag-manager="GTM-5GD9STBD"]'),
+            document.querySelector('script[data-tag-manager="GTM-M7GC5W6N"]'),
         ).toBeNull();
     });
 
@@ -78,9 +78,9 @@ describe('analytics consent', () => {
 
         expect(
             document.querySelector<HTMLScriptElement>(
-                'script[data-tag-manager="GTM-5GD9STBD"]',
+                'script[data-tag-manager="GTM-M7GC5W6N"]',
             )?.src,
-        ).toBe('https://www.googletagmanager.com/gtm.js?id=GTM-5GD9STBD');
+        ).toBe('https://www.googletagmanager.com/gtm.js?id=GTM-M7GC5W6N');
         expect(window.dataLayer).toContainEqual([
             'consent',
             'update',
@@ -112,7 +112,7 @@ describe('analytics consent', () => {
             },
         ]);
         expect(
-            document.querySelectorAll('script[data-tag-manager="GTM-5GD9STBD"]'),
+            document.querySelectorAll('script[data-tag-manager="GTM-M7GC5W6N"]'),
         ).toHaveLength(1);
     });
 });

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import CookieBanner from '../common/CookieBanner';
+import ScrollAccountPrompt from '../common/ScrollAccountPrompt';
 
 export default function PublicLayout() {
     return (
@@ -13,6 +14,7 @@ export default function PublicLayout() {
             </main>
             <Footer />
             <CookieBanner />
+            <ScrollAccountPrompt />
         </div>
     );
 }
