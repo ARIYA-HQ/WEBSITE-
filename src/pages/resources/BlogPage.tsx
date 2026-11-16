@@ -58,6 +58,12 @@ export default function BlogPage() {
         return (
             <main className="pt-24 bg-white dark:bg-gray-950 min-h-screen">
                 <div className="max-w-7xl mx-auto px-8 py-24">
+                    <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 text-gray-900 dark:text-white">
+                        Insights from the <span className="italic font-serif text-primary-600">Front Row</span>.
+                    </h1>
+                    <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mb-12 font-medium">
+                        Expert advice, trend reports, and inspiration for the modern event planner.
+                    </p>
                     <div className="animate-pulse space-y-8">
                         <div className="h-64 bg-gray-200 dark:bg-gray-800 rounded-[3rem]"></div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

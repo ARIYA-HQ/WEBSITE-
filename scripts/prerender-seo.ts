@@ -1,6 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { PassThrough } from 'node:stream';
 import { fileURLToPath } from 'node:url';
+import React from 'react';
+import { renderToPipeableStream } from 'react-dom/server';
+import { MemoryRouter } from 'react-router-dom';
+import { createServer } from 'vite';
 import {
     canonicalPathFor,
     isIndexableRoute,
@@ -17,6 +22,52 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');
 const distDir = path.join(projectRoot, 'dist');
 const template = await fs.readFile(path.join(distDir, 'index.html'), 'utf8');
+const vite = await createServer({
+    appType: 'custom',
+    server: { middlewareMode: true },
+    ssr: { noExternal: ['react-helmet-async'] },
+});
+
+async function renderRoute(pathname: string) {
+    const { AppContent } = await vite.ssrLoadModule('/src/App.tsx');
+    return new Promise<string>((resolve, reject) => {
+        const output = new PassThrough();
+        const chunks: Buffer[] = [];
+        const renderErrors: unknown[] = [];
+
+        output.on('data', chunk => chunks.push(Buffer.from(chunk)));
+        output.on('error', reject);
+        output.on('end', () => {
+            if (renderErrors.length > 0) {
+                reject(new Error(`Failed to server-render ${pathname}`, { cause: renderErrors[0] }));
+                return;
+            }
+            resolve(Buffer.concat(chunks).toString('utf8'));
+        });
+
+        let didPipe = false;
+        const stream = renderToPipeableStream(
+            React.createElement(
+                MemoryRouter,
+                { initialEntries: [pathname] },
+                React.createElement(AppContent),
+            ),
+            {
+                onAllReady() {
+                    if (didPipe) return;
+                    didPipe = true;
+                    stream.pipe(output);
+                },
+                onShellError(error) {
+                    reject(error);
+                },
+                onError(error) {
+                    renderErrors.push(error);
+                },
+            },
+        );
+    });
+}
 
 function articleSchema(
     pathname: string,
@@ -50,9 +101,9 @@ const articleImages: Record<string, string> = {
     '/event-registration-nigeria': '/images/nigerian-events/event-planner.jpg',
 };
 
+try {
 for (const [pathname, metadata] of Object.entries(publicPages)) {
     if (!isIndexableRoute(pathname)) continue;
-
     const outputPath = pathname === '/'
         ? path.join(distDir, 'index.html')
         : path.join(distDir, pathname.slice(1), 'index.html');
@@ -291,15 +342,31 @@ for (const [pathname, metadata] of Object.entries(publicPages)) {
             }
             : undefined;
     await fs.mkdir(path.dirname(outputPath), { recursive: true });
-    await fs.writeFile(
-        outputPath,
-        prerenderPageHtml(template, pathname, {
+    let html = prerenderPageHtml(template, pathname, {
             ...metadata,
             image: articleImages[pathname],
             article: Boolean(articleImages[pathname]),
             structuredData,
-        }),
-    );
+        });
+    const renderedPage = await renderRoute(pathname);
+    if (!/<h1\b/i.test(renderedPage)) {
+        throw new Error(`Rendered route ${pathname} does not contain an H1 heading.`);
+    }
+    html = html.replace('<div id="root"></div>', `<div id="root">${renderedPage}</div>`);
+    if (pathname === '/') {
+        html = html.replace(
+            '</head>',
+            [
+                '    <link rel="preload" as="image" href="/images/nigerian-events/traditional-couple-reception-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">',
+                '    <link rel="preload" as="image" href="/images/nigerian-events/traditional-couple-reception.jpg" media="(min-width: 768px)" fetchpriority="high">',
+                '  </head>',
+            ].join('\n'),
+        );
+    }
+    await fs.writeFile(outputPath, html);
 }
 
 console.log(`Pre-rendered ${Object.keys(publicPages).filter(isIndexableRoute).length} indexable marketing routes.`);
+} finally {
+    await vite.close();
+}

@@ -1,6 +1,8 @@
 import { BlogPost, CaseStudy, Resource, WaitlistEntry } from '../types/cms';
 import journalRaw from '../data/ariyaJournal.json';
 import { mergePublicWeddingSeoPosts } from '../data/publicWeddingBlogPosts';
+import { ADMIN_TOKEN_KEY } from '../config/adminAuth';
+export { ADMIN_TOKEN_KEY } from '../config/adminAuth';
 
 // Local static fallback — used when the API is unreachable or returns an error.
 const localPosts: BlogPost[] = mergePublicWeddingSeoPosts((journalRaw as any[]).map(entry => ({
@@ -25,9 +27,6 @@ class CmsError extends Error {
         this.name = 'CmsError';
     }
 }
-
-// Admin JWT issued by /api/admin/login (see AuthContext).
-export const ADMIN_TOKEN_KEY = 'ariya_admin_token';
 
 function authHeaders(json = false): HeadersInit {
     const headers: Record<string, string> = {};

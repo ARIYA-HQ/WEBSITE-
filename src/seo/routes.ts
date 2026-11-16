@@ -13,7 +13,7 @@ export function canonicalPathFor(pathname: string) {
 
 export const publicPages: Record<string, { title: string; description: string }> = {
     '/': {
-        title: 'Event Planning Made Easier',
+        title: 'Wedding & Event Planning Made Easier in Nigeria',
         description:
             'Plan weddings, birthdays and corporate events with AriyaHQ. Discover vendors, create event websites, organise guests and explore digital invitations.',
     },

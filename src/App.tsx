@@ -1,11 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { SHOW_CASE_STUDIES } from './config/features';
-import { AnimatePresence } from 'framer-motion';
 
 // lib & Providers
 import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider } from './context/AuthContext';
 import { HelmetProvider } from 'react-helmet-async';
 import RouteSEO from './components/common/RouteSEO';
 import AnalyticsTracker from './components/common/AnalyticsTracker';
@@ -77,10 +75,9 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 
 // Components
 import PublicLayout from './components/layout/PublicLayout';
-import AdminLayout from './components/layout/AdminLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/common/ErrorBoundary';
-import { CmsProvider } from './context/CmsContext';
+const AdminRouteProviders = lazy(() => import('./components/AdminRouteProviders'));
 
 const PageLoader = () => (
     <div className="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-950 z-50">
@@ -90,17 +87,22 @@ const PageLoader = () => (
 
 export default function App() {
     return (
+        <Router basename={import.meta.env.BASE_URL}>
+            <AppContent />
+        </Router>
+    );
+}
+
+export function AppContent() {
+    return (
         <HelmetProvider>
             <QueryClientProvider client={queryClient}>
                 <ThemeProvider defaultTheme="light" storageKey="ariya-ui-theme">
-                    <AuthProvider>
-                        <CmsProvider>
-                            <Router basename={import.meta.env.BASE_URL}>
-                                <ErrorBoundary>
-                                    <RouteSEO />
-                                    <AnalyticsTracker />
-                                    <Suspense fallback={<PageLoader />}>
-                                        <Routes>
+                    <ErrorBoundary>
+                        <RouteSEO />
+                        <AnalyticsTracker />
+                        <Suspense fallback={<PageLoader />}>
+                            <Routes>
                                             {/* Public Routes - Wrapped in PublicLayout (Has Header/Footer) */}
                                             <Route element={<PublicLayout />}>
                                                 <Route path="/" element={<LandingPage />} />
@@ -170,8 +172,8 @@ export default function App() {
 
                                             <Route path="/waitlist" element={<WaitlistPage />} />
 
-                                            {/* Admin Routes - Wrapped in AdminLayout (NO Header/Footer) */}
-                                            <Route element={<AdminLayout />}>
+                                            {/* Admin routes load their auth and CMS providers only when visited. */}
+                                            <Route element={<AdminRouteProviders />}>
                                                 <Route path="/admin/login" element={<AdminLoginPage />} />
 
                                                 <Route element={<ProtectedRoute />}>
@@ -186,12 +188,9 @@ export default function App() {
                                                     <Route path="/admin/resources/:id/edit" element={<ResourceEditorPage />} />
                                                 </Route>
                                             </Route>
-                                        </Routes>
-                                    </Suspense>
-                                </ErrorBoundary>
-                            </Router>
-                        </CmsProvider>
-                    </AuthProvider>
+                            </Routes>
+                        </Suspense>
+                    </ErrorBoundary>
                 </ThemeProvider >
                 <Toaster richColors position="top-right" />
             </QueryClientProvider>

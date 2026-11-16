@@ -16,7 +16,7 @@ import heroFloral from '../assets/images/hero_floral.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
 import { EVENT_IMAGES } from '../config/eventImages';
 import { DOMAIN_PRICES_NAIRA, STUDIO_PREMIUM_PRICE_NAIRA, WEBSITE_FREE_MONTHS, WEBSITE_KEEP_FOREVER_NAIRA, WEBSITE_OFFLINE_MONTHS } from '../config/pricing';
-import homePreview from '../assets/images/wedding-website/home-preview-live.png';
+import homePreview from '../assets/images/wedding-website/home-preview-live.jpg';
 import photoStoryPreview from '../assets/images/wedding-website/photo-story-live.png';
 import coupleStoryPreview from '../assets/images/wedding-website/couple-story-live.png';
 import schedulePreview from '../assets/images/wedding-website/event-schedule-live.png';
@@ -46,6 +46,8 @@ const websitePreviews = [
         description: 'A desktop screenshot of Zoe and Alexis’ live wedding website, with their wedding date, countdown and RSVP link.',
         alt: 'Desktop screenshot of Zoe and Alexis’ live Ariya wedding website homepage',
         address: 'zoealexis.ariyahq.com',
+        width: 1000,
+        height: 632,
     },
     {
         image: photoStoryPreview,
@@ -294,7 +296,7 @@ export default function WeddingWebsitePage() {
                         </p>
                     </div>
                     <div className="mt-12 grid gap-8">
-                        {websitePreviews.map(({ image, title, description, alt, address }) => (
+                        {websitePreviews.map(({ image, title, description, alt, address, width, height }) => (
                             <figure
                                 key={title}
                                 className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950"
@@ -313,6 +315,8 @@ export default function WeddingWebsitePage() {
                                             src={image}
                                             alt={alt}
                                             loading="lazy"
+                                            width={width}
+                                            height={height}
                                             className="block h-auto w-full"
                                         />
                                     </div>

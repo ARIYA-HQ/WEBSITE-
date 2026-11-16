@@ -17,7 +17,8 @@ import VideoShowcase from '../components/VideoShowcase';
 import { motion, useReducedMotion } from 'framer-motion';
 import { APP_LINKS, EVENT_SITE_EXAMPLE } from '../config/links';
 import { EVENT_IMAGES } from '../config/eventImages';
-import websitePreview from '../assets/images/wedding-website/home-preview-live.png';
+import websitePreview from '../assets/images/wedding-website/home-preview-live.jpg';
+import { publicPages } from '../seo/routes';
 
 const productLinks = [
     {
@@ -200,19 +201,28 @@ export default function LandingPage() {
     return (
         <main className="overflow-hidden bg-[#fbfaf7] text-[#20231f] transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100">
             <SEO
-                title="Event Planning Made Easier"
-                description="Plan weddings, birthdays and corporate events with AriyaHQ. Discover vendors, create event websites, organise guests and explore digital invitations."
+                title={publicPages['/'].title}
+                description={publicPages['/'].description}
                 canonical="https://ariyahq.com/"
                 structuredData={structuredData}
             />
 
             <section className="relative isolate min-h-[680px] overflow-hidden bg-[#18201d] text-white md:min-h-[760px]">
-                <img
-                    src={EVENT_IMAGES.coupleReception}
-                    alt=""
-                    fetchPriority="high"
-                    className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-                />
+                <picture className="absolute inset-0 -z-20">
+                    <source
+                        media="(max-width: 767px)"
+                        srcSet="/images/nigerian-events/traditional-couple-reception-mobile.jpg"
+                        type="image/jpeg"
+                    />
+                    <img
+                        src={EVENT_IMAGES.coupleReception}
+                        alt=""
+                        fetchPriority="high"
+                        width={922}
+                        height={768}
+                        className="h-full w-full object-cover object-center"
+                    />
+                </picture>
                 <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#101714]/90 via-[#101714]/65 to-[#101714]/20" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#101714]/70 via-transparent to-[#101714]/10" />
 
@@ -266,12 +276,21 @@ export default function LandingPage() {
                                     zoealexis.ariyahq.com
                                 </span>
                             </div>
-                            <img
-                                src={websitePreview}
-                                alt="Desktop screenshot of Zoe and Alexis’ live Ariya wedding website homepage"
-                                className="block h-auto w-full transition duration-700 group-hover:scale-[1.02]"
-                                fetchPriority="high"
-                            />
+                            <picture>
+                                <source
+                                    media="(min-width: 1024px)"
+                                    srcSet={websitePreview}
+                                    type="image/jpeg"
+                                />
+                                <img
+                                    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                    alt="Desktop screenshot of Zoe and Alexis’ live Ariya wedding website homepage"
+                                    className="block h-auto w-full transition duration-700 group-hover:scale-[1.02]"
+                                    width={1000}
+                                    height={632}
+                                    loading="lazy"
+                                />
+                            </picture>
                         </div>
                         <div className="absolute -left-7 top-12 rounded-2xl border border-white/50 bg-[#fffdf9] px-4 py-3 text-[#20231f] shadow-xl dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
                             <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#987454]">
@@ -427,6 +446,8 @@ export default function LandingPage() {
                                 src={websitePreview}
                                 alt="Desktop preview of Zoe and Alexis’ wedding website homepage"
                                 loading="lazy"
+                                width={1000}
+                                height={632}
                                 className="block h-auto w-full"
                             />
                         </div>

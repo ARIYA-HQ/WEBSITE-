@@ -65,7 +65,7 @@ export default function Footer() {
                 {/* Links Columns */}
                 {FOOTER_CONFIG.columns.map((column, idx) => (
                     <div key={column.title} className="min-w-0">
-                        <h5 className="mb-4 text-[10px] font-black uppercase tracking-[0.16em] text-[#E18A32]">{column.title}</h5>
+                        <h2 className="mb-4 text-[10px] font-black uppercase tracking-[0.16em] text-[#E18A32]">{column.title}</h2>
                         <ul className="space-y-2.5 text-sm font-medium text-gray-300">
                             {column.links.map((link) => (
                                 <li key={link.href}>
@@ -86,7 +86,7 @@ export default function Footer() {
 
                 {/* Newsletter Column */}
                 <div className="sm:col-span-2 lg:col-span-1">
-                    <h5 className="mb-4 text-[10px] font-black uppercase tracking-[0.16em] text-[#E18A32]">{FOOTER_CONFIG.newsletter.title}</h5>
+                    <h2 className="mb-4 text-[10px] font-black uppercase tracking-[0.16em] text-[#E18A32]">{FOOTER_CONFIG.newsletter.title}</h2>
                     <p className="mb-5 text-sm leading-6 text-gray-300">
                         {FOOTER_CONFIG.newsletter.description}
                     </p>

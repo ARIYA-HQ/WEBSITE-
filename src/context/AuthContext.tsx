@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-import { ADMIN_TOKEN_KEY as TOKEN_KEY } from '../services/cmsService';
+import { ADMIN_TOKEN_KEY as TOKEN_KEY } from '../config/adminAuth';
 
 // Same origin by default: the Express server serves both the SPA and /api,
 // and the Vite dev server proxies /api to it.

@@ -117,10 +117,18 @@ if (process.env.NODE_ENV === 'production') {
     });
     app.use(express.static(distPath, {
         index: 'index.html',
+        maxAge: '1d',
         setHeaders: (res, filePath) => {
             // Hashed build assets never change; everything else must revalidate.
             if (filePath.includes(`${path.sep}assets${path.sep}`)) {
                 res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+            } else if (path.basename(filePath) === 'index.html') {
+                res.setHeader('Cache-Control', 'no-cache');
+            } else {
+                res.setHeader(
+                    'Cache-Control',
+                    'public, max-age=86400, stale-while-revalidate=604800',
+                );
             }
         },
     }));

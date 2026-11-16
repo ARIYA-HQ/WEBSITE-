@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { prerenderPageHtml } from '../prerender';
+import { publicPages } from '../routes';
 
 const template = `<!doctype html><html><head>
 <title>Ariya | Event Planning Redefined</title>
@@ -12,6 +13,17 @@ const template = `<!doctype html><html><head>
 </head><body><div id="root"></div></body></html>`;
 
 describe('prerenderPageHtml', () => {
+    it('uses the homepage metadata in the initial document HTML', () => {
+        const html = prerenderPageHtml(template, '/', publicPages['/']);
+
+        expect(html).toContain(
+            '<title>Wedding &amp; Event Planning Made Easier in Nigeria | ÀRIYÁ</title>',
+        );
+        expect(html).toContain(
+            'name="description" content="Plan weddings, birthdays and corporate events with AriyaHQ.',
+        );
+    });
+
     it('sets route-specific metadata and canonical URL in the initial HTML', () => {
         const html = prerenderPageHtml(template, '/product/websites', {
             title: 'Planning & Budgets',
