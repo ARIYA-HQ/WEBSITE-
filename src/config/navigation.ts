@@ -7,7 +7,7 @@ import { SHOW_CASE_STUDIES } from './features';
 
 export const NAVIGATION_CONFIG = [
     {
-        title: 'Plan an Event',
+        title: 'Plan',
         items: [
             { title: 'Wedding planning guide', description: 'Practical steps for planning a wedding in Nigeria', href: '/wedding-planning', icon: ClipboardList },
             { title: 'Budget calculator', description: 'Build and keep track of your wedding budget', href: '/wedding-budget', icon: Calculator },
@@ -15,7 +15,7 @@ export const NAVIGATION_CONFIG = [
         ],
     },
     {
-        title: 'Find Vendors',
+        title: 'Vendors',
         items: [
             { title: 'Browse Ariya vendors', description: 'Explore published vendor profiles and listings', href: '/product/marketplace', icon: Search },
             { title: 'Wedding vendors guide', description: 'Compare services and prepare to book', href: '/wedding-vendors-nigeria', icon: Store },
@@ -25,7 +25,7 @@ export const NAVIGATION_CONFIG = [
         ],
     },
     {
-        title: 'Websites & Invitations',
+        title: 'Create',
         items: [
             { title: 'Event website templates', description: 'Browse the current Ariya website themes', href: '/product/websites', icon: Globe },
             { title: 'Wedding website guide', description: 'Plan what to share on your event website', href: '/wedding-website', icon: CalendarDays },
@@ -36,15 +36,20 @@ export const NAVIGATION_CONFIG = [
         ],
     },
     {
-        title: 'Guests & RSVPs',
+        title: 'Guests',
         items: [
             { title: 'Guest list & RSVP guide', description: 'Organise invitations and track guest responses', href: '/wedding-rsvp-guest-management', icon: ClipboardList },
+            { title: 'Event registration software', description: 'Manage attendee information and event registrations', href: '/event-registration', icon: ClipboardList },
+            { title: 'Event check-in', description: 'Prepare guest information and event access', href: '/event-check-in', icon: Ticket },
+            { title: 'QR code guest passes', description: 'Provide unique digital passes for event guests', href: '/qr-code-guest-passes', icon: Ticket },
+            { title: 'Bulk SMS for events', description: 'Send invitations, reminders and event updates', href: '/bulk-sms-for-events', icon: Mail },
+            { title: 'Bulk email for events', description: 'Share detailed event information with guests', href: '/bulk-email-for-events', icon: Mail },
             { title: 'Event registration guide', description: 'Learn how to plan an event registration process', href: '/event-registration-nigeria', icon: ClipboardList },
             { title: 'Event ticketing guide', description: 'Learn about online event ticketing', href: '/event-ticketing-nigeria', icon: Ticket },
         ],
     },
     {
-        title: 'Gift Registry',
+        title: 'Gifts',
         items: [
             { title: 'Browse the wishlist catalogue', description: 'See current gift items available on Ariya', href: '/product/wishlist', icon: Gift },
             { title: 'Wedding gift registry guide', description: 'Learn how registries and gift lists work', href: '/wedding-gift-registry-nigeria', icon: Gift },
@@ -52,7 +57,7 @@ export const NAVIGATION_CONFIG = [
         ],
     },
     {
-        title: 'Ideas & Advice',
+        title: 'Explore',
         items: [
             { title: 'Wedding planning guides', description: 'Browse practical event and wedding guides', href: '/resources/guides', icon: BookOpen },
             { title: 'Event planning journal', description: 'Ideas and stories from Ariya', href: '/resources/blog', icon: BookOpen },

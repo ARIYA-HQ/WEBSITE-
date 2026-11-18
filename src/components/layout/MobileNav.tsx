@@ -103,7 +103,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 }
 
 const mobileAccents = [
-    'bg-primary-50 text-primary-800 dark:bg-primary-950/50 dark:text-primary-300',
+    'bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-300',
     'bg-rose-50 text-rose-800 dark:bg-rose-950/50 dark:text-rose-300',
     'bg-amber-50 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300',
     'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300',

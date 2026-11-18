@@ -12,42 +12,42 @@ import Button from '../common/Button';
 import { APP_LINKS } from '../../config/links';
 
 const menuSpotlights: Record<string, { eyebrow: string; title: string; description: string; href: string; image: string }> = {
-    'Plan an Event': {
+    Plan: {
         eyebrow: 'Start with a plan',
         title: 'Make room for the moments that matter.',
         description: 'Explore practical planning guides, checklists and budget tools.',
         href: '/wedding-planning',
         image: EVENT_IMAGES.eventPlanner,
     },
-    'Find Vendors': {
+    Vendors: {
         eyebrow: 'Meet your event team',
         title: 'Find the people who make it unforgettable.',
         description: 'Browse public event vendor listings on Ariya.',
         href: '/product/marketplace',
         image: EVENT_IMAGES.florist,
     },
-    'Websites & Invitations': {
+    Create: {
         eyebrow: 'Set the scene',
         title: 'A beautiful first hello to your celebration.',
         description: 'Explore event website themes and invitation designs.',
         href: '/product/invitations',
         image: EVENT_IMAGES.coupleWalking,
     },
-    'Guests & RSVPs': {
+    Guests: {
         eyebrow: 'Every guest, in the know',
         title: 'Bring the important details together.',
         description: 'Find guidance for invitations, guest lists and responses.',
         href: '/wedding-rsvp-guest-management',
         image: EVENT_IMAGES.coupleReceptionGuests,
     },
-    'Gift Registry': {
+    Gifts: {
         eyebrow: 'The Ariya gift edit',
         title: 'Gifts for the life you’re building together.',
         description: 'Discover gift ideas for your event wishlist.',
         href: '/product/wishlist',
         image: EVENT_IMAGES.pinkGeleCelebration,
     },
-    'Ideas & Advice': {
+    Explore: {
         eyebrow: 'Find a little inspiration',
         title: 'Ideas to help bring your celebration to life.',
         description: 'Browse guides and stories from the Ariya journal.',
@@ -57,7 +57,7 @@ const menuSpotlights: Record<string, { eyebrow: string; title: string; descripti
 };
 
 const itemAccents = [
-    'bg-primary-50 text-primary-700 group-hover:bg-primary-100 dark:bg-primary-900/30 dark:text-primary-300',
+    'bg-primary-100 text-primary-600 group-hover:bg-primary-100 dark:bg-primary-900/30 dark:text-primary-300',
     'bg-rose-50 text-rose-700 group-hover:bg-rose-100 dark:bg-rose-950/50 dark:text-rose-300',
     'bg-amber-50 text-amber-700 group-hover:bg-amber-100 dark:bg-amber-950/40 dark:text-amber-300',
     'bg-emerald-50 text-emerald-700 group-hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-300',
@@ -131,18 +131,19 @@ export default function Header() {
                             title={menu.title}
                             activeDropdown={activeDropdown}
                             setActiveDropdown={setActiveDropdown}
+                            panelClassName={menu.items.length > 4 ? 'max-w-[960px]' : 'max-w-[820px]'}
                             transparent={false}
                         >
-                                <div className="grid w-[min(94vw,980px)] grid-cols-[minmax(0,1fr)_280px] gap-5 rounded-[1.7rem] bg-[#fdfbf8] p-5 dark:bg-gray-900">
+                                <div className="grid grid-cols-[minmax(0,1fr)_280px] gap-4 bg-[#fdfbf8] p-4 sm:gap-5 sm:p-5 dark:bg-gray-900">
                                     <div>
                                         <div className="mb-4 flex items-end justify-between px-1">
                                             <div>
                                                 <p className="text-[9px] font-black uppercase tracking-[0.2em] text-primary-700 dark:text-primary-300">Explore Ariya</p>
                                                 <h2 className="mt-1 font-serif text-2xl text-gray-900 dark:text-white">{menu.title}</h2>
                                             </div>
-                                            <span className="rounded-full bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-gray-500 shadow-sm dark:bg-gray-800 dark:text-gray-300">{menu.items.length} destinations</span>
+                                            <span className="rounded-full border border-gray-200 bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">{menu.items.length} destinations</span>
                                         </div>
-                                        <div className="grid gap-2 sm:grid-cols-2">
+                                        <div className={`grid gap-2 ${menu.items.length > 4 ? 'sm:grid-cols-2' : 'grid-cols-1'}`}>
                                             {menu.items.map((item, index) => <DesktopMenuItem key={item.href} item={item} index={index} />)}
                                         </div>
                                     </div>
