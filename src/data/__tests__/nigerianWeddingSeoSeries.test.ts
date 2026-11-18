@@ -4,9 +4,10 @@ import { join } from 'node:path';
 import posts from '../nigerianWeddingSeoSeries.json';
 
 describe('Nigerian wedding SEO article series', () => {
-    it('contains twenty-four complete, uniquely sluggified articles with clean HTML and distinct descriptive images', () => {
-        expect(posts).toHaveLength(24);
+    it('contains twenty-five complete, uniquely sluggified articles with clean HTML and distinct descriptive images', () => {
+        expect(posts).toHaveLength(25);
         expect(posts.map((post) => post.slug)).toEqual(expect.arrayContaining([
+            'wedding-rsvp-tracking-nigeria',
             'cash-wedding-gift-etiquette-nigeria',
             'small-wedding-ideas-nigeria',
             'wedding-budget-for-100-guests-nigeria',
@@ -69,6 +70,9 @@ describe('Nigerian wedding SEO article series', () => {
         expect(postsBySlug.get('wedding-videography-nigeria')?.content).toContain(
             'Importance of Audio Quality',
         );
+        expect(postsBySlug.get('wedding-rsvp-tracking-nigeria')?.content).toContain(
+            'Wedding invitation messages for WhatsApp',
+        );
         expect(new Set(posts.map((post) => post.slug)).size).toBe(posts.length);
         expect(new Set(posts.map((post) => post.image)).size).toBe(posts.length);
 
@@ -76,7 +80,9 @@ describe('Nigerian wedding SEO article series', () => {
             expect(post.status).toBe('published');
             expect(post.title.trim()).not.toBe('');
             expect(post.imageAlt.trim()).not.toBe('');
-            expect(post.image).toMatch(/^\/images\/nigerian-wedding-articles\/.+\.jpg$/);
+            expect(post.image).toMatch(
+                /^\/images\/(?:nigerian-wedding-articles\/.+|ariya-studio\/references\/01-invitation-rose)\.jpg$/,
+            );
             expect(existsSync(join(process.cwd(), 'public', post.image.slice(1)))).toBe(true);
             expect(post.excerpt.length).toBeGreaterThanOrEqual(100);
             expect(post.excerpt.length).toBeLessThanOrEqual(160);

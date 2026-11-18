@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { cmsService } from '../cmsService';
+import { mergePublicWeddingSeoPosts } from '../../data/publicWeddingBlogPosts';
 
 describe('CmsService', () => {
     beforeEach(() => {
@@ -22,9 +23,10 @@ describe('CmsService', () => {
         });
 
         const posts = await cmsService.getBlogPosts();
-        expect(posts).toHaveLength(mockPosts.length + 24);
-        expect(posts.slice(24)).toEqual(mockPosts);
-        expect(posts[0].slug).toBe('first-steps-planning-nigerian-wedding');
+        const staticPostCount = mergePublicWeddingSeoPosts([]).length;
+        expect(posts).toHaveLength(mockPosts.length + staticPostCount);
+        expect(posts.slice(staticPostCount)).toEqual(mockPosts);
+        expect(posts[0].slug).toBe(mergePublicWeddingSeoPosts([])[0].slug);
         expect(fetch).toHaveBeenCalledWith('/api/posts', { headers: {} });
     });
 
@@ -49,7 +51,7 @@ describe('CmsService', () => {
         const post = await cmsService.getBlogPostBySlug('wedding-invitation-message-whatsapp');
 
         expect(post?.title).toBe('How to Write a Wedding Invitation Message for WhatsApp: 20 Examples for Nigerian Couples');
-        expect(post?.imageAlt).toBe('Black woman using a smartphone to view wedding invitation details');
+        expect(post?.imageAlt).toBe('Rose-themed wedding invitation design');
     });
 
     it('should load the latest local wedding article by slug when the API is unavailable', async () => {

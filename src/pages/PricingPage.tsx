@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Zap, Globe, Image, MessageSquare, ShieldCheck, TrendingUp, Tag, QrCode, Palette } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { APP_LINKS } from '../config/links';
 import {
     DOMAIN_PRICES_NAIRA,
+    DOMAIN_RENEWAL_MULTIPLIER,
     GUEST_PASS_FREE_TEST,
+    GUEST_PASS_MINIMUM_CAPACITY,
     GUEST_PASS_MINIMUM_NAIRA,
     GUEST_PASS_TIERS,
     REGISTRY_SERVICE_FEE_RATE,
@@ -21,65 +23,96 @@ import {
     WEBSITE_OFFLINE_MONTHS,
 } from '../config/pricing';
 
-const fmt = (n: number) => `₦${n.toLocaleString()}`;
-const pct = (r: number) => `${(r * 100).toFixed(0)}%`;
+const money = (amount: number) => `₦${amount.toLocaleString('en-NG')}`;
+const percent = (rate: number) => `${(rate * 100).toFixed(0)}%`;
 
-function FreeTag() {
-    return (
-        <span className="inline-block text-[10px] font-black uppercase tracking-widest text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2.5 py-0.5 rounded-full">
-            Free
-        </span>
-    );
-}
+type PricingRow = {
+    item: string;
+    price: string;
+    billing: string;
+    note?: string;
+};
 
-function Row({ label, value, note, compact }: { label: string; value: React.ReactNode; note?: string; compact?: boolean }) {
-    return (
-        <div className={`flex items-start justify-between border-b border-gray-100 dark:border-gray-800 last:border-0 gap-3 ${compact ? 'py-2.5' : 'py-3'}`}>
-            <div className="min-w-0">
-                <p className={`font-medium text-gray-800 dark:text-gray-200 ${compact ? 'text-xs' : 'text-sm'}`}>{label}</p>
-                {note && <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">{note}</p>}
-            </div>
-            <div className={`font-black text-gray-900 dark:text-white text-right flex-shrink-0 ${compact ? 'text-xs' : 'text-sm'}`}>{value}</div>
-        </div>
-    );
-}
-
-function Card({ children }: { children: React.ReactNode }) {
-    return (
-        <div className="rounded-2xl bg-white dark:bg-gray-900 shadow-[0_2px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_24px_rgba(0,0,0,0.35)] ring-1 ring-black/[0.04] dark:ring-white/[0.06] overflow-hidden">
-            {children}
-        </div>
-    );
-}
-
-function CardBody({ children, compact }: { children: React.ReactNode; compact?: boolean }) {
-    return <div className={compact ? 'p-5' : 'p-6 md:p-8'}>{children}</div>;
-}
-
-function CardTitle({
-    icon: Icon,
-    title,
-    sub,
-    iconBg = 'bg-gray-100 dark:bg-gray-800',
-    iconColor = 'text-gray-600 dark:text-gray-400',
-    compact,
+function PricingTable({
+    label,
+    rows,
 }: {
-    icon: React.ElementType;
-    title: string;
-    sub?: string;
-    iconBg?: string;
-    iconColor?: string;
-    compact?: boolean;
+    label: string;
+    rows: PricingRow[];
 }) {
     return (
-        <div className={`flex items-start gap-3 ${compact ? 'mb-4' : 'mb-6'}`}>
-            <div className={`rounded-xl flex-shrink-0 ${compact ? 'p-2' : 'p-2.5'} ${iconBg}`}>
-                <Icon className={`${compact ? 'w-4 h-4' : 'w-5 h-5'} ${iconColor}`} />
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+            <div className="hidden overflow-x-auto md:block">
+                <table className="w-full text-left">
+                    <caption className="sr-only">{label}</caption>
+                    <thead className="bg-gray-50 text-[10px] font-black uppercase tracking-[0.16em] text-gray-500 dark:bg-gray-950 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-5 py-4 sm:px-6">Feature</th>
+                            <th scope="col" className="px-5 py-4 sm:px-6">Price</th>
+                            <th scope="col" className="px-5 py-4 sm:px-6">Billing</th>
+                            <th scope="col" className="px-5 py-4 sm:px-6">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                        {rows.map((row) => (
+                            <tr key={`${row.item}-${row.price}`} className="align-top">
+                                <th scope="row" className="px-5 py-4 text-sm font-bold text-gray-900 dark:text-white sm:px-6">
+                                    {row.item}
+                                </th>
+                                <td className="whitespace-nowrap px-5 py-4 text-sm font-black text-gray-900 dark:text-white sm:px-6">
+                                    {row.price}
+                                </td>
+                                <td className="px-5 py-4 text-sm text-gray-600 dark:text-gray-300 sm:px-6">
+                                    {row.billing}
+                                </td>
+                                <td className="max-w-sm px-5 py-4 text-sm leading-6 text-gray-500 dark:text-gray-400 sm:px-6">
+                                    {row.note ?? '—'}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            <div className="min-w-0">
-                <h3 className={`font-black uppercase tracking-tight text-gray-900 dark:text-white leading-tight ${compact ? 'text-sm' : 'text-base'}`}>{title}</h3>
-                {sub && <p className={`text-gray-400 mt-0.5 leading-snug ${compact ? 'text-[11px]' : 'text-xs'}`}>{sub}</p>}
-            </div>
+            <ul aria-label={label} className="divide-y divide-gray-100 dark:divide-gray-800 md:hidden">
+                {rows.map((row) => (
+                    <li key={`${row.item}-${row.price}`} className="px-4 py-4">
+                        <div className="flex items-start justify-between gap-4">
+                            <h3 className="min-w-0 text-sm font-bold leading-5 text-gray-900 dark:text-white">
+                                {row.item}
+                            </h3>
+                            <p className="shrink-0 text-right text-sm font-black leading-5 text-gray-950 dark:text-white">
+                                {row.price}
+                            </p>
+                        </div>
+                        <p className="mt-2 text-xs font-semibold text-primary-700 dark:text-primary-400">
+                            {row.billing}
+                        </p>
+                        {row.note && row.note !== '—' && (
+                            <p className="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">
+                                {row.note}
+                            </p>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+function SectionHeading({
+    eyebrow,
+    title,
+    description,
+}: {
+    eyebrow: string;
+    title: string;
+    description?: string;
+}) {
+    return (
+        <div className="mb-5">
+            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-700 dark:text-primary-400">{eyebrow}</p>
+            <h2 className="mt-2 text-xl font-black tracking-tight text-gray-950 dark:text-white sm:text-2xl">{title}</h2>
+            {description && <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-600 dark:text-gray-400">{description}</p>}
         </div>
     );
 }
@@ -89,348 +122,297 @@ type Tab = typeof TABS[number];
 
 function PlannerTab() {
     return (
-        <div className="space-y-8">
-            {/* Free tier */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card>
-                    <CardBody>
-                        <CardTitle
-                            icon={Check}
-                            title="Always free"
-                            sub="No card needed · unlimited events"
-                            iconBg="bg-green-100 dark:bg-green-900/30"
-                            iconColor="text-green-600 dark:text-green-400"
-                        />
-                        <ul className="space-y-0">
-                            {[
-                                'Unlimited event creation',
-                                'Budget tracker',
-                                'Guest management & RSVP',
-                                'Task & checklist tools',
-                                'Seating planner',
-                                'Vendor discovery & bookings',
-                                `Event website at yourslug.ariyahq.com`,
-                                    'Wishlist / gift registry setup',
-                                'Ticket sales with promo / discount codes',
-                                'Waitlist for sold-out events',
-                                `${STORAGE_FREE_PHOTOS} gallery photos`,
-                                'AI planning assistant',
-                            ].map(item => (
-                                <li key={item} className="flex items-center gap-3 py-2.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
-                                    <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                    <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </CardBody>
-                </Card>
+        <div className="space-y-12">
+            <section id="included">
+                <SectionHeading
+                    eyebrow="01 / Included"
+                    title="Event planning essentials"
+                    description="Core tools are available without a monthly or annual plan. Start planning first, then add paid services only when you need them."
+                />
+                <PricingTable
+                    label="Included event planning tools"
+                    rows={[
+                        { item: 'Event creation and planning', price: 'Free', billing: 'Unlimited events', note: 'Create and manage events without a subscription.' },
+                        { item: 'Budget, tasks and checklists', price: 'Free', billing: 'Included', note: 'Plan your event and keep track of the details.' },
+                        { item: 'Guest management and RSVP', price: 'Free', billing: 'Included', note: 'Organise guest details and responses.' },
+                        { item: 'Seating planner', price: 'Free', billing: 'Included', note: 'Arrange your event seating.' },
+                        { item: 'Vendor discovery and bookings', price: 'Free', billing: 'Included', note: 'Discover vendors and manage bookings.' },
+                        { item: 'Ariya-hosted event website', price: 'Free', billing: 'Standard event lifecycle', note: `Available for ${WEBSITE_FREE_MONTHS} months after your event; archived at month ${WEBSITE_OFFLINE_MONTHS}.` },
+                        { item: 'Gift registry setup', price: 'Free', billing: 'Included', note: 'Set up a wishlist and registry for your event.' },
+                        { item: 'Ticket tools', price: 'Free', billing: 'Ticket sales have a fee', note: 'Includes promo codes and a waitlist for sold-out events.' },
+                        { item: 'Gallery storage', price: 'Free', billing: `First ${STORAGE_FREE_PHOTOS} photos`, note: 'Additional storage can be purchased per event.' },
+                        { item: 'AI planning assistant', price: 'Free', billing: 'Included', note: 'Available as part of event planning.' },
+                    ]}
+                />
+            </section>
 
-                <div className="space-y-6">
-                    {/* Platform fees */}
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={Zap}
-                                title="Platform fees"
-                                sub="Only when you collect money"
-                                iconBg="bg-blue-100 dark:bg-blue-900/30"
-                                iconColor="text-blue-600 dark:text-blue-400"
-                            />
-                            <Row
-                                label="Ticket sales"
-                                value={pct(TICKET_SERVICE_FEE_RATE)}
-                                note="Ariya's 3% service fee may be passed to buyers or deducted from organiser proceeds. Paystack's card fee is separate."
-                            />
-                            <Row
-                                label="Cash fund contributions"
-                                value={pct(REGISTRY_SERVICE_FEE_RATE)}
-                                note="Applies to cash gifts only (includes Paystack processing). Physical registry items have no Ariya fee."
-                            />
-                            <Row
-                                label="Vendor payments"
-                                value={pct(VENDOR_COMMISSION_RATE)}
-                                note="Deducted from the vendor's payout when funds are released."
-                            />
-                        </CardBody>
-                    </Card>
+            <section id="transaction-fees">
+                <SectionHeading
+                    eyebrow="02 / Transaction fees"
+                    title="Fees when money moves"
+                    description="AriyaHQ service fees and payment processor charges are not always the same. Check the fee notes for each transaction type."
+                />
+                <PricingTable
+                    label="Event transaction fees"
+                    rows={[
+                        { item: 'Paid ticket sales', price: `${percent(TICKET_SERVICE_FEE_RATE)} service fee`, billing: 'On paid ticket value', note: 'Choose to pass AriyaHQ’s fee to ticket buyers or deduct it from organiser proceeds. Payment processing is separate.' },
+                        { item: 'Cash fund contributions', price: `${percent(REGISTRY_SERVICE_FEE_RATE)} total fee`, billing: 'On cash gifts', note: 'Includes Paystack processing. AriyaHQ does not charge a fee on physical registry items.' },
+                        { item: 'Vendor payments', price: `${percent(VENDOR_COMMISSION_RATE)} platform fee`, billing: 'When paid out', note: 'Deducted from the vendor’s payout when funds are released.' },
+                    ]}
+                />
+            </section>
 
-                    {/* Custom domain */}
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={Globe}
-                                title="Custom domain"
-                                sub="Includes hosting + Ariya branding removed"
-                                iconBg="bg-orange-100 dark:bg-orange-900/30"
-                                iconColor="text-primary-600"
-                            />
-                            {Object.entries(DOMAIN_PRICES_NAIRA).map(([tld, price]) => (
-                                <React.Fragment key={tld}>
-                                    <Row label={`.${tld} first year`} value={fmt(price)} />
-                                    <Row label={`.${tld} renewal`} value={`${fmt(Math.round(price * 1.6))}/yr`} />
-                                </React.Fragment>
-                            ))}
-                        </CardBody>
-                    </Card>
+            <section id="guest-pass-fees">
+                <SectionHeading
+                    eyebrow="03 / Guest access"
+                    title="QR code guest pass fees"
+                    description="Paid passes use progressive rates: each price applies only to passes within its quantity bracket."
+                />
+                <PricingTable
+                    label="QR guest pass fees"
+                    rows={[
+                        ...GUEST_PASS_TIERS.map((tier) => ({
+                            item: tier.label,
+                            price: `${money(tier.pricePerGuestNaira)} per pass`,
+                            billing: 'Progressive rate',
+                            note: 'Rate applies only to passes in this bracket.',
+                        })),
+                        { item: 'Free test passes', price: `${GUEST_PASS_FREE_TEST}`, billing: 'Per event', note: 'Test passes are separate from paid capacity.' },
+                    ]}
+                />
+                <p className="mt-4 text-xs leading-5 text-gray-500 dark:text-gray-400">
+                    Minimum event capacity: {GUEST_PASS_MINIMUM_CAPACITY} passes. Minimum paid charge: {money(GUEST_PASS_MINIMUM_NAIRA)} per event. Eligibility is confirmed in checkout.
+                </p>
+            </section>
+
+            <section id="messaging-fees">
+                <SectionHeading
+                    eyebrow="04 / Guest communication"
+                    title="Bulk SMS and email fees"
+                    description="Purchase messaging credits as needed. Credits are shared across your AriyaHQ account; actual credit usage depends on the channel and message rules."
+                />
+                <PricingTable
+                    label="Bulk SMS and email credit package fees"
+                    rows={SMS_BUNDLES.map((bundle) => ({
+                        item: `${bundle.count.toLocaleString('en-NG')} messaging credits`,
+                        price: money(bundle.priceNaira),
+                        billing: 'Pay as you go',
+                        note: `About ${money(Math.round(bundle.priceNaira / bundle.count))} per credit. SMS segments and email send rounding affect actual credit usage.`,
+                    }))}
+                />
+                <p className="mt-4 text-xs leading-5 text-gray-500 dark:text-gray-400">
+                    A credit is not necessarily one SMS or email. SMS usage depends on message segments; email uses half a credit per message with rounding applied per send.
+                </p>
+            </section>
+
+            <section id="event-websites">
+                <SectionHeading
+                    eyebrow="05 / Event websites"
+                    title="Website and custom domain options"
+                    description="The extended website option and custom domain are separate purchases."
+                />
+                <PricingTable
+                    label="Event website pricing"
+                    rows={[
+                        { item: 'Keep event website live', price: money(WEBSITE_KEEP_FOREVER_NAIRA), billing: 'One-time per website', note: 'Keeps the event website live indefinitely.' },
+                        ...Object.entries(DOMAIN_PRICES_NAIRA).map(([tld, price]) => ({
+                            item: `Custom .${tld} domain`,
+                            price: money(price),
+                            billing: `First year · ${money(Math.round(price * DOMAIN_RENEWAL_MULTIPLIER))}/year renewal`,
+                            note: 'Includes hosting and Ariya branding removal.',
+                        })),
+                    ]}
+                />
+            </section>
+
+            <section id="add-ons">
+                <SectionHeading
+                    eyebrow="06 / Optional add-ons"
+                    title="Add capacity when you need it"
+                    description="One-time add-ons can be purchased for an event or account without a recurring subscription."
+                />
+                <div className="space-y-8">
+                    <PricingTable
+                        label="Additional event features"
+                        rows={[
+                            { item: 'Ariya Studio Premium', price: money(STUDIO_PREMIUM_PRICE_NAIRA), billing: 'One-time', note: 'Lifetime access to the premium template library.' },
+                            ...STORAGE_TIERS.map((tier) => ({
+                                item: `Extra photo storage · ${tier.label}`,
+                                price: money(tier.priceNaira),
+                                billing: 'One-time per event · stackable',
+                                note: `First ${STORAGE_FREE_PHOTOS} photos are free.`,
+                            })),
+                        ]}
+                    />
                 </div>
-            </div>
-
-            {/* Pay-as-you-go add-ons */}
-            <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 mb-4">Pay-as-you-go add-ons</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {/* Website keep-forever */}
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={Globe}
-                                title="Keep website live"
-                                sub="One-time · no renewal"
-                                iconBg="bg-amber-100 dark:bg-amber-900/30"
-                                iconColor="text-amber-600 dark:text-amber-400"
-                            />
-                            <Row label="Live after your event" value={`${WEBSITE_FREE_MONTHS} months free`} />
-                            <Row label="Archive page" value={`Until month ${WEBSITE_OFFLINE_MONTHS}`} />
-                            <Row label="Keep it live forever" value={fmt(WEBSITE_KEEP_FOREVER_NAIRA)} />
-                        </CardBody>
-                    </Card>
-
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={Palette}
-                                title="Ariya Studio Premium"
-                                sub="One-time · lifetime access"
-                                iconBg="bg-indigo-100 dark:bg-indigo-900/30"
-                                iconColor="text-indigo-600 dark:text-indigo-400"
-                            />
-                            <Row label="Premium template library" value={fmt(STUDIO_PREMIUM_PRICE_NAIRA)} />
-                        </CardBody>
-                    </Card>
-
-                    {/* Storage */}
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={Image}
-                                title="Extra photo storage"
-                                sub="One-time per event · stackable"
-                                iconBg="bg-purple-100 dark:bg-purple-900/30"
-                                iconColor="text-purple-600 dark:text-purple-400"
-                            />
-                            <Row label={`First ${STORAGE_FREE_PHOTOS} photos`} value={<FreeTag />} />
-                            {STORAGE_TIERS.map(t => (
-                                <Row key={t.label} label={t.label} value={fmt(t.priceNaira)} />
-                            ))}
-                        </CardBody>
-                    </Card>
-
-                    {/* Guest messaging */}
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={MessageSquare}
-                                title="Guest messaging"
-                                sub="SMS · Email · Nigeria only · WhatsApp coming soon"
-                                iconBg="bg-sky-100 dark:bg-sky-900/30"
-                                iconColor="text-sky-600 dark:text-sky-400"
-                            />
-                            {SMS_BUNDLES.map(b => (
-                                <Row
-                                    key={b.label}
-                                    label={b.label}
-                                    value={fmt(b.priceNaira)}
-                                    note={`≈ ${fmt(Math.round(b.priceNaira / b.count))}/credit`}
-                                />
-                            ))}
-                        </CardBody>
-                    </Card>
-
-                    {/* Guest QR passes */}
-                    <Card>
-                        <CardBody>
-                            <CardTitle
-                                icon={QrCode}
-                                title="Guest QR passes"
-                                sub={`${GUEST_PASS_FREE_TEST} free test passes · per event`}
-                                iconBg="bg-indigo-100 dark:bg-indigo-900/30"
-                                iconColor="text-indigo-600 dark:text-indigo-400"
-                            />
-                            {GUEST_PASS_TIERS.map(t => (
-                                <Row
-                                    key={t.label}
-                                    label={t.label}
-                                    value={`${fmt(t.pricePerGuestNaira)}/guest`}
-                                />
-                            ))}
-                            <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-                                <p className="text-xs text-gray-400">Min. charge {fmt(GUEST_PASS_MINIMUM_NAIRA)} per event</p>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </div>
-            </div>
+            </section>
         </div>
     );
 }
 
 function VendorTab() {
     return (
-        <div className="space-y-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Free listing */}
-                <Card>
-                    <CardBody>
-                        <CardTitle
-                            icon={Check}
-                            title="Basic listing"
-                            sub="Always free"
-                            iconBg="bg-green-100 dark:bg-green-900/30"
-                            iconColor="text-green-600 dark:text-green-400"
-                        />
-                        <ul className="space-y-0">
-                            {[
-                                'Directory listing',
-                                'Portfolio gallery',
-                                'Receive client inquiries',
-                                'Manage bookings',
-                                'Reviews & ratings',
-                                'Earnings dashboard',
-                            ].map(item => (
-                                <li key={item} className="flex items-center gap-3 py-2.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
-                                    <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                    <span className="text-sm text-gray-700 dark:text-gray-300">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="mt-5 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl">
-                            <p className="text-xs text-amber-700 dark:text-amber-400 font-medium">
-                                {pct(VENDOR_COMMISSION_RATE)} platform fee deducted from payouts when a booking is paid out via Ariya. No subscription, no upfront cost.
-                            </p>
-                        </div>
-                    </CardBody>
-                </Card>
-
-                {/* Visibility boosts */}
-                <Card>
-                    <CardBody>
-                        <CardTitle
-                            icon={TrendingUp}
-                            title="Visibility boosts"
-                            sub="One-time per listing · no recurring fee"
-                            iconBg="bg-orange-100 dark:bg-orange-900/30"
-                            iconColor="text-primary-600"
-                        />
-                        {VENDOR_FEATURES.map(f => (
-                            <Row key={f.label} label={f.label} value={fmt(f.priceNaira)} />
-                        ))}
-                    </CardBody>
-                </Card>
-
-                {/* Verification badge */}
-                <Card>
-                    <CardBody>
-                        <CardTitle
-                            icon={ShieldCheck}
-                            title="Verified badge"
-                            sub="One-time · permanent · identity verified"
-                            iconBg="bg-amber-100 dark:bg-amber-900/30"
-                            iconColor="text-amber-600 dark:text-amber-400"
-                        />
-                        <Row
-                            label="NIN + CAC document review"
-                            value={fmt(VENDOR_VERIFICATION_FEE_NAIRA)}
-                            note="Reviewed within 24–48 hrs. Badge is permanent once approved."
-                        />
-                    </CardBody>
-                </Card>
-            </div>
+        <div className="space-y-12">
+            <section id="vendor-included">
+                <SectionHeading
+                    eyebrow="01 / Vendor account"
+                    title="Start with a free listing"
+                    description="Create a vendor presence and manage your work without an upfront subscription."
+                />
+                <PricingTable
+                    label="Included vendor account features"
+                    rows={[
+                        { item: 'Directory listing', price: 'Free', billing: 'Always', note: 'Create a profile in the vendor directory.' },
+                        { item: 'Portfolio gallery', price: 'Free', billing: 'Included', note: 'Showcase your work to potential clients.' },
+                        { item: 'Client inquiries and bookings', price: 'Free', billing: 'Included', note: 'Receive inquiries and manage bookings.' },
+                        { item: 'Reviews, ratings and earnings dashboard', price: 'Free', billing: 'Included', note: 'Manage your reputation and view earnings.' },
+                    ]}
+                />
+            </section>
+            <section id="vendor-fees">
+                <SectionHeading
+                    eyebrow="02 / Vendor charges"
+                    title="Commission and optional visibility"
+                />
+                <PricingTable
+                    label="Vendor charges"
+                    rows={[
+                        { item: 'Platform fee on Ariya payouts', price: percent(VENDOR_COMMISSION_RATE), billing: 'Deducted at payout', note: 'No subscription or upfront cost.' },
+                        ...VENDOR_FEATURES.map((feature) => ({
+                            item: feature.label,
+                            price: money(feature.priceNaira),
+                            billing: 'One-time',
+                            note: 'Optional paid listing visibility feature.',
+                        })),
+                        { item: 'Verified badge · NIN + CAC document review', price: money(VENDOR_VERIFICATION_FEE_NAIRA), billing: 'One-time', note: 'Reviewed within 24–48 hours. Badge is permanent once approved.' },
+                    ]}
+                />
+            </section>
         </div>
     );
 }
 
+const detailedPages = [
+    { title: 'Event management software pricing', detail: 'Overall pricing model and platform fees.', href: '/event-management-software-pricing' },
+    { title: 'Event ticketing fees', detail: 'Fee handling, examples and ticket estimator.', href: '/event-ticketing-pricing' },
+    { title: 'QR guest pass pricing', detail: 'Progressive rates and paid pass estimator.', href: '/qr-code-guest-pass-pricing' },
+    { title: 'Bulk SMS and email pricing', detail: 'Credit packages and usage rules.', href: '/bulk-sms-email-pricing' },
+    { title: 'Event website pricing', detail: 'Website availability and custom domain costs.', href: '/event-website-pricing' },
+];
+
 export default function PricingPage() {
     const [activeTab, setActiveTab] = useState<Tab>('Planners');
+    const panelId = activeTab === 'Planners' ? 'planner-pricing-panel' : 'vendor-pricing-panel';
 
     return (
-        <main className="pt-24 min-h-screen bg-[#FAFAFA] dark:bg-gray-950">
-            {/* Hero */}
-            <section className="py-20 px-6 text-center max-w-3xl mx-auto">
-                <span className="inline-block text-[10px] font-black uppercase tracking-[0.2em] text-primary-600 mb-4">Pricing</span>
-                <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-gray-900 dark:text-white leading-tight">
-                    Transparent pricing.<br />No surprises.
-                </h1>
-                <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
-                    Free to plan. Pay only when you upgrade, sell tickets, or collect gifts — and only what's shown here.
-                </p>
-            </section>
-
-            {/* Tabs */}
-            <div className="max-w-5xl mx-auto px-6">
-                <div className="flex gap-2 bg-gray-100 dark:bg-gray-800 rounded-2xl p-1.5 w-fit mx-auto mb-12">
-                    {TABS.map(tab => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`px-8 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
-                                activeTab === tab
-                                    ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-                                    : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
-                            }`}
-                        >
-                            {tab}
-                        </button>
+        <main className="min-h-screen bg-[#f7f5f1] pt-24 text-gray-950 dark:bg-gray-950 dark:text-white">
+            <header className="border-b border-gray-200 bg-[#f7f5f1] px-5 py-9 dark:border-gray-800 dark:bg-gray-950 sm:px-6 sm:py-12 md:py-16">
+                <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-8">
+                    <div className="max-w-3xl">
+                        <p className="text-xs font-black uppercase tracking-[0.2em] text-primary-700 dark:text-primary-400">AriyaHQ · pricing</p>
+                        <h1 className="mt-4 text-4xl font-black leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
+                            No monthly plan.<br />
+                            <span className="text-primary-700 dark:text-primary-400">Just clear prices.</span>
+                        </h1>
+                        <p className="mt-5 max-w-2xl text-base leading-7 text-gray-600 dark:text-gray-300">
+                            Use the core event tools for free. Pay only for optional upgrades or when you collect money through AriyaHQ.
+                        </p>
+                    </div>
+                    <a
+                        href={APP_LINKS.signup}
+                        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gray-950 px-6 py-4 text-xs font-black uppercase tracking-widest text-white transition hover:bg-primary-700 dark:bg-white dark:text-gray-950 dark:hover:bg-gray-200 md:w-auto"
+                    >
+                        Start for free <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                </div>
+                <div className="mx-auto mt-8 grid max-w-7xl grid-cols-2 border-y border-gray-300 py-3 dark:border-gray-700 md:mt-10 md:grid-cols-4 md:py-5">
+                    {[
+                        ['Core planning', 'Free'],
+                        ['Subscription', 'None'],
+                        ['Ticket fee', `${percent(TICKET_SERVICE_FEE_RATE)} on paid sales`],
+                        ['Messaging', 'From ₦2,500'],
+                    ].map(([label, value]) => (
+                        <div key={label} className="border-gray-300 px-2 py-3 even:border-l dark:border-gray-700 sm:px-4 md:border-l-0 md:border-r md:py-3 md:first:pl-0 md:last:border-r-0">
+                            <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 dark:text-gray-400 sm:text-[10px]">{label}</p>
+                            <p className="mt-1 text-sm font-black leading-5 text-gray-950 dark:text-white sm:text-base">{value}</p>
+                        </div>
                     ))}
                 </div>
+            </header>
 
-                {/* Tab content */}
-                <div className="pb-24">
-                    {activeTab === 'Planners' && <PlannerTab />}
-                    {activeTab === 'Vendors' && <VendorTab />}
+            <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 md:px-10 md:py-10 lg:px-16">
+                <div className="mb-7 flex flex-col gap-4 border-b border-gray-200 pb-5 dark:border-gray-800 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-700 dark:text-primary-400">Pricing breakdown</p>
+                        <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">Choose your account type</h2>
+                    </div>
+                    <div role="tablist" aria-label="Pricing for" className="flex w-full rounded-full border border-gray-300 bg-white p-1 dark:border-gray-700 dark:bg-gray-900 sm:w-fit">
+                        {TABS.map((tab) => {
+                            const selected = activeTab === tab;
+                            const id = tab === 'Planners' ? 'planner-pricing-tab' : 'vendor-pricing-tab';
+                            return (
+                                <button
+                                    key={tab}
+                                    id={id}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={selected}
+                                    aria-controls={tab === 'Planners' ? 'planner-pricing-panel' : 'vendor-pricing-panel'}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={`min-h-11 flex-1 rounded-full px-3 text-[10px] font-black uppercase tracking-wider transition sm:flex-none sm:px-5 sm:text-xs ${selected ? 'bg-gray-950 text-white dark:bg-white dark:text-gray-950' : 'text-gray-600 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white'}`}
+                                >
+                                    {tab === 'Planners' ? 'Event organisers' : tab}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+                <div
+                    id={panelId}
+                    role="tabpanel"
+                    aria-labelledby={activeTab === 'Planners' ? 'planner-pricing-tab' : 'vendor-pricing-tab'}
+                >
+                    {activeTab === 'Planners' ? <PlannerTab /> : <VendorTab />}
+                </div>
+            </section>
 
-            {/* Trust strip */}
-            <section className="border-t border-gray-100 dark:border-gray-800 py-16 px-6 bg-white dark:bg-gray-900">
-                <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-                    <div className="space-y-3">
-                        <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
-                            <Tag className="w-6 h-6 text-primary-600" />
-                        </div>
-                        <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">No subscriptions</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Pay once per feature or event. No monthly bills, no lock-in.</p>
+            <section className="border-y border-gray-200 bg-white px-5 py-9 dark:border-gray-800 dark:bg-gray-900 sm:px-6 sm:py-12 md:px-10 lg:px-16">
+                <div className="mx-auto max-w-7xl">
+                    <div className="mb-7 max-w-3xl">
+                        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-700 dark:text-primary-400">Need more detail?</p>
+                        <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">Pricing guides and estimators</h2>
+                        <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                            These pages explain AriyaHQ’s pricing, not competitor comparisons. Use the available estimators to model selected costs.
+                        </p>
                     </div>
-
-                    <div className="space-y-3">
-                        <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
-                            <Check className="w-6 h-6 text-primary-600" />
-                        </div>
-                        <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">Who pays which fee</h3>
-                        <ul className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed space-y-1 text-left inline-block">
-                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Cash fund</span> — Ariya's 10% (incl. Paystack) from your payout</li>
-                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Registry</span> — no Ariya fee on physical items</li>
-                            <li><span className="font-semibold text-gray-700 dark:text-gray-300">Tickets</span> — 3% Ariya service fee with payer choice, plus Paystack card fee</li>
-                        </ul>
-                    </div>
-
-                    <div className="space-y-3">
-                        <div className="w-12 h-12 bg-primary-600/10 rounded-2xl flex items-center justify-center mx-auto">
-                            <Zap className="w-6 h-6 text-primary-600" />
-                        </div>
-                        <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 dark:text-white">Full transparency</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Every fee is shown before you collect a payment. No surprises at payout.</p>
+                    <div className="grid border-l border-t border-gray-200 dark:border-gray-700 sm:grid-cols-2 lg:grid-cols-3">
+                        {detailedPages.map((page, index) => (
+                            <Link
+                                key={page.href}
+                                to={page.href}
+                                className={`group border-b border-r border-gray-200 p-4 transition hover:bg-[#f7f5f1] dark:border-gray-700 dark:hover:bg-gray-950 sm:p-6 ${index === 0 ? 'bg-[#f7f5f1] dark:bg-gray-950' : ''}`}
+                            >
+                                <span className="text-[10px] font-black tracking-widest text-primary-700 dark:text-primary-400">0{index + 1}</span>
+                                <h3 className="mt-3 font-bold group-hover:text-primary-700 dark:group-hover:text-primary-400">{page.title}</h3>
+                                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">{page.detail}</p>
+                                <span className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-gray-900 dark:text-white">
+                                    View details <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" aria-hidden="true" />
+                                </span>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="py-20 px-6 text-center bg-[#FAFAFA] dark:bg-gray-950">
-                <h2 className="text-3xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">Ready to plan your event?</h2>
-                <p className="text-gray-500 dark:text-gray-400 mb-8">Create your account free. No credit card required.</p>
-                <a href={APP_LINKS.signup}>
-                    <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black dark:hover:bg-gray-200 transition-colors shadow-xl">
-                        Start Planning — It's Free
-                    </button>
+            <section className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-9 sm:px-6 md:flex-row md:items-center md:justify-between md:px-10 md:py-12 lg:px-16">
+                <div className="flex items-start gap-3">
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-primary-700 dark:text-primary-400" aria-hidden="true" />
+                    <p className="max-w-3xl text-sm leading-6 text-gray-600 dark:text-gray-300">
+                        Fees are shown by feature and billing type. Transaction charges may vary by payment method; review the final amount displayed before confirming payment.
+                    </p>
+                </div>
+                <a href={APP_LINKS.signup} className="shrink-0 text-sm font-black text-primary-700 underline underline-offset-4 dark:text-primary-400">
+                    Create a free account
                 </a>
             </section>
         </main>

@@ -15,7 +15,7 @@ import { APP_LINKS } from '../config/links';
 import heroFloral from '../assets/images/hero_floral.jpg';
 import heroTable from '../assets/images/hero_table.jpg';
 import { EVENT_IMAGES } from '../config/eventImages';
-import { DOMAIN_PRICES_NAIRA, STUDIO_PREMIUM_PRICE_NAIRA, WEBSITE_FREE_MONTHS, WEBSITE_KEEP_FOREVER_NAIRA, WEBSITE_OFFLINE_MONTHS } from '../config/pricing';
+import { DOMAIN_PRICES_NAIRA, DOMAIN_RENEWAL_MULTIPLIER, STUDIO_PREMIUM_PRICE_NAIRA, WEBSITE_FREE_MONTHS, WEBSITE_KEEP_FOREVER_NAIRA, WEBSITE_OFFLINE_MONTHS } from '../config/pricing';
 import homePreview from '../assets/images/wedding-website/home-preview-live.jpg';
 import photoStoryPreview from '../assets/images/wedding-website/photo-story-live.png';
 import coupleStoryPreview from '../assets/images/wedding-website/couple-story-live.png';
@@ -502,7 +502,7 @@ export default function WeddingWebsitePage() {
                             {Object.entries(DOMAIN_PRICES_NAIRA).map(([tld, price]) => (
                                 <li key={tld} className="flex gap-3 text-sm leading-6 text-gray-700 dark:text-gray-300">
                                     <Check className="mt-1 h-4 w-4 shrink-0 text-primary-600" aria-hidden="true" />
-                                    <span>.{tld} domain: {formatNaira(price)} first year; renewal {formatNaira(Math.round(price * 1.6))}/year.</span>
+                                    <span>.{tld} domain: {formatNaira(price)} first year; renewal {formatNaira(Math.round(price * DOMAIN_RENEWAL_MULTIPLIER))}/year.</span>
                                 </li>
                             ))}
                             <li className="flex gap-3 text-sm leading-6 text-gray-700 dark:text-gray-300">
@@ -525,6 +525,12 @@ export default function WeddingWebsitePage() {
                                 </li>
                             ))}
                         </ul>
+                        <Link
+                            to="/event-website-pricing"
+                            className="mt-4 flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-300"
+                        >
+                            View detailed event website pricing <ArrowRight className="h-4 w-4" />
+                        </Link>
                         <Link
                             to="/pricing"
                             className="mt-6 inline-flex items-center gap-2 text-sm font-black text-primary-700 hover:text-primary-600 dark:text-primary-300"

@@ -21,6 +21,16 @@ describe('buildSitemapXml', () => {
         expect(sitemap).toContain('<loc>https://ariyahq.com/wedding-wishlist/</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/event-ticketing-nigeria/</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/event-registration-nigeria/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/bulk-sms-email-pricing/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/event-ticketing-pricing/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/qr-code-guest-pass-pricing/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/event-website-pricing/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/event-management-software-pricing/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/bulk-sms-for-events/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/bulk-email-for-events/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/qr-code-guest-passes/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/event-registration/</loc>');
+        expect(sitemap).toContain('<loc>https://ariyahq.com/event-check-in/</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/digital-wedding-invitations/</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/wedding-rsvp-guest-management/</loc>');
         expect(sitemap).toContain('<loc>https://ariyahq.com/wedding-vendors-nigeria/</loc>');

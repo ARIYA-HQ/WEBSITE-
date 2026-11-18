@@ -30,10 +30,10 @@ export const SMS_BUNDLES = [
 ];
 
 export const GUEST_PASS_TIERS = [
-    { label: '1–199 guests', pricePerGuestNaira: 400 },
-    { label: '200–499 guests', pricePerGuestNaira: 350 },
-    { label: '500–999 guests', pricePerGuestNaira: 300 },
-    { label: '1,000+ guests', pricePerGuestNaira: 250 },
+    { label: '1–199 guests', pricePerGuestNaira: 400, maxQuantity: 199 },
+    { label: '200–499 guests', pricePerGuestNaira: 350, maxQuantity: 499 },
+    { label: '500–999 guests', pricePerGuestNaira: 300, maxQuantity: 999 },
+    { label: '1,000+ guests', pricePerGuestNaira: 250, maxQuantity: null },
 ];
 
 export const GUEST_PASS_MINIMUM_NAIRA = 20_000;
@@ -44,3 +44,7 @@ export const DOMAIN_PRICES_NAIRA: Record<string, number> = {
     net: 60_000,
     org: 40_000,
 };
+
+export const DOMAIN_RENEWAL_MULTIPLIER = 1.6;
+export const GUEST_PASS_MINIMUM_CAPACITY = 50;
+export const EMAIL_CREDIT_PER_MESSAGE = 0.5;

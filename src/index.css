@@ -122,13 +122,13 @@ html.dark body {
 }
 .dark .article-content { color: #d1d5db; }
 
-.article-content p { margin-bottom: 1.15rem; }
+.article-content p { margin-bottom: 1.4rem; }
 .article-content p.lead {
   font-size: 1.25rem;
   font-weight: 500;
   color: #1f2937;
   line-height: 1.7;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 .dark .article-content p.lead { color: #f3f4f6; }
 
@@ -137,8 +137,8 @@ html.dark body {
   font-weight: 900;
   letter-spacing: -0.03em;
   color: #111827;
-  margin-top: 2.4rem;
-  margin-bottom: 0.8rem;
+  margin-top: 2.8rem;
+  margin-bottom: 1rem;
   line-height: 1.2;
 }
 .dark .article-content h2 { color: #f9fafb; }
@@ -147,20 +147,20 @@ html.dark body {
   font-size: 1.2rem;
   font-weight: 800;
   color: #1f2937;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.65rem;
 }
 .dark .article-content h3 { color: #e5e7eb; }
 
 .article-content ul,
 .article-content ol {
   padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 .article-content ul { list-style-type: disc; }
 .article-content ol { list-style-type: decimal; }
 .article-content li {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.6rem;
   padding-left: 0.25rem;
 }
 

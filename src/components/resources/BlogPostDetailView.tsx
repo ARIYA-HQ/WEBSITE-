@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, User, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { ArrowLeft, User, Twitter, Facebook, Linkedin, Link2 } from 'lucide-react';
 import { BlogPost } from '../../types/cms';
 import DOMPurify from 'dompurify';
+import { toast } from 'sonner';
 import ReaderPoll from './ReaderPoll';
+import { formatBlogDate, prepareArticleSections } from '../../data/blogExperience';
 
 interface BlogPostDetailViewProps {
     post: BlogPost;
@@ -14,10 +16,17 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
     const articleRef = useRef<HTMLElement>(null);
     const [readingProgress, setReadingProgress] = useState(0);
     const contentSegments = post.content.split(/<!-- ariya-poll:(ariya-poll-\d+) -->/g);
-    const parsedDate = post.date ? new Date(post.date) : null;
-    const dateLabel = parsedDate && !Number.isNaN(parsedDate.getTime())
-        ? new Intl.DateTimeFormat('en-NG', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(parsedDate)
-        : post.date;
+    const { sections, segments: preparedSegments } = useMemo(
+        () => prepareArticleSections(
+            contentSegments.map((segment, index) =>
+                index % 2 === 1 ? segment : DOMPurify.sanitize(segment),
+            ),
+        ),
+        [post.content],
+    );
+    const wordCount = post.content.replace(/<[^>]*>/g, ' ').trim().split(/\s+/).length;
+    const showTableOfContents = !preview && wordCount >= 1000 && sections.length >= 5;
+    const dateLabel = formatBlogDate(post.date);
 
     useEffect(() => {
         if (preview) return;
@@ -43,6 +52,25 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
             window.removeEventListener('resize', updateProgress);
         };
     }, [preview, post.slug, post.id]);
+
+    const articleUrl = typeof window === 'undefined'
+        ? `https://ariyahq.com/resources/blog/${encodeURIComponent(post.slug || String(post.id))}`
+        : window.location.href;
+    const encodedUrl = encodeURIComponent(articleUrl);
+    const encodedTitle = encodeURIComponent(post.title);
+
+    const copyArticleLink = async () => {
+        if (!navigator.clipboard?.writeText) {
+            toast.error('Copying links is not supported by this browser.');
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(articleUrl);
+            toast.success('Article link copied.');
+        } catch {
+            toast.error('Could not copy the article link. Please try again.');
+        }
+    };
 
     return (
         <article ref={articleRef} className={`bg-white dark:bg-gray-950 min-h-screen ${preview ? '' : 'pt-24'}`}>
@@ -70,7 +98,9 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                 )}
 
                 <header className="mb-16 text-center">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-6">{post.category} • {dateLabel}</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-primary-600 mb-6">
+                        {post.category}{dateLabel ? ` • ${dateLabel}` : ''}
+                    </div>
                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 leading-tight text-gray-900 dark:text-white">
                         {post.title}
                     </h1>
@@ -81,6 +111,7 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                             </div>
                             <span>{post.author}</span>
                         </div>
+                        {post.readTime && <span>{post.readTime}</span>}
                     </div>
                 </header>
 
@@ -93,8 +124,25 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                 </div>
 
                 {/* Render HTML content safely */}
+                {showTableOfContents && (
+                    <nav aria-label="Table of contents" className="mb-16 rounded-3xl border border-gray-200 bg-gray-50 p-7 dark:border-gray-800 dark:bg-gray-900 md:p-9">
+                        <h2 className="mb-6 text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white">In this article</h2>
+                        <ol className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
+                            {sections.map((section) => (
+                                <li key={section.id}>
+                                    <a
+                                        href={`#${section.id}`}
+                                        className="block rounded-lg py-1 text-sm font-medium leading-relaxed text-gray-600 transition-colors hover:text-primary-600 dark:text-gray-300"
+                                    >
+                                        {section.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ol>
+                    </nav>
+                )}
                 <div className="article-content">
-                    {contentSegments.map((segment, index) => {
+                    {preparedSegments.map((segment, index) => {
                         if (index % 2 === 1) {
                             return <ReaderPoll key={`${segment}-${index}`} pollId={segment} />;
                         }
@@ -102,7 +150,7 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                         return (
                             <div
                                 key={`article-content-${index}`}
-                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(segment) }}
+                                dangerouslySetInnerHTML={{ __html: segment }}
                             />
                         );
                     })}
@@ -118,17 +166,43 @@ export default function BlogPostDetailView({ post, preview = false }: BlogPostDe
                             </span>
                         ))}
                     </div>
-                    <div className="flex justify-between items-center gap-6">
+                    <div className="flex items-center gap-4">
                         <div className="text-sm font-bold uppercase tracking-widest text-gray-500">Share</div>
-                        <div className="flex gap-4">
-                            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400">
+                        <div className="flex gap-2">
+                            <a
+                                href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="Share on X"
+                                className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400"
+                            >
                                 <Twitter className="w-4 h-4" />
-                            </button>
-                            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400">
+                            </a>
+                            <a
+                                href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="Share on Facebook"
+                                className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400"
+                            >
                                 <Facebook className="w-4 h-4" />
-                            </button>
-                            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400">
+                            </a>
+                            <a
+                                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label="Share on LinkedIn"
+                                className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400"
+                            >
                                 <Linkedin className="w-4 h-4" />
+                            </a>
+                            <button
+                                type="button"
+                                onClick={copyArticleLink}
+                                aria-label="Copy article link"
+                                className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:border-gray-900 dark:hover:border-white transition-all dark:text-gray-400"
+                            >
+                                <Link2 className="w-4 h-4" />
                             </button>
                         </div>
                     </div>

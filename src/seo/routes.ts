@@ -78,8 +78,28 @@ export const publicPages: Record<string, { title: string; description: string }>
         description: 'Find help using AriyaHQ event planning and management tools.',
     },
     '/pricing': {
-        title: 'AriyaHQ Pricing',
-        description: 'Explore AriyaHQ plans and pricing for event planning and management.',
+        title: 'AriyaHQ Pricing: Event Planning, Ticketing and Guest Tools',
+        description: 'Explore AriyaHQ event management pricing. Create events for free without a monthly subscription and review fees for ticketing, QR passes, messaging and websites.',
+    },
+    '/bulk-sms-email-pricing': {
+        title: 'Bulk SMS and Email Pricing in Nigeria',
+        description: 'Compare AriyaHQ bulk SMS and email credit packages in Nigeria. Choose 50, 200 or 500 credits and understand how message usage works.',
+    },
+    '/event-ticketing-pricing': {
+        title: 'Event Ticketing Fees in Nigeria: AriyaHQ Pricing',
+        description: 'Review AriyaHQ event ticketing fees in Nigeria. Sell paid tickets with a 3% service fee, flexible fee handling and no monthly subscription.',
+    },
+    '/qr-code-guest-pass-pricing': {
+        title: 'QR Code Guest Pass Pricing in Nigeria',
+        description: 'See AriyaHQ QR code guest pass pricing in Nigeria. Get 5 free test passes, compare progressive rates and estimate event pass costs.',
+    },
+    '/event-website-pricing': {
+        title: 'Custom Event Website Pricing in Nigeria',
+        description: 'Explore AriyaHQ event website pricing in Nigeria. Create a website for free, keep it live indefinitely for ₦35,000 or choose a custom domain.',
+    },
+    '/event-management-software-pricing': {
+        title: 'Event Management Software Pricing in Nigeria',
+        description: 'Compare AriyaHQ event management pricing in Nigeria. Create events for free with no monthly subscription and review fees for ticketing, passes and messaging.',
     },
     '/wedding-planning': {
         title: 'Wedding Planning in Nigeria: Complete Guide (2026)',
@@ -132,6 +152,26 @@ export const publicPages: Record<string, { title: string; description: string }>
     '/event-registration-nigeria': {
         title: 'Event Registration in Nigeria: Manage Attendees Online',
         description: 'Learn how to manage event registration in Nigeria, create online registration forms, collect attendee details, send confirmations and track participants before and during your event.',
+    },
+    '/bulk-sms-for-events': {
+        title: 'Bulk SMS for Events in Nigeria',
+        description: 'Send bulk SMS for events with AriyaHQ. Reach guests with invitations, reminders, registration information and important event updates.',
+    },
+    '/bulk-email-for-events': {
+        title: 'Bulk Email for Events in Nigeria',
+        description: 'Send bulk emails for events with AriyaHQ. Share invitations, registration information, reminders and important updates with your event guests.',
+    },
+    '/qr-code-guest-passes': {
+        title: 'QR Code Guest Passes for Events in Nigeria',
+        description: 'Create unique QR code guest passes for your event with AriyaHQ. Organise digital invitations, guest registration and event access.',
+    },
+    '/event-registration': {
+        title: 'Event Registration Software in Nigeria',
+        description: 'Manage event registration with AriyaHQ. Organise attendee information, RSVPs, guest communication and unique QR code guest passes.',
+    },
+    '/event-check-in': {
+        title: 'Event Check-in Software in Nigeria',
+        description: 'Prepare for event check-in with AriyaHQ. Organise guest information, manage registrations and provide unique QR code guest passes.',
     },
     '/wedding-checklist-timeline': {
         title: 'Wedding Planning Checklist Nigeria: Month-by-Month Guide',

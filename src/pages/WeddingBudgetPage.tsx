@@ -15,6 +15,7 @@ import { EVENT_IMAGES } from '../config/eventImages';
 import { trackEvent } from '../analytics/analytics';
 import { weddingBudgetFaqs } from '../seo/wedding-budget-content';
 import { allocateWeddingBudget } from '../utils/weddingBudget';
+import CommaNumberInput from '../components/marketing/CommaNumberInput';
 
 const budgetCategories = [
     {
@@ -319,16 +320,13 @@ export default function WeddingBudgetPage() {
                             <label htmlFor="wedding-budget-total" className="block text-xs font-black uppercase tracking-widest text-gray-700 dark:text-gray-200">
                                 Total wedding budget (₦)
                             </label>
-                            <input
+                            <CommaNumberInput
                                 id="wedding-budget-total"
-                                type="number"
-                                inputMode="numeric"
                                 min="0"
                                 max={Number.MAX_SAFE_INTEGER}
-                                step="1"
                                 value={budgetInput}
                                 onFocus={trackCalculatorStart}
-                                onChange={(event) => setBudgetInput(event.target.value)}
+                                onValueChange={setBudgetInput}
                                 className="mt-3 w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 text-lg font-bold text-gray-900 outline-none transition focus:border-primary-600 focus:ring-2 focus:ring-primary-600/15 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                                 aria-describedby="wedding-budget-note"
                             />
@@ -340,16 +338,13 @@ export default function WeddingBudgetPage() {
                             <label htmlFor="wedding-budget-guests" className="mt-6 block text-xs font-black uppercase tracking-widest text-gray-700 dark:text-gray-200">
                                 Expected number of guests
                             </label>
-                            <input
+                            <CommaNumberInput
                                 id="wedding-budget-guests"
-                                type="number"
-                                inputMode="numeric"
                                 min="1"
                                 max={Number.MAX_SAFE_INTEGER}
-                                step="1"
                                 value={guestInput}
                                 onFocus={trackCalculatorStart}
-                                onChange={(event) => setGuestInput(event.target.value)}
+                                onValueChange={setGuestInput}
                                 className="mt-3 w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 text-lg font-bold text-gray-900 outline-none transition focus:border-primary-600 focus:ring-2 focus:ring-primary-600/15 dark:border-gray-700 dark:bg-gray-950 dark:text-white"
                                 aria-describedby="wedding-budget-note"
                             />

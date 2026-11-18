@@ -7,7 +7,11 @@ import path from 'path';
 import { db, WAITLIST_ROLES, WaitlistRole } from './db/supabase.js';
 import { loopsService } from './loopsService.js';
 import { buildSitemapXml } from '../src/seo/sitemap.js';
-import { mergePublicWeddingSeoPosts, publicWeddingSeoPosts } from '../src/data/publicWeddingBlogPosts.js';
+import {
+    mergePublicWeddingSeoPosts,
+    publicWeddingSeoPosts,
+    publicEventManagementSeoPosts,
+} from '../src/data/publicWeddingBlogPosts.js';
 
 // Shared Express app for the marketing site's API. server/index.ts adds static
 // file serving + listen for the VPS; api/index.ts re-exports it for Vercel.
@@ -206,7 +210,8 @@ app.get('/api/posts/:id', async (req, res) => {
         const post = id
             ? await db.blogPosts.getById(id)
             : (await db.blogPosts.getBySlug(String(req.params.id))
-                ?? publicWeddingSeoPosts.find((item) => item.slug === req.params.id)
+                ?? [...publicWeddingSeoPosts, ...publicEventManagementSeoPosts]
+                    .find((item) => item.slug === req.params.id)
                 ?? null);
         if (!post || (!isPublished(post) && !getAdmin(req))) return res.status(404).json({ error: 'Not found' });
         res.json(post);

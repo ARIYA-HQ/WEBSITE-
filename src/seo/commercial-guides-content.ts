@@ -273,7 +273,11 @@ export const ticketingGuide: ResourceGuideContent = {
         { question: 'What fees should I compare?', answer: 'Review platform and payment processing fees, settlement timing, refund or chargeback costs and any charges for check-in or support.' },
     ],
     related: [
+        { label: 'Event ticketing fees and pricing', href: '/event-ticketing-pricing' },
         { label: 'Event registration guide', href: '/event-registration-nigeria' },
+        { label: 'Event registration software', href: '/event-registration' },
+        { label: 'QR code guest passes', href: '/qr-code-guest-passes' },
+        { label: 'Event check-in tools', href: '/event-check-in' },
         { label: 'Wedding planning guide', href: '/wedding-planning' },
         { label: 'Explore the event marketplace', href: '/product/marketplace' },
     ],
@@ -330,7 +334,11 @@ export const registrationGuide: ResourceGuideContent = {
         { question: 'How is event registration different from RSVP?', answer: 'An RSVP usually records a response to an invitation. Registration is commonly used to collect sign-ups and participant details for an event.' },
     ],
     related: [
+        { label: 'Event ticketing fees and pricing', href: '/event-ticketing-pricing' },
         { label: 'Event ticketing guide', href: '/event-ticketing-nigeria' },
+        { label: 'Event registration software', href: '/event-registration' },
+        { label: 'QR code guest passes', href: '/qr-code-guest-passes' },
+        { label: 'Event check-in tools', href: '/event-check-in' },
         { label: 'Wedding planning guide', href: '/wedding-planning' },
         { label: 'AriyaHQ help center', href: '/resources/help-center' },
     ],

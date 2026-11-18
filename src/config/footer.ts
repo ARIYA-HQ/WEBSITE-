@@ -41,6 +41,17 @@ export const FOOTER_CONFIG = {
         {
             title: 'Event Tools & Solutions',
             links: [
+                { label: 'AriyaHQ Pricing', href: '/pricing' },
+                { label: 'Event Management Software Pricing', href: '/event-management-software-pricing' },
+                { label: 'Event Ticketing Fees', href: '/event-ticketing-pricing' },
+                { label: 'QR Guest Pass Pricing', href: '/qr-code-guest-pass-pricing' },
+                { label: 'Bulk SMS & Email Pricing', href: '/bulk-sms-email-pricing' },
+                { label: 'Event Website Pricing', href: '/event-website-pricing' },
+                { label: 'Bulk SMS for Events', href: '/bulk-sms-for-events' },
+                { label: 'Bulk Email for Events', href: '/bulk-email-for-events' },
+                { label: 'QR Code Guest Passes', href: '/qr-code-guest-passes' },
+                { label: 'Event Registration Software', href: '/event-registration' },
+                { label: 'Event Check-in', href: '/event-check-in' },
                 { label: 'Event Ticketing in Nigeria', href: '/event-ticketing-nigeria' },
                 { label: 'Event Registration in Nigeria', href: '/event-registration-nigeria' },
                 { label: 'Wedding Planning Tools & Guide', href: '/wedding-planning' },

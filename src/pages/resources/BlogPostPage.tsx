@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, User, Share2, Facebook, Twitter, Linkedin, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { cmsService } from '../../services/cmsService';
 import { BlogPost } from '../../types/cms';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
 import SEO from '../../components/common/SEO';
+import { getRelatedBlogPosts } from '../../data/blogExperience';
 
 export default function BlogPostPage() {
     const { slug } = useParams();
@@ -25,15 +26,7 @@ export default function BlogPostPage() {
                     // Fetch related if post found
                     if (fetchedPost) {
                         const allPosts = await cmsService.getBlogPosts();
-                        let related = allPosts
-                            .filter(p => p.category === fetchedPost!.category && p.id !== fetchedPost!.id)
-                            .slice(0, 3);
-
-                        if (related.length < 3) {
-                            const remaining = allPosts.filter(p => p.id !== fetchedPost!.id && !related.find(r => r.id === p.id));
-                            related.push(...remaining.slice(0, 3 - related.length));
-                        }
-                        setRelatedPosts(related);
+                        setRelatedPosts(getRelatedBlogPosts(fetchedPost, allPosts));
                     }
                 }
             } catch (error) {
@@ -107,9 +100,6 @@ export default function BlogPostPage() {
             />
             <BlogPostDetailView post={post} />
 
-            {/* Read Next (kept outside of DetailView to let DetailView be pure for preview) */}
-
-            {/* Read Next */}
             {relatedPosts.length > 0 && (
                 <section className="py-24 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
                     <div className="max-w-7xl mx-auto px-8">

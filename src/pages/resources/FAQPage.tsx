@@ -30,7 +30,7 @@ export const faqs = [
         questions: [
             {
                 q: "Is Ariya free?",
-                a: "Yes — completely. Creating an account, unlimited events, guest management, budget tracking, vendor discovery, gift wishlist, and ticket sales are all free. You only pay for specific premium capabilities when you need them."
+                a: "There is no monthly or annual subscription for core planning. Event creation and planning tools are free; charges apply to paid ticket transactions and optional services such as guest passes, messaging credits, extra storage, and website upgrades."
             },
             {
                 q: "Are there any subscription fees?",
@@ -38,7 +38,7 @@ export const faqs = [
             },
             {
                 q: "What do planners pay for?",
-                a: "Planners pay only for premium unlocks: removing Ariya branding (₦15,000/event), adding team members (₦10,000+/member), advanced analytics (₦20,000/event), custom domains (from ₦20,000), and SMS guest notification bundles (from ₦2,500). Everything else is free."
+                a: "Core event planning is free with no monthly subscription. Optional or transaction-based charges include a 3% Ariya service fee on paid ticket sales, progressively priced QR guest passes, messaging credit packages from ₦2,500, extra gallery storage, Ariya Studio Premium, extended website availability, and custom domains. See the pricing page for current rates and conditions."
             },
             {
                 q: "What do vendors pay for?",
@@ -50,7 +50,7 @@ export const faqs = [
             },
             {
                 q: "How do ticket fees work?",
-                a: "Creating events and ticketing is free. A 3% service fee is deducted from the organiser's ticket price at withdrawal. Attendees pay the price you set plus Paystack's card processing fee, which is passed on at cost and which Ariya does not keep."
+                a: "Creating an event is free. Ariya charges a 3% service fee on paid ticket sales; organisers can pass the fee to buyers or have it deducted from proceeds. Payment processing fees are separate. See the detailed event ticketing pricing page and review the checkout breakdown."
             },
             {
                 q: "Are feature unlocks permanent?",
@@ -92,11 +92,11 @@ export const faqs = [
             },
             {
                 q: "Can I create a website for my event?",
-                a: "Yes. Every event gets a free public website hosted at your-slug.ariyahq.com with Ariya branding. For a custom domain (e.g. yourevent.com) and no Ariya branding, those are available as paid unlocks."
+                a: "Yes. A standard event website is available without a subscription for three months after your event, with archive access until month six. Optional paid services include keeping it live indefinitely or using a custom domain. See the event website pricing page for details."
             },
             {
                 q: "Can I send SMS messages to my guests?",
-                a: "Yes. Planners can buy SMS credit bundles — 50 SMS for ₦2,500, 200 for ₦8,000, or 500 for ₦17,500 — and use them to send RSVP reminders, day-of updates, and thank-you messages directly to guests' phones. Credits are per-event and never expire."
+                a: "Yes. AriyaHQ offers shared messaging credit packages: 50 credits for ₦2,500, 200 for ₦8,000, or 500 for ₦17,500. Credits are shared across your account and can be used for SMS and email. SMS usage depends on message segments, so credits are not necessarily equivalent to the number of messages. See the bulk messaging pricing page for details."
             },
             {
                 q: "How does the gift wishlist work?",

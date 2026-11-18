@@ -7,6 +7,14 @@ import RichTextEditor from '../../components/admin/RichTextEditor';
 import BlogPostDetailView from '../../components/resources/BlogPostDetailView';
 import ImageUploadField from '../../components/admin/ImageUploadField';
 import { EVENT_IMAGES } from '../../config/eventImages';
+import { toast } from 'sonner';
+
+const editorialReviewItems = [
+    { key: 'product', label: 'Ariya features, pricing and calls to action match the current product.' },
+    { key: 'facts', label: 'Factual claims are checked and important claims have reliable sources.' },
+    { key: 'originality', label: 'The article is useful, original and distinct from existing posts.' },
+    { key: 'media', label: 'Images are approved for use and have accurate alt text.' },
+] as const;
 
 export default function PostEditorPage() {
     const navigate = useNavigate();
@@ -30,6 +38,7 @@ export default function PostEditorPage() {
     const [tagInput, setTagInput] = useState('');
     const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
     const [showPreviewModal, setShowPreviewModal] = useState(false);
+    const [reviewedItems, setReviewedItems] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         if (isEditMode && id) {
@@ -67,8 +76,15 @@ export default function PostEditorPage() {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
+        if (
+            formData.status === 'published' &&
+            editorialReviewItems.some((item) => !reviewedItems[item.key])
+        ) {
+            toast.error('Complete the editorial review before publishing.');
+            return;
+        }
         setLoading(true);
         try {
             if (isEditMode && id) {
@@ -126,7 +142,7 @@ export default function PostEditorPage() {
                             className="w-full sm:w-auto bg-primary-600 text-white px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 whitespace-nowrap"
                         >
                             {loading ? <div className="animate-spin w-4 h-4 border-2 border-white/30 border-t-white rounded-full" /> : <Save className="w-4 h-4" />}
-                            {isEditMode ? 'Update Post' : 'Publish Post'}
+                            {formData.status === 'draft' ? 'Save Draft' : isEditMode ? 'Update Post' : 'Publish Post'}
                         </button>
                     </div>
                 </div>
@@ -219,6 +235,28 @@ export default function PostEditorPage() {
                                         <option value="archived">Archived</option>
                                     </select>
                                 </div>
+                                {formData.status === 'published' && (
+                                    <fieldset className="space-y-3 border-t border-gray-100 pt-5 dark:border-gray-800">
+                                        <legend className="mb-3 text-xs font-black uppercase tracking-widest text-gray-500">Editorial review</legend>
+                                        <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                                            Confirm each item before publishing, especially for AI-assisted drafts.
+                                        </p>
+                                        {editorialReviewItems.map((item) => (
+                                            <label key={item.key} className="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={reviewedItems[item.key] ?? false}
+                                                    onChange={(event) => setReviewedItems((current) => ({
+                                                        ...current,
+                                                        [item.key]: event.target.checked,
+                                                    }))}
+                                                    className="mt-1 accent-primary-600"
+                                                />
+                                                <span>{item.label}</span>
+                                            </label>
+                                        ))}
+                                    </fieldset>
+                                )}
 
                                 <div>
                                     <label className="block text-xs font-bold text-gray-500 mb-2">Category</label>
@@ -269,6 +307,20 @@ export default function PostEditorPage() {
                                     value={formData.image || ''}
                                     onChange={(url) => setFormData(prev => ({ ...prev, image: url }))}
                                 />
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-500 mb-2" htmlFor="post-image-alt">
+                                        Image alt text
+                                    </label>
+                                    <input
+                                        id="post-image-alt"
+                                        type="text"
+                                        name="imageAlt"
+                                        value={formData.imageAlt || ''}
+                                        onChange={handleChange}
+                                        className="w-full bg-gray-50 dark:bg-gray-800/50 border-none rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-600 outline-none"
+                                        placeholder="Describe the image for readers using assistive technology"
+                                    />
+                                </div>
                             </div>
                         </div>
 

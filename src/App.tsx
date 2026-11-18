@@ -50,6 +50,7 @@ const ResourceEditorPage = lazy(() => import('./pages/admin/ResourceEditorPage')
 const AnalyticsPage = lazy(() => import('./pages/admin/AnalyticsPage'));
 const SettingsPage = lazy(() => import('./pages/admin/SettingsPage'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
+const PricingDetailPage = lazy(() => import('./components/marketing/PricingDetailPage'));
 const WeddingPlanningPage = lazy(() => import('./pages/WeddingPlanningPage'));
 const WeddingWebsitePage = lazy(() => import('./pages/WeddingWebsitePage'));
 const WeddingBudgetPage = lazy(() => import('./pages/WeddingBudgetPage'));
@@ -59,6 +60,7 @@ const WeddingGiftRegistryNigeriaPage = lazy(() => import('./pages/WeddingGiftReg
 const WeddingWishlistPage = lazy(() => import('./pages/WeddingWishlistPage'));
 const EventTicketingNigeriaPage = lazy(() => import('./pages/EventTicketingNigeriaPage'));
 const EventRegistrationNigeriaPage = lazy(() => import('./pages/EventRegistrationNigeriaPage'));
+const EventFeaturePage = lazy(() => import('./components/marketing/EventFeaturePage'));
 const DigitalWeddingInvitationsPage = lazy(() => import('./pages/DigitalWeddingInvitationsPage'));
 const WeddingRsvpGuestManagementPage = lazy(() => import('./pages/WeddingRsvpGuestManagementPage'));
 const WeddingVendorsNigeriaPage = lazy(() => import('./pages/WeddingVendorsNigeriaPage'));
@@ -135,6 +137,11 @@ export function AppContent() {
                                                 <Route path="/resources/help-center" element={<HelpCenterPage />} />
 
                                                 <Route path="/pricing" element={<PricingPage />} />
+                                                <Route path="/bulk-sms-email-pricing" element={<PricingDetailPage path="/bulk-sms-email-pricing" />} />
+                                                <Route path="/event-ticketing-pricing" element={<PricingDetailPage path="/event-ticketing-pricing" />} />
+                                                <Route path="/qr-code-guest-pass-pricing" element={<PricingDetailPage path="/qr-code-guest-pass-pricing" />} />
+                                                <Route path="/event-website-pricing" element={<PricingDetailPage path="/event-website-pricing" />} />
+                                                <Route path="/event-management-software-pricing" element={<PricingDetailPage path="/event-management-software-pricing" />} />
                                                 <Route path="/wedding-planning" element={<WeddingPlanningPage />} />
                                                 <Route path="/wedding-budget" element={<WeddingBudgetPage />} />
                                                 <Route path="/aso-ebi-in-nigeria" element={<AsoEbiNigeriaPage />} />
@@ -143,6 +150,11 @@ export function AppContent() {
                                                 <Route path="/wedding-wishlist" element={<WeddingWishlistPage />} />
                                                 <Route path="/event-ticketing-nigeria" element={<EventTicketingNigeriaPage />} />
                                                 <Route path="/event-registration-nigeria" element={<EventRegistrationNigeriaPage />} />
+                                                <Route path="/bulk-sms-for-events" element={<EventFeaturePage path="/bulk-sms-for-events" />} />
+                                                <Route path="/bulk-email-for-events" element={<EventFeaturePage path="/bulk-email-for-events" />} />
+                                                <Route path="/qr-code-guest-passes" element={<EventFeaturePage path="/qr-code-guest-passes" />} />
+                                                <Route path="/event-registration" element={<EventFeaturePage path="/event-registration" />} />
+                                                <Route path="/event-check-in" element={<EventFeaturePage path="/event-check-in" />} />
                                                 <Route path="/wedding-website" element={<WeddingWebsitePage />} />
                                                 <Route path="/digital-wedding-invitations" element={<DigitalWeddingInvitationsPage />} />
                                                 <Route path="/wedding-rsvp-guest-management" element={<WeddingRsvpGuestManagementPage />} />
